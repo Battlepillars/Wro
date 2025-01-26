@@ -35,13 +35,15 @@ def main():
     wy = 3100
     placing = 0
     playmat = Playmat(matScale, wx, wy)
+    os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (560,0)
     screen = pygame.display.set_mode((wx * matScale + 300, wy * matScale), pygame.RESIZABLE)
+    
     pygame.display.set_caption("WroONator4000")
     clock = pygame.time.Clock()
     global running2
     last_val = 0xFFFF
 
-    clThread = threading.Thread(target=controlLoop)
+    clThread = threading.Thread(target=controlLoop, args=(robot,))
     clThread.start()
     
     while running:
@@ -70,6 +72,11 @@ def main():
                     kit.servo[0].angle = 90
                     kit.servo[3].angle = 90
                     slam.lidar.disconnect()
+                
+                if event.key == pygame.K_f:
+                    print(math.floor(pygame.mouse.get_pos()[0] / matScale) - 50, math.floor(pygame.mouse.get_pos()[1] / matScale) - 50)
+                if event.key == pygame.K_g:
+                    print("orders.append(Order("+str(math.floor(pygame.mouse.get_pos()[0] / matScale) - 50)+","+str(math.floor(pygame.mouse.get_pos()[1] / matScale) - 50)+",0.5,1))")
 
             if event.type == pygame.QUIT:
                 running = False
@@ -97,7 +104,7 @@ class Order:
         self.speed = speed
         self.brake = brake
 
-def controlLoop():
+def controlLoop(robot):
     driveBase = DriveBase(slam, kit)
     global running2
     kit.servo[0].angle = 90
@@ -108,18 +115,22 @@ def controlLoop():
     ausgabe = 0
     startZeit = time.perf_counter_ns()
     orders = []
-    orders.append(Order(700,2500,0.5,1))
-    orders.append(Order(500,700,0.5,1))
-    orders.append(Order(2200,500,0.5,1))
-    orders.append(Order(2500,2200,0.5,1))
-    currentOrder = 0
+    # orders.append(Order(700,2500,0.5,1))
+    # orders.append(Order(500,700,0.5,1))
+    # orders.append(Order(2200,500,0.5,1))
+    # orders.append(Order(2500,2200,0.5,1))
+    orders.append(Order(1479,2314,0.5,1))
+    
     while running2:
         slam.update()
-        if driveBase.driveTo(orders[currentOrder].x,orders[currentOrder].y,orders[currentOrder].speed,orders[currentOrder].brake):
-            if currentOrder < 3:
-                currentOrder += 1
-            else:
-                currentOrder = 0
+        if orders.__len__() > 0:
+            robot.circlex = orders[0].x
+            robot.circley = orders[0].y
+            if driveBase.driveTo(orders[0].x,orders[0].y,orders[0].speed,orders[0].brake):
+                orders.pop(0)
+        else:
+            kit.servo[0].angle = 90
+            kit.servo[3].angle = 90
         variable = ((time.perf_counter_ns() - startZeit) / 1000 / 1000)
         if 0.01 - (variable / 1000) > 0:
             time.sleep(0.01 - (variable / 1000))

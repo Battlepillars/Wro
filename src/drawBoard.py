@@ -13,6 +13,8 @@ class Robot:
     angleStart = 0
     angle = 0
     matScaleOld = 0
+    circlex = 0
+    circley = 0
 
     def __init__(self, matScale):
         self.matScaleOld = matScale
@@ -34,9 +36,9 @@ class Robot:
         sys = screen.get_height()
         screenx = (self.xpos * self.matScale)
         screeny = (self.ypos * self.matScale)
-        pygame.draw.circle(screen, (255, 0, 0), (1800 * matScale, 2800 * matScale), 50 * matScale)
+        pygame.draw.circle(screen, (255, 0, 0), ((self.circlex + 50) * matScale, (self.circley + 50) * matScale), 50 * matScale)
         for i in range(len(scan)):
-            if scan[i] > 300:
+            if scan[i] > 0:
                 rad = (i + self.angle) / 180 * math.pi
                 x = math.cos(rad) * -scan[i] + self.xpos
                 y = math.sin(rad) * scan[i] + self.ypos

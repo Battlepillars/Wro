@@ -89,6 +89,16 @@ class Slam:
             self.angleStart = 0
             self.ystart = 3000 - self.scan[90]
             self.xstart = average
+        
+
+        if (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
+            self.angleStart = 0
+            self.ystart = 3000 - self.scan[90]
+            self.xstart = 2000 - self.scan[180]
+        elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[-90] < 400):
+            self.angleStart = 180
+            self.ystart = 3000 - self.scan[-90]
+            self.xstart = 2000 - self.scan[0]
 
         # 1870 - 1970
         # 1345 - 1450
@@ -98,13 +108,13 @@ class Slam:
     def update(self):
         self.speed = self.myOtos.getVelocity()
         myPosition = self.myOtos.getPosition()
-        if self.loopCounterGyro > 199:
-            print("update........................................................................................................................................................................................................................................................................")
-            myPosition.h = -self.sensor.euler[0] + self.angleStart
-            self.myOtos.setPosition(myPosition)
-            self.loopCounterGyro = 0
-        else:
-            self.loopCounterGyro += 1
+        # if self.loopCounterGyro > 199:
+        #     #print("update........................................................................................................................................................................................................................................................................")
+        #     myPosition.h = -self.sensor.euler[0] + self.angleStart
+        #     self.myOtos.setPosition(myPosition)
+        #     self.loopCounterGyro = 0
+        # else:
+        #     self.loopCounterGyro += 1
         
         if self.loopCounter >= 9:
             self.lidar.getScan(self.scan)
@@ -114,6 +124,6 @@ class Slam:
         
         self.ypos = -myPosition.x * 1000 + self.ystart
         self.xpos = -myPosition.y * 1000 + self.xstart
-        self.angle = myPosition.h         
+        self.angle = myPosition.h + self.angleStart        
 
         # print("Euler angle: {}".format(sensor.euler[0]))
