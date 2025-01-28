@@ -106,7 +106,8 @@ class Slam:
         # 1040 - 1200
 
     def update(self):
-        self.speed = self.myOtos.getVelocity()
+        sp=self.myOtos.getVelocity()
+        self.speed =  math.sqrt(math.pow(sp.x,2) + math.pow(sp.y,2))
         myPosition = self.myOtos.getPosition()
         # if self.loopCounterGyro > 199:
         #     #print("update........................................................................................................................................................................................................................................................................")

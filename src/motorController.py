@@ -47,11 +47,12 @@ class DriveBase:
     slam:Slam
     kit:ServoKit
     zielWinkel = 5000
+    distanci = 0
 
     def __init__(self, slam, kit):
         self.slam = slam
         self.kit = kit
-        self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=0, max=80)
+        self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-80, max=80)
         self.pidSteer = PIDController(Kp=7, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
     
     def driveTo(self, x, y, speed, brake):
@@ -81,7 +82,7 @@ class DriveBase:
         outputSteer = self.pidSteer.compute(angle,1)
         
         
-        speedTotal = math.sqrt(math.pow(self.slam.speed.x,2)+math.pow(self.slam.speed.y,2))
+        speedTotal = self.slam.speed
         output = self.pidController.compute(speedTotal,0.5)
 
         
@@ -97,6 +98,31 @@ class DriveBase:
         
         if abs(distanceLine) < 30:
             self.zielWinkel = 5000
+            return True
+        else:
+            return False
+    
+    def drivekürvchen(self, dist, angli, speed, brake):
+        self.pidController.setpoint = speed
+        speedTotal = self.slam.speed
+        
+        self.distanci = self.distanci + speedTotal * 10
+
+        
+        if (dist - self.distanci < 10) and (brake == 1):
+            self.pidController.setpoint = speed * (dist - self.distanci) / 10        
+        
+        if speed < 0:
+            output = self.pidController.compute(-speedTotal,0.5)   
+        else:
+            output = self.pidController.compute(speedTotal,0.5)    
+        
+        print(math.floor(self.distanci), speedTotal)
+        self.kit.servo[0].angle = angli
+        self.kit.servo[3].angle = 99 + output
+        
+        if abs(self.distanci) > dist - 10:
+            self.distanci = 0
             return True
         else:
             return False

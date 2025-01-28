@@ -22,11 +22,12 @@ backupVersion = 3
 
 slam = Slam()
 kit = ServoKit(channels=16)
-kit.servo[0].set_pulse_width_range(1000, 2000)
+kit.servo[0].set_pulse_width_range(925, 2180)
 kit.servo[3].set_pulse_width_range(1000, 2000)
 running2 = True
 
 def main():
+    global slam
     running = True
     robot = Robot(matScale)
     pygame.init()
@@ -47,6 +48,7 @@ def main():
     clThread.start()
     
     while running:
+        # print("Speed : ",slam.speed)
         robot.xpos = slam.xpos
         robot.ypos = slam.ypos
         robot.angle = slam.angle
@@ -98,39 +100,50 @@ def main():
         pygame.display.flip()
 
 class Order:
-    def __init__(self,x,y,speed,brake):
+    def __init__(self,x,y,speed,brake,type):
         self.x = x
         self.y = y
         self.speed = speed
         self.brake = brake
+        self.type = type
 
 def controlLoop(robot):
     driveBase = DriveBase(slam, kit)
     global running2
     kit.servo[0].angle = 90
     kit.servo[3].angle = 90
+    
     slam.update()
     slam.startpostionsetzen()
     startZeit = 0
     ausgabe = 0
     startZeit = time.perf_counter_ns()
     orders = []
-    # orders.append(Order(700,2500,0.5,1))
-    # orders.append(Order(500,700,0.5,1))
-    # orders.append(Order(2200,500,0.5,1))
-    # orders.append(Order(2500,2200,0.5,1))
-    orders.append(Order(1479,2314,0.5,1))
+    # orders.append(Order(700,2500,0.5,1,0))
+    # orders.append(Order(500,700,0.5,1,0))
+    # orders.append(Order(2200,500,0.5,1,0))
+    # orders.append(Order(2500,2200,0.5,1,0))
+    # orders.append(Order(1479,2314,0.5,1,0))
     
+    orders.append(Order(40,0,0.2,1,1))
+    orders.append(Order(40,0,-0.2,1,1))
+    
+    print(orders[0])
     while running2:
         slam.update()
         if orders.__len__() > 0:
             robot.circlex = orders[0].x
             robot.circley = orders[0].y
-            if driveBase.driveTo(orders[0].x,orders[0].y,orders[0].speed,orders[0].brake):
-                orders.pop(0)
+            if orders[0].type == 0:
+                if driveBase.driveTo(orders[0].x,orders[0].y,orders[0].speed,orders[0].brake):
+                    orders.pop(0)
+            else:
+                if driveBase.drivekürvchen(orders[0].x,orders[0].y,orders[0].speed,orders[0].brake):
+                    orders.pop(0)
         else:
             kit.servo[0].angle = 90
             kit.servo[3].angle = 90
+        
         variable = ((time.perf_counter_ns() - startZeit) / 1000 / 1000)
         if 0.01 - (variable / 1000) > 0:
             time.sleep(0.01 - (variable / 1000))
