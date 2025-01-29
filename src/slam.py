@@ -20,6 +20,8 @@ class Slam:
     angle = 0
     xpos = 0
     ypos = 0
+    lastXpos = 5000
+    lastYpos = 5000
     
     def __init__(self):
         self.xstart = 0#2800
@@ -106,9 +108,18 @@ class Slam:
         # 1040 - 1200
 
     def update(self):
-        sp=self.myOtos.getVelocity()
-        self.speed =  math.sqrt(math.pow(sp.x,2) + math.pow(sp.y,2))
         myPosition = self.myOtos.getPosition()
+        
+        # sp=self.myOtos.getVelocity()  #buggy, do not use
+        if (self.lastXpos == 5000):
+            self.speed = 0
+        else:
+            self.speed =  math.sqrt(math.pow(myPosition.x-self.lastXpos,2) + math.pow(myPosition.y-self.lastYpos,2))*100
+
+        self.lastXpos = myPosition.x
+        self.lastYpos = myPosition.y
+
+        
         # if self.loopCounterGyro > 199:
         #     #print("update........................................................................................................................................................................................................................................................................")
         #     myPosition.h = -self.sensor.euler[0] + self.angleStart

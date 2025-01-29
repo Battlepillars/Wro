@@ -100,12 +100,17 @@ def main():
         pygame.display.flip()
 
 class Order:
-    def __init__(self,x,y,speed,brake,type):
+    DESTINATION=0
+    KURVE=1
+    def __init__(self,speed,brake,type,x=0,y=0,steer=0,dist=0):
         self.x = x
         self.y = y
         self.speed = speed
         self.brake = brake
         self.type = type
+        self.steer = steer
+        self.dist = dist
+  
 
 def controlLoop(robot):
     driveBase = DriveBase(slam, kit)
@@ -125,20 +130,24 @@ def controlLoop(robot):
     # orders.append(Order(2500,2200,0.5,1,0))
     # orders.append(Order(1479,2314,0.5,1,0))
     
-    orders.append(Order(40,0,0.2,1,1))
-    orders.append(Order(40,0,-0.2,1,1))
-    
-    print(orders[0])
+    orders.append(Order(steer=-90,dist=60,speed=0.2,brake=1,type=Order.KURVE))
+    orders.append(Order(steer=90,dist=50,speed=-0.2,brake=1,type=Order.KURVE))
+    orders.append(Order(steer=-90,dist=60,speed=0.2,brake=1,type=Order.KURVE))
+    orders.append(Order(steer=90,dist=50,speed=-0.2,brake=1,type=Order.KURVE))
+    orders.append(Order(steer=-30,dist=150,speed=0.2,brake=1,type=Order.KURVE))
+
     while running2:
         slam.update()
         if orders.__len__() > 0:
-            robot.circlex = orders[0].x
-            robot.circley = orders[0].y
-            if orders[0].type == 0:
+    
+            if orders[0].type == Order.DESTINATION:
+                robot.circlex = orders[0].x
+                robot.circley = orders[0].y
                 if driveBase.driveTo(orders[0].x,orders[0].y,orders[0].speed,orders[0].brake):
                     orders.pop(0)
             else:
-                if driveBase.drivekürvchen(orders[0].x,orders[0].y,orders[0].speed,orders[0].brake):
+                if driveBase.drivekürvchen(orders[0].dist,orders[0].steer,orders[0].speed,orders[0].brake):
+                    print("        *********** Next Order **********")
                     orders.pop(0)
         else:
             kit.servo[0].angle = 90
