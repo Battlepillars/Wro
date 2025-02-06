@@ -53,7 +53,7 @@ class DriveBase:
         self.slam = slam
         self.kit = kit
         self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-80, max=80)
-        self.pidSteer = PIDController(Kp=7, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
+        self.pidSteer = PIDController(Kp=4, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
 
     def driveTo(self, x, y, speed, brake):
         self.pidController.setpoint = speed

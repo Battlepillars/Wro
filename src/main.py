@@ -22,7 +22,7 @@ backupVersion = 3
 
 slam = Slam()
 kit = ServoKit(channels=16)
-kit.servo[0].set_pulse_width_range(925, 2180)
+kit.servo[0].set_pulse_width_range(950, 2050)
 kit.servo[3].set_pulse_width_range(1000, 2000)
 running2 = True
 
@@ -78,7 +78,7 @@ def main():
                 if event.key == pygame.K_f:
                     print(math.floor(pygame.mouse.get_pos()[0] / matScale) - 50, math.floor(pygame.mouse.get_pos()[1] / matScale) - 50)
                 if event.key == pygame.K_g:
-                    print("orders.append(Order("+str(math.floor(pygame.mouse.get_pos()[0] / matScale) - 50)+","+str(math.floor(pygame.mouse.get_pos()[1] / matScale) - 50)+",0.5,1))")
+                    print("orders.append(Order(x="+str(math.floor(pygame.mouse.get_pos()[0] / matScale) - 50)+", y="+str(math.floor(pygame.mouse.get_pos()[1] / matScale) - 50)+",speed=0.5,brake=1,type=Order.DESTINATION))")
 
             if event.type == pygame.QUIT:
                 running = False
@@ -110,7 +110,7 @@ class Order:
         self.type = type
         self.steer = steer
         self.dist = dist
-  
+
 
 def controlLoop(robot):
     driveBase = DriveBase(slam, kit)
@@ -124,17 +124,24 @@ def controlLoop(robot):
     ausgabe = 0
     startZeit = time.perf_counter_ns()
     orders = []
-    # orders.append(Order(700,2500,0.5,1,0))
-    # orders.append(Order(500,700,0.5,1,0))
-    # orders.append(Order(2200,500,0.5,1,0))
-    # orders.append(Order(2500,2200,0.5,1,0))
-    # orders.append(Order(1479,2314,0.5,1,0))
+    # orders.append(Order(x=700,y=2500,speed=1,brake=0,type=Order.DESTINATION))
+    # orders.append(Order(x=500,y=700,speed=1,brake=0,type=Order.DESTINATION))
+    # orders.append(Order(x=2200,y=500,speed=1,brake=0,type=Order.DESTINATION))
+    # orders.append(Order(x=2500,y=2200,speed=1,brake=0,type=Order.DESTINATION))
+    # orders.append(Order(x=1479,y=2314,speed=1,brake=0,type=Order.DESTINATION))
+
+    # orders.append(Order(steer=-90,dist=60,speed=0.2,brake=1,type=Order.KURVE))
+    # orders.append(Order(steer=90,dist=50,speed=-0.2,brake=1,type=Order.KURVE))
+    # orders.append(Order(steer=-90,dist=50,speed=0.2,brake=1,type=Order.KURVE))
+    # orders.append(Order(steer=90,dist=40,speed=-0.2,brake=1,type=Order.KURVE))
+    # orders.append(Order(steer=-20,dist=150,speed=0.2,brake=1,type=Order.KURVE))
+    # orders.append(Order(steer=40, dist=500, speed=0.2, brake=1, type=Order.KURVE))
+    # orders.append(Order(x=1250, y=2505, speed=0.5, brake=1, type=Order.DESTINATION))
     
-    orders.append(Order(steer=-90,dist=60,speed=0.2,brake=1,type=Order.KURVE))
-    orders.append(Order(steer=90,dist=50,speed=-0.2,brake=1,type=Order.KURVE))
-    orders.append(Order(steer=-90,dist=60,speed=0.2,brake=1,type=Order.KURVE))
-    orders.append(Order(steer=90,dist=50,speed=-0.2,brake=1,type=Order.KURVE))
-    orders.append(Order(steer=-30,dist=150,speed=0.2,brake=1,type=Order.KURVE))
+    orders.append(Order(steer=-90,dist=170,speed=0.2,brake=1,type=Order.KURVE))
+    orders.append(Order(steer=0,dist=150,speed=0.2,brake=1,type=Order.KURVE))
+    orders.append(Order(steer=90,dist=170,speed=0.2,brake=1,type=Order.KURVE))
+    orders.append(Order(x=1250, y=2505, speed=0.5, brake=1, type=Order.DESTINATION))
 
     while running2:
         slam.update()

@@ -14,6 +14,14 @@ from ctypes import *
 from adafruit_servokit import ServoKit # type: ignore
 
 
+class Hindernisse:
+    NICHTS = 0
+    RED = 1
+    GREEN = 2
+    def __init__(self, x, y, farbe = 0):
+        self.x = x
+        self.y = y
+        self.farbe = farbe
 class Slam:
     loopCounter = 10
     loopCounterGyro = 0
@@ -22,7 +30,8 @@ class Slam:
     ypos = 0
     lastXpos = 5000
     lastYpos = 5000
-    
+    hindernisse = []
+    hindernisse.append(Hindernisse(x=2000, y=2000))
     def __init__(self):
         self.xstart = 0#2800
         self.ystart = 0#2800
@@ -61,9 +70,9 @@ class Slam:
         self.myOtos.calibrateImu()
         self.myOtos.setLinearUnit(self.myOtos.kLinearUnitMeters)
         self.myOtos.setAngularUnit(self.myOtos.kAngularUnitDegrees)
-        self.myOtos.setLinearScalar(1.079959499506092)
+        self.myOtos.setLinearScalar(1.03950103950104)
         # self.myOtos.setLinearScalar(0.9)
-        self.myOtos.setAngularScalar(0.996375801505436)
+        self.myOtos.setAngularScalar(0.9947222222222221)
         self.myOtos.resetTracking()
 
     def startpostionsetzen(self):
@@ -134,8 +143,10 @@ class Slam:
         else:
             self.loopCounter += 1
         
-        self.ypos = -myPosition.x * 1000 + self.ystart
-        self.xpos = -myPosition.y * 1000 + self.xstart
+        self.xpos = -myPosition.x * 1000 + self.xstart
+        self.ypos = myPosition.y * 1000 + self.ystart
         self.angle = myPosition.h + self.angleStart        
 
         # print("Euler angle: {}".format(sensor.euler[0]))
+    def hindernisse(self,):
+        pass
