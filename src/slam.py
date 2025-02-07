@@ -15,6 +15,9 @@ from adafruit_servokit import ServoKit # type: ignore
 
 
 class Hindernisse:
+    x = 0
+    y = 0
+    farbe = 0
     NICHTS = 0
     RED = 1
     GREEN = 2
@@ -22,6 +25,8 @@ class Hindernisse:
         self.x = x
         self.y = y
         self.farbe = farbe
+        # noinspection PyListCreation
+    
 class Slam:
     loopCounter = 10
     loopCounterGyro = 0
@@ -30,9 +35,34 @@ class Slam:
     ypos = 0
     lastXpos = 5000
     lastYpos = 5000
-    hindernisse = []
-    hindernisse.append(Hindernisse(x=2000, y=2000))
+
     def __init__(self):
+        self.hindernisse = []
+        self.hindernisse.append(Hindernisse(x=2000, y=2408))
+        self.hindernisse.append(Hindernisse(x=2008, y=2594))
+        self.hindernisse.append(Hindernisse(x=1505, y=2397))
+        self.hindernisse.append(Hindernisse(x=1508, y=2600))
+        self.hindernisse.append(Hindernisse(x=1000, y=2405))
+        self.hindernisse.append(Hindernisse(x=1008, y=2602))
+        self.hindernisse.append(Hindernisse(x=600, y=2014))
+        self.hindernisse.append(Hindernisse(x=405, y=2000))
+        self.hindernisse.append(Hindernisse(x=600, y=1505))
+        self.hindernisse.append(Hindernisse(x=394, y=1505))
+        self.hindernisse.append(Hindernisse(x=597, y=994))
+        self.hindernisse.append(Hindernisse(x=394, y=1005))
+        self.hindernisse.append(Hindernisse(x=1000, y=602))
+        self.hindernisse.append(Hindernisse(x=997, y=405))
+        self.hindernisse.append(Hindernisse(x=1497, y=602))
+        self.hindernisse.append(Hindernisse(x=1497, y=417))
+        self.hindernisse.append(Hindernisse(x=1994, y=594))
+        self.hindernisse.append(Hindernisse(x=1997, y=414))
+        self.hindernisse.append(Hindernisse(x=2408, y=1000))
+        self.hindernisse.append(Hindernisse(x=2594, y=1005))
+        self.hindernisse.append(Hindernisse(x=2400, y=1494))
+        self.hindernisse.append(Hindernisse(x=2600, y=1494))
+        self.hindernisse.append(Hindernisse(x=2397, y=2000))
+        self.hindernisse.append(Hindernisse(x=2605, y=2002))
+        
         self.xstart = 0#2800
         self.ystart = 0#2800
         self.xpos = 0
@@ -148,5 +178,15 @@ class Slam:
         self.angle = myPosition.h + self.angleStart        
 
         # print("Euler angle: {}".format(sensor.euler[0]))
-    def hindernisse(self,):
-        pass
+    def hindernisseErkennung(self, scan):
+        xposes = []
+        yposes = []
+        for i in range(len(scan)):
+            rad = (i + self.angle) / 180 * math.pi
+            xposes.append(math.cos(rad) * -scan[i] + self.xpos)
+            yposes.append(math.sin(rad) * scan[i] + self.ypos)
+
+        for i in range(len(self.hindernisse)):
+            for b in range(len(xposes)):
+                if math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(50,2):
+                    self.hindernisse[i].farbe = Hindernisse.GREEN

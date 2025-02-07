@@ -52,7 +52,7 @@ def main():
         robot.xpos = slam.xpos
         robot.ypos = slam.ypos
         robot.angle = slam.angle
-        
+
         if placing == 1:
             pos = pygame.mouse.get_pos()
             slam.xstart = pos[0] / robot.matScale
@@ -145,6 +145,7 @@ def controlLoop(robot):
 
     while running2:
         slam.update()
+        slam.hindernisseErkennung(slam.scan)
         if orders.__len__() > 0:
     
             if orders[0].type == Order.DESTINATION:
