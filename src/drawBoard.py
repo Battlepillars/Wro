@@ -40,9 +40,9 @@ class Robot:
         pygame.draw.circle(screen, (255, 0, 0), ((self.circlex + 50) * matScale, (self.circley + 50) * matScale), 50 * matScale)
         for i in range(len(slam.hindernisse)):
             if slam.hindernisse[i].farbe == 2: # 2=GREEN
-                pygame.draw.circle(screen, (0, 255, 0), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 50 * matScale)
+                pygame.draw.circle(screen, (0, 255, 0), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
             else:
-                pygame.draw.circle(screen, (255, 0, 0), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 50 * matScale)
+                pygame.draw.circle(screen, (0, 0, 255), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
 
         for i in range(len(scan)):
             if scan[i] > 0:

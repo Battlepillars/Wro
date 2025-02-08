@@ -52,34 +52,33 @@ class DriveBase:
     def __init__(self, slam, kit):
         self.slam = slam
         self.kit = kit
-        self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-80, max=80)
+        self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=30)
         self.pidSteer = PIDController(Kp=4, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
 
     def driveTo(self, x, y, speed, brake):
         self.pidController.setpoint = speed
 
         distance = math.sqrt(math.pow((self.slam.xpos - x),2) + math.pow((self.slam.ypos - y),2))
-        angle = -(math.atan2(self.slam.ypos - y, self.slam.xpos - x) / math.pi * 180)
+        zielwinkel = -(math.atan2(self.slam.ypos - y, self.slam.xpos - x) / math.pi * 180)
 
         #if distance < 200:
         #   self.pidController.setpoint = 0
 
-        blb = angle
-        angle = -angle + self.slam.angle
-        while angle > 180:
-            angle -= 360
-        while angle < -180:
-            angle += 360
+        fehlerwinkel = -zielwinkel + self.slam.angle
+        while fehlerwinkel > 180:
+            fehlerwinkel -= 360
+        while fehlerwinkel < -180:
+            fehlerwinkel += 360
 
         if self.zielWinkel == 5000:
-            self.zielWinkel = blb
+            self.zielWinkel = zielwinkel
 
-        distanceLine = distance * math.cos(self.zielWinkel / 180 * math.pi)
+        distanceLine = distance * math.cos((self.zielWinkel - zielwinkel) / 180 * math.pi)
 
-        if (distanceLine < 200) and (brake == 1):
+        if (abs(distanceLine) < 200) and (brake == 1):
             self.pidController.setpoint = speed * distanceLine / 200
 
-        outputSteer = self.pidSteer.compute(angle,1)
+        outputSteer = self.pidSteer.compute(fehlerwinkel,1)
 
 
         speedTotal = self.slam.speed
@@ -90,9 +89,10 @@ class DriveBase:
             xcl = 1
         else:
             xcl = 0
+     
 
-
-        print(math.floor(distanceLine), math.floor(self.slam.angle), math.floor(blb),x,y,xcl)
+        print("DisLine: ",math.floor(distanceLine)," Dist: ",distance," head: ", math.floor(self.slam.angle),
+               "zielwinkel: ",math.floor(zielwinkel),"Fehlerwinkel: ",fehlerwinkel)
         self.kit.servo[0].angle = 90 + outputSteer
         self.kit.servo[3].angle = 99 + output
 
@@ -136,6 +136,37 @@ class DriveBase:
 
         if (distenceLeft<10) and ((speedTotal<0.05) or (brake == 0)):
             self.distanci = 0
+            return True
+        else:
+            return False
+    def driveToWinkel(self, zielwinkel, speed, brake):
+        self.pidController.setpoint = speed
+
+
+        fehlerwinkel = -zielwinkel + self.slam.angle
+        while fehlerwinkel > 180:
+            fehlerwinkel -= 360
+        while fehlerwinkel < -180:
+            fehlerwinkel += 360
+
+        if (abs(fehlerwinkel) < 10) and (brake == 1):
+            self.pidController.setpoint = speed * fehlerwinkel / 10
+
+        if fehlerwinkel < 0:
+            outputSteer = 90
+        else:
+            outputSteer = -90
+
+        speedTotal = self.slam.speed
+        output = self.pidController.compute(speedTotal, 0.5)
+
+        print(" head: ", math.floor(self.slam.angle),
+              "zielwinkel: ", math.floor(zielwinkel), "Fehlerwinkel: ", fehlerwinkel)
+
+        self.kit.servo[0].angle = 90 + outputSteer
+        self.kit.servo[3].angle = 99 + output
+
+        if abs(fehlerwinkel) < 5:
             return True
         else:
             return False

@@ -100,7 +100,7 @@ class Slam:
         self.myOtos.calibrateImu()
         self.myOtos.setLinearUnit(self.myOtos.kLinearUnitMeters)
         self.myOtos.setAngularUnit(self.myOtos.kAngularUnitDegrees)
-        self.myOtos.setLinearScalar(1.03950103950104)
+        self.myOtos.setLinearScalar(1.022494887525562)
         # self.myOtos.setLinearScalar(0.9)
         self.myOtos.setAngularScalar(0.9947222222222221)
         self.myOtos.resetTracking()
@@ -175,10 +175,10 @@ class Slam:
         
         self.xpos = -myPosition.x * 1000 + self.xstart
         self.ypos = myPosition.y * 1000 + self.ystart
-        self.angle = myPosition.h + self.angleStart        
+        self.angle = myPosition.h + self.angleStart
 
         # print("Euler angle: {}".format(sensor.euler[0]))
-    def hindernisseErkennung(self, scan):
+    def hindernisseErkennung(self, scan, toScan):
         xposes = []
         yposes = []
         for i in range(len(scan)):
@@ -187,6 +187,11 @@ class Slam:
             yposes.append(math.sin(rad) * scan[i] + self.ypos)
 
         for i in range(len(self.hindernisse)):
-            for b in range(len(xposes)):
-                if math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(50,2):
+            if i in toScan:
+                self.hindernisse[i].farbe = Hindernisse.NICHTS
+                dots = 0
+                for b in range(len(xposes)):
+                    if (math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(100,2)) and (self.scan[b] > 200):
+                        dots += 1
+                if dots > 1:
                     self.hindernisse[i].farbe = Hindernisse.GREEN
