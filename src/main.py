@@ -25,9 +25,12 @@ kit = ServoKit(channels=16)
 kit.servo[0].set_pulse_width_range(950, 2050)
 kit.servo[3].set_pulse_width_range(1000, 2000)
 running2 = True
+orders = []
+
 
 def main():
     global slam
+    global orders
     running = True
     robot = Robot(matScale)
     pygame.init()
@@ -46,6 +49,8 @@ def main():
 
     clThread = threading.Thread(target=controlLoop, args=(robot,))
     clThread.start()
+    cmdlThread = threading.Thread(target=commandLoop)
+    cmdlThread.start()
     
     while running:
         # print("Speed : ",slam.speed)
@@ -79,6 +84,10 @@ def main():
                     print(math.floor(pygame.mouse.get_pos()[0] / matScale) - 50, math.floor(pygame.mouse.get_pos()[1] / matScale) - 50)
                 if event.key == pygame.K_g:
                     print("orders.append(Order(x="+str(math.floor(pygame.mouse.get_pos()[0] / matScale) - 50)+", y="+str(math.floor(pygame.mouse.get_pos()[1] / matScale) - 50)+",speed=0.5,brake=1,type=Order.DESTINATION))")
+                if event.key == pygame.K_t:
+                    orders.append(Order(x=(pygame.mouse.get_pos()[0] / matScale) - 50, y=(pygame.mouse.get_pos()[1] / matScale) - 50, speed=0.5, brake=1, type=Order.DESTINATION))
+                if event.key == pygame.K_c:
+                    orders.clear()
 
             if event.type == pygame.QUIT:
                 running = False
@@ -116,6 +125,40 @@ class Order:
         self.zielwinkel = zielwinkel
 
 
+def waitCompleteOrders():
+    while orders.__len__() > 0:
+        time.sleep(0.01)
+def commandLoop():
+    global orders
+    # orders.append(Order(x=700,y=2500,speed=1,brake=0,type=Order.DESTINATION))
+    # orders.append(Order(x=500,y=700,speed=1,brake=0,type=Order.DESTINATION))
+    # orders.append(Order(x=2200,y=500,speed=1,brake=0,type=Order.DESTINATION))
+    # orders.append(Order(x=2500,y=2200,speed=1,brake=0,type=Order.DESTINATION))
+    # orders.append(Order(x=1479,y=2314,speed=1,brake=0,type=Order.DESTINATION))
+
+    orders.append(Order(steer=-90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
+    orders.append(Order(steer=0, dist=150, speed=0.2, brake=1, type=Order.KURVE))
+    orders.append(Order(steer=90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
+    orders.append(Order(x=1485, y=2614, speed=0.5, brake=1, type=Order.DESTINATION))
+    waitCompleteOrders()
+    time.sleep(2)
+    orders.append(Order(toScan=[0, 1, 2, 3, 4, 5], speed=0.2, brake=1, type=Order.SCAN))
+
+    orders.append(Order(x=991, y=2841, speed=0.5, brake=1, type=Order.DESTINATION))
+    orders.append(Order(x=391, y=2838, speed=0.5, brake=1, type=Order.DESTINATION))
+    orders.append(Order(x=391, y=2517, speed=0.5, brake=1, type=Order.DESTINATION))
+    waitCompleteOrders()
+    time.sleep(2)
+    orders.append(Order(toScan=[6, 7, 8, 9, 10, 11], speed=0.2, brake=1, type=Order.SCAN))
+
+    orders.append(Order(x=823, y=2008, speed=0.5, brake=0, type=Order.DESTINATION))
+    orders.append(Order(x=829, y=988, speed=0.5, brake=0, type=Order.DESTINATION))
+    orders.append(Order(x=244, y=641, speed=0.5, brake=1, type=Order.DESTINATION))
+    orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL))
+    waitCompleteOrders()
+    time.sleep(2)
+    orders.append(Order(toScan=[12, 13, 14, 15, 16, 17], speed=0.2, brake=1, type=Order.SCAN))
+
 def controlLoop(robot):
     driveBase = DriveBase(slam, kit)
     global running2
@@ -127,42 +170,11 @@ def controlLoop(robot):
     startZeit = 0
     ausgabe = 0
     startZeit = time.perf_counter_ns()
-    orders = []
-
-    # orders.append(Order(x=700,y=2500,speed=1,brake=0,type=Order.DESTINATION))
-    # orders.append(Order(x=500,y=700,speed=1,brake=0,type=Order.DESTINATION))
-    # orders.append(Order(x=2200,y=500,speed=1,brake=0,type=Order.DESTINATION))
-    # orders.append(Order(x=2500,y=2200,speed=1,brake=0,type=Order.DESTINATION))
-    # orders.append(Order(x=1479,y=2314,speed=1,brake=0,type=Order.DESTINATION))
-
-    # orders.append(Order(steer=-90,dist=60,speed=0.2,brake=1,type=Order.KURVE))
-    # orders.append(Order(steer=90,dist=50,speed=-0.2,brake=1,type=Order.KURVE))
-    # orders.append(Order(steer=-90,dist=50,speed=0.2,brake=1,type=Order.KURVE))
-    # orders.append(Order(steer=90,dist=40,speed=-0.2,brake=1,type=Order.KURVE))
-    # orders.append(Order(steer=-20,dist=150,speed=0.2,brake=1,type=Order.KURVE))
-    # orders.append(Order(steer=40, dist=500, speed=0.2, brake=1, type=Order.KURVE))
-    # orders.append(Order(x=1250, y=2505, speed=0.5, brake=1, type=Order.DESTINATION))
-    
-    orders.append(Order(steer=-90,dist=170,speed=0.2,brake=1,type=Order.KURVE))
-    orders.append(Order(steer=0,dist=150,speed=0.2,brake=1,type=Order.KURVE))
-    orders.append(Order(steer=90,dist=170,speed=0.2,brake=1,type=Order.KURVE))
-    orders.append(Order(x=1485, y=2614,speed=0.5,brake=1,type=Order.DESTINATION))
-    orders.append(Order(toScan=[0,1,2,3,4,5],speed=0.2,brake=1,type=Order.SCAN))
-
-    orders.append(Order(x=991, y=2841, speed=0.5, brake=1, type=Order.DESTINATION))
-    orders.append(Order(x=391, y=2838, speed=0.5, brake=1, type=Order.DESTINATION))
-    orders.append(Order(x=391, y=2517, speed=0.5, brake=1, type=Order.DESTINATION))
-    orders.append(Order(toScan=[6,7,8,9,10,11],speed=0.2,brake=1,type=Order.SCAN))
-
-    orders.append(Order(x=823, y=2008, speed=0.5, brake=0, type=Order.DESTINATION))
-    orders.append(Order(x=829, y=988, speed=0.5, brake=0, type=Order.DESTINATION))
-    orders.append(Order(x=244, y=641, speed=0.5, brake=1, type=Order.DESTINATION))
-    orders.append(Order(zielwinkel = 180,speed=0.2,brake=1,type=Order.WINKEL))
+    global orders
 
     while running2:
         slam.update()
         if orders.__len__() > 0:
-    
             if orders[0].type == Order.DESTINATION:
                 robot.circlex = orders[0].x
                 robot.circley = orders[0].y

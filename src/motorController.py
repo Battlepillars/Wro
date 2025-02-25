@@ -98,6 +98,7 @@ class DriveBase:
 
         if abs(distanceLine) < 30:
             self.zielWinkel = 5000
+            self.kit.servo[3].angle = 90
             return True
         else:
             return False
@@ -136,6 +137,7 @@ class DriveBase:
 
         if (distenceLeft<10) and ((speedTotal<0.05) or (brake == 0)):
             self.distanci = 0
+            self.kit.servo[3].angle = 90
             return True
         else:
             return False
@@ -167,6 +169,7 @@ class DriveBase:
         self.kit.servo[3].angle = 99 + output
 
         if abs(fehlerwinkel) < 5:
+            self.kit.servo[3].angle = 90
             return True
         else:
             return False
