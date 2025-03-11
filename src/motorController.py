@@ -89,10 +89,9 @@ class DriveBase:
             xcl = 1
         else:
             xcl = 0
-     
 
-        print("DisLine: ",math.floor(distanceLine)," Dist: ",distance," head: ", math.floor(self.slam.angle),
-               "zielwinkel: ",math.floor(zielwinkel),"Fehlerwinkel: ",fehlerwinkel)
+
+        print("DisLine: ",math.floor(distanceLine)," Dist: ",distance," head: ", math.floor(self.slam.angle),"zielwinkel: ",math.floor(zielwinkel),"Fehlerwinkel: ",fehlerwinkel)
         self.kit.servo[0].angle = 90 + outputSteer
         self.kit.servo[3].angle = 99 + output
 
@@ -124,7 +123,7 @@ class DriveBase:
         else:
             output = self.pidController.compute(speedTotal,0.5)
 
-        print(math.floor(self.distanci),math.floor(distenceLeft), speedTotal,output)
+        #print(math.floor(self.distanci),math.floor(distenceLeft), speedTotal,output)
         self.kit.servo[0].angle = 90+angli
 
         if (self.pidController.setpoint==0):

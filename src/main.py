@@ -14,6 +14,7 @@ from slam import *
 from motorController import *
 from future.moves import pickle # type: ignore
 from drawBoard import *
+from camera import *
 from ctypes import *
 from adafruit_servokit import ServoKit # type: ignore
 
@@ -32,6 +33,8 @@ def main():
     global slam
     global orders
     running = True
+    camera = Camera()
+    camera.captureImage()
     robot = Robot(matScale)
     pygame.init()
     info = 1
@@ -39,8 +42,9 @@ def main():
     wy = 3100
     placing = 0
     playmat = Playmat(matScale, wx, wy)
-    os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (560,0)
-    screen = pygame.display.set_mode((wx * matScale + 300, wy * matScale), pygame.RESIZABLE)
+    os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (0,0)
+    #screen = pygame.display.set_mode((wx * matScale + 300, wy * matScale), pygame.RESIZABLE)
+    screen = pygame.display.set_mode((1920,1000), pygame.RESIZABLE)
     
     pygame.display.set_caption("WroONator4000")
     clock = pygame.time.Clock()
@@ -100,7 +104,7 @@ def main():
         keys = pygame.key.get_pressed()
 
 
-        playmat.draw(screen, info)
+        playmat.draw(screen, info, camera)
         robot.draw(screen, playmat.matScale, slam.scan, slam)
         # if idnfo == 1:
         #     playmat.Infos(screen, robot, slam.speed,0)
@@ -126,7 +130,8 @@ class Order:
 
 
 def waitCompleteOrders():
-    while orders.__len__() > 0:
+    global running2
+    while orders.__len__() > 0 and running2:
         time.sleep(0.01)
 def commandLoop():
     global orders
@@ -141,14 +146,14 @@ def commandLoop():
     orders.append(Order(steer=90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
     orders.append(Order(x=1485, y=2614, speed=0.5, brake=1, type=Order.DESTINATION))
     waitCompleteOrders()
-    time.sleep(2)
+    time.sleep(0.5)
     orders.append(Order(toScan=[0, 1, 2, 3, 4, 5], speed=0.2, brake=1, type=Order.SCAN))
 
     orders.append(Order(x=991, y=2841, speed=0.5, brake=1, type=Order.DESTINATION))
     orders.append(Order(x=391, y=2838, speed=0.5, brake=1, type=Order.DESTINATION))
     orders.append(Order(x=391, y=2517, speed=0.5, brake=1, type=Order.DESTINATION))
     waitCompleteOrders()
-    time.sleep(2)
+    time.sleep(0.5)
     orders.append(Order(toScan=[6, 7, 8, 9, 10, 11], speed=0.2, brake=1, type=Order.SCAN))
 
     orders.append(Order(x=823, y=2008, speed=0.5, brake=0, type=Order.DESTINATION))
@@ -156,7 +161,7 @@ def commandLoop():
     orders.append(Order(x=244, y=641, speed=0.5, brake=1, type=Order.DESTINATION))
     orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL))
     waitCompleteOrders()
-    time.sleep(2)
+    time.sleep(0.5)
     orders.append(Order(toScan=[12, 13, 14, 15, 16, 17], speed=0.2, brake=1, type=Order.SCAN))
 
 def controlLoop(robot):

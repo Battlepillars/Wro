@@ -1,6 +1,8 @@
 import pygame # type: ignore
 import pygame.rect # type: ignore
 import math
+import numpy as np
+import cv2 as cv2
 
 
 # import main
@@ -77,7 +79,7 @@ class Playmat:
         self.bgImgFull = pygame.image.load("img/WRO2024-FE-Spielfeldmatte.tif")
         self.bgImg = pygame.transform.scale(self.bgImgFull, (self.wx * self.matScale, self.wy * self.matScale))
 
-    def draw(self, screen, info):
+    def draw(self, screen, info, camera):
         screenys = screen.get_height()
 
         screen.fill((0, 0, 0))
@@ -86,6 +88,13 @@ class Playmat:
             self.matScale = screenxs / self.wy
             self.bgImg = pygame.transform.scale(self.bgImgFull, (screenxs, screenys))
         screen.blit(self.bgImg, (0, 0))
+        
+        frame = camera.imgCam
+        frame = np.rot90(frame)
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame = pygame.surfarray.make_surface(frame)
+        frame = pygame.transform.scale(frame, (screen.get_width() - self.wx * self.matScale, (screen.get_width() - self.wx * self.matScale) * 0.55078125))
+        screen.blit(frame, (self.wx * self.matScale, 0))
 
 
     def Infos(self,screen,robot, speed, speedMax):
