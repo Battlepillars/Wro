@@ -34,7 +34,6 @@ def main():
     global orders
     running = True
     camera = Camera()
-    camera.captureImage()
     robot = Robot(matScale)
     pygame.init()
     info = 1
@@ -50,13 +49,13 @@ def main():
     clock = pygame.time.Clock()
     global running2
     last_val = 0xFFFF
-
-    clThread = threading.Thread(target=controlLoop, args=(robot,))
+    clThread = threading.Thread(target=controlLoop, args=(robot, camera))
     clThread.start()
     cmdlThread = threading.Thread(target=commandLoop)
     cmdlThread.start()
     
     while running:
+        camera.captureImage()
         # print("Speed : ",slam.speed)
         robot.xpos = slam.xpos
         robot.ypos = slam.ypos
@@ -104,7 +103,7 @@ def main():
         keys = pygame.key.get_pressed()
 
 
-        playmat.draw(screen, info, camera)
+        playmat.draw(screen, info, camera, robot)
         robot.draw(screen, playmat.matScale, slam.scan, slam)
         # if idnfo == 1:
         #     playmat.Infos(screen, robot, slam.speed,0)
@@ -164,7 +163,7 @@ def commandLoop():
     time.sleep(0.5)
     orders.append(Order(toScan=[12, 13, 14, 15, 16, 17], speed=0.2, brake=1, type=Order.SCAN))
 
-def controlLoop(robot):
+def controlLoop(robot, camera):
     driveBase = DriveBase(slam, kit)
     global running2
     kit.servo[0].angle = 90
@@ -191,7 +190,7 @@ def controlLoop(robot):
                     print("        *********** Next Order **********")
                     orders.pop(0)
             elif orders[0].type == Order.SCAN:
-                slam.hindernisseErkennung(slam.scan,orders[0].toScan)
+                slam.hindernisseErkennung(slam.scan,orders[0].toScan, camera)
                 print("        *********** Next Order **********")
                 orders.pop(0)
             elif orders[0].type == Order.WINKEL:

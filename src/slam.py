@@ -178,7 +178,8 @@ class Slam:
         self.angle = myPosition.h + self.angleStart
 
         # print("Euler angle: {}".format(sensor.euler[0]))
-    def hindernisseErkennung(self, scan, toScan):
+    def hindernisseErkennung(self, scan, toScan, camera):
+        camera.captureImage()
         xposes = []
         yposes = []
         for i in range(len(scan)):
@@ -190,8 +191,30 @@ class Slam:
             if i in toScan:
                 self.hindernisse[i].farbe = Hindernisse.NICHTS
                 dots = 0
+                angles = []
                 for b in range(len(xposes)):
                     if (math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(100,2)) and (self.scan[b] > 200):
                         dots += 1
+                        angles.append(b)
                 if dots > 1:
-                    self.hindernisse[i].farbe = Hindernisse.GREEN
+                    angle = 0
+                    for c in angles:
+                        angle += c
+                    angle = angle / len(angles)
+                    if angle > 180:
+                        angle = angle - 360
+                    angle = -angle
+                    print(angle)
+                    closetAngle = 0
+                    for d in range(len(camera.blocksAngle)):
+                        if abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closetAngle] - angle):
+                            closetAngle = d
+                    
+                    print(closetAngle)
+                    if len(camera.blocksAngle) > 0:
+                        if camera.blocksColor[closetAngle] == camera.RED:
+                            self.hindernisse[i].farbe = Hindernisse.RED
+                        if camera.blocksColor[closetAngle] == camera.GREEN:
+                            self.hindernisse[i].farbe = Hindernisse.GREEN
+                    else:
+                        self.hindernisse[i].farbe = Hindernisse.RED

@@ -43,6 +43,8 @@ class Robot:
         for i in range(len(slam.hindernisse)):
             if slam.hindernisse[i].farbe == 2: # 2=GREEN
                 pygame.draw.circle(screen, (0, 255, 0), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
+            elif slam.hindernisse[i].farbe == 1: # 1=RED
+                pygame.draw.circle(screen, (255, 0, 0), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
             else:
                 pygame.draw.circle(screen, (0, 0, 255), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
 
@@ -79,7 +81,7 @@ class Playmat:
         self.bgImgFull = pygame.image.load("img/WRO2024-FE-Spielfeldmatte.tif")
         self.bgImg = pygame.transform.scale(self.bgImgFull, (self.wx * self.matScale, self.wy * self.matScale))
 
-    def draw(self, screen, info, camera):
+    def draw(self, screen, info, camera, robot):
         screenys = screen.get_height()
 
         screen.fill((0, 0, 0))
@@ -94,6 +96,21 @@ class Playmat:
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame = pygame.surfarray.make_surface(frame)
         frame = pygame.transform.scale(frame, (screen.get_width() - self.wx * self.matScale, (screen.get_width() - self.wx * self.matScale) * 0.55078125))
+        
+        
+        xoff = 50 * self.matScale
+        yoff = 50 * self.matScale
+        
+        for i in range(len(camera.blocksAngle)):
+            rad = (-camera.blocksAngle[i] + robot.angle) / 180 * math.pi
+            x = math.cos(rad) * -2000 + robot.xpos
+            y = math.sin(rad) * 2000 + robot.ypos
+            
+            if camera.blocksColor[i] == camera.GREEN:
+                pygame.draw.line(screen, (0,255,0), (robot.xpos * self.matScale + xoff, robot.ypos * self.matScale + yoff), (x * self.matScale + xoff, y * self.matScale + yoff), int(5 * self.matScale))
+            if camera.blocksColor[i] == camera.RED:
+                pygame.draw.line(screen, (255,0,0), (robot.xpos * self.matScale + xoff, robot.ypos * self.matScale + yoff), (x * self.matScale + xoff, y * self.matScale + yoff), int(5 * self.matScale))
+
         screen.blit(frame, (self.wx * self.matScale, 0))
 
 
