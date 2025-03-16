@@ -53,9 +53,9 @@ def main():
     clThread.start()
     cmdlThread = threading.Thread(target=commandLoop)
     cmdlThread.start()
-    
     while running:
-        camera.captureImage()
+        slam.reposition()
+        #camera.captureImage()
         # print("Speed : ",slam.speed)
         robot.xpos = slam.xpos
         robot.ypos = slam.ypos
@@ -116,6 +116,7 @@ class Order:
     KURVE=1
     SCAN=2
     WINKEL=3
+    REPOSITION=4
     def __init__(self,speed,brake,type,x=0,y=0,steer=0,dist=0,toScan=[],zielwinkel=0):
         self.x = x
         self.y = y

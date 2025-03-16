@@ -134,4 +134,3 @@ class Playmat:
             if i == 6:
                 text = self.font.render('speed max y: ' + str(speedMax[1]), True, green, blue)
             screen.blit(text, (screen.get_width() - 200,i* 14))
-

@@ -35,6 +35,9 @@ class Slam:
     ypos = 0
     lastXpos = 5000
     lastYpos = 5000
+    direction = 0
+    CW = 0
+    CCW = 1
 
     def __init__(self):
         self.hindernisse = []
@@ -69,7 +72,7 @@ class Slam:
         self.ypos = 0
         self.angleStart = 0
         self.speed = 0
-        i2c = board.I2C()  # uses board.SCL and board.SDA
+        i2c = board.I2C()
         self.sensor = adafruit_bno055.BNO055_I2C(i2c)
 
         script_dir = os.path.abspath(os.path.dirname(__file__))
@@ -116,28 +119,34 @@ class Slam:
 
         if (average > 1870) and (average < 1970):
             self.angleStart = 0
+            self.direction = self.CW
             self.ystart = 3000 - self.scan[90]
             self.xstart = average    
         if (average > 1345) and (average < 1450):
             self.angleStart = 180
+            self.direction = self.CCW
             self.ystart = 3000 - self.scan[-90]
             self.xstart = self.scan[180]
         if (average > 1550) and (average < 1660):
             self.angleStart = 180
+            self.direction = self.CCW
             self.ystart = 3000 - self.scan[-90]
             self.xstart = self.scan[180]
         if (average > 1040) and (average < 1200):
             self.angleStart = 0
+            self.direction = self.CW
             self.ystart = 3000 - self.scan[90]
             self.xstart = average
         
 
         if (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
             self.angleStart = 0
+            self.direction = self.CW
             self.ystart = 3000 - self.scan[90]
             self.xstart = 2000 - self.scan[180]
         elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[-90] < 400):
             self.angleStart = 180
+            self.direction = self.CCW
             self.ystart = 3000 - self.scan[-90]
             self.xstart = 2000 - self.scan[0]
 
@@ -218,3 +227,40 @@ class Slam:
                             self.hindernisse[i].farbe = Hindernisse.GREEN
                     else:
                         self.hindernisse[i].farbe = Hindernisse.RED
+    
+    def reposition(self):
+        average = 0
+        scans = 0
+        angle = int(self.angle+0.5)
+        angle = 180-angle
+        for i in range (angle-5,angle+6):
+            if self.scan[i] > 0:
+                average = average + self.scan[i]
+                scans += 1
+        if scans > 0:
+            average = average / scans
+
+        average = 0
+        scans = 0
+        
+        if self.direction == self.CW:
+            average = 0
+            scans = 0
+            for i in range (angle-5-90,angle+6-90):
+                if self.scan[i] > 0:
+                    average = average + self.scan[i]
+                    scans += 1
+            if scans > 0:
+                average = average / scans
+        
+        if self.direction == self.CCW:
+            average = 0
+            scans = 0
+            for i in range (angle-5+90,angle+6+90):
+                if self.scan[i] > 0:
+                    average = average + self.scan[i]
+                    scans += 1
+            if scans > 0:
+                average = average / scans
+        
+        print(average)

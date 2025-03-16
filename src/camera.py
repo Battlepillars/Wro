@@ -105,5 +105,6 @@ class Camera():
                 #print("Red at: ", (mid - cX) / split)
                 self.blocksAngle.append((mid - cX) / split)
                 self.blocksColor.append(self.RED)
-
+                
+        cv.imwrite('new_image.jpg', imgclear)
         self.imgCam = imgclear
