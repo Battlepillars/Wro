@@ -7,6 +7,7 @@ import os
 import motorController
 import board # type: ignore
 import adafruit_bno055 # type: ignore
+import threading
 
 from future.moves import pickle # type: ignore
 from drawBoard import *
@@ -38,7 +39,6 @@ class Slam:
     direction = 0
     CW = 0
     CCW = 1
-
     def __init__(self):
         self.hindernisse = []
         self.hindernisse.append(Hindernisse(x=2000, y=2408))
@@ -188,7 +188,10 @@ class Slam:
 
         # print("Euler angle: {}".format(sensor.euler[0]))
     def hindernisseErkennung(self, scan, toScan, camera):
+
+        
         camera.captureImage()
+        
         xposes = []
         yposes = []
         for i in range(len(scan)):
@@ -227,7 +230,7 @@ class Slam:
                             self.hindernisse[i].farbe = Hindernisse.GREEN
                     else:
                         self.hindernisse[i].farbe = Hindernisse.RED
-    
+
     def reposition(self):
         average = 0
         scans = 0
@@ -263,4 +266,4 @@ class Slam:
             if scans > 0:
                 average = average / scans
         
-        print(average)
+  #      print(average)

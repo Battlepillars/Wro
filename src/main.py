@@ -27,11 +27,15 @@ kit.servo[0].set_pulse_width_range(950, 2050)
 kit.servo[3].set_pulse_width_range(1000, 2000)
 running2 = True
 orders = []
-
+sem = threading.Semaphore()
+takePicture=0
 
 def main():
     global slam
     global orders
+    global takePicture
+    global sem
+    pictureNum=0
     running = True
     camera = Camera()
     robot = Robot(matScale)
@@ -102,12 +106,18 @@ def main():
                 
         keys = pygame.key.get_pressed()
 
-
+        sem.acquire()
         playmat.draw(screen, info, camera, robot)
         robot.draw(screen, playmat.matScale, slam.scan, slam)
         # if idnfo == 1:
         #     playmat.Infos(screen, robot, slam.speed,0)
-
+        if takePicture:
+            takePicture = False
+            fileName="capture/screen"+str(pictureNum)+".jpg"
+            pygame.image.save(screen, fileName)
+            pictureNum += 1
+            
+        sem.release()
         clock.tick(10)
         pygame.display.flip()
 
@@ -167,6 +177,8 @@ def commandLoop():
 def controlLoop(robot, camera):
     driveBase = DriveBase(slam, kit)
     global running2
+    global takePicture
+    global sem
     kit.servo[0].angle = 90
     kit.servo[3].angle = 90
     
@@ -191,7 +203,10 @@ def controlLoop(robot, camera):
                     print("        *********** Next Order **********")
                     orders.pop(0)
             elif orders[0].type == Order.SCAN:
+                sem.acquire()
                 slam.hindernisseErkennung(slam.scan,orders[0].toScan, camera)
+                takePicture = True
+                sem.release()
                 print("        *********** Next Order **********")
                 orders.pop(0)
             elif orders[0].type == Order.WINKEL:
