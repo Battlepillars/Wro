@@ -66,8 +66,6 @@ class Slam:
         self.hindernisse.append(Hindernisse(x=2397, y=2000))
         self.hindernisse.append(Hindernisse(x=2605, y=2002))
         
-        self.xstart = 0#2800
-        self.ystart = 0#2800
         self.xpos = 0
         self.ypos = 0
         self.angleStart = 0
@@ -120,41 +118,40 @@ class Slam:
         if (average > 1870) and (average < 1970):
             self.angleStart = 0
             self.direction = self.CW
-            self.ystart = 3000 - self.scan[90]
-            self.xstart = average    
+            self.setPostion(average, 3000 - self.scan[90]) 
         if (average > 1345) and (average < 1450):
             self.angleStart = 180
             self.direction = self.CCW
-            self.ystart = 3000 - self.scan[-90]
-            self.xstart = self.scan[180]
+            self.setPostion(self.scan[180], 3000 - self.scan[-90])
         if (average > 1550) and (average < 1660):
             self.angleStart = 180
             self.direction = self.CCW
-            self.ystart = 3000 - self.scan[-90]
-            self.xstart = self.scan[180]
+            self.setPostion(self.scan[180], 3000 - self.scan[-90])
         if (average > 1040) and (average < 1200):
             self.angleStart = 0
             self.direction = self.CW
-            self.ystart = 3000 - self.scan[90]
-            self.xstart = average
+            self.setPostion(average, 3000 - self.scan[90])
         
 
         if (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
             self.angleStart = 0
             self.direction = self.CW
-            self.ystart = 3000 - self.scan[90]
-            self.xstart = 2000 - self.scan[180]
+            self.setPostion(2000 - self.scan[180], 3000 - self.scan[90])
         elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[-90] < 400):
             self.angleStart = 180
             self.direction = self.CCW
-            self.ystart = 3000 - self.scan[-90]
-            self.xstart = 2000 - self.scan[0]
+            self.setPostion(2000 - self.scan[0], 3000 - self.scan[90])
 
         # 1870 - 1970
         # 1345 - 1450
         # 1550 - 1660
         # 1040 - 1200
-
+    def setPostion(self, x, y):
+        myPosition = self.myOtos.getPosition()
+        myPosition.x = -x / 1000
+        myPosition.y = y / 1000
+        self.myOtos.setPosition(myPosition)
+        
     def update(self):
         myPosition = self.myOtos.getPosition()
         
@@ -182,8 +179,8 @@ class Slam:
         else:
             self.loopCounter += 1
         
-        self.xpos = -myPosition.x * 1000 + self.xstart
-        self.ypos = myPosition.y * 1000 + self.ystart
+        self.xpos = -myPosition.x * 1000
+        self.ypos = myPosition.y * 1000
         self.angle = myPosition.h + self.angleStart
 
         # print("Euler angle: {}".format(sensor.euler[0]))
@@ -242,7 +239,18 @@ class Slam:
                 scans += 1
         if scans > 0:
             average = average / scans
-
+        
+        print(math.floor(self.ypos), math.floor(3000 - average), self.angle)
+        
+        if self.angle > -140 and self.angle > 140:                              # rechts/180
+            self.setPostion(average, self.xpos)
+        if self.angle > 130 and self.angle < 50:                                # unten/90
+            self.setPostion(average, self.ypos)
+        if self.angle > -40 and self.angle < 40:                                # links/0
+            self.setPostion(3000 - average, self.xpos)
+        if self.angle > -130 and self.angle < -50:                              # oben/-90
+            self.setPostion(3000 - average, self.ypos)
+        
         average = 0
         scans = 0
         
@@ -266,4 +274,4 @@ class Slam:
             if scans > 0:
                 average = average / scans
         
-  #      print(average)
+#      print(average)

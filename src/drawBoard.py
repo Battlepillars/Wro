@@ -114,23 +114,23 @@ class Playmat:
         screen.blit(frame, (self.wx * self.matScale, 0))
 
 
-    def Infos(self,screen,robot, speed, speedMax):
+    def Infos(self,screen,robot,slam):
         green = (0, 255, 0)
         blue = (0, 0, 128)
         self.font = pygame.font.Font('freesansbold.ttf', 14)
-        for i in range(7):
+        for i in range(3):
             if i == 0:
                 text = self.font.render('x: ' + str(robot.xpos), True, green, blue)
             if i == 1:
                 text = self.font.render('y: ' + str(robot.ypos), True, green, blue)
             if i == 2:
                 text = self.font.render('r: ' + str(robot.angle), True, green, blue)
-            if i == 3:
-                text = self.font.render('speed x: ' + str(speed.x), True, green, blue)
-            if i == 4:
-                text = self.font.render('speed y: ' + str(speed.y), True, green, blue)
-            if i == 5:
-                text = self.font.render('speed max x: ' + str(speedMax[0]), True, green, blue)
-            if i == 6:
-                text = self.font.render('speed max y: ' + str(speedMax[1]), True, green, blue)
-            screen.blit(text, (screen.get_width() - 200,i* 14))
+            # if i == 3:
+            #     text = self.font.render('speed x: ' + str(speed.x), True, green, blue)
+            # if i == 4:
+            #     text = self.font.render('speed y: ' + str(speed.y), True, green, blue)
+            # if i == 5:
+            #     text = self.font.render('speed max x: ' + str(speedMax[0]), True, green, blue)
+            # if i == 6:
+            #     text = self.font.render('speed max y: ' + str(speedMax[1]), True, green, blue)
+            screen.blit(text, (self.wx * self.matScale,(i * 14) + ((screen.get_width() - self.wx * self.matScale) * 0.55078125)))

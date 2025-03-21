@@ -58,7 +58,6 @@ def main():
     cmdlThread = threading.Thread(target=commandLoop)
     cmdlThread.start()
     while running:
-        slam.reposition()
         #camera.captureImage()
         # print("Speed : ",slam.speed)
         robot.xpos = slam.xpos
@@ -88,7 +87,8 @@ def main():
                     slam.lidar.disconnect()
                 
                 if event.key == pygame.K_f:
-                    print(math.floor(pygame.mouse.get_pos()[0] / matScale) - 50, math.floor(pygame.mouse.get_pos()[1] / matScale) - 50)
+                    slam.reposition()
+                    #print(math.floor(pygame.mouse.get_pos()[0] / matScale) - 50, math.floor(pygame.mouse.get_pos()[1] / matScale) - 50)
                 if event.key == pygame.K_g:
                     print("orders.append(Order(x="+str(math.floor(pygame.mouse.get_pos()[0] / matScale) - 50)+", y="+str(math.floor(pygame.mouse.get_pos()[1] / matScale) - 50)+",speed=0.5,brake=1,type=Order.DESTINATION))")
                 if event.key == pygame.K_t:
@@ -109,8 +109,8 @@ def main():
         sem.acquire()
         playmat.draw(screen, info, camera, robot)
         robot.draw(screen, playmat.matScale, slam.scan, slam)
-        # if idnfo == 1:
-        #     playmat.Infos(screen, robot, slam.speed,0)
+        if info == 1:
+            playmat.Infos(screen, robot, slam)
         if takePicture:
             takePicture = False
             fileName="capture/screen"+str(pictureNum)+".jpg"
@@ -143,6 +143,7 @@ def waitCompleteOrders():
     global running2
     while orders.__len__() > 0 and running2:
         time.sleep(0.01)
+        
 def commandLoop():
     global orders
     # orders.append(Order(x=700,y=2500,speed=1,brake=0,type=Order.DESTINATION))
@@ -151,6 +152,7 @@ def commandLoop():
     # orders.append(Order(x=2500,y=2200,speed=1,brake=0,type=Order.DESTINATION))
     # orders.append(Order(x=1479,y=2314,speed=1,brake=0,type=Order.DESTINATION))
 
+    input("Press Enter to start")
     orders.append(Order(steer=-90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
     orders.append(Order(steer=0, dist=150, speed=0.2, brake=1, type=Order.KURVE))
     orders.append(Order(steer=90, dist=170, speed=0.2, brake=1, type=Order.KURVE))

@@ -2,13 +2,13 @@
 import time
 import cv2 as cv
 import numpy as np
-import libcamera
+import libcamera # type: ignore
 import argparse
 import imutils
 
-from libcamera import Transform
+from libcamera import Transform # type: ignore
 from matplotlib import pyplot as plt
-from picamera2 import Picamera2
+from picamera2 import Picamera2 # type: ignore
 
 
 class Camera():
