@@ -68,7 +68,6 @@ class Slam:
         
         self.xpos = 0
         self.ypos = 0
-        self.angleStart = 0
         self.speed = 0
         i2c = board.I2C()
         self.sensor = adafruit_bno055.BNO055_I2C(i2c)
@@ -116,41 +115,42 @@ class Slam:
         average = average / scans
 
         if (average > 1870) and (average < 1970):
-            self.angleStart = 0
             self.direction = self.CW
-            self.setPostion(average, 3000 - self.scan[90]) 
+            self.setPostion(average, 3000 - self.scan[90],0) 
         if (average > 1345) and (average < 1450):
-            self.angleStart = 180
             self.direction = self.CCW
-            self.setPostion(self.scan[180], 3000 - self.scan[-90])
+            self.setPostion(self.scan[180], 3000 - self.scan[-90],180)
         if (average > 1550) and (average < 1660):
-            self.angleStart = 180
             self.direction = self.CCW
-            self.setPostion(self.scan[180], 3000 - self.scan[-90])
+            self.setPostion(self.scan[180], 3000 - self.scan[-90],180)
         if (average > 1040) and (average < 1200):
-            self.angleStart = 0
+            
             self.direction = self.CW
-            self.setPostion(average, 3000 - self.scan[90])
+            self.setPostion(average, 3000 - self.scan[90],0)
         
 
         if (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
-            self.angleStart = 0
             self.direction = self.CW
-            self.setPostion(2000 - self.scan[180], 3000 - self.scan[90])
+            self.setPostion(2000 - self.scan[180], 3000 - self.scan[90],0)
         elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[-90] < 400):
-            self.angleStart = 180
             self.direction = self.CCW
-            self.setPostion(2000 - self.scan[0], 3000 - self.scan[90])
+            self.setPostion(2000 - self.scan[0], 3000 - self.scan[90],180)
 
         # 1870 - 1970
         # 1345 - 1450
         # 1550 - 1660
         # 1040 - 1200
-    def setPostion(self, x, y):
+    def setPostion(self, x, y,angle=-5000):
         myPosition = self.myOtos.getPosition()
         myPosition.x = -x / 1000
         myPosition.y = y / 1000
+        if (angle > -5000):
+            myPosition.h=angle
         self.myOtos.setPosition(myPosition)
+        self.xpos = x
+        self.ypos = y
+        self.lastXpos = x
+        self.lastYpos = y
         
     def update(self):
         myPosition = self.myOtos.getPosition()
@@ -181,7 +181,7 @@ class Slam:
         
         self.xpos = -myPosition.x * 1000
         self.ypos = myPosition.y * 1000
-        self.angle = myPosition.h + self.angleStart
+        self.angle = myPosition.h 
 
         # print("Euler angle: {}".format(sensor.euler[0]))
     def hindernisseErkennung(self, scan, toScan, camera):
@@ -228,50 +228,83 @@ class Slam:
                     else:
                         self.hindernisse[i].farbe = Hindernisse.RED
 
-    def reposition(self):
+    def calcualteScanAngel(self, angleToScan):
         average = 0
         scans = 0
-        angle = int(self.angle+0.5)
-        angle = 180-angle
-        for i in range (angle-5,angle+6):
-            if self.scan[i] > 0:
-                average = average + self.scan[i]
-                scans += 1
-        if scans > 0:
-            average = average / scans
+        scanAngle = int(angleToScan - self.angle + 0.5)
+        while scans <= 0:
+            for i in range (scanAngle-5,scanAngle+6):
+                if self.scan[i] > 0:
+                    average = average + self.scan[i]
+                    scans += 1
+        average = average / scans
+        print("scanAngle:", scanAngle, "average:", average, "average3:", 3000 - average)
+        return average
+    
+    
+    def reposition(self):
         
-        print(math.floor(self.ypos), math.floor(3000 - average), self.angle)
+        #print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         
-        if self.angle > -140 and self.angle > 140:                              # rechts/180
-            self.setPostion(average, self.xpos)
-        if self.angle > 130 and self.angle < 50:                                # unten/90
+        angleCheck = self.angle
+        while angleCheck > 180:
+            angleCheck -= 360
+        while angleCheck < -180:
+            angleCheck += 360
+        print("angleCheck:", angleCheck)
+        
+        if angleCheck < -140 or angleCheck > 140:                              # rechts/180
+            print("5")
+            average = self.calcualteScanAngel(0)
             self.setPostion(average, self.ypos)
-        if self.angle > -40 and self.angle < 40:                                # links/0
-            self.setPostion(3000 - average, self.xpos)
-        if self.angle > -130 and self.angle < -50:                              # oben/-90
+        if angleCheck < 130 and angleCheck > 50:                                # unten/90
+            print("6")
+            average = self.calcualteScanAngel(-90)
+            self.setPostion(self.xpos, average)
+        if angleCheck > -40 and angleCheck < 40:                                # links/0
+            print("7")
+            average = self.calcualteScanAngel(180)
             self.setPostion(3000 - average, self.ypos)
-        
+        if angleCheck > -130 and angleCheck < -50:                              # oben/-90
+            print("8")
+            average = self.calcualteScanAngel(90)
+            self.setPostion(self.xpos, 3000 - average)
+
         average = 0
         scans = 0
         
         if self.direction == self.CW:
-            average = 0
-            scans = 0
-            for i in range (angle-5-90,angle+6-90):
-                if self.scan[i] > 0:
-                    average = average + self.scan[i]
-                    scans += 1
-            if scans > 0:
-                average = average / scans
-        
+            if angleCheck < -140 or angleCheck > 140:                              # rechts/180
+                print("9")
+                average = self.calcualteScanAngel(-90)
+                self.setPostion(self.xpos, average)
+            if angleCheck < 130 and angleCheck > 50:                                # unten/90
+                print("10")
+                average = self.calcualteScanAngel(180)
+                self.setPostion(3000 - average, self.ypos)
+            if angleCheck > -40 and angleCheck < 40:                                # links/0
+                print("11")
+                average = self.calcualteScanAngel(90)
+                self.setPostion(self.xpos, 3000 - average)
+            if angleCheck > -130 and angleCheck < -50:                              # oben/-90
+                print("12")
+                average = self.calcualteScanAngel(0)
+                self.setPostion(average, self.ypos)
+
         if self.direction == self.CCW:
-            average = 0
-            scans = 0
-            for i in range (angle-5+90,angle+6+90):
-                if self.scan[i] > 0:
-                    average = average + self.scan[i]
-                    scans += 1
-            if scans > 0:
-                average = average / scans
-        
-#      print(average)
+            if angleCheck < -140 or angleCheck > 140:                              # rechts/180
+                print("1")
+                average = self.calcualteScanAngel(90)
+                self.setPostion(self.xpos, 3000 - average)
+            if angleCheck < 130 and angleCheck > 50:                                # unten/90
+                print("2")
+                average = self.calcualteScanAngel(0)
+                self.setPostion(average, self.ypos)
+            if angleCheck > -40 and angleCheck < 40:                                # links/0
+                print("3")
+                average = self.calcualteScanAngel(-90)
+                self.setPostion(self.xpos, average)
+            if angleCheck > -130 and angleCheck < -50:                              # oben/-90
+                print("4")
+                average = self.calcualteScanAngel(180)
+                self.setPostion(3000 - average, self.ypos)
