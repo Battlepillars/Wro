@@ -88,6 +88,7 @@ class Playmat:
         if self.bgImg.get_height() != screenys:
             screenxs = screenys / self.wy * self.wx
             self.matScale = screenxs / self.wy
+            print("***************************************************\nMatScale: ", self.matScale)
             self.bgImg = pygame.transform.scale(self.bgImgFull, (screenxs, screenys))
         screen.blit(self.bgImg, (0, 0))
         
@@ -114,17 +115,22 @@ class Playmat:
         screen.blit(frame, (self.wx * self.matScale, 0))
 
 
-    def Infos(self,screen,robot,slam):
+    def Infos(self,screen,robot,slam,matScale):
         green = (0, 255, 0)
         blue = (0, 0, 128)
-        self.font = pygame.font.Font('freesansbold.ttf', 14)
-        for i in range(3):
+        self.font = pygame.font.Font('freesansbold.ttf',20)
+        for i in range(5):
             if i == 0:
                 text = self.font.render('x: ' + str(robot.xpos), True, green, blue)
             if i == 1:
                 text = self.font.render('y: ' + str(robot.ypos), True, green, blue)
             if i == 2:
                 text = self.font.render('r: ' + str(robot.angle), True, green, blue)
+            if i == 3:
+                text = self.font.render("matscale: "+str(matScale), True, green, blue)
+                # text = self.font.render("rot = rechts, grün = links", True, green, blue)
+            if i == 4:
+                text = self.font.render(str(math.floor(pygame.mouse.get_pos()[0] / matScale)) + " " + str(math.floor(pygame.mouse.get_pos()[1] / matScale)), True, green, blue) 
             # if i == 3:
             #     text = self.font.render('speed x: ' + str(speed.x), True, green, blue)
             # if i == 4:
@@ -133,4 +139,4 @@ class Playmat:
             #     text = self.font.render('speed max x: ' + str(speedMax[0]), True, green, blue)
             # if i == 6:
             #     text = self.font.render('speed max y: ' + str(speedMax[1]), True, green, blue)
-            screen.blit(text, (self.wx * self.matScale,(i * 14) + ((screen.get_width() - self.wx * self.matScale) * 0.55078125)))
+            screen.blit(text, (self.wx * self.matScale,(i * 20) + ((screen.get_width() - self.wx * self.matScale) * 0.55078125)))

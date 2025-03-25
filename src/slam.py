@@ -74,10 +74,10 @@ class Slam:
 
         script_dir = os.path.abspath(os.path.dirname(__file__))
         lib_path = os.path.join(script_dir, "sg.so")
-
+        
         self.lidar = CDLL(lib_path)
         self.lidar.initLidar()
-
+        
         arr = [1]
         self.scan = (c_int * 361)(*arr)
 
@@ -185,8 +185,6 @@ class Slam:
 
         # print("Euler angle: {}".format(sensor.euler[0]))
     def hindernisseErkennung(self, scan, toScan, camera):
-
-        
         camera.captureImage()
         
         xposes = []
@@ -240,8 +238,8 @@ class Slam:
         average = average / scans
         print("scanAngle:", scanAngle, "average:", average, "average3:", 3000 - average)
         return average
-    
-    
+
+
     def reposition(self):
         
         #print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
