@@ -1,4 +1,8 @@
 # noinspection PyUnresolvedReferences
+# start mit debugger :
+#python3 -Xfrozen_modules=off -m debugpy --listen 10.0.0.25:5678 --wait-for-client main.py
+#python -m pip install --upgrade debugpy
+import debugpy
 import pygame # type: ignore
 import tkinter.filedialog
 import qwiic_otos # type: ignore
@@ -18,8 +22,9 @@ from camera import *
 from ctypes import *
 from adafruit_servokit import ServoKit # type: ignore
 
-matScale = 0.34
+
 backupVersion = 3
+
 
 slam = Slam()
 kit = ServoKit(channels=16)
@@ -31,6 +36,9 @@ sem = threading.Semaphore()
 takePicture=0
 
 def main():
+
+    
+
     global slam
     global orders
     global takePicture
@@ -38,15 +46,15 @@ def main():
     pictureNum=0
     running = True
     camera = Camera()
-    robot = Robot(matScale)
+    robot = Robot(1)
     pygame.init()
     info = 1
-    wx = 1100
-    wy = 1100
+    wx = 3100
+    wy = 3100
     placing = 0
-    playmat = Playmat(matScale, wx, wy)
+    playmat = Playmat(1, wx, wy)
     os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (0,0)
-    #screen = pygame.display.set_mode((wx * matScale + 300, wy * matScale), pygame.RESIZABLE)
+    #screen = pygame.display.set_mode((wx * playmat.matScale + 300, wy * playmat.matScale), pygame.RESIZABLE)
     screen = pygame.display.set_mode((1920,1000), pygame.RESIZABLE)
     
     pygame.display.set_caption("WroONator4000")
@@ -66,8 +74,8 @@ def main():
 
         if placing == 1:
             pos = pygame.mouse.get_pos()
-            slam.xstart = pos[0] / robot.matScale
-            slam.ystart = pos[1] / robot.matScale
+            slam.xstart = pos[0] / playmat.matScale
+            slam.ystart = pos[1] / playmat.matScale
 
         for event in pygame.event.get():
 
@@ -87,13 +95,13 @@ def main():
                     slam.lidar.disconnect()
                 
                 if event.key == pygame.K_f:
-                    print(math.floor(pygame.mouse.get_pos()[0] / matScale), math.floor(pygame.mouse.get_pos()[1] / matScale))
+                    print(math.floor(pygame.mouse.get_pos()[0] / playmat.matScale), math.floor(pygame.mouse.get_pos()[1] / playmat.matScale))
                 if event.key == pygame.K_r:
                     slam.reposition()
                 if event.key == pygame.K_g:
-                    print("orders.append(Order(x="+str(math.floor(pygame.mouse.get_pos()[0] / matScale))+", y="+str(math.floor(pygame.mouse.get_pos()[1] / matScale))+",speed=0.5,brake=1,type=Order.DESTINATION))")
+                    print("orders.append(Order(x="+str(math.floor(pygame.mouse.get_pos()[0] / playmat.matScale))+", y="+str(math.floor(pygame.mouse.get_pos()[1] / playmat.matScale))+",speed=0.5,brake=1,type=Order.DESTINATION))")
                 if event.key == pygame.K_t:
-                    orders.append(Order(x=pygame.mouse.get_pos()[0] / matScale, y=pygame.mouse.get_pos()[1] / matScale, speed=0.5, brake=1, type=Order.DESTINATION))
+                    orders.append(Order(x=pygame.mouse.get_pos()[0] / playmat.matScale, y=pygame.mouse.get_pos()[1] / playmat.matScale, speed=0.5, brake=1, type=Order.DESTINATION))
                 if event.key == pygame.K_c:
                     orders.clear()
 
@@ -111,7 +119,7 @@ def main():
         playmat.draw(screen, info, camera, robot)
         robot.draw(screen, playmat.matScale, slam.scan, slam)
         if info == 1:
-            playmat.Infos(screen, robot, slam, matScale)
+            playmat.Infos(screen, robot, slam, playmat.matScale)
         if takePicture:
             takePicture = False
             fileName="capture/screen"+str(pictureNum)+".jpg"
