@@ -127,8 +127,8 @@ class Playmat:
             if i == 2:
                 text = self.font.render('r: ' + str(robot.angle), True, green, blue)
             if i == 3:
-                text = self.font.render("matscale: "+str(matScale), True, green, blue)
-                # text = self.font.render("rot = rechts, grün = links", True, green, blue)
+                #text = self.font.render("matscale: "+str(matScale), True, green, blue)
+                text = self.font.render("rot = rechts, grün = links", True, green, blue)
             if i == 4:
                 text = self.font.render(str(math.floor(pygame.mouse.get_pos()[0] / matScale)) + " " + str(math.floor(pygame.mouse.get_pos()[1] / matScale)), True, green, blue) 
             # if i == 3:

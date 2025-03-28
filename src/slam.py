@@ -186,42 +186,44 @@ class Slam:
         # print("Euler angle: {}".format(sensor.euler[0]))
     def hindernisseErkennung(self, scan, toScan, camera):
         camera.captureImage()
-        
+        for d in range(len(camera.blocksAngle)):
+            print("Block Angle: ", camera.blocksAngle[d], "Color: ", camera.blocksColor[d],"\n")
         xposes = []
         yposes = []
         for i in range(len(scan)):
             rad = (i + self.angle) / 180 * math.pi
-            xposes.append(math.cos(rad) * -scan[i] + self.xpos)
+            xposes.append(math.cos(rad) * -scan[i] + self.xpos) # Koordinaten aus dem Lidar Winkelscan berechnen
             yposes.append(math.sin(rad) * scan[i] + self.ypos)
 
-        for i in range(len(self.hindernisse)):
-            if i in toScan:
+        for i in range(len(self.hindernisse)):                  # Hindernisse sind die vordefinierten möglichen Positionen
+            if i in toScan:                                     # To scan : welche Hindernisse aktuell überprüft werden sollen
                 self.hindernisse[i].farbe = Hindernisse.NICHTS
                 dots = 0
                 angles = []
-                for b in range(len(xposes)):
+                for b in range(len(xposes)):                    # Checken ob Hindernis in der Nähe der lidarpunkte ist
                     if (math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(100,2)) and (self.scan[b] > 200):
                         dots += 1
                         angles.append(b)
                 if dots > 1:
                     angle = 0
                     for c in angles:
+                        print("Angle: ",c)
+                        while c > 180:
+                            c -= 360
                         angle += c
                     angle = angle / len(angles)
-                    if angle > 180:
-                        angle = angle - 360
                     angle = -angle
-                    print(angle)
-                    closetAngle = 0
+                    print("Hinderniss: ",i," erkannt, winkel: ",angle)
+                    closestAngle = 0
                     for d in range(len(camera.blocksAngle)):
-                        if abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closetAngle] - angle):
-                            closetAngle = d
+                        if abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle):
+                            closestAngle = d
                     
-                    print(closetAngle)
+                    print(closestAngle)
                     if len(camera.blocksAngle) > 0:
-                        if camera.blocksColor[closetAngle] == camera.RED:
+                        if camera.blocksColor[closestAngle] == camera.RED:
                             self.hindernisse[i].farbe = Hindernisse.RED
-                        if camera.blocksColor[closetAngle] == camera.GREEN:
+                        if camera.blocksColor[closestAngle] == camera.GREEN:
                             self.hindernisse[i].farbe = Hindernisse.GREEN
                     else:
                         self.hindernisse[i].farbe = Hindernisse.RED
@@ -241,7 +243,6 @@ class Slam:
 
 
     def reposition(self):
-        
         #print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         
         angleCheck = self.angle
