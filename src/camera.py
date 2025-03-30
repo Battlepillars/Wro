@@ -6,6 +6,7 @@ import libcamera # type: ignore
 import argparse
 import imutils
 
+from drawBoard import *
 from libcamera import Transform # type: ignore
 from matplotlib import pyplot as plt
 from picamera2 import Picamera2 # type: ignore
@@ -70,8 +71,8 @@ class Camera():
         cntsred = imutils.grab_contours(cntsred)
         cntsgreen = imutils.grab_contours(cntsgreen)
 
-        cv.line(imgclear,(0,413),(1536,413),(255,0,0),1)
-        cv.line(imgclear,(0,379),(1536,379),(255,0,0),1)
+        cv.line(imgclear,(0,413),(1536,413),(255,0,0),2)
+        cv.line(imgclear,(0,379),(1536,379),(255,0,0),2)
         
         mid = 788       # This value sets the midpoint of the image, which is used as a reference to calculate the angle of detected blocks.
         split  = 19.12  # This value is used to scale the difference between the midpoint of the image and the x-coordinate of the detected block's center to calculate the angle.

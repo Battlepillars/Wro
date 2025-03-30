@@ -38,7 +38,6 @@ takePicture=0
 def main():
 
     
-
     global slam
     global orders
     global takePicture
@@ -73,8 +72,8 @@ def main():
         robot.xpos = slam.xpos
         robot.ypos = slam.ypos
         robot.angle = slam.angle
-        if vPressed > 0:
-            vPressed -= 1
+        # if vPressed > 0:
+        #     vPressed -= 1
         
         if placing == 1:
             pos = pygame.mouse.get_pos()
@@ -173,6 +172,8 @@ def commandLoop():
     # orders.append(Order(type=Order.REPOSITION))
     # orders.append(Order(toScan=[12, 13, 14, 15, 16, 17],type=Order.SCAN))
     
+    Playmat.log("Press v to start")
+    Playmat.log("Banane")
     print("Press v to start")
     while vPressed <= 0:
         time.sleep(0.1)
@@ -182,17 +183,18 @@ def commandLoop():
     waitCompleteOrders()
     time.sleep(0.5)
     orders.append(Order(toScan=[0, 1, 2, 3, 4, 5],type=Order.SCAN))
+    waitCompleteOrders()
     
     print("Capture 1")
     while vPressed <= 0:
         time.sleep(0.1)
 
     if checkForColor(Hindernisse.GREEN, 0, 6):
-        print("Green object detected")
+        print("Green")
         orders.append(Order(x=1041, y=2839,speed=0.5,brake=1,type=Order.DESTINATION))
         orders.append(Order(x=604, y=2762,speed=0.5,brake=1,type=Order.DESTINATION))
     else:
-        print("No green object detected")
+        print("Red")
         orders.append(Order(x=1050, y=2207,speed=0.5,brake=1,type=Order.DESTINATION))
         orders.append(Order(x=734, y=2607,speed=0.5,brake=1,type=Order.DESTINATION))
     
@@ -200,29 +202,79 @@ def commandLoop():
     orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
     waitCompleteOrders()
     time.sleep(0.5)
-    orders.append(Order(toScan=[6, 7, 8, 9, 10, 11],type=Order.SCAN))
     orders.append(Order(type=Order.REPOSITION))
+    orders.append(Order(toScan=[6, 7, 8, 9, 10, 11],type=Order.SCAN))
+    waitCompleteOrders()
     
     print("Capture 2")
     while vPressed <= 0:
         time.sleep(0.1)
 
-    orders.append(Order(x=823, y=2008, speed=0.5, brake=0, type=Order.DESTINATION))
-    orders.append(Order(x=829, y=988, speed=0.5, brake=0, type=Order.DESTINATION))
-    orders.append(Order(x=244, y=641, speed=0.5, brake=1, type=Order.DESTINATION))
-    
-    # orders.append(Order(x=182, y=2049,speed=0.5,brake=1,type=Order.DESTINATION))
-    # orders.append(Order(x=235, y=616,speed=0.5,brake=1,type=Order.DESTINATION))
+    if checkForColor(Hindernisse.GREEN, 6, 12):
+        print("Green")
+        orders.append(Order(x=182, y=2049,speed=0.5,brake=1,type=Order.DESTINATION))
+        orders.append(Order(x=235, y=616,speed=0.5,brake=1,type=Order.DESTINATION))
+    else:
+        print("Red")
+        orders.append(Order(x=823, y=2008, speed=0.5, brake=1, type=Order.DESTINATION))
+        orders.append(Order(x=829, y=988, speed=0.5, brake=1, type=Order.DESTINATION))
+        orders.append(Order(x=244, y=641, speed=0.5, brake=1, type=Order.DESTINATION))
+        
     
     orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL))
     waitCompleteOrders()
     time.sleep(0.5)
-    orders.append(Order(toScan=[12, 13, 14, 15, 16, 17],type=Order.SCAN))
     orders.append(Order(type=Order.REPOSITION))
+    orders.append(Order(toScan=[12, 13, 14, 15, 16, 17],type=Order.SCAN))
+    waitCompleteOrders()
+    
     print("Capture 3")
     while vPressed <= 0:
         time.sleep(0.1)
-
+    
+    
+    if checkForColor(Hindernisse.GREEN, 12, 18):
+        print("Green")
+        orders.append(Order(x=1054, y=229,speed=0.5,brake=1,type=Order.DESTINATION))
+        orders.append(Order(x=2449, y=291,speed=0.5,brake=1,type=Order.DESTINATION))
+    else:
+        print("Red")
+        orders.append(Order(x=1050, y=861, speed=0.5, brake=1, type=Order.DESTINATION))
+        orders.append(Order(x=2104, y=883, speed=0.5, brake=1, type=Order.DESTINATION))
+        orders.append(Order(x=2256, y=427,speed=0.5,brake=1,type=Order.DESTINATION))
+    
+    orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
+    waitCompleteOrders()
+    time.sleep(0.5)
+    orders.append(Order(type=Order.REPOSITION))
+    orders.append(Order(toScan=[18, 19, 20, 21, 22, 23],type=Order.SCAN))
+    waitCompleteOrders()
+    
+    print("Capture 4")
+    while vPressed <= 0:
+        time.sleep(0.1)
+    
+    if checkForColor(Hindernisse.RED, 18, 24):
+        print("Green")
+        orders.append(Order(x=2185, y=1054,speed=0.5,brake=1,type=Order.DESTINATION))
+        orders.append(Order(x=2179, y=2064,speed=0.5,brake=1,type=Order.DESTINATION))
+        orders.append(Order(x=2762, y=2284,speed=0.5,brake=1,type=Order.DESTINATION))
+    else:
+        print("Red")
+        orders.append(Order(x=2842, y=1054,speed=0.5,brake=1,type=Order.DESTINATION))
+        orders.append(Order(x=2594, y=2303,speed=0.5,brake=1,type=Order.DESTINATION))
+    
+    orders.append(Order(zielwinkel=0, speed=0.2, brake=1, type=Order.WINKEL))
+    waitCompleteOrders()
+    time.sleep(0.5)
+    orders.append(Order(type=Order.REPOSITION))
+    orders.append(Order(toScan=[0, 1, 2, 3, 4, 5],type=Order.SCAN))
+    print("Capture 1.2")
+    while vPressed <= 0:
+        time.sleep(0.1)
+    
+    
+    
 def controlLoop(robot, camera):
     driveBase = DriveBase(slam, kit)
     global running2

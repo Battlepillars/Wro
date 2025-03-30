@@ -4,9 +4,7 @@ import math
 import numpy as np
 import cv2 as cv2
 
-
 # import main
-
 
 class Robot:
     xpos = 0  
@@ -18,6 +16,8 @@ class Robot:
     matScaleOld = 0
     circlex = 0
     circley = 0
+
+
 
     def __init__(self, matScale):
         self.matScaleOld = matScale
@@ -72,6 +72,13 @@ class Robot:
 class Playmat:
     bgImg = None
     scroll = 0
+    logList = []
+    
+    @staticmethod
+    def log(msg):
+        Playmat.logList.append(msg)
+        if len(Playmat.logList) > 10:
+            Playmat.logList.pop(0)
 
     def __init__(self, matScale, wx, wy):
         self.wx = wx
@@ -119,7 +126,7 @@ class Playmat:
         green = (0, 255, 0)
         blue = (0, 0, 128)
         self.font = pygame.font.Font('freesansbold.ttf',20)
-        for i in range(5):
+        for i in range(5 + len(self.logList)):
             if i == 0:
                 text = self.font.render('x: ' + str(robot.xpos), True, green, blue)
             if i == 1:
@@ -131,6 +138,10 @@ class Playmat:
                 text = self.font.render("rot = rechts, grün = links", True, green, blue)
             if i == 4:
                 text = self.font.render(str(math.floor(pygame.mouse.get_pos()[0] / matScale)) + " " + str(math.floor(pygame.mouse.get_pos()[1] / matScale)), True, green, blue) 
+            for j in range(len(self.logList)):
+                if i == 5 + j:
+                    text = self.font.render(self.logList[j], True, green, blue)
+                    break
             # if i == 3:
             #     text = self.font.render('speed x: ' + str(speed.x), True, green, blue)
             # if i == 4:
