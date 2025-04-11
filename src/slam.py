@@ -187,7 +187,8 @@ class Slam:
     def hindernisseErkennung(self, scan, toScan, camera):
         camera.captureImage()
         for d in range(len(camera.blocksAngle)):
-            print("Block Angle: ", camera.blocksAngle[d], "Color: ", camera.blocksColor[d],"\n")
+            # print("Block Angle: ", camera.blocksAngle[d], "Color: ", camera.blocksColor[d],"\n")
+            pass
         xposes = []
         yposes = []
         for i in range(len(scan)):
@@ -207,19 +208,19 @@ class Slam:
                 if dots > 1:
                     angle = 0
                     for c in angles:
-                        print("Angle: ",c)
+                        # ("Angle: ",c)
                         while c > 180:
                             c -= 360
                         angle += c
                     angle = angle / len(angles)
                     angle = -angle
-                    print("Hinderniss: ",i," erkannt, winkel: ",angle)
+                    # print("Hinderniss: ",i," erkannt, winkel: ",angle)
                     closestAngle = 0
                     for d in range(len(camera.blocksAngle)):
                         if abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle):
                             closestAngle = d
                     
-                    print(closestAngle)
+                    # print(closestAngle)
                     if len(camera.blocksAngle) > 0:
                         if camera.blocksColor[closestAngle] == camera.RED:
                             self.hindernisse[i].farbe = Hindernisse.RED
@@ -238,34 +239,34 @@ class Slam:
                     average = average + self.scan[i]
                     scans += 1
         average = average / scans
-        print("scanAngle:", scanAngle, "average:", average, "average3:", 3000 - average)
+        # print("scanAngle:", scanAngle, "average:", average, "average3:", 3000 - average)
         return average
 
 
     def reposition(self):
-        #print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
+        # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         
         angleCheck = self.angle
         while angleCheck > 180:
             angleCheck -= 360
         while angleCheck < -180:
             angleCheck += 360
-        print("angleCheck:", angleCheck)
+        # print("angleCheck:", angleCheck)
         
         if angleCheck < -140 or angleCheck > 140:                              # rechts/180
-            print("5")
+            # print("5")
             average = self.calcualteScanAngel(0)
             self.setPostion(average, self.ypos)
         if angleCheck < 130 and angleCheck > 50:                                # unten/90
-            print("6")
+            # print("6")
             average = self.calcualteScanAngel(-90)
             self.setPostion(self.xpos, average)
         if angleCheck > -40 and angleCheck < 40:                                # links/0
-            print("7")
+            # print("7")
             average = self.calcualteScanAngel(180)
             self.setPostion(3000 - average, self.ypos)
         if angleCheck > -130 and angleCheck < -50:                              # oben/-90
-            print("8")
+            # print("8")
             average = self.calcualteScanAngel(90)
             self.setPostion(self.xpos, 3000 - average)
 
@@ -274,36 +275,36 @@ class Slam:
         
         if self.direction == self.CW:
             if angleCheck < -140 or angleCheck > 140:                              # rechts/180
-                print("9")
+                # print("9")
                 average = self.calcualteScanAngel(-90)
                 self.setPostion(self.xpos, average)
             if angleCheck < 130 and angleCheck > 50:                                # unten/90
-                print("10")
+                # print("10")
                 average = self.calcualteScanAngel(180)
                 self.setPostion(3000 - average, self.ypos)
             if angleCheck > -40 and angleCheck < 40:                                # links/0
-                print("11")
+                # print("11")
                 average = self.calcualteScanAngel(90)
                 self.setPostion(self.xpos, 3000 - average)
             if angleCheck > -130 and angleCheck < -50:                              # oben/-90
-                print("12")
+                # print("12")
                 average = self.calcualteScanAngel(0)
                 self.setPostion(average, self.ypos)
 
         if self.direction == self.CCW:
             if angleCheck < -140 or angleCheck > 140:                              # rechts/180
-                print("1")
+                # print("1")
                 average = self.calcualteScanAngel(90)
                 self.setPostion(self.xpos, 3000 - average)
             if angleCheck < 130 and angleCheck > 50:                                # unten/90
-                print("2")
+                # print("2")
                 average = self.calcualteScanAngel(0)
                 self.setPostion(average, self.ypos)
             if angleCheck > -40 and angleCheck < 40:                                # links/0
-                print("3")
+                # print("3")
                 average = self.calcualteScanAngel(-90)
                 self.setPostion(self.xpos, average)
             if angleCheck > -130 and angleCheck < -50:                              # oben/-90
-                print("4")
+                # print("4")
                 average = self.calcualteScanAngel(180)
                 self.setPostion(3000 - average, self.ypos)
