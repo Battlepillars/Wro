@@ -73,6 +73,7 @@ class Playmat:
     bgImg = None
     scroll = 0
     logList = []
+    speedSetpoint = 0
     
     @staticmethod
     def log(msg):
@@ -122,11 +123,23 @@ class Playmat:
         screen.blit(frame, (self.wx * self.matScale, 0))
 
 
-    def Infos(self,screen,robot,slam,matScale):
+    def Infos(self,screen,robot,slam,matScale,startTime,time):
         green = (0, 255, 0)
         blue = (0, 0, 128)
         self.font = pygame.font.Font('freesansbold.ttf',20)
-        for i in range(5 + len(self.logList)):
+        
+        # speedTest = 0.5
+        # sppedsettest = 1
+        
+        if (self.speedSetpoint > 0) and (slam.speed < 10):
+            height  = 700 * matScale
+            percentSpeed = slam.speed / self.speedSetpoint
+            pygame.draw.rect(screen, (255, 255, 255), ((self.wx + 990) * self.matScale, 190 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 90 * matScale, height + 20 * matScale))
+            pygame.draw.rect(screen, (170, 0, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height))
+            pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + height-height*percentSpeed + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height * percentSpeed))
+
+
+        for i in range(7 + len(self.logList)):
             if i == 0:
                 text = self.font.render('x: ' + str(robot.xpos), True, green, blue)
             if i == 1:
@@ -137,9 +150,13 @@ class Playmat:
                 #text = self.font.render("matscale: "+str(matScale), True, green, blue)
                 text = self.font.render("rot = rechts, grün = links", True, green, blue)
             if i == 4:
-                text = self.font.render(str(math.floor(pygame.mouse.get_pos()[0] / matScale)) + " " + str(math.floor(pygame.mouse.get_pos()[1] / matScale)), True, green, blue) 
+                text = self.font.render(str(math.floor(pygame.mouse.get_pos()[0] / matScale)) + " " + str(math.floor(pygame.mouse.get_pos()[1] / matScale)), True, green, blue)
+            if i == 5:
+                text = self.font.render('Time: ' + str(math.floor((time.time()-startTime)*10)/10), True, green, blue)
+            if i == 6:
+                text = self.font.render('Speed: ' + str(math.floor((slam.speed)*10)/10), True, green, blue)
             for j in range(len(self.logList)):
-                if i == 5 + j:
+                if i == 7 + j:
                     text = self.font.render(self.logList[j], True, green, blue)
                     break
             # if i == 3:

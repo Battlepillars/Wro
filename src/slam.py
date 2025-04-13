@@ -41,31 +41,35 @@ class Slam:
     CCW = 1
     def __init__(self):
         self.hindernisse = []
-        self.hindernisse.append(Hindernisse(x=2000, y=2408))
-        self.hindernisse.append(Hindernisse(x=2008, y=2594))
-        self.hindernisse.append(Hindernisse(x=1505, y=2397))
-        self.hindernisse.append(Hindernisse(x=1508, y=2600))
-        self.hindernisse.append(Hindernisse(x=1000, y=2405))
-        self.hindernisse.append(Hindernisse(x=1008, y=2602))
-        self.hindernisse.append(Hindernisse(x=600, y=2014))
-        self.hindernisse.append(Hindernisse(x=405, y=2000))
-        self.hindernisse.append(Hindernisse(x=600, y=1505))
-        self.hindernisse.append(Hindernisse(x=394, y=1505))
-        self.hindernisse.append(Hindernisse(x=597, y=994))
-        self.hindernisse.append(Hindernisse(x=394, y=1005))
-        self.hindernisse.append(Hindernisse(x=1000, y=602))
-        self.hindernisse.append(Hindernisse(x=997, y=405))
-        self.hindernisse.append(Hindernisse(x=1497, y=602))
-        self.hindernisse.append(Hindernisse(x=1497, y=417))
-        self.hindernisse.append(Hindernisse(x=1994, y=594))
-        self.hindernisse.append(Hindernisse(x=1997, y=414))
-        self.hindernisse.append(Hindernisse(x=2408, y=1000))
-        self.hindernisse.append(Hindernisse(x=2594, y=1005))
-        self.hindernisse.append(Hindernisse(x=2400, y=1494))
-        self.hindernisse.append(Hindernisse(x=2600, y=1494))
-        self.hindernisse.append(Hindernisse(x=2397, y=2000))
-        self.hindernisse.append(Hindernisse(x=2605, y=2002))
+        self.hindernisse.append(Hindernisse(x=2000, y=2400))
+        self.hindernisse.append(Hindernisse(x=2000, y=2600))
+        self.hindernisse.append(Hindernisse(x=1500, y=2400))
+        self.hindernisse.append(Hindernisse(x=1500, y=2600))
+        self.hindernisse.append(Hindernisse(x=1000, y=2400))
+        self.hindernisse.append(Hindernisse(x=1000, y=2600))
         
+        self.hindernisse.append(Hindernisse(x=600, y=2000))
+        self.hindernisse.append(Hindernisse(x=400, y=2000))
+        self.hindernisse.append(Hindernisse(x=600, y=1500))
+        self.hindernisse.append(Hindernisse(x=400, y=1500))
+        self.hindernisse.append(Hindernisse(x=600, y=1000))
+        self.hindernisse.append(Hindernisse(x=400, y=1000))
+        
+        self.hindernisse.append(Hindernisse(x=1000, y=600))
+        self.hindernisse.append(Hindernisse(x=1000, y=400))
+        self.hindernisse.append(Hindernisse(x=1500, y=600))
+        self.hindernisse.append(Hindernisse(x=1500, y=400))
+        self.hindernisse.append(Hindernisse(x=2000, y=600))
+        self.hindernisse.append(Hindernisse(x=2000, y=400))
+        
+        self.hindernisse.append(Hindernisse(x=2400, y=1000))
+        self.hindernisse.append(Hindernisse(x=2600, y=1000))
+        self.hindernisse.append(Hindernisse(x=2400, y=1500))
+        self.hindernisse.append(Hindernisse(x=2600, y=1500))
+        self.hindernisse.append(Hindernisse(x=2400, y=2000))
+        self.hindernisse.append(Hindernisse(x=2600, y=2000))
+
+
         self.xpos = 0
         self.ypos = 0
         self.speed = 0
@@ -243,10 +247,13 @@ class Slam:
         return average
 
 
-    def reposition(self):
+    def reposition(self, angleCheckOverwrite = 1000):
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         
         angleCheck = self.angle
+        if angleCheckOverwrite <= 500:
+            angleCheck = angleCheckOverwrite
+
         while angleCheck > 180:
             angleCheck -= 360
         while angleCheck < -180:
