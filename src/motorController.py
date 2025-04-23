@@ -49,12 +49,17 @@ class DriveBase:
     kit:ServoKit
     zielWinkel = 5000
     distanci = 0
+    startTimeDrive = 5000
 
     def __init__(self, slam, kit):
         self.slam = slam
         self.kit = kit
-        self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=40)
-        self.pidSteer = PIDController(Kp=5, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
+        if slam.eventType == slam.ER:
+            self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=80)
+            self.pidSteer = PIDController(Kp=3, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
+        else:
+            self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=40)
+            self.pidSteer = PIDController(Kp=5, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
 
     def driveTo(self, x, y, speed, brake):
         self.pidController.setpoint = speed
@@ -141,6 +146,7 @@ class DriveBase:
             return True
         else:
             return False
+        
     def driveToWinkel(self, zielwinkel, speed, brake):
         self.pidController.setpoint = speed
 
@@ -169,6 +175,38 @@ class DriveBase:
 
         if abs(fehlerwinkel) < 5:
             self.kit.servo[3].angle = 90
+            return True
+        else:
+            return False
+
+
+    def driveTime(self, timeDrive, speed, startTime):
+        self.pidController.setpoint = speed
+        speedTotal = self.slam.speed
+
+        if self.startTimeDrive == 5000:
+            self.startTimeDrive = time.time()-startTime
+    
+        timeLeft = timeDrive - (time.time()-startTime - self.startTimeDrive) 
+
+        if speed < 0:
+            output = self.pidController.compute(-speedTotal,0.5)
+        else:
+            output = self.pidController.compute(speedTotal,0.5)
+
+        self.kit.servo[0].angle = 90
+
+        if (self.pidController.setpoint==0):
+            self.kit.servo[3].angle=90
+        else:
+            if (output>0):
+                self.kit.servo[3].angle = 110 + output
+            else:
+                self.kit.servo[3].angle = 80 + output
+
+        if timeLeft < 0.1:
+            self.kit.servo[3].angle = 90
+            self.startTimeDrive = 5000
             return True
         else:
             return False

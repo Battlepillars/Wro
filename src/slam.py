@@ -37,8 +37,12 @@ class Slam:
     lastXpos = 5000
     lastYpos = 5000
     direction = 0
+    eventType = 0
     CW = 0
     CCW = 1
+    ER = 0
+    HR = 1
+    
     def __init__(self):
         self.hindernisse = []
         self.hindernisse.append(Hindernisse(x=2000, y=2400))
@@ -120,24 +124,29 @@ class Slam:
 
         if (average > 1870) and (average < 1970):
             self.direction = self.CW
-            self.setPostion(average, 3000 - self.scan[90],0) 
+            self.eventType = self.ER
+            self.setPostion(average, 3000 - self.scan[90],0)
         if (average > 1345) and (average < 1450):
             self.direction = self.CCW
+            self.eventType = self.ER
             self.setPostion(self.scan[180], 3000 - self.scan[-90],180)
         if (average > 1550) and (average < 1660):
             self.direction = self.CCW
+            self.eventType = self.ER
             self.setPostion(self.scan[180], 3000 - self.scan[-90],180)
         if (average > 1040) and (average < 1200):
-            
             self.direction = self.CW
+            self.eventType = self.ER
             self.setPostion(average, 3000 - self.scan[90],0)
         
 
         if (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
             self.direction = self.CW
+            self.eventType = self.HR
             self.setPostion(2000 - self.scan[180], 3000 - self.scan[90],0)
         elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[-90] < 400):
             self.direction = self.CCW
+            self.eventType = self.HR
             self.setPostion(2000 - self.scan[0], 3000 - self.scan[90],180)
 
         # 1870 - 1970

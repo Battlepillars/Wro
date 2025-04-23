@@ -16,6 +16,8 @@ class Robot:
     matScaleOld = 0
     circlex = 0
     circley = 0
+    circlexList = []
+    circleyList = []
 
 
 
@@ -39,7 +41,12 @@ class Robot:
         sys = screen.get_height()
         screenx = (self.xpos * self.matScale)
         screeny = (self.ypos * self.matScale)
+        
+        for i in range(len(self.circlexList)):
+            pygame.draw.circle(screen, (0, 255, 0), ((self.circlexList[i] + 50) * matScale, (self.circleyList[i] + 50) * matScale), 30 * matScale)
+            
         pygame.draw.circle(screen, (255, 0, 0), ((self.circlex + 50) * matScale, (self.circley + 50) * matScale), 50 * matScale)
+        
         for i in range(len(slam.hindernisse)):
             if slam.hindernisse[i].farbe == 2: # 2=GREEN
                 pygame.draw.circle(screen, (0, 255, 0), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
@@ -74,6 +81,8 @@ class Playmat:
     scroll = 0
     logList = []
     speedSetpoint = 0
+    averageSpeedPercent = 0
+    averageSpeedPercentCalc = 0
     
     @staticmethod
     def log(msg):
@@ -114,7 +123,6 @@ class Playmat:
             rad = (-camera.blocksAngle[i] + robot.angle) / 180 * math.pi
             x = math.cos(rad) * -2000 + robot.xpos
             y = math.sin(rad) * 2000 + robot.ypos
-            
             if camera.blocksColor[i] == camera.GREEN:
                 pygame.draw.line(screen, (0,255,0), (robot.xpos * self.matScale + xoff, robot.ypos * self.matScale + yoff), (x * self.matScale + xoff, y * self.matScale + yoff), int(5 * self.matScale))
             if camera.blocksColor[i] == camera.RED:
@@ -134,37 +142,36 @@ class Playmat:
         if (self.speedSetpoint > 0) and (slam.speed < 10):
             height  = 700 * matScale
             percentSpeed = slam.speed / self.speedSetpoint
+            
+            
+            self.averageSpeedPercent += percentSpeed
+            self.averageSpeedPercentCalc += 1
+            
             pygame.draw.rect(screen, (255, 255, 255), ((self.wx + 990) * self.matScale, 190 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 90 * matScale, height + 20 * matScale))
             pygame.draw.rect(screen, (170, 0, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height))
             pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + height-height*percentSpeed + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height * percentSpeed))
 
-
-        for i in range(7 + len(self.logList)):
+        prints = 8
+        for i in range(prints + len(self.logList)):
             if i == 0:
-                text = self.font.render('x: ' + str(robot.xpos), True, green, blue)
+                text = self.font.render("x: " + str(robot.xpos), True, green, blue)
             if i == 1:
-                text = self.font.render('y: ' + str(robot.ypos), True, green, blue)
+                text = self.font.render("y: " + str(robot.ypos), True, green, blue)
             if i == 2:
-                text = self.font.render('r: ' + str(robot.angle), True, green, blue)
+                text = self.font.render("r: " + str(robot.angle), True, green, blue)
             if i == 3:
                 #text = self.font.render("matscale: "+str(matScale), True, green, blue)
                 text = self.font.render("rot = rechts, grün = links", True, green, blue)
             if i == 4:
                 text = self.font.render(str(math.floor(pygame.mouse.get_pos()[0] / matScale)) + " " + str(math.floor(pygame.mouse.get_pos()[1] / matScale)), True, green, blue)
             if i == 5:
-                text = self.font.render('Time: ' + str(math.floor((time.time()-startTime)*10)/10), True, green, blue)
+                text = self.font.render("Time: " + str(math.floor((time.time()-startTime)*10)/10), True, green, blue)
             if i == 6:
-                text = self.font.render('Speed: ' + str(math.floor((slam.speed)*10)/10), True, green, blue)
+                text = self.font.render("Speed: " + str(math.floor((slam.speed)*10)/10), True, green, blue)
+            if (i == 7) and (self.averageSpeedPercentCalc > 0):
+                text = self.font.render("Speed: " + str(math.floor((self.averageSpeedPercent/self.averageSpeedPercentCalc)*100))  + "%", True, green, blue)
             for j in range(len(self.logList)):
-                if i == 7 + j:
+                if i == prints + j:
                     text = self.font.render(self.logList[j], True, green, blue)
                     break
-            # if i == 3:
-            #     text = self.font.render('speed x: ' + str(speed.x), True, green, blue)
-            # if i == 4:
-            #     text = self.font.render('speed y: ' + str(speed.y), True, green, blue)
-            # if i == 5:
-            #     text = self.font.render('speed max x: ' + str(speedMax[0]), True, green, blue)
-            # if i == 6:
-            #     text = self.font.render('speed max y: ' + str(speedMax[1]), True, green, blue)
             screen.blit(text, (self.wx * self.matScale,(i * 20) + ((screen.get_width() - self.wx * self.matScale) * 0.55078125)))
