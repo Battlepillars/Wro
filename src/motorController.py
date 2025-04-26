@@ -129,7 +129,7 @@ class DriveBase:
         else:
             output = self.pidController.compute(speedTotal,0.5)
 
-        # print(math.floor(self.distanci),math.floor(distenceLeft), speedTotal,output)
+
         self.kit.servo[0].angle = 90+angli
 
         if (self.pidController.setpoint==0):
@@ -139,7 +139,7 @@ class DriveBase:
                 self.kit.servo[3].angle = 110 + output
             else:
                 self.kit.servo[3].angle = 80 + output
-
+        print("distenceLeft: ",math.floor(distenceLeft)," setpoint: ",self.pidController.setpoint," speedTotal: ",speedTotal, " output: ", math.floor(output))
         if (distenceLeft<10) and ((speedTotal<0.05) or (brake == 0)):
             self.distanci = 0
             self.kit.servo[3].angle = 90

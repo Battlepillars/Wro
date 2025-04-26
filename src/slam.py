@@ -147,7 +147,7 @@ class Slam:
         elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[-90] < 400):
             self.direction = self.CCW
             self.eventType = self.HR
-            self.setPostion(2000 - self.scan[0], 3000 - self.scan[90],180)
+            self.setPostion(2000 - self.scan[0], 3000 - self.scan[-90],180)
 
         # 1870 - 1970
         # 1345 - 1450
