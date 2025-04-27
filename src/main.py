@@ -336,7 +336,7 @@ def commandLoop(slam):
             waitCompleteOrders()
             time.sleep(0.5)
             orders.append(Order(type=Order.REPOSITION))
-            orders.append(Order(toScan=[0, 1, 2, 3],type=Order.SCAN))
+            orders.append(Order(toScan=[0, 1, 4, 5],type=Order.SCAN))
             time.sleep(0.5)
             waitCompleteOrders()
 
@@ -450,8 +450,7 @@ def commandLoop(slam):
                 orders.append(Order(x=1950, y=2200,speed=0.5, brake=1,type=Order.DESTINATION))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(timeDrive=4, speed=0.2, type=Order.TIME))
-                
-                
+        
         
         
         
@@ -469,7 +468,7 @@ def commandLoop(slam):
             
             speedScan = 0.5
 
-            orders.append(Order(x=2100, y=2500,speed=speedScan,brake=1,type=Order.DESTINATION))
+            #orders.append(Order(x=2100, y=2500,speed=speedScan,brake=1,type=Order.DESTINATION))
             orders.append(Order(x=2400, y=2700,speed=speedScan,brake=1,type=Order.DESTINATION))
             
             
@@ -482,14 +481,15 @@ def commandLoop(slam):
             waitCompleteOrders()
             
 
-            if checkForColor(Hindernisse.RED, 18, 24):
-                #print("red")
+            if checkForColor(Hindernisse.GREEN, 18, 24):
+                #print("green")
                 orders.append(Order(x=2177, y=2008, speed=speedScan, brake=1, type=Order.DESTINATION))
                 orders.append(Order(x=2171, y=988, speed=speedScan, brake=1, type=Order.DESTINATION))
                 orders.append(Order(x=2756, y=641, speed=speedScan, brake=1, type=Order.DESTINATION))
-            elif checkForColor(Hindernisse.GREEN, 18, 24):
-                #print("green")
+            elif checkForColor(Hindernisse.RED, 18, 24):
+                #print("red")
                 orders.append(Order(x=2818, y=2049,speed=speedScan,brake=1,type=Order.DESTINATION))
+                orders.append(Order(x=2800, y=1100,speed=speedScan,brake=1,type=Order.DESTINATION))
                 orders.append(Order(x=2765, y=616,speed=speedScan,brake=1,type=Order.DESTINATION))
             else:
                 orders.append(Order(x=2500, y=1830,speed=speedScan,brake=1,type=Order.DESTINATION))
@@ -498,12 +498,12 @@ def commandLoop(slam):
                 orders.append(Order(toScan=[18, 19, 20, 21, 22, 23],type=Order.SCAN))
                 time.sleep(0.5)
                 waitCompleteOrders()
-                if checkForColor(Hindernisse.RED, 18, 24):
-                    #print("red")
+                if checkForColor(Hindernisse.GREEN, 18, 24):
+                    #print("green")
                     orders.append(Order(x=2171, y=988, speed=speedScan, brake=1, type=Order.DESTINATION))
                     orders.append(Order(x=2756, y=641, speed=speedScan, brake=1, type=Order.DESTINATION))
                 else:
-                    #print("green")
+                    #print("red")
                     orders.append(Order(x=2800, y=1000, speed=speedScan, brake=1, type=Order.DESTINATION))
                     orders.append(Order(x=2765, y=616,speed=speedScan,brake=1,type=Order.DESTINATION))
             
@@ -516,13 +516,13 @@ def commandLoop(slam):
             waitCompleteOrders()
             
             
-            if checkForColor(Hindernisse.RED, 12, 18):
-                #print("Red")
+            if checkForColor(Hindernisse.GREEN, 12, 18):
+                #print("Green")
                 orders.append(Order(x=2100, y=800, speed=speedScan, brake=1, type=Order.DESTINATION))
                 orders.append(Order(x=900, y=800, speed=speedScan, brake=1, type=Order.DESTINATION))
                 orders.append(Order(x=744, y=427,speed=speedScan,brake=1,type=Order.DESTINATION))
-            elif checkForColor(Hindernisse.GREEN, 12, 18):
-                #print("Green")
+            elif checkForColor(Hindernisse.RED, 12, 18):
+                #print("Red")
                 orders.append(Order(x=2100, y=200,speed=speedScan,brake=1,type=Order.DESTINATION))
                 orders.append(Order(x=900, y=200,speed=speedScan,brake=1,type=Order.DESTINATION))
                 orders.append(Order(x=551, y=291,speed=speedScan,brake=1,type=Order.DESTINATION))
@@ -533,12 +533,12 @@ def commandLoop(slam):
                 orders.append(Order(toScan=[12, 13, 14, 15, 16, 17],type=Order.SCAN))
                 time.sleep(0.5)
                 waitCompleteOrders()
-                if checkForColor(Hindernisse.RED, 12, 18):
-                    #print("red")
+                if checkForColor(Hindernisse.GREEN, 12, 18):
+                    #print("green")
                     orders.append(Order(x=1000, y=800, speed=speedScan, brake=1, type=Order.DESTINATION))
                     orders.append(Order(x=744, y=427,speed=speedScan,brake=1, type=Order.DESTINATION))
                 else:
-                    #print("green")
+                    #print("red")
                     orders.append(Order(x=1000, y=300, speed=speedScan, brake=1, type=Order.DESTINATION)) 
                     orders.append(Order(x=500, y=300,speed=speedScan,brake=1, type=Order.DESTINATION))
                 
@@ -551,14 +551,15 @@ def commandLoop(slam):
             waitCompleteOrders()
 
 
-            if checkForColor(Hindernisse.RED, 6, 12):
-                #print("Red")
-                orders.append(Order(x=815, y=1054,speed=speedScan,brake=1,type=Order.DESTINATION))
-                orders.append(Order(x=821, y=2064,speed=speedScan,brake=1,type=Order.DESTINATION))
-                orders.append(Order(x=350, y=2284,speed=speedScan,brake=1,type=Order.DESTINATION))
-            elif checkForColor(Hindernisse.GREEN, 6, 12):
+            if checkForColor(Hindernisse.GREEN, 6, 12):
                 #print("Green")
-                orders.append(Order(x=158, y=1054,speed=speedScan,brake=1,type=Order.DESTINATION))
+                orders.append(Order(x=800, y=1100,speed=speedScan,brake=1,type=Order.DESTINATION))
+                orders.append(Order(x=800, y=2100,speed=speedScan,brake=1,type=Order.DESTINATION))
+                orders.append(Order(x=350, y=2284,speed=speedScan,brake=1,type=Order.DESTINATION))
+            elif checkForColor(Hindernisse.RED, 6, 12):
+                #print("Red")
+                orders.append(Order(x=200, y=1050,speed=speedScan,brake=1,type=Order.DESTINATION))
+                orders.append(Order(x=200, y=2100,speed=speedScan,brake=1,type=Order.DESTINATION))
                 orders.append(Order(x=350, y=2368,speed=speedScan,brake=1,type=Order.DESTINATION))
             else:
                 orders.append(Order(x=500, y=1250,speed=speedScan,brake=1,type=Order.DESTINATION))
@@ -567,12 +568,12 @@ def commandLoop(slam):
                 orders.append(Order(toScan=[6, 7, 8, 9, 10, 11],type=Order.SCAN))
                 time.sleep(0.5)
                 waitCompleteOrders()
-                if checkForColor(Hindernisse.RED, 6, 12):
-                    #print("red")
+                if checkForColor(Hindernisse.GREEN, 6, 12):
+                    #print("green")
                     orders.append(Order(x=821, y=2064,speed=speedScan,brake=1,type=Order.DESTINATION))
                     orders.append(Order(x=350, y=2284,speed=speedScan,brake=1, type=Order.DESTINATION))
                 else:
-                    #print("green")
+                    #print("red")
                     orders.append(Order(x=150, y=2100, speed=speedScan, brake=1, type=Order.DESTINATION)) 
                     orders.append(Order(x=350, y=2370,speed=speedScan, brake=1,type=Order.DESTINATION))
             
@@ -581,7 +582,7 @@ def commandLoop(slam):
             waitCompleteOrders()
             time.sleep(0.5)
             orders.append(Order(type=Order.REPOSITION))
-            orders.append(Order(toScan=[0, 1, 2, 3],type=Order.SCAN))
+            orders.append(Order(toScan=[2, 3, 4, 5],type=Order.SCAN))
             time.sleep(0.5)
             waitCompleteOrders()
             
@@ -589,64 +590,64 @@ def commandLoop(slam):
             
             
             
-            speedi = 0.75
+            speedi = 0.5
             
             for i in range(0,2):
-                if checkForColor(Hindernisse.GREEN, 0, 6):
-                    #print("Green")
-                    orders.append(Order(x=2100, y=2600,speed=speedi,brake=0,type=Order.DESTINATION))
-                    orders.append(Order(x=1600, y=2600,speed=speedi,brake=0,type=Order.DESTINATION))
+                if checkForColor(Hindernisse.RED, 0, 6):
+                    #print("Red")
                     orders.append(Order(x=1000, y=2800,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=1400, y=2600,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=2000, y=2600,speed=speedi,brake=0,type=Order.DESTINATION))
                 else:
-                    #print("Red")
-                    orders.append(Order(x=2000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION))
+                    #print("Green")
                     orders.append(Order(x=1000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=2000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION))
 
-                if checkForColor(Hindernisse.GREEN, 0, 6) and checkForColor(Hindernisse.RED, 6, 12):
-                    #print("Green")
-                    orders.append(Order(x=800, y=2600,speed=speedi,brake=0,type=Order.DESTINATION))
-                elif checkForColor(Hindernisse.RED, 0, 6) and checkForColor(Hindernisse.GREEN, 6, 12):
+                if checkForColor(Hindernisse.RED, 0, 6) and checkForColor(Hindernisse.GREEN, 6, 12):
                     #print("Red")
-                    orders.append(Order(x=500, y=2400,speed=speedi,brake=0,type=Order.DESTINATION))
-
-                if checkForColor(Hindernisse.GREEN, 6, 12):
+                    orders.append(Order(x=2200, y=2600,speed=speedi,brake=0,type=Order.DESTINATION))
+                elif checkForColor(Hindernisse.GREEN, 0, 6) and checkForColor(Hindernisse.RED, 6, 12):
                     #print("Green")
-                    orders.append(Order(x=200, y=2100,speed=speedi,brake=0,type=Order.DESTINATION))
-                    orders.append(Order(x=200, y=1000,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=2500, y=2400,speed=speedi,brake=0,type=Order.DESTINATION))
+
+                if checkForColor(Hindernisse.RED, 6, 12):
+                    #print("Red")
+                    orders.append(Order(x=2800, y=2100,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=2800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION))
                 else:
-                    #print("Red")
-                    orders.append(Order(x=800, y=2000,speed=speedi,brake=0,type=Order.DESTINATION))
-                    orders.append(Order(x=800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION))
-
-
-                if checkForColor(Hindernisse.GREEN, 6, 12) and checkForColor(Hindernisse.RED, 12, 18):
                     #print("Green")
-                    orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION))
-                elif checkForColor(Hindernisse.RED, 6, 12) and checkForColor(Hindernisse.GREEN, 12, 18):
-                    #print("Red")
-                    orders.append(Order(x=600, y=500,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=2200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=2200, y=1000,speed=speedi,brake=0,type=Order.DESTINATION))
 
-                if checkForColor(Hindernisse.GREEN, 12, 18):
+
+                if checkForColor(Hindernisse.RED, 6, 12) and checkForColor(Hindernisse.GREEN, 12, 18):
+                    #print("Red")
+                    orders.append(Order(x=2600, y=800,speed=speedi,brake=0,type=Order.DESTINATION))
+                elif checkForColor(Hindernisse.GREEN, 6, 12) and checkForColor(Hindernisse.RED, 12, 18):
                     #print("Green")
-                    orders.append(Order(x=900, y=200,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=2400, y=500,speed=speedi,brake=0,type=Order.DESTINATION))
+
+                if checkForColor(Hindernisse.RED, 12, 18):
+                    #print("Red")
                     orders.append(Order(x=2100, y=200,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=900, y=200,speed=speedi,brake=0,type=Order.DESTINATION))
                 else:
-                    #print("Red")
-                    orders.append(Order(x=1000, y=800,speed=speedi,brake=0,type=Order.DESTINATION))
-                    orders.append(Order(x=2100, y=800,speed=speedi,brake=0,type=Order.DESTINATION))
-
-
-                if checkForColor(Hindernisse.GREEN, 12, 18) and checkForColor(Hindernisse.RED, 18, 24):
                     #print("Green")
-                    orders.append(Order(x=2200, y=400,speed=speedi,brake=0,type=Order.DESTINATION))
-                elif checkForColor(Hindernisse.RED, 12, 18) and checkForColor(Hindernisse.GREEN, 18, 24):
-                    #print("Red")
-                    orders.append(Order(x=2500, y=600,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=2000, y=800,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=900, y=800,speed=speedi,brake=0,type=Order.DESTINATION))
 
-                if checkForColor(Hindernisse.GREEN, 18, 24):
+
+                if checkForColor(Hindernisse.RED, 12, 18) and checkForColor(Hindernisse.GREEN, 18, 24):
+                    #print("Red")
+                    orders.append(Order(x=800, y=400,speed=speedi,brake=0,type=Order.DESTINATION))
+                elif checkForColor(Hindernisse.GREEN, 12, 18) and checkForColor(Hindernisse.RED, 18, 24):
                     #print("Green")
-                    orders.append(Order(x=2800, y=900,speed=speedi,brake=0,type=Order.DESTINATION))
-                    orders.append(Order(x=2800, y=2000,speed=speedi,brake=1,type=Order.DESTINATION))
+                    orders.append(Order(x=500, y=600,speed=speedi,brake=0,type=Order.DESTINATION))
+
+                if checkForColor(Hindernisse.RED, 18, 24):
+                    #print("Red")
+                    orders.append(Order(x=200, y=900,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=200, y=2000,speed=speedi,brake=1,type=Order.DESTINATION))
                     waitCompleteOrders()
                     time.sleep(0.5)
                     orders.append(Order(angleCheckOverwrite=0,type=Order.REPOSITION))
@@ -654,44 +655,44 @@ def commandLoop(slam):
                     # while vPressed <= 0:
                     #     time.sleep(0.1)
                 else:
-                    #print("Red")
-                    orders.append(Order(x=2200, y=1000,speed=speedi,brake=0,type=Order.DESTINATION))
-                    orders.append(Order(x=2200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION))
-                    if checkForColor(Hindernisse.RED, 0, 6):
-                        orders.append(Order(x=2200, y=2020,speed=speedScan,brake=1,type=Order.DESTINATION))
+                    #print("Green")
+                    orders.append(Order(x=800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION))
+                    orders.append(Order(x=800, y=2000,speed=speedi,brake=0,type=Order.DESTINATION))
+                    if checkForColor(Hindernisse.GREEN, 0, 6):
+                        orders.append(Order(x=800, y=2020,speed=speedScan,brake=1,type=Order.DESTINATION))
                         waitCompleteOrders()
                         time.sleep(0.5)
                         orders.append(Order(angleCheckOverwrite=0,type=Order.REPOSITION))
                         waitCompleteOrders()
 
-                if checkForColor(Hindernisse.GREEN, 18, 24) and checkForColor(Hindernisse.RED, 0, 6):
-                    #print("Green")
-                    orders.append(Order(x=2600, y=2250,speed=speedi,brake=0,type=Order.DESTINATION))
-                elif checkForColor(Hindernisse.RED, 18, 24) and checkForColor(Hindernisse.GREEN, 0, 6):
+                if checkForColor(Hindernisse.RED, 18, 24) and checkForColor(Hindernisse.GREEN, 0, 6):
                     #print("Red")
-                    orders.append(Order(x=2400, y=2300,speed=speedi,brake=1,type=Order.DESTINATION))
+                    orders.append(Order(x=400, y=2250,speed=speedi,brake=0,type=Order.DESTINATION))
+                elif checkForColor(Hindernisse.GREEN, 18, 24) and checkForColor(Hindernisse.RED, 0, 6):
+                    #print("Green")
+                    orders.append(Order(x=600, y=2300,speed=speedi,brake=1,type=Order.DESTINATION))
                     waitCompleteOrders()
                     time.sleep(0.5)
                     orders.append(Order(angleCheckOverwrite=0,type=Order.REPOSITION))
                     waitCompleteOrders()
 
-            if checkForColor(Hindernisse.GREEN, 0, 1) and checkForColor(Hindernisse.RED, 18, 24):
-                orders.append(Order(x=1980, y=2600,speed=0.5, brake=1,type=Order.DESTINATION))
+            if checkForColor(Hindernisse.RED, 0, 1) and checkForColor(Hindernisse.GREEN, 18, 24):
+                orders.append(Order(x=1020, y=2600,speed=0.5, brake=1,type=Order.DESTINATION))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(timeDrive=1, speed=0.2, type=Order.TIME))
             
-            elif checkForColor(Hindernisse.GREEN, 0, 1):    
-                orders.append(Order(x=1940, y=2600,speed=0.5, brake=1,type=Order.DESTINATION))
+            elif checkForColor(Hindernisse.RED, 0, 1):    
+                orders.append(Order(x=1060, y=2600,speed=0.5, brake=1,type=Order.DESTINATION))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(timeDrive=1, speed=0.2, type=Order.TIME))
             
-            elif checkForColor(Hindernisse.RED, 18, 24):
-                orders.append(Order(x=1900, y=2200,speed=0.5, brake=1,type=Order.DESTINATION))
+            elif checkForColor(Hindernisse.GREEN, 18, 24):
+                orders.append(Order(x=1100, y=2200,speed=0.5, brake=1,type=Order.DESTINATION))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(timeDrive=4, speed=0.2, type=Order.TIME))
             
             else:
-                orders.append(Order(x=1950, y=2200,speed=0.5, brake=1,type=Order.DESTINATION))
+                orders.append(Order(x=1050, y=2200,speed=0.5, brake=1,type=Order.DESTINATION))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(timeDrive=4, speed=0.2, type=Order.TIME))
 
