@@ -13,6 +13,7 @@ import motorController
 import board # type: ignore
 import adafruit_bno055 # type: ignore
 import threading
+import gpiozero
 
 from slam import *
 from motorController import *
@@ -28,7 +29,7 @@ backupVersion = 3
 
 slam = Slam()
 kit = ServoKit(channels=16)
-kit.servo[0].set_pulse_width_range(950, 2050)
+kit.servo[0].set_pulse_width_range(1100, 2100)
 kit.servo[3].set_pulse_width_range(1000, 2000)
 running2 = True
 orders = []
@@ -170,9 +171,13 @@ def commandLoop(slam):
     global orders
     global startTime
 
-    print("Press v to start")
-    while vPressed <= 0:
+    button = gpiozero.Button("BOARD37")
+    # print("Press v to start")
+    # while vPressed <= 0:
+    #     time.sleep(0.1)
+    while button.is_pressed:
         time.sleep(0.1)
+    time.sleep(1.2)
     startTime = time.time()
     
     if slam.eventType == slam.ER:
