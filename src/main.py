@@ -13,7 +13,7 @@ import motorController
 import board # type: ignore
 import adafruit_bno055 # type: ignore
 import threading
-import gpiozero
+import gpiozero # type: ignore
 
 from slam import *
 from motorController import *
@@ -170,14 +170,18 @@ def checkForColor(color, start, end):
 def commandLoop(slam):
     global orders
     global startTime
-
+    
     button = gpiozero.Button("BOARD37")
-    # print("Press v to start")
-    # while vPressed <= 0:
-    #     time.sleep(0.1)
-    while button.is_pressed:
-        time.sleep(0.1)
-    time.sleep(1.2)
+    
+    if button.is_pressed:
+        while button.is_pressed:
+            time.sleep(0.1)
+        time.sleep(1.2)
+    else:
+        print("Press v to start")
+        while vPressed <= 0:
+            time.sleep(0.1)
+    
     startTime = time.time()
     
     if slam.eventType == slam.ER:
@@ -420,6 +424,7 @@ def commandLoop(slam):
                     orders.append(Order(x=2200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION))
                     if checkForColor(Hindernisse.RED, 0, 6):
                         orders.append(Order(x=2200, y=2020,speed=speedScan,brake=1,type=Order.DESTINATION))
+                        orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                         waitCompleteOrders()
                         time.sleep(0.5)
                         orders.append(Order(angleCheckOverwrite=0,type=Order.REPOSITION))
@@ -431,6 +436,7 @@ def commandLoop(slam):
                 elif checkForColor(Hindernisse.RED, 18, 24) and checkForColor(Hindernisse.GREEN, 0, 6):
                     #print("Red")
                     orders.append(Order(x=2400, y=2300,speed=speedi,brake=1,type=Order.DESTINATION))
+                    orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                     waitCompleteOrders()
                     time.sleep(0.5)
                     orders.append(Order(angleCheckOverwrite=0,type=Order.REPOSITION))
@@ -452,7 +458,7 @@ def commandLoop(slam):
                 orders.append(Order(timeDrive=4, speed=0.2, type=Order.TIME))
             
             else:
-                orders.append(Order(x=1950, y=2200,speed=0.5, brake=1,type=Order.DESTINATION))
+                orders.append(Order(x=2000, y=2200,speed=0.5, brake=1,type=Order.DESTINATION))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(timeDrive=4, speed=0.2, type=Order.TIME))
         
