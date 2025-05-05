@@ -29,6 +29,7 @@ class Hindernisse:
         # noinspection PyListCreation
     
 class Slam:
+    playmat = Playmat
     loopCounter = 10
     loopCounterGyro = 0
     angle = 0
@@ -44,10 +45,11 @@ class Slam:
     HR = 1
     lastRepostion = 0
     ignoreSpeedUpdate = 0
+    repostionEnable = 0
     
     def __init__(self):
         
-        print("***************************************************************************************\nSlam init")
+        
         self.hindernisse = []
         self.hindernisse.append(Hindernisse(x=2000, y=2400))
         self.hindernisse.append(Hindernisse(x=2000, y=2600))
@@ -172,7 +174,8 @@ class Slam:
         
     def update(self):
         
-        self.repositionDrive()
+        if self.repostionEnable == 1:
+            self.repositionDrive()
         
         myPosition = self.myOtos.getPosition()
         
@@ -338,7 +341,6 @@ class Slam:
 
 
     def repositionDrive(self):
-        return
         # print("Repostioning")
         currentRepostion = 0
         angleCheck = self.angle
@@ -350,46 +352,65 @@ class Slam:
         # print("angleCheck:", angleCheck)
         
         average = -1
-                
-        if angleCheck < -175 or angleCheck > 175:                              # rechts/180
-            # print("5")
-            average = self.lidar.checkDir(int(180 - self.angle + 0.5))
-            if (average > 0):
-                currentRepostion = 1
-        if angleCheck < 95 and angleCheck > 85:                                # unten/90
-            # print("6")
-            average = self.lidar.checkDir(int(90 - self.angle + 0.5))
-            if (average > 0):
-                currentRepostion = 2
-        if angleCheck > -5 and angleCheck < 5:                                # links/0
-            # print("7")
-            average = self.lidar.checkDir(int(0 - self.angle + 0.5))
-            if (average > 0):
-                currentRepostion = 3
-        if angleCheck > -95 and angleCheck < -85:                              # oben/-90
-            # print("8")
-            average = self.lidar.checkDir(int(-90 - self.angle + 0.5))
-            if (average > 0):
-                currentRepostion = 4
+        angleRange = 40
+        
+        dir=0
+        
+        if angleCheck < -180 + angleRange or angleCheck > 180 - angleRange:                               # 1: rechts/180
+            dir=int(180 - self.angle) + 0.5
+            currentRepostion = 1
+        elif angleCheck < 90 + angleRange and angleCheck > 90 - angleRange:                               # 2: unten/90
+            dir=int(90 - self.angle + 0.5)
+            currentRepostion = 2
+        elif angleCheck < angleRange and angleCheck > -angleRange:                                        # 3: links/0
+            dir=int(0 - self.angle + 0.5)
+            currentRepostion = 3
+        elif angleCheck < -90 + angleRange and angleCheck > -90 - angleRange:                             # 4: oben/-90
+            dir=int(-90 - self.angle + 0.5)
+            currentRepostion = 4
+        
+        average=self.lidar.checkDir(int(dir))
         
         # print(average)
-        if (average > 1000) or (average < 0):
-            return
         
+        if average < 0:
+            #print(" ",average, end="", flush=True)
+            # print(".", end="")
+            return
+        print(self.speed)
+        average = average - 30
+        
+        if (average < 500):
+            return
         if currentRepostion == self.lastRepostion:
             return
-        else:
-            #print("Repostioned: " + str(currentRepostion) + " last: " + str(self.lastRepostion) + " average: " + str(average))
-            if currentRepostion == 1:
-                print("Xpos: ", math.floor(self.xpos), "Ypos: ", math.floor(self.ypos), "Xpos2: ", math.floor(3000 - average), "Ypos2: ", math.floor(self.ypos))
-                self.setPostion(3000 - average, self.ypos)
-            if currentRepostion == 2:
-                print("Xpos: ", math.floor(self.xpos), "Ypos: ", math.floor(self.ypos), "Xpos2: ", math.floor(self.xpos), "Ypos2: ", math.floor(3000 - average))
-                self.setPostion(self.xpos, 3000 - average)
-            if currentRepostion == 3:
-                print("Xpos: ", math.floor(self.xpos), "Ypos: ", math.floor(self.ypos), "Xpos2: ", math.floor(average), "Ypos2: ", math.floor(self.ypos))
-                self.setPostion(average, self.ypos)
-            if currentRepostion == 4:
-                print("Xpos: ", math.floor(self.xpos), "Ypos: ", math.floor(self.ypos), "Xpos2: ", math.floor(self.xpos), "Ypos2: ", math.floor(average))
-                self.setPostion(self.xpos, average)
-            self.lastRepostion = currentRepostion
+        if currentRepostion == 1 and self.xpos < 2000:
+            return
+        if currentRepostion == 2 and self.ypos < 2000:
+            return
+        if currentRepostion == 3 and self.xpos > 1000:
+            return
+        if currentRepostion == 4 and self.ypos > 1000:
+            return
+        
+        
+        # print("Repostioned: " + str(currentRepostion) + " last: " + str(self.lastRepostion) + " average: " + str(average))
+        # print("********************************************************************************")
+        # print("rp: ",currentRepostion," av ", average," dir ", dir," angle ", self.angle)
+        if currentRepostion == 1:
+            self.playmat.log("x: " + str(math.floor(self.xpos)) + " -> " + str(math.floor(3000 - average)))
+            print("x: ", math.floor(self.xpos), " -> ", math.floor(3000 - average))
+            self.setPostion(3000 - average, self.ypos)
+        if currentRepostion == 2:
+            self.playmat.log("y: " + str(math.floor(self.ypos)) + " -> " + str(math.floor(3000 - average)))
+            print("y: ", math.floor(self.ypos), " -> ", math.floor(3000 - average))
+            self.setPostion(self.xpos, 3000 - average)
+        if currentRepostion == 3:
+            self.playmat.log("x: " + str(math.floor(self.xpos)) + " -> " + str(math.floor(average)))
+            print("x: ", math.floor(self.xpos), " -> ", math.floor(average))
+            self.setPostion(average, self.ypos)
+        if currentRepostion == 4:
+            self.playmat.log("y: " + str(math.floor(self.ypos)) + " -> " + str(math.floor(average)))
+            print("y: ", math.floor(self.ypos), " -> ", math.floor(average))
+            self.setPostion(self.xpos, average)
+        self.lastRepostion = currentRepostion

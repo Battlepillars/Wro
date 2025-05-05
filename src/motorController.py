@@ -48,7 +48,7 @@ class PIDController:
 
 def setServoAngle(kit,angle):
     servoMitte=80
-   
+    
     target = angle - 90 + servoMitte
     if target > 180:
         target = 180
@@ -79,8 +79,6 @@ class DriveBase:
         distance = math.sqrt(math.pow((self.slam.xpos - x),2) + math.pow((self.slam.ypos - y),2))
         zielwinkel = -(math.atan2(self.slam.ypos - y, self.slam.xpos - x) / math.pi * 180)
 
-        #if distance < 200:
-        #   self.pidController.setpoint = 0
 
         fehlerwinkel = -zielwinkel + self.slam.angle
         while fehlerwinkel > 180:
@@ -98,22 +96,14 @@ class DriveBase:
 
         outputSteer = self.pidSteer.compute(fehlerwinkel,1)
 
-
-        speedTotal = self.slam.speed
-        output = self.pidController.compute(speedTotal,0.5)
-
-
-        if abs(distanceLine) < 30:
-            xcl = 1
-        else:
-            xcl = 0
+        output = self.pidController.compute(self.slam.speed,0.5)
 
 
         # print("DisLine: ",math.floor(distanceLine)," Dist: ",distance," head: ", math.floor(self.slam.angle),"zielwinkel: ",math.floor(zielwinkel),"Fehlerwinkel: ",fehlerwinkel)
         setServoAngle(self.kit,90 + outputSteer)
         self.kit.servo[3].angle = 99 + output
 
-        if abs(distanceLine) < 30:
+        if abs(distanceLine) < 30 or fehlerwinkel > 90 or fehlerwinkel < -90:
             self.zielWinkel = 5000
             self.kit.servo[3].angle = 90
             return True

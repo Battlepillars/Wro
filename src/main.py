@@ -69,10 +69,10 @@ def main():
     global running2
     global running3
     last_val = 0xFFFF
-    clThread = threading.Thread(target=controlLoop, args=(robot, camera, playmat))
-    cmdlThread = threading.Thread(target=commandLoop, args=(slam, ))
-    cmdlThread.setDaemon(True)
-    clThread.setDaemon(True)
+    clThread = threading.Thread(target=controlLoop, args=(robot, camera, playmat), daemon=True)
+    cmdlThread = threading.Thread(target=commandLoop, args=(slam, ), daemon=True)
+    #cmdlThread.setDaemon(True)
+    #clThread.setDaemon(True)
     clThread.start()
     cmdlThread.start()
     
@@ -98,13 +98,13 @@ def main():
                 placing = 1
                 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
+                if event.key == pygame.K_c:
                     running = False
                     running2 = False
                     running3 = False
+                    kit.servo[3].angle = 90
                     time.sleep(0.1)
                     setServoAngle(kit,90)
-                    
                     kit.servo[3].angle = 90
                     slam.lidar.disconnect()
                 if event.key == pygame.K_v:
@@ -117,8 +117,9 @@ def main():
                     print("orders.append(Order(x="+str(math.floor(pygame.mouse.get_pos()[0] / playmat.matScale)-50)+", y="+str(math.floor(pygame.mouse.get_pos()[1] / playmat.matScale)-50)+",speed=0.5,brake=1,type=Order.DESTINATION))")
                 if event.key == pygame.K_t:
                     orders.append(Order(x=pygame.mouse.get_pos()[0] / playmat.matScale, y=pygame.mouse.get_pos()[1] / playmat.matScale, speed=0.5, brake=1, type=Order.DESTINATION))
-                if event.key == pygame.K_c:
+                if event.key == pygame.K_SPACE:
                     running2 = False
+                    running3 = False
                     orders.clear()
                     time.sleep(0.1)
                     setServoAngle(kit,90)
@@ -213,8 +214,9 @@ def commandLoop(slam):
     startTime = time.time()
     
     if slam.eventType == slam.ER:           
-        speedi = 1
-            
+        speedi = 0.75
+        slam.repostionEnable = 1
+        
         if slam.direction == slam.CW:                                       #                                    Eröffnungsrennen  CW
             orders.append(Order(x=450, y=2500,speed=speedi,brake=0,type=Order.DESTINATION))
             
@@ -240,19 +242,20 @@ def commandLoop(slam):
     
     
     
-    
     else:
         if slam.direction == slam.CW:
             orders.append(Order(steer=-90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
             orders.append(Order(steer=0, dist=150, speed=0.2, brake=1, type=Order.KURVE))
             orders.append(Order(steer=90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
             waitCompleteOrders()
+            slam.repostionEnable = 1
             time.sleep(0.5)
             orders.append(Order(toScan=[4, 5],type=Order.SCAN))
             time.sleep(0.5)
 
             if not waitCompleteOrders():
                 return
+            
             
             
             speedScan = 0.5
@@ -524,7 +527,9 @@ def commandLoop(slam):
             orders.append(Order(steer=90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
             orders.append(Order(steer=0, dist=150, speed=0.2, brake=1, type=Order.KURVE))
             orders.append(Order(steer=-90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
-            
+            if not waitCompleteOrders():
+                return
+            slam.repostionEnable = 1
             # orders.append(Order(steer=90, dist=55, speed=0.2, brake=1, type=Order.KURVE))
             # waitCompleteOrders()
             # time.sleep(1)
@@ -547,6 +552,7 @@ def commandLoop(slam):
             time.sleep(0.5)
             if not waitCompleteOrders():
                 return
+            
             
 
             if checkForColor(Hindernisse.GREEN, 18, 24):
@@ -747,10 +753,10 @@ def commandLoop(slam):
                         if not waitCompleteOrders():
                             return
                     
-                if checkForColor(Hindernisse.RED, 18, 24) and checkForColor(Hindernisse.GREEN, 0, 6):
+                if checkForColor(Hindernisse.RED, 6, 12) and checkForColor(Hindernisse.GREEN, 0, 6):
                     #print("Red")
                     orders.append(Order(x=400, y=2250,speed=speedi,brake=0,type=Order.DESTINATION))
-                elif checkForColor(Hindernisse.GREEN, 18, 24) and checkForColor(Hindernisse.RED, 0, 6):
+                elif checkForColor(Hindernisse.GREEN, 6, 12) and checkForColor(Hindernisse.RED, 0, 6):
                     #print("Green")
                     orders.append(Order(x=600, y=2300,speed=speedi,brake=1,type=Order.DESTINATION))
                     if not waitCompleteOrders():
@@ -779,6 +785,33 @@ def commandLoop(slam):
                 orders.append(Order(x=1050, y=2200,speed=0.5, brake=1,type=Order.DESTINATION))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(timeDrive=4, speed=0.2, type=Order.TIME))
+
+
+def printOrder():
+    global orders
+    if orders.__len__() == 0:
+        print("No Order",end="")
+        return
+    if orders[0].type == Order.DESTINATION:
+        print("Destination: ", orders[0].x, orders[0].y,end="")
+    elif orders[0].type == Order.KURVE:
+        print("KURVE: ", orders[0].dist, orders[0].steer,end="")
+    elif orders[0].type == Order.SCAN:
+        print("SCAN: ", orders[0].toScan,end="")
+    elif orders[0].type == Order.WINKEL:
+        print("WINKEL: ", orders[0].zielwinkel,end="")
+    elif orders[0].type == Order.REPOSITION:
+        print("REPOSITION: ", orders[0].angleCheckOverwrite,end="")
+    elif orders[0].type == Order.TIME:
+        print("TIME: ", orders[0].timeDrive,end="")
+    
+def nextOrder():
+    global orders
+    # printOrder()
+    orders.pop(0)
+    print("-> ",end="")
+    printOrder()
+    print("")
 
 
 def controlLoop(robot, camera, playmat):
@@ -811,34 +844,28 @@ def controlLoop(robot, camera, playmat):
                 robot.circley = orders[0].y
                 playmat.speedSetpoint = orders[0].speed
                 if driveBase.driveTo(orders[0].x,orders[0].y,orders[0].speed,orders[0].brake):
-                    # print("        *********** Next Order **********")
-                    orders.pop(0)
+                    nextOrder()
             elif orders[0].type == Order.KURVE:
                 if driveBase.drivekürvchen(orders[0].dist,orders[0].steer,orders[0].speed,orders[0].brake):
-                    # print("        *********** Next Order **********")
-                    orders.pop(0)
+                    nextOrder()
             elif orders[0].type == Order.SCAN:
                 sem.acquire()
                 slam.hindernisseErkennung(slam.scan,orders[0].toScan, camera)
                 takePicture = True
                 sem.release()
-                # print("        *********** Next Order **********")
-                orders.pop(0)
+                nextOrder()
             elif orders[0].type == Order.WINKEL:
                 if driveBase.driveToWinkel(orders[0].zielwinkel,orders[0].speed,orders[0].brake):
-                    # print("        *********** Next Order **********")
-                    orders.pop(0)
+                    nextOrder()
             elif orders[0].type == Order.REPOSITION:
                 sem.acquire()
                 slam.reposition(orders[0].angleCheckOverwrite)
                 takePicture = True
                 sem.release()
-                # print("        *********** Next Order **********")
-                orders.pop(0)
+                nextOrder()
             elif orders[0].type == Order.TIME:
                 if driveBase.driveTime(orders[0].timeDrive,orders[0].speed,startTime):
-                    # print("        *********** Next Order **********")
-                    orders.pop(0)
+                    nextOrder()
         else:
             setServoAngle(kit,90)
             kit.servo[3].angle = 90
@@ -849,6 +876,7 @@ def controlLoop(robot, camera, playmat):
             ausgabe = 0
         else:
             ausgabe = 1
+        # startZeit+= 1000*1000*10
         startZeit = time.perf_counter_ns()
         # if ausgabe == 1:
         #     print("time: ", variable)

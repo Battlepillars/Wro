@@ -105,7 +105,7 @@ class Playmat:
         if self.bgImg.get_height() != screenys:
             screenxs = screenys / self.wy * self.wx
             self.matScale = screenxs / self.wy
-            print("***************************************************\nMatScale: ", self.matScale)
+            #print("***************************************************\nMatScale: ", self.matScale)
             self.bgImg = pygame.transform.scale(self.bgImgFull, (screenxs, screenys))
         screen.blit(self.bgImg, (0, 0))
         
@@ -151,7 +151,7 @@ class Playmat:
             pygame.draw.rect(screen, (170, 0, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height))
             pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + height-height*percentSpeed + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height * percentSpeed))
 
-        prints = 8
+        prints = 9
         for i in range(prints + len(self.logList)):
             if i == 0:
                 text = self.font.render("x: " + str(robot.xpos), True, green, blue)
@@ -171,6 +171,8 @@ class Playmat:
             if (i == 7) and (self.averageSpeedPercentCalc > 0):
                 text = self.font.render("Speed: " + str(math.floor((self.averageSpeedPercent/self.averageSpeedPercentCalc)*100))  + "%", True, green, blue)
             for j in range(len(self.logList)):
+                if i == prints-1:
+                    text = self.font.render("Log: ", True, green, blue)
                 if i == prints + j:
                     text = self.font.render(self.logList[j], True, green, blue)
                     break
