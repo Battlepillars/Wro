@@ -108,5 +108,5 @@ class Camera():
                 self.blocksColor.append(self.RED)
         
                 
-        cv.imwrite('capture/imgclear.jpg', imgclear)
+        # cv.imwrite('capture/imgclear.jpg', imgclear)
         self.imgCam = imgclear

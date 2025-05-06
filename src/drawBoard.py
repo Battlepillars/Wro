@@ -163,7 +163,7 @@ class Playmat:
                 #text = self.font.render("matscale: "+str(matScale), True, green, blue)
                 text = self.font.render("rot = rechts, grün = links", True, green, blue)
             if i == 4:
-                text = self.font.render(str(math.floor(pygame.mouse.get_pos()[0] / matScale)) + " " + str(math.floor(pygame.mouse.get_pos()[1] / matScale)), True, green, blue)
+                text = self.font.render(str(math.floor(pygame.mouse.get_pos()[0] / matScale)-50) + " " + str(math.floor(pygame.mouse.get_pos()[1] / matScale)-50), True, green, blue)
             if i == 5:
                 text = self.font.render("Time: " + str(math.floor((time.time()-startTime)*10)/10), True, green, blue)
             if i == 6:

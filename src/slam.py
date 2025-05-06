@@ -42,6 +42,8 @@ class Slam:
     CCW = 1
     ER = 0
     HR = 1
+    lastRepostion = 0
+    ignoreSpeedUpdate = 0
     
     def __init__(self):
         self.hindernisse = []
@@ -164,15 +166,22 @@ class Slam:
         self.ypos = y
         self.lastXpos = x
         self.lastYpos = y
+        self.ignoreSpeedUpdate = 1
         
     def update(self):
+        
+        self.repositionDrive()
+        
         myPosition = self.myOtos.getPosition()
         
         # sp=self.myOtos.getVelocity()  #buggy, do not use
         if (self.lastXpos == 5000):
             self.speed = 0
         else:
-            self.speed =  math.sqrt(math.pow(myPosition.x-self.lastXpos,2) + math.pow(myPosition.y-self.lastYpos,2))*100
+            if self.ignoreSpeedUpdate == 1:
+                self.ignoreSpeedUpdate = 0
+            else:
+                self.speed =  math.sqrt(math.pow(myPosition.x-self.lastXpos,2) + math.pow(myPosition.y-self.lastYpos,2))*100
 
         self.lastXpos = myPosition.x
         self.lastYpos = myPosition.y
@@ -324,3 +333,61 @@ class Slam:
                 # print("4")
                 average = self.calcualteScanAngel(180)
                 self.setPostion(3000 - average, self.ypos)
+
+
+    def repositionDrive(self):
+        
+        # print("Repostioning")
+        currentRepostion = 0
+        angleCheck = self.angle
+
+        while angleCheck > 180:
+            angleCheck -= 360
+        while angleCheck < -180:
+            angleCheck += 360
+        # print("angleCheck:", angleCheck)
+        
+        average = -1
+                
+        if angleCheck < -175 or angleCheck > 175:                              # rechts/180
+            # print("5")
+            average = self.lidar.checkDir(int(180 - self.angle + 0.5))
+            if (average > 0):
+                currentRepostion = 1
+        if angleCheck < 95 and angleCheck > 85:                                # unten/90
+            # print("6")
+            average = self.lidar.checkDir(int(90 - self.angle + 0.5))
+            if (average > 0):
+                currentRepostion = 2
+        if angleCheck > -5 and angleCheck < 5:                                # links/0
+            # print("7")
+            average = self.lidar.checkDir(int(0 - self.angle + 0.5))
+            if (average > 0):
+                currentRepostion = 3
+        if angleCheck > -95 and angleCheck < -85:                              # oben/-90
+            # print("8")
+            average = self.lidar.checkDir(int(-90 - self.angle + 0.5))
+            if (average > 0):
+                currentRepostion = 4
+        
+        # print(average)
+        if (average > 1000) or (average < 0):
+            return
+        
+        if currentRepostion == self.lastRepostion:
+            return
+        else:
+            #print("Repostioned: " + str(currentRepostion) + " last: " + str(self.lastRepostion) + " average: " + str(average))
+            if currentRepostion == 1:
+                print("Xpos: ", math.floor(self.xpos), "Ypos: ", math.floor(self.ypos), "Xpos2: ", math.floor(3000 - average), "Ypos2: ", math.floor(self.ypos))
+                self.setPostion(3000 - average, self.ypos)
+            if currentRepostion == 2:
+                print("Xpos: ", math.floor(self.xpos), "Ypos: ", math.floor(self.ypos), "Xpos2: ", math.floor(self.xpos), "Ypos2: ", math.floor(3000 - average))
+                self.setPostion(self.xpos, 3000 - average)
+            if currentRepostion == 3:
+                print("Xpos: ", math.floor(self.xpos), "Ypos: ", math.floor(self.ypos), "Xpos2: ", math.floor(average), "Ypos2: ", math.floor(self.ypos))
+                self.setPostion(average, self.ypos)
+            if currentRepostion == 4:
+                print("Xpos: ", math.floor(self.xpos), "Ypos: ", math.floor(self.ypos), "Xpos2: ", math.floor(self.xpos), "Ypos2: ", math.floor(average))
+                self.setPostion(self.xpos, average)
+            self.lastRepostion = currentRepostion
