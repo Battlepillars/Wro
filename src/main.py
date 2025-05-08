@@ -16,7 +16,6 @@ import threading
 import gpiozero # type: ignore
 import os, shutil
 
-
 from slam import *
 from motorController import *
 from future.moves import pickle # type: ignore
@@ -31,8 +30,9 @@ backupVersion = 3
 
 slam = Slam()
 kit = ServoKit(channels=16)
-kit.servo[0].set_pulse_width_range(1160, 2160)
+kit.servo[0].set_pulse_width_range(1160, 2440)
 kit.servo[3].set_pulse_width_range(1000, 2000)
+
 running2 = True
 running3 = True
 orders = []
@@ -103,7 +103,8 @@ def main():
                     running2 = False
                     running3 = False
                     time.sleep(0.1)
-                    kit.servo[0].angle = 90
+                    setServoAngle(kit,90)
+                    
                     kit.servo[3].angle = 90
                     slam.lidar.disconnect()
                 if event.key == pygame.K_v:
@@ -120,7 +121,7 @@ def main():
                     running2 = False
                     orders.clear()
                     time.sleep(0.1)
-                    kit.servo[0].angle = 90
+                    setServoAngle(kit,90)
                     kit.servo[3].angle = 90
 
             if event.type == pygame.QUIT:
@@ -128,7 +129,7 @@ def main():
                 running2 = False
                 running3 = False
                 time.sleep(0.1)
-                kit.servo[0].angle = 90
+                setServoAngle( kit,90)
                 kit.servo[3].angle = 90
                 slam.lidar.disconnect()
                 
@@ -786,7 +787,7 @@ def controlLoop(robot, camera, playmat):
     global takePicture
     global sem
     global startTime
-    kit.servo[0].angle = 90
+    setServoAngle(kit,90)
     kit.servo[3].angle = 90
     
     slam.update()
@@ -839,7 +840,7 @@ def controlLoop(robot, camera, playmat):
                     # print("        *********** Next Order **********")
                     orders.pop(0)
         else:
-            kit.servo[0].angle = 90
+            setServoAngle(kit,90)
             kit.servo[3].angle = 90
         
         variable = ((time.perf_counter_ns() - startZeit) / 1000 / 1000)
@@ -854,5 +855,6 @@ def controlLoop(robot, camera, playmat):
 
 
 
+    
 if __name__ == "__main__":
     main()

@@ -1,6 +1,8 @@
 from slam import *
 from drawBoard import *
 
+
+
 class PIDController:
     def __init__(self, Kp, Ki, Kd, setpoint, min, max):
         self.Kp = Kp
@@ -44,6 +46,16 @@ class PIDController:
 
             return output
 
+def setServoAngle(kit,angle):
+    servoMitte=80
+   
+    target = angle - 90 + servoMitte
+    if target > 180:
+        target = 180
+    if target < 0:
+        target = 0
+    
+    kit.servo[0].angle = target
 class DriveBase:
     slam:Slam
     kit:ServoKit
@@ -98,7 +110,7 @@ class DriveBase:
 
 
         # print("DisLine: ",math.floor(distanceLine)," Dist: ",distance," head: ", math.floor(self.slam.angle),"zielwinkel: ",math.floor(zielwinkel),"Fehlerwinkel: ",fehlerwinkel)
-        self.kit.servo[0].angle = 90 + outputSteer
+        setServoAngle(self.kit,90 + outputSteer)
         self.kit.servo[3].angle = 99 + output
 
         if abs(distanceLine) < 30:
@@ -130,7 +142,7 @@ class DriveBase:
             output = self.pidController.compute(speedTotal,0.5)
 
 
-        self.kit.servo[0].angle = 90+angli
+        setServoAngle(self.kit,90+angli)
 
         if (self.pidController.setpoint==0):
             self.kit.servo[3].angle=90
@@ -170,7 +182,7 @@ class DriveBase:
 
         #print(" head: ", math.floor(self.slam.angle), "zielwinkel: ", math.floor(zielwinkel), "Fehlerwinkel: ", fehlerwinkel)
 
-        self.kit.servo[0].angle = 90 + outputSteer
+        setServoAngle(self.kit, 90 + outputSteer)
         self.kit.servo[3].angle = 99 + output
 
         if abs(fehlerwinkel) < 5:
@@ -194,7 +206,7 @@ class DriveBase:
         else:
             output = self.pidController.compute(speedTotal,0.5)
 
-        self.kit.servo[0].angle = 90
+        setServoAngle(self.kit, 90)
 
         if (self.pidController.setpoint==0):
             self.kit.servo[3].angle=90

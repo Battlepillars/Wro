@@ -46,6 +46,8 @@ class Slam:
     ignoreSpeedUpdate = 0
     
     def __init__(self):
+        
+        print("***************************************************************************************\nSlam init")
         self.hindernisse = []
         self.hindernisse.append(Hindernisse(x=2000, y=2400))
         self.hindernisse.append(Hindernisse(x=2000, y=2600))
@@ -336,7 +338,7 @@ class Slam:
 
 
     def repositionDrive(self):
-        
+        return
         # print("Repostioning")
         currentRepostion = 0
         angleCheck = self.angle
