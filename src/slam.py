@@ -8,6 +8,7 @@ import motorController
 import board # type: ignore
 import adafruit_bno055 # type: ignore
 import threading
+import logging
 
 from future.moves import pickle # type: ignore
 from drawBoard import *
@@ -29,6 +30,7 @@ class Hindernisse:
         # noinspection PyListCreation
     
 class Slam:
+    c1=0
     playmat = Playmat
     loopCounter = 10
     loopCounterGyro = 0
@@ -37,6 +39,8 @@ class Slam:
     ypos = 0
     lastXpos = 5000
     lastYpos = 5000
+    xToRepos=0
+    yToRepos=0
     direction = 0
     eventType = 0
     CW = 0
@@ -44,9 +48,13 @@ class Slam:
     ER = 0
     HR = 1
     lastRepostion = 0
+    lastQuadrant = 0
     ignoreSpeedUpdate = 0
     repostionEnable = 0
-    
+    noCurveReposition = 0
+    logger = logging.getLogger("")
+    logging.basicConfig(filename='./log.log', encoding='utf-8', level=logging.WARN)
+    logger.warn(' Slam init  *************************************************************')
     def __init__(self):
         
         
@@ -111,10 +119,10 @@ class Slam:
         print("Calibrating IMU...")
 
         # Calibrate the IMU, which removes the accelerometer and gyroscope offsets
-        self.myOtos.calibrateImu()
+        self.myOtos.calibrateImu(255)
         self.myOtos.setLinearUnit(self.myOtos.kLinearUnitMeters)
         self.myOtos.setAngularUnit(self.myOtos.kAngularUnitDegrees)
-        self.myOtos.setLinearScalar(1.022494887525562)
+        self.myOtos.setLinearScalar(1.014)
         # self.myOtos.setLinearScalar(0.9)
         self.myOtos.setAngularScalar(0.9947222222222221)
         self.myOtos.resetTracking()
@@ -273,6 +281,9 @@ class Slam:
     def reposition(self, angleCheckOverwrite = 1000):
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         
+
+            
+        
         angleCheck = self.angle
         if angleCheckOverwrite <= 500:
             angleCheck = angleCheckOverwrite
@@ -339,7 +350,7 @@ class Slam:
                 average = self.calcualteScanAngel(180)
                 self.setPostion(3000 - average, self.ypos)
 
-
+   
     def repositionDrive(self):
         # print("Repostioning")
         currentRepostion = 0
@@ -352,10 +363,22 @@ class Slam:
         # print("angleCheck:", angleCheck)
         
         average = -1
-        angleRange = 40
+        angleRange = 30
         
         dir=0
         
+        
+        quadrant=0
+        if (self.xpos< 1000 and self.ypos < 1000):
+            quadrant=1
+        if (self.xpos< 1000 and self.ypos > 2000):
+            quadrant=2
+        if (self.xpos> 2000 and self.ypos < 1000):
+            quadrant=3
+        if (self.xpos> 2000 and self.ypos > 2000):
+            quadrant=4
+            
+            
         if angleCheck < -180 + angleRange or angleCheck > 180 - angleRange:                               # 1: rechts/180
             dir=int(180 - self.angle) + 0.5
             currentRepostion = 1
@@ -371,46 +394,65 @@ class Slam:
         
         average=self.lidar.checkDir(int(dir))
         
-        # print(average)
+
         
         if average < 0:
             #print(" ",average, end="", flush=True)
             # print(".", end="")
             return
-        print(self.speed)
+
+        self.c1+=1
+        if self.c1 > 3:
+            self.c1 = 0
+            self.logger.warn('x %i y%i  sp %.2f dist %.0f',self.xpos,self.ypos,self.speed,average)
+        #print(average,math.floor(self.speed*100)/100)
+        
+        if (dir==0 or self.noCurveReposition):
+            return
+        
         average = average - 30
         
-        if (average < 500):
+        if (average < 750):
             return
-        if currentRepostion == self.lastRepostion:
+        
+        if (quadrant == self.lastQuadrant or quadrant==0):
             return
-        if currentRepostion == 1 and self.xpos < 2000:
-            return
-        if currentRepostion == 2 and self.ypos < 2000:
-            return
-        if currentRepostion == 3 and self.xpos > 1000:
-            return
-        if currentRepostion == 4 and self.ypos > 1000:
-            return
+        
+        # if currentRepostion == self.lastRepostion:
+        #     return
+        # if currentRepostion == 1 and self.xpos < 2000:
+        #     return
+        # if currentRepostion == 2 and self.ypos < 2000:
+        #     return
+        # if currentRepostion == 3 and self.xpos > 1000:
+        #     return
+        # if currentRepostion == 4 and self.ypos > 1000:
+        #     return
         
         
         # print("Repostioned: " + str(currentRepostion) + " last: " + str(self.lastRepostion) + " average: " + str(average))
-        # print("********************************************************************************")
-        # print("rp: ",currentRepostion," av ", average," dir ", dir," angle ", self.angle)
+        self.logger.warn('-----------------------------------------------------------')
+        self.logger.warn('Reposition dir %i   av %.0f dir %.0f  angle %.0f',currentRepostion,average,dir,self.angle)
+        print("rp: ",currentRepostion," av ", average," dir ", dir," angle ", self.angle)
         if currentRepostion == 1:
             self.playmat.log("x: " + str(math.floor(self.xpos)) + " -> " + str(math.floor(3000 - average)))
             print("x: ", math.floor(self.xpos), " -> ", math.floor(3000 - average))
+            self.logger.warn('X %.0f -> %.0f',math.floor(self.xpos), math.floor(3000 - average))
             self.setPostion(3000 - average, self.ypos)
         if currentRepostion == 2:
             self.playmat.log("y: " + str(math.floor(self.ypos)) + " -> " + str(math.floor(3000 - average)))
             print("y: ", math.floor(self.ypos), " -> ", math.floor(3000 - average))
+            self.logger.warn('Y %.0f -> %.0f',math.floor(self.ypos), math.floor(3000 - average))
             self.setPostion(self.xpos, 3000 - average)
         if currentRepostion == 3:
             self.playmat.log("x: " + str(math.floor(self.xpos)) + " -> " + str(math.floor(average)))
             print("x: ", math.floor(self.xpos), " -> ", math.floor(average))
+            self.logger.warn('X %.0f -> %.0f', math.floor(self.xpos), math.floor(average))
             self.setPostion(average, self.ypos)
         if currentRepostion == 4:
             self.playmat.log("y: " + str(math.floor(self.ypos)) + " -> " + str(math.floor(average)))
             print("y: ", math.floor(self.ypos), " -> ", math.floor(average))
+            self.logger.warn('Y %.0f -> %.0f',math.floor(self.ypos), math.floor(average))
             self.setPostion(self.xpos, average)
         self.lastRepostion = currentRepostion
+        self.lastQuadrant = quadrant

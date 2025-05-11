@@ -99,11 +99,11 @@ class DriveBase:
         output = self.pidController.compute(self.slam.speed,0.5)
 
 
-        # print("DisLine: ",math.floor(distanceLine)," Dist: ",distance," head: ", math.floor(self.slam.angle),"zielwinkel: ",math.floor(zielwinkel),"Fehlerwinkel: ",fehlerwinkel)
+        print("DisLine: ",math.floor(distanceLine))
         setServoAngle(self.kit,90 + outputSteer)
         self.kit.servo[3].angle = 99 + output
 
-        if abs(distanceLine) < 30 or fehlerwinkel > 90 or fehlerwinkel < -90:
+        if distanceLine < #30:    # or fehlerwinkel > 90 or fehlerwinkel < -90:
             self.zielWinkel = 5000
             self.kit.servo[3].angle = 90
             return True
@@ -151,9 +151,9 @@ class DriveBase:
         
     def driveToWinkel(self, zielwinkel, speed, brake):
         self.pidController.setpoint = speed
-
-
         fehlerwinkel = -zielwinkel + self.slam.angle
+
+
         while fehlerwinkel > 180:
             fehlerwinkel -= 360
         while fehlerwinkel < -180:

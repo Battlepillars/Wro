@@ -18,6 +18,8 @@ class Robot:
     circley = 0
     circlexList = []
     circleyList = []
+    circleNumList = []
+
 
 
 
@@ -30,7 +32,7 @@ class Robot:
         self.robotWidth = self.robotSource.get_width()
         self.robotHeight = self.robotSource.get_height()
         self.robot = pygame.transform.scale(self.robotSource, (self.robotWidth * matScale, self.robotHeight * matScale))
-
+        
 
     def draw(self, screen, matScale, scan, slam):
         xoff = 50 * matScale
@@ -43,7 +45,15 @@ class Robot:
         screeny = (self.ypos * self.matScale)
         
         for i in range(len(self.circlexList)):
+            
             pygame.draw.circle(screen, (0, 255, 0), ((self.circlexList[i] + 50) * matScale, (self.circleyList[i] + 50) * matScale), 30 * matScale)
+            font = pygame.font.Font('freesansbold.ttf',20)
+            green = (0, 255, 0)
+            blue = (0, 0, 128)
+            text = font.render(str(self.circleNumList[i]), True, green, blue)
+            
+            #print("runder ",self.circleNumList[i]," ",((self.circlex + 50) * matScale, (self.circley + 50) * matScale))
+            screen.blit(text, (10+int((self.circlexList[i] + 50) * matScale),10+int((self.circleyList[i] + 50)) * matScale)) 
             
         pygame.draw.circle(screen, (255, 0, 0), ((self.circlex + 50) * matScale, (self.circley + 50) * matScale), 50 * matScale)
         
@@ -154,11 +164,11 @@ class Playmat:
         prints = 9
         for i in range(prints + len(self.logList)):
             if i == 0:
-                text = self.font.render("x: " + str(robot.xpos), True, green, blue)
+                text = self.font.render("x: " + str(math.floor(robot.xpos)), True, green, blue)
             if i == 1:
-                text = self.font.render("y: " + str(robot.ypos), True, green, blue)
+                text = self.font.render("y: " + str(math.floor(robot.ypos)), True, green, blue)
             if i == 2:
-                text = self.font.render("r: " + str(robot.angle), True, green, blue)
+                text = self.font.render("r: " + str(math.floor(robot.angle)), True, green, blue)
             if i == 3:
                 #text = self.font.render("matscale: "+str(matScale), True, green, blue)
                 text = self.font.render("rot = rechts, grün = links", True, green, blue)
