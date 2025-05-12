@@ -103,7 +103,7 @@ class DriveBase:
         setServoAngle(self.kit,90 + outputSteer)
         self.kit.servo[3].angle = 99 + output
 
-        if distanceLine < #30:    # or fehlerwinkel > 90 or fehlerwinkel < -90:
+        if distanceLine < 30:    # or fehlerwinkel > 90 or fehlerwinkel < -90:
             self.zielWinkel = 5000
             self.kit.servo[3].angle = 90
             return True
@@ -182,6 +182,42 @@ class DriveBase:
             return False
 
 
+
+    def driveToTime(self, x, y, speed, timeDrive, startTime):
+        self.pidController.setpoint = speed
+
+        zielwinkel = -(math.atan2(self.slam.ypos - y, self.slam.xpos - x) / math.pi * 180)
+
+        if self.startTimeDrive == 5000:
+            self.startTimeDrive = time.time()-startTime
+    
+        timeLeft = timeDrive - (time.time()-startTime - self.startTimeDrive) 
+
+        fehlerwinkel = -zielwinkel + self.slam.angle
+        while fehlerwinkel > 180:
+            fehlerwinkel -= 360
+        while fehlerwinkel < -180:
+            fehlerwinkel += 360
+
+        if self.zielWinkel == 5000:
+            self.zielWinkel = zielwinkel
+
+
+        outputSteer = self.pidSteer.compute(fehlerwinkel,1)
+
+        output = self.pidController.compute(self.slam.speed,0.5)
+
+
+        setServoAngle(self.kit,90 + outputSteer)
+        self.kit.servo[3].angle = 99 + output
+
+        if timeLeft < 0.1:
+            self.kit.servo[3].angle = 90
+            self.startTimeDrive = 5000
+            return True
+        else:
+            return False
+    
     def driveTime(self, timeDrive, speed, startTime):
         self.pidController.setpoint = speed
         speedTotal = self.slam.speed

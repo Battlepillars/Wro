@@ -3,6 +3,7 @@ import pygame.rect # type: ignore
 import math
 import numpy as np
 import cv2 as cv2
+import threading
 
 # import main
 
@@ -32,7 +33,7 @@ class Robot:
         self.robotWidth = self.robotSource.get_width()
         self.robotHeight = self.robotSource.get_height()
         self.robot = pygame.transform.scale(self.robotSource, (self.robotWidth * matScale, self.robotHeight * matScale))
-        
+        self.semDb = threading.Semaphore()
 
     def draw(self, screen, matScale, scan, slam):
         xoff = 50 * matScale
@@ -43,18 +44,19 @@ class Robot:
         sys = screen.get_height()
         screenx = (self.xpos * self.matScale)
         screeny = (self.ypos * self.matScale)
-        
+        font = pygame.font.Font('freesansbold.ttf',20)
+        green = (0, 255, 0)
+        blue = (0, 0, 128)
+        self.semDb.acquire()
         for i in range(len(self.circlexList)):
             
             pygame.draw.circle(screen, (0, 255, 0), ((self.circlexList[i] + 50) * matScale, (self.circleyList[i] + 50) * matScale), 30 * matScale)
-            font = pygame.font.Font('freesansbold.ttf',20)
-            green = (0, 255, 0)
-            blue = (0, 0, 128)
+            
             text = font.render(str(self.circleNumList[i]), True, green, blue)
             
             #print("runder ",self.circleNumList[i]," ",((self.circlex + 50) * matScale, (self.circley + 50) * matScale))
             screen.blit(text, (10+int((self.circlexList[i] + 50) * matScale),10+int((self.circleyList[i] + 50)) * matScale)) 
-            
+        self.semDb.release()    
         pygame.draw.circle(screen, (255, 0, 0), ((self.circlex + 50) * matScale, (self.circley + 50) * matScale), 50 * matScale)
         
         for i in range(len(slam.hindernisse)):

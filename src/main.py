@@ -173,6 +173,7 @@ class Order:
     WINKEL=3
     REPOSITION=4
     TIME=5
+    DESTINATIONTIME=6
     def __init__(self,speed=0,brake=0,type=0,x=0,y=0,steer=0,dist=0,timeDrive=0,toScan=[],zielwinkel=0,angleCheckOverwrite=1000,num=0):
         self.x = x
         self.y = y
@@ -256,7 +257,6 @@ def commandLoop(slam):
             time.sleep(0.5)
             orders.append(Order(toScan=[4, 5],type=Order.SCAN))
             time.sleep(0.5)
-
             if not waitCompleteOrders():
                 return
             
@@ -395,10 +395,11 @@ def commandLoop(slam):
                 return
             time.sleep(0.5)
             orders.append(Order(type=Order.REPOSITION))
-            orders.append(Order(toScan=[0, 1, 4, 5],type=Order.SCAN))
+            orders.append(Order(toScan=[0, 1],type=Order.SCAN))
             time.sleep(0.5)
             if not waitCompleteOrders():
                 return
+            
 
 
             # while vPressed <= 0:
@@ -500,7 +501,7 @@ def commandLoop(slam):
                         return
 
             if checkForColor(Hindernisse.GREEN, 0, 1) and checkForColor(Hindernisse.RED, 18, 24):
-                orders.append(Order(x=1980, y=2600,speed=0.5, brake=1,type=Order.DESTINATION,num=171))
+                orders.append(Order(x=1980, y=2600, speed=0.5, brake=1,type=Order.DESTINATION,num=171))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(timeDrive=1, speed=0.2, type=Order.TIME))
             
@@ -515,9 +516,9 @@ def commandLoop(slam):
                 orders.append(Order(timeDrive=4, speed=0.2, type=Order.TIME))
             
             else:
-                orders.append(Order(x=2000, y=2200,speed=0.5, brake=1,type=Order.DESTINATION,num=174))
+                orders.append(Order(x=1970, y=2200, speed=0.5, brake=1,type=Order.DESTINATION,num=174))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
-                orders.append(Order(timeDrive=4, speed=0.2, type=Order.TIME))
+                orders.append(Order(x=1870, y=3000, speed=0.2, timeDrive=4, type=Order.DESTINATIONTIME))
         
         
         
@@ -818,7 +819,7 @@ def printOrder():
     elif orders[0].type == Order.TIME:
         print("TIME: ", orders[0].timeDrive,end="")
         slam.logger.warn('%i    -> TIME  %i',orders[0].num, orders[0].timeDrive)
-    
+
 def nextOrder():
     global orders
     # printOrder()
@@ -847,18 +848,22 @@ def controlLoop(robot, camera, playmat):
     while running3:
         slam.update()
         if orders.__len__() > 0:
-            robot.circlexList.clear()
-            robot.circleyList.clear()
-            robot.circleNumList.clear()
+            
             if orders[0].type == Order.KURVE or orders[0].type == Order.WINKEL:
                 slam.noCurveReposition=1
             else:
                 slam.noCurveReposition=0
-            for i in range(len(orders)):
-                if orders[i].type == Order.DESTINATION:
-                    robot.circlexList.append(orders[i].x)
-                    robot.circleyList.append(orders[i].y)
-                    robot.circleNumList.append(orders[i].num)
+            if (robot.semDb.acquire(blocking=False)):
+                robot.circlexList.clear()
+                robot.circleyList.clear()
+                robot.circleNumList.clear()
+                for i in range(len(orders)):
+                    if orders[i].type == Order.DESTINATION:
+                        robot.circlexList.append(orders[i].x)
+                        robot.circleyList.append(orders[i].y)
+                        robot.circleNumList.append(orders[i].num)
+                        
+                robot.semDb.release()
             if orders[0].type == Order.DESTINATION:
                 robot.circlex = orders[0].x
                 robot.circley = orders[0].y
@@ -886,6 +891,9 @@ def controlLoop(robot, camera, playmat):
             elif orders[0].type == Order.TIME:
                 if driveBase.driveTime(orders[0].timeDrive,orders[0].speed,startTime):
                     nextOrder()
+            elif orders[0].type == Order.DESTINATIONTIME:
+                if driveBase.driveToTime(orders[0].x,orders[0].y,orders[0].speed,orders[0].timeDrive,startTime):
+                    nextOrder()
         else:
             setServoAngle(kit,90)
             kit.servo[3].angle = 90
@@ -903,6 +911,6 @@ def controlLoop(robot, camera, playmat):
 
 
 
-    
+
 if __name__ == "__main__":
     main()
