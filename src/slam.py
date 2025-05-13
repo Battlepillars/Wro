@@ -350,7 +350,7 @@ class Slam:
                 average = self.calcualteScanAngel(180)
                 self.setPostion(3000 - average, self.ypos)
 
-   
+
     def repositionDrive(self):
         # print("Repostioning")
         currentRepostion = 0
