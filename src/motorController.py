@@ -160,7 +160,7 @@ class DriveBase:
             fehlerwinkel += 360
 
         if (abs(fehlerwinkel) < 10) and (brake == 1):
-            self.pidController.setpoint = speed * fehlerwinkel / 10
+            self.pidController.setpoint = speed * abs(fehlerwinkel) / 10
 
         if fehlerwinkel < 0:
             outputSteer = 90
