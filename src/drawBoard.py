@@ -5,6 +5,12 @@ import numpy as np
 import cv2 as cv2
 import threading
 
+import board
+from rainbowio import colorwheel
+
+import adafruit_is31fl3741 # type: ignore
+from adafruit_is31fl3741.adafruit_rgbmatrixqt import Adafruit_RGBMatrixQT # type: ignore
+
 # import main
 
 class Robot:
@@ -95,6 +101,8 @@ class Playmat:
     speedSetpoint = 0
     averageSpeedPercent = 0
     averageSpeedPercentCalc = 0
+    lastAngle = 0
+    lastTime = 0
     
     @staticmethod
     def log(msg):
@@ -143,13 +151,37 @@ class Playmat:
         screen.blit(frame, (self.wx * self.matScale, 0))
 
 
-    def Infos(self,screen,robot,slam,matScale,startTime,time):
+    def Infos(self,screen,robot,slam,matScale,startTime,time,lamp):
         green = (0, 255, 0)
         blue = (0, 0, 128)
         self.font = pygame.font.Font('freesansbold.ttf',20)
         
         # speedTest = 0.5
         # sppedsettest = 1
+        
+        # lamp.fill(0x000000) 
+        # lamp.pixel(0, 0, 0xff0000)
+        # lamp.pixel(5, 0, 0xff0000)
+        # lamp.show()
+        
+        turnSpeed = (self.lastAngle - slam.angle) / (time.time()-self.lastTime)
+        # print("turnSpeed: ", turnSpeed)
+        self.lastAngle = slam.angle
+        self.lastTime = time.time()
+        
+        # if math.floor(turnSpeed*100)/100 == 0.05:
+        #     turnSpeed = 0
+        
+        # lamp.fill(0x000000) 
+        
+        # for i in range(0, 13):
+        #     lamp.pixel(i, 5, 0x000000)
+        #     lamp.pixel(i, 6, 0x000000)
+        # for i in range(0, math.floor(13*abs(turnSpeed)/(1/10))):
+        #     lamp.pixel(i, 5, 0x00ff00)
+        #     lamp.pixel(i, 6, 0x00ff00)
+        # lamp.show()
+            
         
         if (self.speedSetpoint > 0) and (slam.speed < 10):
             height  = 700 * matScale
@@ -162,6 +194,33 @@ class Playmat:
             pygame.draw.rect(screen, (255, 255, 255), ((self.wx + 990) * self.matScale, 190 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 90 * matScale, height + 20 * matScale))
             pygame.draw.rect(screen, (170, 0, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height))
             pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + height-height*percentSpeed + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height * percentSpeed))
+
+            # for i in range(0, 13):
+            #     lamp.pixel(i, 2, 0x000000)
+            #     lamp.pixel(i, 3, 0x000000)
+            # for i in range(0, math.floor(6*percentSpeed)):
+            #     lamp.pixel(i, 2, 0x00ff00)
+            #     lamp.pixel(i, 3, 0x00ff00)
+            # lamp.show()
+            
+            for i in range(0, 13):
+                lamp.pixel(i, 2, 0x000000)
+                lamp.pixel(i, 3, 0x000000)
+                
+            for i in range(0, math.floor(self.speedSetpoint*13)):
+                lamp.pixel(i, 2, 0xff0000)
+                lamp.pixel(i, 3, 0xff0000)
+            
+            for i in range(0, math.floor(slam.speed*13)):
+                lamp.pixel(i, 2, 0x00ff00)
+                lamp.pixel(i, 3, 0x00ff00)
+            
+            lamp.pixel(math.floor(self.speedSetpoint*13), 2, 0xff0000)
+            lamp.pixel(math.floor(self.speedSetpoint*13), 3, 0xff0000)
+            
+            lamp.show()
+            
+            
 
         prints = 9
         for i in range(prints + len(self.logList)):

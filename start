@@ -1,0 +1,2 @@
+cd /home/pi/Wro/src/
+su -c 'python main.py' pi

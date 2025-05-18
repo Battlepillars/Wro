@@ -42,6 +42,8 @@ class Camera():
 
         assert hsv is not None, "file could not be read, check with os.path.exists()"
 
+        # in photo shop: rgb -> vsh
+        
         # lower boundary RED color range values; Hue (0 - 10)
         lower1 = np.array([0, 100, 20])
         upper1 = np.array([10, 255, 255])
@@ -107,6 +109,6 @@ class Camera():
                 self.blocksAngle.append((mid - cX) / split)
                 self.blocksColor.append(self.RED)
         
-                
+        cv.imwrite('capture/hsv.jpg', hsv)
         # cv.imwrite('capture/imgclear.jpg', imgclear)
         self.imgCam = imgclear

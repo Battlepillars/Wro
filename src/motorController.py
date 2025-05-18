@@ -17,33 +17,33 @@ class PIDController:
     def compute(self, process_variable, dt):
             # Calculate error
             error = self.setpoint - process_variable
-
+            
             # Proportional term
             P_out = self.Kp * error
-
+            
             # Integral term
             self.integral += error * dt
-
+            
             if self.Ki * self.integral > self.max:
                 self.integral = self.max / self.Ki
             if self.Ki * self.integral < self.min:
                 self.integral = self.min / self.Ki
             I_out = self.Ki * self.integral
-
+            
             # Derivative term
             derivative = (error - self.previous_error) / dt
             D_out = self.Kd * derivative
-
+            
             # Compute total output
             output = P_out + I_out + D_out
-
+            
             # Update previous error
             self.previous_error = error
             if output > self.max:
                 output = self.max
             if output < self.min:
                 output = self.min
-
+            
             return output
 
 def setServoAngle(kit,angle):
@@ -75,35 +75,34 @@ class DriveBase:
 
     def driveTo(self, x, y, speed, brake):
         self.pidController.setpoint = speed
-
+        
         distance = math.sqrt(math.pow((self.slam.xpos - x),2) + math.pow((self.slam.ypos - y),2))
         zielwinkel = -(math.atan2(self.slam.ypos - y, self.slam.xpos - x) / math.pi * 180)
-
-
+        
+        
         fehlerwinkel = -zielwinkel + self.slam.angle
         while fehlerwinkel > 180:
             fehlerwinkel -= 360
         while fehlerwinkel < -180:
             fehlerwinkel += 360
-
+        
         if self.zielWinkel == 5000:
             self.zielWinkel = zielwinkel
-
+        
         distanceLine = distance * math.cos((self.zielWinkel - zielwinkel) / 180 * math.pi)
-
+        
         if (abs(distanceLine) < 200) and (brake == 1):
             self.pidController.setpoint = speed * distanceLine / 200
-
+        
         outputSteer = self.pidSteer.compute(fehlerwinkel,1)
-
+        
         output = self.pidController.compute(self.slam.speed,0.5)
-
-
-        print("DisLine: ",math.floor(distanceLine))
+        
+        
         setServoAngle(self.kit,90 + outputSteer)
         self.kit.servo[3].angle = 99 + output
-
-        if distanceLine < 30:    # or fehlerwinkel > 90 or fehlerwinkel < -90:
+        
+        if distanceLine < 30:
             self.zielWinkel = 5000
             self.kit.servo[3].angle = 90
             return True
