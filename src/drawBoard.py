@@ -181,10 +181,20 @@ class Playmat:
         #     lamp.pixel(i, 5, 0x00ff00)
         #     lamp.pixel(i, 6, 0x00ff00)
         # lamp.show()
-            
+        
+        widthWheel = 700 * matScale
+        
+        #pygame.draw.rect(screen, (255, 255, 255), ((self.wx + 1300) * self.matScale, 500 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), widthWheel + 20 * matScale, 90 * matScale))
+       # pygame.draw.rect(screen, (170, 0, 0), ((self.wx + 1310) * self.matScale, 510 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), widthWheel, 70 * matScale))
+        # if slam.wheelAngle != 0:
+       # pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1310 ) * self.matScale + (), 510 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), widthWheel * -slam.wheelAngle, 70 * matScale))
+        
+        #((widthWheel/2) * (slam.wheelAngle + 1))
+        
+        # pygame.draw.rect(surface, color, rect(left, top, width, height))
         
         if (self.speedSetpoint > 0) and (slam.speed < 10):
-            height  = 700 * matScale
+            height = 700 * matScale
             percentSpeed = slam.speed / self.speedSetpoint
             
             
@@ -232,7 +242,7 @@ class Playmat:
                 text = self.font.render("r: " + str(math.floor(robot.angle)), True, green, blue)
             if i == 3:
                 #text = self.font.render("matscale: "+str(matScale), True, green, blue)
-                text = self.font.render("rot = rechts, grün = links", True, green, blue)
+                text = self.font.render("wheel: " + str(slam.wheelAngle), True, green, blue)
             if i == 4:
                 text = self.font.render(str(math.floor(pygame.mouse.get_pos()[0] / matScale)-50) + " " + str(math.floor(pygame.mouse.get_pos()[1] / matScale)-50), True, green, blue)
             if i == 5:

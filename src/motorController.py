@@ -46,7 +46,7 @@ class PIDController:
             
             return output
 
-def setServoAngle(kit,angle):
+def setServoAngle(kit,angle,slam=None):
     servoMitte=80
     
     target = angle - 90 + servoMitte
@@ -55,7 +55,23 @@ def setServoAngle(kit,angle):
     if target < 0:
         target = 0
     
+    #170 links    # 0,01111111111111111111111111111111
+    #80 mitte
+    #0 rechts     # 0,0125
+    
+    
+    
     kit.servo[0].angle = target
+    if slam != None:
+        if target == 80:
+            slam.wheelAngle = 0
+        elif target > 80:
+            slam.wheelAngle = -(target - 80) * 1/90
+        else:
+            slam.wheelAngle = -(target - 80) * 1/80
+        #slam.wheelAngle = target 
+    
+
 class DriveBase:
     slam:Slam
     kit:ServoKit
@@ -99,7 +115,7 @@ class DriveBase:
         output = self.pidController.compute(self.slam.speed,0.5)
         
         
-        setServoAngle(self.kit,90 + outputSteer)
+        setServoAngle(self.kit,90 + outputSteer,self.slam)
         self.kit.servo[3].angle = 99 + output
         
         if distanceLine < 30:
@@ -131,7 +147,7 @@ class DriveBase:
             output = self.pidController.compute(speedTotal,0.5)
 
 
-        setServoAngle(self.kit,90+angli)
+        setServoAngle(self.kit,90+angli,self.slam)
 
         if (self.pidController.setpoint==0):
             self.kit.servo[3].angle=90
@@ -171,7 +187,7 @@ class DriveBase:
 
         #print(" head: ", math.floor(self.slam.angle), "zielwinkel: ", math.floor(zielwinkel), "Fehlerwinkel: ", fehlerwinkel)
 
-        setServoAngle(self.kit, 90 + outputSteer)
+        setServoAngle(self.kit, 90 + outputSteer,self.slam)
         self.kit.servo[3].angle = 99 + output
 
         if abs(fehlerwinkel) < 5:
@@ -207,7 +223,7 @@ class DriveBase:
         output = self.pidController.compute(self.slam.speed,0.5)
 
 
-        setServoAngle(self.kit,90 + outputSteer)
+        setServoAngle(self.kit,90 + outputSteer,self.slam)
         self.kit.servo[3].angle = 99 + output
 
         if timeLeft < 0.1:
@@ -231,7 +247,7 @@ class DriveBase:
         else:
             output = self.pidController.compute(speedTotal,0.5)
 
-        setServoAngle(self.kit, 90)
+        setServoAngle(self.kit, 90, self.slam) 
 
         if (self.pidController.setpoint==0):
             self.kit.servo[3].angle=90

@@ -34,6 +34,7 @@ class Slam:
     playmat = Playmat
     loopCounter = 10
     loopCounterGyro = 0
+    wheelAngle = 0
     angle = 0
     xpos = 0
     ypos = 0
@@ -281,7 +282,7 @@ class Slam:
     def reposition(self, angleCheckOverwrite = 1000):
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         
-
+        self.logger.warning('Manual Repostion angleCheckOverwrite: %i x: %i y: %i',angleCheckOverwrite,self.xpos,self.ypos)
             
         
         angleCheck = self.angle
@@ -295,21 +296,25 @@ class Slam:
         # print("angleCheck:", angleCheck)
         
         if angleCheck < -140 or angleCheck > 140:                              # rechts/180
-            # print("5")
+            
             average = self.calcualteScanAngel(0)
             self.setPostion(average, self.ypos)
+            self.logger.warning('v1 x-> %i ',average)
         if angleCheck < 130 and angleCheck > 50:                                # unten/90
             # print("6")
             average = self.calcualteScanAngel(-90)
             self.setPostion(self.xpos, average)
+            self.logger.warning('v2 y-> %i ',average)
         if angleCheck > -40 and angleCheck < 40:                                # links/0
             # print("7")
             average = self.calcualteScanAngel(180)
             self.setPostion(3000 - average, self.ypos)
+            self.logger.warning('v3 x-> %i ',3000-average)
         if angleCheck > -130 and angleCheck < -50:                              # oben/-90
             # print("8")
             average = self.calcualteScanAngel(90)
             self.setPostion(self.xpos, 3000 - average)
+            self.logger.warning('v4 y-> %i ',3000-average)
 
         average = 0
         scans = 0
@@ -319,37 +324,44 @@ class Slam:
                 # print("9")
                 average = self.calcualteScanAngel(-90)
                 self.setPostion(self.xpos, average)
+                self.logger.warning('v5 y-> %i ',average)
             if angleCheck < 130 and angleCheck > 50:                                # unten/90
                 # print("10")
                 average = self.calcualteScanAngel(180)
                 self.setPostion(3000 - average, self.ypos)
+                self.logger.warning('v6 x-> %i ',3000-average)
             if angleCheck > -40 and angleCheck < 40:                                # links/0
                 # print("11")
                 average = self.calcualteScanAngel(90)
                 self.setPostion(self.xpos, 3000 - average)
+                self.logger.warning('v7 y-> %i ',3000-average)
             if angleCheck > -130 and angleCheck < -50:                              # oben/-90
                 # print("12")
                 average = self.calcualteScanAngel(0)
                 self.setPostion(average, self.ypos)
+                self.logger.warning('v8 x-> %i ',average)
 
         if self.direction == self.CCW:
             if angleCheck < -140 or angleCheck > 140:                              # rechts/180
                 # print("1")
                 average = self.calcualteScanAngel(90)
                 self.setPostion(self.xpos, 3000 - average)
+                self.logger.warning('v9 y-> %i ',3000-average)
             if angleCheck < 130 and angleCheck > 50:                                # unten/90
                 # print("2")
                 average = self.calcualteScanAngel(0)
                 self.setPostion(average, self.ypos)
+                self.logger.warning('v10 x-> %i ',average)
             if angleCheck > -40 and angleCheck < 40:                                # links/0
                 # print("3")
                 average = self.calcualteScanAngel(-90)
                 self.setPostion(self.xpos, average)
+                self.logger.warning('v11 y-> %i ',average)
             if angleCheck > -130 and angleCheck < -50:                              # oben/-90
                 # print("4")
                 average = self.calcualteScanAngel(180)
                 self.setPostion(3000 - average, self.ypos)
-
+                self.logger.warning('v12 x-> %i ',3000-average)
 
     def repositionDrive(self):
         # print("Repostioning")
@@ -369,13 +381,16 @@ class Slam:
         
         
         quadrant=0
-        if (self.xpos< 1000 and self.ypos < 1000):
-            quadrant=1
-        if (self.xpos< 1000 and self.ypos > 2000):
-            quadrant=2
-        if (self.xpos> 2000 and self.ypos < 1000):
+        
+        qudrantRange = 1050
+        
+        if (self.xpos < qudrantRange and self.ypos < qudrantRange):
+            quadrant = 1
+        if (self.xpos < qudrantRange and self.ypos > 1000+qudrantRange):
+            quadrant = 2
+        if (self.xpos > 1000+qudrantRange and self.ypos < qudrantRange):
             quadrant=3
-        if (self.xpos> 2000 and self.ypos > 2000):
+        if (self.xpos > 1000+qudrantRange and self.ypos > 1000+qudrantRange):
             quadrant=4
             
             

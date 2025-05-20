@@ -34,7 +34,10 @@ class Camera():
         self.blocksColor = []
         imgclear = self.picam2.capture_array()
         imgIn = cv.blur(imgclear,(10,10))
-        imgIn = imgIn[339:383, 0:1535]
+        checkStart=315                      # Scanbalken einstellen, kleiner -> balken weiter oben
+        checkWitdh=44
+        checkEnd=checkStart+checkWitdh
+        imgIn = imgIn[checkStart:checkEnd, 0:1535]
 
         hsv = cv.cvtColor(imgIn, cv.COLOR_RGB2HSV)
         img = cv.cvtColor(imgIn, cv.COLOR_BGR2RGB)
@@ -73,8 +76,8 @@ class Camera():
         cntsred = imutils.grab_contours(cntsred)
         cntsgreen = imutils.grab_contours(cntsgreen)
 
-        cv.line(imgclear,(0,383),(1536,383),(255,0,0),2)
-        cv.line(imgclear,(0,349),(1536,339),(255,0,0),2)
+        cv.line(imgclear,(0,checkEnd),(1536,checkEnd),(255,0,0),2)
+        cv.line(imgclear,(0,checkStart),(1536,checkStart),(255,0,0),2)
         
         mid = 788       # This value sets the midpoint of the image, which is used as a reference to calculate the angle of detected blocks.
         split  = 19.12  # This value is used to scale the difference between the midpoint of the image and the x-coordinate of the detected block's center to calculate the angle.
