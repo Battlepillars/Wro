@@ -182,27 +182,38 @@ class Playmat:
         #     lamp.pixel(i, 6, 0x00ff00)
         # lamp.show()
         
+        # slam.wheelAngle = 0.5
+        
         widthWheel = 700 * matScale
+        wheelAngleCalc = slam.wheelAngle
         
-        #pygame.draw.rect(screen, (255, 255, 255), ((self.wx + 1300) * self.matScale, 500 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), widthWheel + 20 * matScale, 90 * matScale))
-       # pygame.draw.rect(screen, (170, 0, 0), ((self.wx + 1310) * self.matScale, 510 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), widthWheel, 70 * matScale))
-        # if slam.wheelAngle != 0:
-       # pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1310 ) * self.matScale + (), 510 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), widthWheel * -slam.wheelAngle, 70 * matScale))
+        if wheelAngleCalc > 0:
+            wheelAngleCalc = 0
+            
         
-        #((widthWheel/2) * (slam.wheelAngle + 1))
+        pygame.draw.rect(screen, (255, 255, 255), ((self.wx + 1300) * self.matScale, 500 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), widthWheel + 20 * matScale, 90 * matScale))
+        pygame.draw.rect(screen, (170, 0, 0), ((self.wx + 1310) * self.matScale, 510 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), widthWheel, 70 * matScale))
+        
+        if slam.wheelAngle != 0:
+            pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1660) * self.matScale + (widthWheel/2 * (wheelAngleCalc)), 510 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), widthWheel/2 * abs(slam.wheelAngle), 70 * matScale))
+        
+        pygame.draw.rect(screen, (0, 0, 0), ((self.wx + 1655) * self.matScale, 510 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 10 * matScale, 70 * matScale))
+
         
         # pygame.draw.rect(surface, color, rect(left, top, width, height))
         
+        height = 700 * matScale
+        
+        pygame.draw.rect(screen, (255, 255, 255), ((self.wx + 990) * self.matScale, 190 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 90 * matScale, height + 20 * matScale))
+        pygame.draw.rect(screen, (170, 0, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height))
+
+        
         if (self.speedSetpoint > 0) and (slam.speed < 10):
-            height = 700 * matScale
             percentSpeed = slam.speed / self.speedSetpoint
-            
             
             self.averageSpeedPercent += percentSpeed
             self.averageSpeedPercentCalc += 1
             
-            pygame.draw.rect(screen, (255, 255, 255), ((self.wx + 990) * self.matScale, 190 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 90 * matScale, height + 20 * matScale))
-            pygame.draw.rect(screen, (170, 0, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height))
             pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + height-height*percentSpeed + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height * percentSpeed))
 
             # for i in range(0, 13):
