@@ -164,7 +164,7 @@ class DriveBase:
         else:
             return False
         
-    def driveToWinkel(self, zielwinkel, speed, brake):
+    def driveToWinkel(self, zielwinkel, speed, brake,dir):
         self.pidController.setpoint = speed
         fehlerwinkel = -zielwinkel + self.slam.angle
 
@@ -176,11 +176,15 @@ class DriveBase:
 
         if (abs(fehlerwinkel) < 10) and (brake == 1):
             self.pidController.setpoint = speed * abs(fehlerwinkel) / 10
-
-        if fehlerwinkel < 0:
-            outputSteer = 90
-        else:
+        if (dir==0):
+            if fehlerwinkel < 0:
+                outputSteer = 90
+            else:
+                outputSteer = -90
+        elif (dir==100):               # CW 100=orders.CW
             outputSteer = -90
+        else:
+            outputSteer = 90           #CCW
 
         speedTotal = self.slam.speed
         output = self.pidController.compute(speedTotal, 0.5)

@@ -1,0 +1,11 @@
+- höhe der Kamera 
+- Maussensor putzen  
+	- !nur wenn Etwas nicht geht!
+	- Tuch falten
+	- Idee feucht machen
+	- nicht Platine putzen
+	- nicht vor Wertungslauf
+- Batterie wechseln
+- Kabel aus dem Lidar entfernen
+- Räder putzen
+- Maussensor Kalibrirung

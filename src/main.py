@@ -194,7 +194,9 @@ class Order:
     REPOSITION=4
     TIME=5
     DESTINATIONTIME=6
-    def __init__(self,speed=0,brake=0,type=0,x=0,y=0,steer=0,dist=0,timeDrive=0,toScan=[],zielwinkel=0,angleCheckOverwrite=1000,num=0):
+    CW=100
+    CCW=101
+    def __init__(self,speed=0,brake=0,type=0,x=0,y=0,steer=0,dist=0,timeDrive=0,toScan=[],zielwinkel=0,angleCheckOverwrite=1000,num=0,dir=0):
         self.x = x
         self.y = y
         self.speed = speed
@@ -207,6 +209,8 @@ class Order:
         self.zielwinkel = zielwinkel
         self.angleCheckOverwrite = angleCheckOverwrite
         self.num = num
+        self.dir = dir
+        
 
 
 def waitCompleteOrders():
@@ -304,7 +308,7 @@ def commandLoop(slam):
                 orders.append(Order(x=604, y=2762,speed=speedScan,brake=1,type=Order.DESTINATION,num=113))
             
             
-            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
+            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1,dir=Order.CW, type=Order.WINKEL))
             if not waitCompleteOrders():
                 return
             time.sleep(0.5)
@@ -342,7 +346,7 @@ def commandLoop(slam):
                     orders.append(Order(x=200, y=1000, speed=speedScan, brake=1, type=Order.DESTINATION,num=122))
                     orders.append(Order(x=235, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=123))
             
-            orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL))
+            orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL,dir=Order.CW))
             if not waitCompleteOrders():
                 return
             time.sleep(0.5)
@@ -380,7 +384,7 @@ def commandLoop(slam):
                     orders.append(Order(x=2000, y=300, speed=speedScan, brake=1, type=Order.DESTINATION,num=132)) 
                     orders.append(Order(x=2500, y=300,speed=speedScan,brake=1, type=Order.DESTINATION,num=133))
                 
-            orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
+            orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL,dir=Order.CW))
             if not waitCompleteOrders():
                 return
             time.sleep(0.5)
@@ -420,7 +424,7 @@ def commandLoop(slam):
                     orders.append(Order(x=2650, y=2370,speed=speedScan, brake=1,type=Order.DESTINATION,num=144))
             
             
-            orders.append(Order(zielwinkel=0, speed=0.2, brake=1, type=Order.WINKEL))
+            orders.append(Order(zielwinkel=0, speed=0.2, brake=1, type=Order.WINKEL,dir=Order.CW))
             if not waitCompleteOrders():
                 return
             time.sleep(0.5)
@@ -589,7 +593,7 @@ def commandLoop(slam):
             orders.append(Order(x=2400, y=2700,speed=speedScan,brake=1,type=Order.DESTINATION,num=4))
             
             
-            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL,num=5))
+            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL,dir=Order.CCW,num=5))
             if not waitCompleteOrders():
                 return
             time.sleep(0.5)
@@ -629,7 +633,7 @@ def commandLoop(slam):
                     orders.append(Order(x=2800, y=1000, speed=speedScan, brake=1, type=Order.DESTINATION,num=19))
                     orders.append(Order(x=2765, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=20))
             
-            orders.append(Order(zielwinkel=0, speed=0.2, brake=1, type=Order.WINKEL,num=21))
+            orders.append(Order(zielwinkel=0, speed=0.2, brake=1, type=Order.WINKEL,dir=Order.CCW,num=21))
             if not waitCompleteOrders():
                 return
             time.sleep(0.5)
@@ -668,7 +672,7 @@ def commandLoop(slam):
                     orders.append(Order(x=1000, y=300, speed=speedScan, brake=1, type=Order.DESTINATION,num=33)) 
                     orders.append(Order(x=500, y=300,speed=speedScan,brake=1, type=Order.DESTINATION,num=34))
                 
-            orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL,num=35))
+            orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL,dir=Order.CCW,num=35))
             if not waitCompleteOrders():
                 return
             time.sleep(0.5)
@@ -708,7 +712,7 @@ def commandLoop(slam):
                     orders.append(Order(x=350, y=2370,speed=speedScan, brake=1,type=Order.DESTINATION,num=51))
             
             
-            orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL,num=52))
+            orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL,dir=Order.CCW,num=52))
             if not waitCompleteOrders():
                 return
             time.sleep(0.5)
@@ -943,7 +947,7 @@ def controlLoop(robot, camera, playmat):
                 sem.release()
                 nextOrder()
             elif orders[0].type == Order.WINKEL:
-                if driveBase.driveToWinkel(orders[0].zielwinkel,orders[0].speed,orders[0].brake):
+                if driveBase.driveToWinkel(orders[0].zielwinkel,orders[0].speed,orders[0].brake,orders[0].dir):
                     nextOrder()
             elif orders[0].type == Order.REPOSITION:
                 sem.acquire()
