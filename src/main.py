@@ -511,7 +511,7 @@ def commandLoop(slam):
                     orders.append(Order(x=2200, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=166))
                     orders.append(Order(x=2200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=167))
                     if checkForColor(Hindernisse.RED, 0, 6):
-                        orders.append(Order(x=2200, y=2020,speed=speedScan,brake=1,type=Order.DESTINATION,num=168))
+                        #orders.append(Order(x=2200, y=2020,speed=speedScan,brake=1,type=Order.DESTINATION,num=168))
                         orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                         if not waitCompleteOrders():
                             return
