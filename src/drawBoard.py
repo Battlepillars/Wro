@@ -206,42 +206,36 @@ class Playmat:
         
         pygame.draw.rect(screen, (255, 255, 255), ((self.wx + 990) * self.matScale, 190 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 90 * matScale, height + 20 * matScale))
         pygame.draw.rect(screen, (170, 0, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height))
+        pygame.draw.rect(screen, (100, 65, 180), ((self.wx + 1000) * self.matScale, 200 * matScale + height-height*self.speedSetpoint + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height * self.speedSetpoint))
+        
+        pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + height-height*slam.speed + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height * slam.speed))
 
+        
+        for i in range(0, 13):
+            lamp.pixel(i, 2, 0x000000)
+            lamp.pixel(i, 3, 0x000000)
+            
+        for i in range(0, math.floor(self.speedSetpoint*13)):
+            lamp.pixel(i, 2, 0xff0000)
+            lamp.pixel(i, 3, 0xff0000)
+        
+        for i in range(0, math.floor(slam.speed*13)):
+            lamp.pixel(i, 2, 0x00ff00)
+            lamp.pixel(i, 3, 0x00ff00)
+        
+        lamp.pixel(math.floor(self.speedSetpoint*13), 2, 0xff0000)
+        lamp.pixel(math.floor(self.speedSetpoint*13), 3, 0xff0000)
+        
+        lamp.show()
         
         if (self.speedSetpoint > 0) and (slam.speed < 10):
             percentSpeed = slam.speed / self.speedSetpoint
+            if slam.speed > self.speedSetpoint * 0.25:
+                self.averageSpeedPercent += percentSpeed
+                self.averageSpeedPercentCalc += 1
             
-            self.averageSpeedPercent += percentSpeed
-            self.averageSpeedPercentCalc += 1
-            
-            pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + height-height*percentSpeed + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height * percentSpeed))
+            #pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + height-height*percentSpeed + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height * percentSpeed))
 
-            # for i in range(0, 13):
-            #     lamp.pixel(i, 2, 0x000000)
-            #     lamp.pixel(i, 3, 0x000000)
-            # for i in range(0, math.floor(6*percentSpeed)):
-            #     lamp.pixel(i, 2, 0x00ff00)
-            #     lamp.pixel(i, 3, 0x00ff00)
-            # lamp.show()
-            
-            for i in range(0, 13):
-                lamp.pixel(i, 2, 0x000000)
-                lamp.pixel(i, 3, 0x000000)
-                
-            for i in range(0, math.floor(self.speedSetpoint*13)):
-                lamp.pixel(i, 2, 0xff0000)
-                lamp.pixel(i, 3, 0xff0000)
-            
-            for i in range(0, math.floor(slam.speed*13)):
-                lamp.pixel(i, 2, 0x00ff00)
-                lamp.pixel(i, 3, 0x00ff00)
-            
-            lamp.pixel(math.floor(self.speedSetpoint*13), 2, 0xff0000)
-            lamp.pixel(math.floor(self.speedSetpoint*13), 3, 0xff0000)
-            
-            lamp.show()
-            
-            
 
         prints = 9
         for i in range(prints + len(self.logList)):
