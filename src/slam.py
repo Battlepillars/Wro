@@ -155,7 +155,7 @@ class Slam:
             self.setPostion(average, 3000 - self.scan[90],0)
         
 
-        if (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
+        elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
             self.direction = self.CW
             self.eventType = self.HR
             self.setPostion(2000 - self.scan[180], 3000 - self.scan[90],0)
@@ -384,16 +384,16 @@ class Slam:
         
         qudrantRange = 1050
         
-        if (self.xpos < qudrantRange and self.ypos < qudrantRange):
+        if (self.xpos < qudrantRange and self.ypos < qudrantRange):                 # 1: oben links
             quadrant = 1
-        if (self.xpos < qudrantRange and self.ypos > 1000+qudrantRange):
+        if (self.xpos < qudrantRange and self.ypos > 3000-qudrantRange):            # 2: unten links
             quadrant = 2
-        if (self.xpos > 1000+qudrantRange and self.ypos < qudrantRange):
-            quadrant=3
-        if (self.xpos > 1000+qudrantRange and self.ypos > 1000+qudrantRange):
-            quadrant=4
-            
-            
+        if (self.xpos > 3000-qudrantRange and self.ypos < qudrantRange):            # 3: oben rechts
+            quadrant = 3
+        if (self.xpos > 3000-qudrantRange and self.ypos > 3000-qudrantRange):       # 4: unten rechts
+            quadrant = 4
+        
+        
         if angleCheck < -180 + angleRange or angleCheck > 180 - angleRange:                               # 1: rechts/180
             dir=int(180 - self.angle) + 0.5
             currentRepostion = 1
@@ -406,6 +406,15 @@ class Slam:
         elif angleCheck < -90 + angleRange and angleCheck > -90 - angleRange:                             # 4: oben/-90
             dir=int(-90 - self.angle + 0.5)
             currentRepostion = 4
+        
+        if quadrant == 1 and not(currentRepostion == 3 or currentRepostion == 4):
+            return
+        if quadrant == 2 and not(currentRepostion == 2 or currentRepostion == 3):
+            return
+        if quadrant == 3 and not(currentRepostion == 1 or currentRepostion == 4):
+            return
+        if quadrant == 4 and not(currentRepostion == 1 or currentRepostion == 2):
+            return
         
         average=self.lidar.checkDir(int(dir))
         

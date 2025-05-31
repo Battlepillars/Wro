@@ -1,12 +1,12 @@
 import pygame # type: ignore
 import pygame.rect # type: ignore
 import math
-import numpy as np
-import cv2 as cv2
+import numpy as np # type: ignore
+import cv2 as cv2 # type: ignore
 import threading
 
-import board
-from rainbowio import colorwheel
+import board # type: ignore
+from rainbowio import colorwheel # type: ignore
 
 import adafruit_is31fl3741 # type: ignore
 from adafruit_is31fl3741.adafruit_rgbmatrixqt import Adafruit_RGBMatrixQT # type: ignore

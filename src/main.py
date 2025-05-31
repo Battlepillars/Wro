@@ -2,7 +2,7 @@
 # start mit debugger :
 #python3 -Xfrozen_modules=off -m debugpy --listen 10.0.0.25:5678 --wait-for-client main.py
 #python -m pip install --upgrade debugpy
-import debugpy
+import debugpy # type: ignore
 import pygame # type: ignore
 import tkinter.filedialog
 import qwiic_otos # type: ignore
@@ -16,6 +16,7 @@ import threading
 import gpiozero # type: ignore
 import os, shutil
 import logging
+import math
 
 from slam import *
 from motorController import *
@@ -25,8 +26,8 @@ from camera import *
 from ctypes import *
 from adafruit_servokit import ServoKit # type: ignore
 
-import board
-from rainbowio import colorwheel
+import board # type: ignore
+from rainbowio import colorwheel # type: ignore
 
 import adafruit_is31fl3741 # type: ignore
 from adafruit_is31fl3741.adafruit_rgbmatrixqt import Adafruit_RGBMatrixQT # type: ignore
@@ -70,6 +71,7 @@ def main():
     global sem
     slam.logger.warn('main init')
 
+    manual = 0
     pictureNum=0
     running = True
     camera = Camera()
@@ -77,6 +79,12 @@ def main():
     pygame.init()
     startTime = time.time()
     vPressed = 0
+    wPressed = 0
+    sPressed = 0
+    aPressed = 0
+    dPressed = 0
+    speedManual = 0
+    steerManual = 0
     info = 1
     wx = 3100
     wy = 3100
@@ -112,6 +120,21 @@ def main():
             pos = pygame.mouse.get_pos()
             slam.xpos = pos[0] / playmat.matScale
             slam.ypos = pos[1] / playmat.matScale
+        
+                    
+
+        if (wPressed == 0) and (sPressed == 0):
+            speedManual = 0
+        if (aPressed == 0) and (dPressed == 0):
+            steerManual = 0
+        
+        if manual == 1:
+            if orders.__len__() > 0:
+                orders.pop(0)
+            orders.append(Order(speed=speedManual, steer=steerManual, type=Order.MANUAL))
+            
+        print("Wps: ",wPressed, "Sps: ",sPressed, "Aps: ",aPressed, "Dps: ",dPressed, "Manual: ",manual, "SpeedManual: ",speedManual, "SteerManual: ",steerManual)
+        
 
         for event in pygame.event.get():
 
@@ -134,11 +157,11 @@ def main():
                     vPressed = 5
                 if event.key == pygame.K_f:
                     print(math.floor(pygame.mouse.get_pos()[0] / playmat.matScale), math.floor(pygame.mouse.get_pos()[1] / playmat.matScale))
-                if event.key == pygame.K_r:
+                if event.key == pygame.K_u:
                     slam.reposition()
                 if event.key == pygame.K_g:
                     print("orders.append(Order(x="+str(math.floor(pygame.mouse.get_pos()[0] / playmat.matScale)-50)+", y="+str(math.floor(pygame.mouse.get_pos()[1] / playmat.matScale)-50)+",speed=0.5,brake=1,type=Order.DESTINATION))")
-                if event.key == pygame.K_t:
+                if event.key == pygame.K_k:
                     orders.append(Order(x=pygame.mouse.get_pos()[0] / playmat.matScale, y=pygame.mouse.get_pos()[1] / playmat.matScale, speed=0.5, brake=1, type=Order.DESTINATION))
                 if event.key == pygame.K_SPACE:
                     running2 = False
@@ -147,7 +170,44 @@ def main():
                     time.sleep(0.1)
                     setServoAngle(kit,90,slam)
                     kit.servo[3].angle = 90
+                if event.key == pygame.K_t:
+                    orders.clear()
+                    orders.append(Order(toScan=[0, 23],type=Order.SCAN))
+                if event.key == pygame.K_e:
+                    slam.setPostion(pygame.mouse.get_pos()[0] / playmat.matScale, pygame.mouse.get_pos()[1] / playmat.matScale)
+                if event.key == pygame.K_r:
+                    slam.setPostion(slam.xpos, slam.ypos, slam.angle+90)
+                
+                    
+                if event.key == pygame.K_m:
+                    manual = 1
+                    running2 = False
+                    orders.clear()
+                
+                if event.key == pygame.K_w:
+                    speedManual = 0.75
+                    wPressed = 1
+                if event.key == pygame.K_s:
+                    speedManual = -0.5
+                    sPressed = 1
+                if event.key == pygame.K_a:
+                    steerManual = 45
+                    aPressed = 1
+                if event.key == pygame.K_d:
+                    steerManual = -45
+                    dPressed = 1
+                    
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_w:
+                    wPressed = 0
+                if event.key == pygame.K_s:
+                    sPressed = 0
+                if event.key == pygame.K_a:
+                    aPressed = 0
+                if event.key == pygame.K_d:
+                    dPressed = 0
 
+            
             if event.type == pygame.QUIT:
                 running = False
                 running2 = False
@@ -156,7 +216,7 @@ def main():
                 setServoAngle(kit,90)
                 kit.servo[3].angle = 90
                 slam.lidar.disconnect()
-                
+        
         keys = pygame.key.get_pressed()
 
         sem.acquire()
@@ -194,6 +254,7 @@ class Order:
     REPOSITION=4
     TIME=5
     DESTINATIONTIME=6
+    MANUAL=7
     CW=100
     CCW=101
     def __init__(self,speed=0,brake=0,type=0,x=0,y=0,steer=0,dist=0,timeDrive=0,toScan=[],zielwinkel=0,angleCheckOverwrite=1000,num=0,dir=0):
@@ -209,8 +270,7 @@ class Order:
         self.zielwinkel = zielwinkel
         self.angleCheckOverwrite = angleCheckOverwrite
         self.num = num
-        self.dir = dir
-        
+        self.dir = dir        
 
 
 def waitCompleteOrders():
@@ -251,7 +311,6 @@ def commandLoop(slam):
     time.sleep(0.1)   
     startTime = time.time()
     
-    
     if slam.eventType == slam.ER:           
         speedi = 0.75
         slam.repostionEnable = 1
@@ -285,7 +344,7 @@ def commandLoop(slam):
         if slam.direction == slam.CW:
             orders.append(Order(steer=-90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
             orders.append(Order(steer=0, dist=150, speed=0.2, brake=1, type=Order.KURVE))
-            orders.append(Order(steer=90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
+            orders.append(Order(zielwinkel=0, speed=0.2, brake=1, dir=Order.CCW, type=Order.WINKEL))
             waitCompleteOrders()
             slam.repostionEnable = 1
             time.sleep(0.5)
@@ -300,51 +359,110 @@ def commandLoop(slam):
 
             if checkForColor(Hindernisse.RED, 0, 6):
                 #print("Red")
-                orders.append(Order(x=1050, y=2207,speed=speedScan,brake=1,type=Order.DESTINATION,num=110))
-                orders.append(Order(x=734, y=2607,speed=speedScan,brake=1,type=Order.DESTINATION,num=111))
+                orders.append(Order(x=1000, y=2207,speed=speedScan,brake=1,type=Order.DESTINATION,num=110))
+                orders.append(Order(x=850, y=2207,speed=speedScan,brake=1,type=Order.DESTINATION,num=110))
+                
+                if not waitCompleteOrders():
+                    return
+                time.sleep(0.5)
+                orders.append(Order(type=Order.REPOSITION, angleCheckOverwrite=-90))
+                
+                if not waitCompleteOrders():
+                    return
+                time.sleep(1)
+                
+                orders.append(Order(zielwinkel=-20, speed=0.2, brake=1,dir=Order.CW, type=Order.WINKEL))
+                
+                if not waitCompleteOrders():
+                    return
+                time.sleep(1)
+                
+                orders.append(Order(toScan=[6, 7],type=Order.SCAN))
+                time.sleep(0.5)
+                if not waitCompleteOrders():
+                    return
+            
+            
+                #orders.append(Order(x=734, y=2607,speed=speedScan,brake=1,type=Order.DESTINATION,num=111))
             else:
                 #print("Green")
                 orders.append(Order(x=1041, y=2839,speed=speedScan,brake=1,type=Order.DESTINATION,num=112))
                 orders.append(Order(x=604, y=2762,speed=speedScan,brake=1,type=Order.DESTINATION,num=113))
             
             
-            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1,dir=Order.CW, type=Order.WINKEL))
-            if not waitCompleteOrders():
-                return
-            time.sleep(0.5)
-            orders.append(Order(type=Order.REPOSITION))
-            orders.append(Order(toScan=[6, 7, 8, 9, 10, 11],type=Order.SCAN))
-            time.sleep(0.5)
-            if not waitCompleteOrders():
-                return
-            
-
-            if checkForColor(Hindernisse.RED, 6, 12):
-                #print("red")
-                orders.append(Order(x=823, y=2008, speed=speedScan, brake=1, type=Order.DESTINATION,num=114))
-                orders.append(Order(x=829, y=988, speed=speedScan, brake=1, type=Order.DESTINATION,num=115))
-                orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION,num=116))
-            elif checkForColor(Hindernisse.GREEN, 6, 12):
-                #print("green")
-                orders.append(Order(x=182, y=2049,speed=speedScan,brake=1,type=Order.DESTINATION,num=117))
-                orders.append(Order(x=235, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=118))
-            else:
-                orders.append(Order(x=500, y=1830,speed=speedScan,brake=1,type=Order.DESTINATION,num=119))
+                orders.append(Order(zielwinkel=-90, speed=0.2, brake=1,dir=Order.CW, type=Order.WINKEL))
                 if not waitCompleteOrders():
                     return
                 time.sleep(0.5)
+                orders.append(Order(type=Order.REPOSITION))
                 orders.append(Order(toScan=[6, 7, 8, 9, 10, 11],type=Order.SCAN))
                 time.sleep(0.5)
                 if not waitCompleteOrders():
                     return
+                
+            overwrite2 = 0
+            if checkForColor(Hindernisse.RED, 0, 6):
                 if checkForColor(Hindernisse.RED, 6, 12):
                     #print("red")
-                    orders.append(Order(x=829, y=988, speed=speedScan, brake=1, type=Order.DESTINATION,num=120))
-                    orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION,num=121))
-                else:
+                    orders.append(Order(x=823, y=2008, speed=speedScan, brake=1, type=Order.DESTINATION,num=114))
+                    orders.append(Order(x=829, y=988, speed=speedScan, brake=1, type=Order.DESTINATION,num=115))
+                    orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION,num=116))
+                elif checkForColor(Hindernisse.GREEN, 6, 12):
                     #print("green")
-                    orders.append(Order(x=200, y=1000, speed=speedScan, brake=1, type=Order.DESTINATION,num=122))
-                    orders.append(Order(x=235, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=123))
+                    orders.append(Order(x=450, y=2400, speed=speedScan, brake=1, type=Order.DESTINATION,num=200))
+                    orders.append(Order(x=200, y=2000,speed=speedScan,brake=1,type=Order.DESTINATION,num=201))
+                    orders.append(Order(x=200, y=1000,speed=speedScan,brake=1,type=Order.DESTINATION,num=117))
+                    orders.append(Order(x=235, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=118))
+                else:
+                    orders.append(Order(x=500, y=2000,speed=speedScan,brake=1,type=Order.DESTINATION,num=118))
+                    orders.append(Order(zielwinkel=-90, speed=0.2, brake=1,dir=Order.CW, type=Order.WINKEL))
+                    
+                    if not waitCompleteOrders():
+                        return
+                    time.sleep(0.5)
+                    
+                    orders.append(Order(toScan=[8, 9, 10, 11],type=Order.SCAN))
+                    
+                    time.sleep(0.5)
+                    if not waitCompleteOrders():
+                        return
+                    overwrite2 = 1
+            
+            
+            if checkForColor(Hindernisse.GREEN, 0, 6) or (overwrite2 == 1):
+                if checkForColor(Hindernisse.RED, 6, 12):
+                    #print("red")
+                    if overwrite2 == 1:
+                        orders.append(Order(x=800, y=1500, speed=speedScan, brake=1, type=Order.DESTINATION,num=114))
+                    else:
+                        orders.append(Order(x=823, y=2008, speed=speedScan, brake=1, type=Order.DESTINATION,num=114))
+                    orders.append(Order(x=829, y=988, speed=speedScan, brake=1, type=Order.DESTINATION,num=115))
+                    orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION,num=116))
+                elif checkForColor(Hindernisse.GREEN, 6, 12):
+                    #print("green")
+                    if overwrite2 == 1:
+                        orders.append(Order(x=200, y=1500, speed=speedScan, brake=1, type=Order.DESTINATION,num=114))
+                    else:
+                        orders.append(Order(x=182, y=2049,speed=speedScan,brake=1,type=Order.DESTINATION,num=202))
+                    orders.append(Order(x=235, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=118))
+                else:
+                    orders.append(Order(x=500, y=1830,speed=speedScan,brake=1,type=Order.DESTINATION,num=119))
+                    orders.append(Order(zielwinkel=-90, speed=0.2, brake=1,dir=Order.CW, type=Order.WINKEL))
+                    if not waitCompleteOrders():
+                        return
+                    time.sleep(0.5)
+                    orders.append(Order(toScan=[6, 7, 8, 9, 10, 11],type=Order.SCAN))
+                    time.sleep(0.5)
+                    if not waitCompleteOrders():
+                        return
+                    if checkForColor(Hindernisse.RED, 6, 12):
+                        #print("red")
+                        orders.append(Order(x=829, y=988, speed=speedScan, brake=1, type=Order.DESTINATION,num=120))
+                        orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION,num=121))
+                    else:
+                        #print("green")
+                        orders.append(Order(x=200, y=1000, speed=speedScan, brake=1, type=Order.DESTINATION,num=122))
+                        orders.append(Order(x=235, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=123))
             
             orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL,dir=Order.CW))
             if not waitCompleteOrders():
@@ -931,7 +1049,9 @@ def controlLoop(robot, camera, playmat):
                         robot.circleNumList.append(orders[i].num)
                         
                 robot.semDb.release()
-            if orders[0].type == Order.DESTINATION:
+            if orders[0].type == Order.MANUAL:
+                driveBase.manual(orders[0].speed, orders[0].steer)
+            elif orders[0].type == Order.DESTINATION:
                 robot.circlex = orders[0].x
                 robot.circley = orders[0].y
                 playmat.speedSetpoint = orders[0].speed

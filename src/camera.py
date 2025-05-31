@@ -1,14 +1,14 @@
 # Description: This file contains the Camera class which is used to capture images from the camera and detect the blocks in the image.
 import time
-import cv2 as cv
-import numpy as np
+import cv2 as cv # type: ignore
+import numpy as np # type: ignore
 import libcamera # type: ignore
 import argparse
-import imutils
+import imutils # type: ignore
 
 from drawBoard import *
 from libcamera import Transform # type: ignore
-from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt # type: ignore
 from picamera2 import Picamera2 # type: ignore
 
 
@@ -34,9 +34,9 @@ class Camera():
         self.blocksColor = []
         imgclear = self.picam2.capture_array()
         imgIn = cv.blur(imgclear,(10,10))
-        checkStart=315                      # Scanbalken einstellen, kleiner -> balken weiter oben
-        checkWitdh=44
-        checkEnd=checkStart+checkWitdh
+        checkStart=250                    # Scanbalken einstellen, kleiner -> balken weiter oben
+        checkHeight=30
+        checkEnd=checkStart+checkHeight
         imgIn = imgIn[checkStart:checkEnd, 0:1535]
 
         hsv = cv.cvtColor(imgIn, cv.COLOR_RGB2HSV)
