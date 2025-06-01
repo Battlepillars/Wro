@@ -19,6 +19,7 @@ class Camera():
     blocksColor = []
     RED = 0
     GREEN = 1
+    pictureNum=0
     
     def __init__(self):
         self.picam2 = Picamera2()
@@ -34,9 +35,12 @@ class Camera():
         self.blocksColor = []
         imgclear = self.picam2.capture_array()
         imgIn = cv.blur(imgclear,(10,10))
-        checkStart=250                    # Scanbalken einstellen, kleiner -> balken weiter oben
+        checkStart=410                    # Scanbalken einstellen, kleiner -> balken weiter oben
         checkHeight=30
         checkEnd=checkStart+checkHeight
+        
+        hsv = cv.cvtColor(imgIn, cv.COLOR_RGB2HSV)
+        cv.imwrite(f'capture/hsvGanz{self.pictureNum}.jpg', hsv)
         imgIn = imgIn[checkStart:checkEnd, 0:1535]
 
         hsv = cv.cvtColor(imgIn, cv.COLOR_RGB2HSV)
@@ -112,6 +116,9 @@ class Camera():
                 self.blocksAngle.append((mid - cX) / split)
                 self.blocksColor.append(self.RED)
         
-        cv.imwrite('capture/hsv.jpg', hsv)
+        cv.imwrite(f'capture/hsvStreifen{self.pictureNum}.jpg', hsv)
+        cv.imwrite(f'capture/capture{self.pictureNum}.jpg', imgclear)
         # cv.imwrite('capture/imgclear.jpg', imgclear)
         self.imgCam = imgclear
+        self.pictureNum = self.pictureNum+1
+        
