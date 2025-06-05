@@ -93,7 +93,7 @@ class Slam:
         self.ypos = 0
         self.speed = 0
         i2c = board.I2C()
-        self.sensor = adafruit_bno055.BNO055_I2C(i2c)
+        #self.sensor = adafruit_bno055.BNO055_I2C(i2c)
 
         script_dir = os.path.abspath(os.path.dirname(__file__))
         lib_path = os.path.join(script_dir, "sg.so")
@@ -123,10 +123,13 @@ class Slam:
         self.myOtos.calibrateImu(255)
         self.myOtos.setLinearUnit(self.myOtos.kLinearUnitMeters)
         self.myOtos.setAngularUnit(self.myOtos.kAngularUnitDegrees)
-        self.myOtos.setLinearScalar(1.014)
+        self.myOtos.setLinearScalar(1.036875438079873)
         # self.myOtos.setLinearScalar(0.9)
         self.myOtos.setAngularScalar(0.9947222222222221)
         self.myOtos.resetTracking()
+        pose = self.myOtos.getOffset()
+        pose.h = 45
+        self.myOtos.setOffset(pose)
 
     def startpostionsetzen(self):
         average = 0
