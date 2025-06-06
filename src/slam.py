@@ -48,6 +48,8 @@ class Slam:
     CCW = 1
     ER = 0
     HR = 1
+    crash = 0
+    errorDriveList = []
     lastRepostion = 0
     lastQuadrant = 0
     ignoreSpeedUpdate = 0

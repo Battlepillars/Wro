@@ -1,4 +1,3 @@
-# Description: This file contains the Camera class which is used to capture images from the camera and detect the blocks in the image.
 import time
 import cv2 as cv # type: ignore
 import numpy as np # type: ignore
@@ -25,7 +24,7 @@ class Camera():
         self.picam2 = Picamera2()
         self.picam2.set_controls({'HdrMode': libcamera.controls.HdrModeEnum.SingleExposure})
         resolution = (1536, 846)
-        self.config = self.picam2.create_still_configuration(transform=Transform(vflip=True),main={"size": resolution})   #hflip=True
+        self.config = self.picam2.create_still_configuration(transform=Transform(vflip=False,hflip=True),main={"size": resolution})   #hflip=True
         self.picam2.configure(self.config)
         #self.picam2.switch_mode_and_capture_array(self.config, delay=10)
         self.picam2.start()
@@ -35,7 +34,7 @@ class Camera():
         self.blocksColor = []
         imgclear = self.picam2.capture_array()
         imgIn = cv.blur(imgclear,(10,10))
-        checkStart=410                    # Scanbalken einstellen, kleiner -> balken weiter oben
+        checkStart=470                    # Scanbalken einstellen, kleiner -> balken weiter oben
         checkHeight=30
         checkEnd=checkStart+checkHeight
         

@@ -308,7 +308,7 @@ def commandLoop(slam):
     time.sleep(1)        
     slam.myOtos.calibrateImu(255)
     slam.startpostionsetzen()
-    time.sleep(0.1)   
+    time.sleep(10)                     # niedriger machen 
     startTime = time.time()
     
     if slam.eventType == slam.ER:           
@@ -341,7 +341,7 @@ def commandLoop(slam):
     
     
     else:
-        if slam.direction == slam.CW:
+        if slam.direction == slam.CW:                                                                               #Hindernissrennen CW
             orders.append(Order(steer=-90, dist=170, speed=0.2, brake=1, type=Order.KURVE))
             orders.append(Order(steer=0, dist=150, speed=0.2, brake=1, type=Order.KURVE))
             orders.append(Order(zielwinkel=0, speed=0.2, brake=1, dir=Order.CCW, type=Order.WINKEL))
@@ -395,7 +395,7 @@ def commandLoop(slam):
                     return
                 time.sleep(0.5)
                 orders.append(Order(type=Order.REPOSITION))
-                orders.append(Order(toScan=[6, 7, 8, 9, 10, 11],type=Order.SCAN))
+                orders.append(Order(toScan=[6, 7, 8, 9],type=Order.SCAN))
                 time.sleep(0.5)
                 if not waitCompleteOrders():
                     return
@@ -469,7 +469,7 @@ def commandLoop(slam):
                 return
             time.sleep(0.5)
             orders.append(Order(type=Order.REPOSITION))
-            orders.append(Order(toScan=[12, 13, 14, 15, 16, 17],type=Order.SCAN))
+            orders.append(Order(toScan=[12, 13, 14, 15],type=Order.SCAN))
             time.sleep(0.5)
             if not waitCompleteOrders():
                 return
@@ -507,7 +507,7 @@ def commandLoop(slam):
                 return
             time.sleep(0.5)
             orders.append(Order(type=Order.REPOSITION))
-            orders.append(Order(toScan=[18, 19, 20, 21, 22, 23],type=Order.SCAN))
+            orders.append(Order(toScan=[18, 19, 20, 21],type=Order.SCAN))
             time.sleep(0.5)
             if not waitCompleteOrders():
                 return
@@ -691,7 +691,6 @@ def commandLoop(slam):
         
         
         else:                                                                                           # CCW Ausparken
-            
             orders.append(Order(steer=90, dist=170, speed=0.2, brake=1, type=Order.KURVE,num=1))
             orders.append(Order(steer=-90, dist=290, speed=0.2, brake=1, type=Order.KURVE,num=3))
             if not waitCompleteOrders():
@@ -706,7 +705,7 @@ def commandLoop(slam):
                 return
             time.sleep(0.5)
             orders.append(Order(type=Order.REPOSITION,num=6))
-            orders.append(Order(toScan=[18, 19, 20, 21, 22, 23],type=Order.SCAN,num=7))                   #         Hindernisse 18-24 scannen OST
+            orders.append(Order(toScan=[20, 21, 22, 23],type=Order.SCAN,num=7))                   #         Hindernisse 18-24 scannen OST
             time.sleep(0.5)
             if not waitCompleteOrders():
                 return
@@ -724,7 +723,7 @@ def commandLoop(slam):
                     return
                 time.sleep(0.5)
                 orders.append(Order(type=Order.REPOSITION))
-                orders.append(Order(toScan=[12, 13, 14, 15, 16, 17],type=Order.SCAN,num=22))               #         Hindernisse 12-18 scannen   NORD
+                orders.append(Order(toScan=[14, 15, 16, 17],type=Order.SCAN,num=22))               #         Hindernisse 12-17 scannen   NORD
                 time.sleep(0.5)
                 if not waitCompleteOrders():
                     return
@@ -747,7 +746,7 @@ def commandLoop(slam):
                         return
                     time.sleep(0.5)
                     orders.append(Order(type=Order.REPOSITION))
-                    orders.append(Order(toScan=[12, 13, 14, 15, 16, 17],type=Order.SCAN,num=22))               #         Hindernisse 12-18 scannen   NORD
+                    orders.append(Order(toScan=[14, 15, 16, 17],type=Order.SCAN,num=22))               #         Hindernisse 12-18 scannen   NORD
                     time.sleep(0.5)
                     if not waitCompleteOrders():
                         return
@@ -845,7 +844,7 @@ def commandLoop(slam):
                 return
             time.sleep(0.5)
             orders.append(Order(type=Order.REPOSITION,num=36))
-            orders.append(Order(toScan=[6, 7, 8, 9, 10, 11],type=Order.SCAN,num=37))                           #         Hindernisse 6-12 scannen   WEST   
+            orders.append(Order(toScan=[8, 9, 10, 11],type=Order.SCAN,num=37))                           #         Hindernisse 6-12 scannen   WEST   
             time.sleep(0.5)
             if not waitCompleteOrders():
                 return
@@ -1082,8 +1081,10 @@ def controlLoop(robot, camera, playmat):
 
     while running3:
         slam.update()
+        if slam.crash == 1:
+            print("Crash detected, recovering...")
+            driveBase.crashRecovery()
         if orders.__len__() > 0:
-            
             if orders[0].type == Order.KURVE or orders[0].type == Order.WINKEL:
                 slam.noCurveReposition=1
             else:

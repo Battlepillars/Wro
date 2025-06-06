@@ -1,10 +1,11 @@
+import statistics
 from slam import *
 from drawBoard import *
 
 
 
 class PIDController:
-    def __init__(self, Kp, Ki, Kd, setpoint, min, max):
+    def __init__(self, Kp, Ki, Kd, setpoint, min, max, drive = 0):
         self.Kp = Kp
         self.Ki = Ki
         self.Kd = Kd
@@ -13,10 +14,18 @@ class PIDController:
         self.integral = 0
         self.min = min
         self.max = max
+        self.drive = drive
 
-    def compute(self, process_variable, dt):
+    def compute(self, process_variable, dt, slam=None):
             # Calculate error
             error = self.setpoint - process_variable
+            if (self.drive == 1) and (slam != None):
+                if len(slam.errorDriveList) > 50:
+                    slam.errorDriveList.pop(0)
+                slam.errorDriveList.append(self.setpoint * process_variable)
+                # print("errorDriveList: ", slam.errorDriveList, " mean: ", statistics.mean(slam.errorDriveList), " speed: ", slam.speed)
+                if (statistics.mean(slam.errorDriveList) < 0.1) and (slam.speed < 0.2) and (len(slam.errorDriveList) > 40):
+                    slam.crash = 1
             
             # Proportional term
             P_out = self.Kp * error
@@ -83,10 +92,10 @@ class DriveBase:
         self.slam = slam
         self.kit = kit
         if slam.eventType == slam.ER:
-            self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=80)
+            self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=80, drive=1)
             self.pidSteer = PIDController(Kp=3, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
         else:
-            self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=40)
+            self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=40, drive=1)
             self.pidSteer = PIDController(Kp=5, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
 
     def driveTo(self, x, y, speed, brake):
@@ -112,7 +121,7 @@ class DriveBase:
         
         outputSteer = self.pidSteer.compute(fehlerwinkel,1)
         
-        output = self.pidController.compute(self.slam.speed,0.5)
+        output = self.pidController.compute(self.slam.speed,0.5,self.slam)
         
         
         setServoAngle(self.kit,90 + outputSteer,self.slam)
@@ -268,7 +277,6 @@ class DriveBase:
         else:
             return False
     
-    
     def manual(self, speed, steer):
         self.pidController.setpoint = speed
         
@@ -279,3 +287,11 @@ class DriveBase:
             self.kit.servo[3].angle = 99 + output
         else:
             self.kit.servo[3].angle = 90
+    
+    def crashRecovery(self):
+        self.kit.servo[3].angle = 70
+        setServoAngle(self.kit,90,self.slam)
+        time.sleep(1)
+        self.kit.servo[3].angle = 90
+        self.slam.crash = 0
+        self.slam.errorDriveList.clear()
