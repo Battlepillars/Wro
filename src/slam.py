@@ -125,13 +125,17 @@ class Slam:
         self.myOtos.calibrateImu(255)
         self.myOtos.setLinearUnit(self.myOtos.kLinearUnitMeters)
         self.myOtos.setAngularUnit(self.myOtos.kAngularUnitDegrees)
-        self.myOtos.setLinearScalar(1.036875438079873)
+        #self.myOtos.setLinearScalar(1.036875438079873)
         # self.myOtos.setLinearScalar(0.9)
-        self.myOtos.setAngularScalar(0.9947222222222221)
+        #self.myOtos.setAngularScalar(0.9947222222222221)
+        
+        self.myOtos.setLinearScalar(1.04208)
+        self.myOtos.setAngularScalar(0.9961)
+    
         self.myOtos.resetTracking()
-        pose = self.myOtos.getOffset()
-        pose.h = 45
-        self.myOtos.setOffset(pose)
+        #pose = self.myOtos.getOffset()
+        #pose.h = 45
+        #self.myOtos.setOffset(pose)
 
     def startpostionsetzen(self):
         average = 0
@@ -175,8 +179,8 @@ class Slam:
         # 1040 - 1200
     def setPostion(self, x, y,angle=-5000):
         myPosition = self.myOtos.getPosition()
-        myPosition.x = -x / 1000
-        myPosition.y = y / 1000
+        myPosition.y = -x / 1000
+        myPosition.x = -y / 1000
         if (angle > -5000):
             myPosition.h=angle
         self.myOtos.setPosition(myPosition)
@@ -220,8 +224,8 @@ class Slam:
         else:
             self.loopCounter += 1
         
-        self.xpos = -myPosition.x * 1000
-        self.ypos = myPosition.y * 1000
+        self.xpos = -myPosition.y * 1000
+        self.ypos = -myPosition.x * 1000
         self.angle = myPosition.h 
 
         # print("Euler angle: {}".format(sensor.euler[0]))
@@ -412,14 +416,7 @@ class Slam:
             dir=int(-90 - self.angle + 0.5)
             currentRepostion = 4
         
-        if quadrant == 1 and not(currentRepostion == 3 or currentRepostion == 4):
-            return
-        if quadrant == 2 and not(currentRepostion == 2 or currentRepostion == 3):
-            return
-        if quadrant == 3 and not(currentRepostion == 1 or currentRepostion == 4):
-            return
-        if quadrant == 4 and not(currentRepostion == 1 or currentRepostion == 2):
-            return
+
         
         average=self.lidar.checkDir(int(dir))
         
@@ -429,14 +426,23 @@ class Slam:
             #print(" ",average, end="", flush=True)
             # print(".", end="")
             return
-
+        
         self.c1+=1
-        if self.c1 > 3:
+        if self.c1 > 2:
             self.c1 = 0
-            self.logger.warn('x %i y%i  sp %.2f dist %.0f',self.xpos,self.ypos,self.speed,average)
+            self.logger.warn('x %i y%i  sp %.2f dist %.0f quadrant %i  dir: %i currentReposition: %i',self.xpos,self.ypos,self.speed,average,quadrant,dir,currentRepostion)
+            
+        if quadrant == 1 and not(currentRepostion == 3 or currentRepostion == 4):
+            return
+        if quadrant == 2 and not(currentRepostion == 2 or currentRepostion == 3):
+            return
+        if quadrant == 3 and not(currentRepostion == 1 or currentRepostion == 4):
+            return
+        if quadrant == 4 and not(currentRepostion == 1 or currentRepostion == 2):
+            return  
         #print(average,math.floor(self.speed*100)/100)
         
-        if (dir==0 or self.noCurveReposition):
+        if (self.noCurveReposition):
             return
         
         average = average - 30
@@ -460,8 +466,8 @@ class Slam:
         
         
         # print("Repostioned: " + str(currentRepostion) + " last: " + str(self.lastRepostion) + " average: " + str(average))
-        self.logger.warn('-----------------------------------------------------------')
-        self.logger.warn('Reposition dir %i   av %.0f dir %.0f  angle %.0f',currentRepostion,average,dir,self.angle)
+        self.logger.warn('-------------------------------------------------------------------------------')
+        self.logger.warn('Floating Reposition dir %i   av %.0f dir %.0f  angle %.0f',currentRepostion,average,dir,self.angle)
         print("rp: ",currentRepostion," av ", average," dir ", dir," angle ", self.angle)
         if currentRepostion == 1:
             self.playmat.log("x: " + str(math.floor(self.xpos)) + " -> " + str(math.floor(3000 - average)))

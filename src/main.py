@@ -308,7 +308,7 @@ def commandLoop(slam):
     time.sleep(1)        
     slam.myOtos.calibrateImu(255)
     slam.startpostionsetzen()
-    time.sleep(10)                     # niedriger machen 
+    time.sleep(0.2)                     # niedriger machen 
     startTime = time.time()
     
     if slam.eventType == slam.ER:           
