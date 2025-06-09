@@ -198,3 +198,5 @@ src/capture/hsvGanz7.jpg
 src/capture/hsvStreifen6.jpg
 
 src/capture/hsvStreifen7.jpg
+
+src/__pycache__/scanCommands.cpython-311.pyc

@@ -55,6 +55,11 @@ class Slam:
     ignoreSpeedUpdate = 0
     repostionEnable = 0
     noCurveReposition = 0
+    
+    file_path = "/home/pi/Wro/src/log.log"
+
+    open(file_path, 'w').close()
+        
     logger = logging.getLogger("")
     logging.basicConfig(filename='./log.log', encoding='utf-8', level=logging.WARN)
     logger.warn(' Slam init  *************************************************************')
@@ -280,8 +285,15 @@ class Slam:
         scanAngle = int(angleToScan - self.angle + 0.5)
         while scans <= 0:
             for i in range (scanAngle-5,scanAngle+6):
-                if self.scan[i] > 0:
-                    average = average + self.scan[i]
+                self.logger.warning('Scan angle: %i', i)
+                v=i
+                if v>360:
+                    v = i - 360
+                if (v < 0):
+                    v = i + 360     
+                
+                if self.scan[v] > 0:
+                    average = average + self.scan[v]
                     scans += 1
         average = average / scans
         # print("scanAngle:", scanAngle, "average:", average, "average3:", 3000 - average)
@@ -291,7 +303,7 @@ class Slam:
     def reposition(self, angleCheckOverwrite = 1000):
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         
-        self.logger.warning('Manual Repostion angleCheckOverwrite: %i x: %i y: %i',angleCheckOverwrite,self.xpos,self.ypos)
+        self.logger.warning('Manual Repostion angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheckOverwrite,self.xpos,self.ypos,self.angle)
             
         
         angleCheck = self.angle
@@ -428,7 +440,7 @@ class Slam:
             return
         
         self.c1+=1
-        if self.c1 > 2:
+        if self.c1 > 3:
             self.c1 = 0
             self.logger.warn('x %i y%i  sp %.2f dist %.0f quadrant %i  dir: %i currentReposition: %i',self.xpos,self.ypos,self.speed,average,quadrant,dir,currentRepostion)
             
