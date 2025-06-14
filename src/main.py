@@ -23,6 +23,7 @@ from motorController import *
 from future.moves import pickle # type: ignore
 from drawBoard import *
 from camera import *
+from scan_tours import scan_inner_tour, scan_outer_tour
 from ctypes import *
 from adafruit_servokit import ServoKit # type: ignore
 
@@ -307,15 +308,27 @@ def commandLoop(slam):
     
     lamp.fill(0x00ff00)
     lamp.show()
+    c=0
+    for i in range(0, 20):
+        if not button.is_pressed:       #button is inverted, 1= not pressed, 0= pressed
+            c += 1
+        time.sleep(0.01)
 
-    if button.is_pressed:
-        while button.is_pressed:
-            time.sleep(0.1)
-        time.sleep(1.2)
+    if c<15:
+        c=0
+        while c<20:
+            if not button.is_pressed:   #button is inverted, 1= not pressed, 0= pressed
+                c += 1
+            else:
+                c -= 1
+            if (c<0):
+                c = 0
+            time.sleep(0.01)
+        time.sleep(1.0)
     else:
         print("Press v to start")
         while vPressed <= 0:
-            time.sleep(0.1)
+            time.sleep(0.05)
     lamp.fill(0x000000)
     lamp.show()
     
@@ -372,20 +385,20 @@ def commandLoop(slam):
             speedScan = 0.5
 
             if checkForColor(Hindernisse.RED, 0, 6):                                                                # scannen bereich  west
-                scan_inner_tour(orders, speedScan,0,6)
+                scan_inner_tour(orders, speedScan,0,6, Order, waitCompleteOrders, checkForColor)
             else:
                 orders.append(Order(x=1050, y=2800,speed=speedScan,brake=1,type=Order.DESTINATION,num=112,rotation=0)) 
-                scan_outer_tour(orders, speedScan,0,6)
+                scan_outer_tour(orders, speedScan,0,6, Order, waitCompleteOrders, checkForColor)
             
             if checkForColor(Hindernisse.RED, 6, 12):                                                                # scannen bereich  nord            
-                scan_inner_tour(orders, speedScan,-90,12)
+                scan_inner_tour(orders, speedScan,-90,12, Order, waitCompleteOrders, checkForColor)
             else:
-                scan_outer_tour(orders, speedScan,-90,12)                                                           
+                scan_outer_tour(orders, speedScan,-90,12, Order, waitCompleteOrders, checkForColor)                                                           
                 
             if checkForColor(Hindernisse.RED, 12, 18):                                                               # scannen bereich ost
-                scan_inner_tour(orders, speedScan,180,18)
+                scan_inner_tour(orders, speedScan,180,18, Order, waitCompleteOrders, checkForColor)
             else:
-                scan_outer_tour(orders, speedScan,180,18)                                                            
+                scan_outer_tour(orders, speedScan,180,18, Order, waitCompleteOrders, checkForColor)
                 
 
 
@@ -559,7 +572,7 @@ def commandLoop(slam):
                 return
             slam.repostionEnable = 1
             
-            speedScan = 0.6
+            speedScan = 0.5
             
             orders.append(Order(x=2200, y=2800,speed=speedScan,brake=1,type=Order.DESTINATION,num=4))
             orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL,dir=Order.CCW,num=5))
@@ -567,31 +580,35 @@ def commandLoop(slam):
                 return
             time.sleep(0.5)
             orders.append(Order(type=Order.REPOSITION,num=6))
-            orders.append(Order(toScan=[20, 21, 22, 23],type=Order.SCAN,num=7))                   #         Hindernisse 18-24 scannen OST
+            orders.append(Order(toScan=[20, 21, 22, 23],type=Order.SCAN,num=7))                   #         Hindernisse 20-23 scannen OST
             time.sleep(0.5)
             if not waitCompleteOrders():
                 return
             
             
             if checkForColor(Hindernisse.GREEN, 18, 24):
-                orders.append(Order(x=2200, y=2000,speed=speedScan,brake=1,type=Order.DESTINATION,num=8))
-            if checkForColor(Hindernisse.RED, 18, 24):
+                orders.append(Order(x=2200, y=2000,speed=speedScan,brake=1,type=Order.DESTINATION,num=8))           # Grün gefunden
+
+                
+            elif checkForColor(Hindernisse.RED, 18, 24):                                                            #Rot gefunden
                 #print("red")
                 orders.append(Order(x=2790, y=2049,speed=speedScan,brake=1,type=Order.DESTINATION,num=11))
-                orders.append(Order(x=2800, y=1100,speed=speedScan,brake=1,type=Order.DESTINATION,num=12))
+
+
+                orders.append(Order(x=2800, y=1100,speed=speedScan,brake=1,type=Order.DESTINATION,num=12))          #farhen zur außentour NORD
                 orders.append(Order(x=2765, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=13))
                 orders.append(Order(zielwinkel=0, speed=0.2, brake=1, type=Order.WINKEL,dir=Order.CCW,num=21))
                 if not waitCompleteOrders():
                     return
                 time.sleep(0.5)
                 orders.append(Order(type=Order.REPOSITION))
-                orders.append(Order(toScan=[14, 15, 16, 17],type=Order.SCAN,num=22))               #         Hindernisse 12-17 scannen   NORD
+                orders.append(Order(toScan=[14, 15, 16, 17],type=Order.SCAN,num=22))                                #Hindernisse 14-17 scannen   NORD
                 time.sleep(0.5)
                 if not waitCompleteOrders():
                     return
             
-            elif not checkForColor(Hindernisse.GREEN, 18, 24):
-                orders.append(Order(x=2500, y=1830,speed=speedScan,brake=1,type=Order.DESTINATION,num=14))
+            else:
+                orders.append(Order(x=2500, y=1830,speed=speedScan,brake=1,type=Order.DESTINATION,num=14))          #nachscannen
                 if not waitCompleteOrders():
                     return
                 time.sleep(0.5)
@@ -608,7 +625,7 @@ def commandLoop(slam):
                         return
                     time.sleep(0.5)
                     orders.append(Order(type=Order.REPOSITION))
-                    orders.append(Order(toScan=[14, 15, 16, 17],type=Order.SCAN,num=22))               #         Hindernisse 12-18 scannen   NORD
+                    orders.append(Order(toScan=[14, 15, 16, 17],type=Order.SCAN,num=22))               #         Hindernisse 14-17 scannen   NORD
                     time.sleep(0.5)
                     if not waitCompleteOrders():
                         return
@@ -1006,127 +1023,7 @@ def controlLoop(robot, camera, playmat):
             ausgabe = 1
         # startZeit+= 1000*1000*10
         startZeit = time.perf_counter_ns()
-        # if ausgabe == 1:
-        #     print("time: ", variable)
-
-
-
-def scan_inner_tour(orders, speedScan,rotation,scanStart):
-#print("Red")
-
-    orders.append(Order(x=1000, y=2207,speed=speedScan,brake=1,type=Order.DESTINATION,num=301,rotation=rotation))         # erster scan von 6 7 bei der innentour
-    orders.append(Order(x=850, y=2207,speed=speedScan,brake=1,type=Order.DESTINATION,num=302,rotation=rotation))
-
-    if not waitCompleteOrders():
-        return
-    time.sleep(0.5)
-    orders.append(Order(type=Order.REPOSITION, angleCheckOverwrite=-90,rotation=rotation))
-    
-    if not waitCompleteOrders():
-        return
-    time.sleep(1)
-    
-    orders.append(Order(zielwinkel=-30, speed=0.2, brake=1,dir=Order.CW, type=Order.WINKEL,rotation=rotation))
-    
-    if not waitCompleteOrders():
-        return
-    time.sleep(1)
-    
-    orders.append(Order(toScan=[scanStart, scanStart+1],type=Order.SCAN))
-    time.sleep(0.5)
-    if not waitCompleteOrders():
-        return
-
-    if checkForColor(Hindernisse.RED, scanStart, scanStart+6):
-        #print("red")
-        orders.append(Order(x=823, y=2008, speed=speedScan, brake=1, type=Order.DESTINATION,num=114,rotation=rotation))
-        #orders.append(Order(x=829, y=988, speed=speedScan, brake=1, type=Order.DESTINATION,num=115,rotation=rotation))
-        #orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION,num=116,rotation=rotation))                # exit innen-innen
-    elif checkForColor(Hindernisse.GREEN, scanStart, scanStart+6):
-        #print("green")
-        orders.append(Order(x=450, y=2400, speed=speedScan, brake=1, type=Order.DESTINATION,num=200,rotation=rotation))
-        orders.append(Order(x=200, y=2000,speed=speedScan,brake=1,type=Order.DESTINATION,num=201,rotation=rotation))
-    #c    orders.append(Order(x=200, y=1000,speed=speedScan,brake=1,type=Order.DESTINATION,num=117,rotation=rotation))
-    #    orders.append(Order(x=235, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=118,rotation=rotation))                   #exit innen-außen
-    else:
-        orders.append(Order(x=750, y=2100,speed=speedScan,brake=1,type=Order.DESTINATION,num=118,rotation=rotation))                  # Nachscannen innentour
-        orders.append(Order(zielwinkel=-60, speed=0.2, brake=1,dir=Order.CW, type=Order.WINKEL,rotation=rotation))
-        
-        if not waitCompleteOrders():
-            return
-        time.sleep(0.5)
-        
-        
-        
-        orders.append(Order(toScan=[scanStart+2,scanStart+3, scanStart+4, scanStart+5],type=Order.SCAN,rotation=rotation))
-        
-        time.sleep(0.5)
-        if not waitCompleteOrders():
-            return
-
-        if checkForColor(Hindernisse.RED, scanStart, scanStart+6):                                                       # rot in bereich 2
-            #print("red")
-            orders.append(Order(x=800, y=1500, speed=speedScan, brake=1, type=Order.DESTINATION,num=114,rotation=rotation))
-        #    orders.append(Order(x=829, y=988, speed=speedScan, brake=1, type=Order.DESTINATION,num=115,rotation=rotation))
-        #    orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION,num=116,rotation=rotation))        # exit innen-innen nachscannen
-        elif checkForColor(Hindernisse.GREEN, scanStart, scanStart+6):
-            #print("green")
-            orders.append(Order(x=200, y=1500, speed=speedScan, brake=1, type=Order.DESTINATION,num=114,rotation=rotation))
-            orders.append(Order(x=200, y=1050,speed=speedScan,brake=1,type=Order.DESTINATION,num=112,rotation=rotation)) 
-           # orders.append(Order(x=235, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=118,rotation=rotation))           # exit innen-außen nachscannen
-
-
-
-
-
-def scan_outer_tour(orders, speedScan,rotation,scanstart):
-  #print("Green")                                                                                     # außentour für grün oder nichts gefunden
-           
-    orders.append(Order(x=750, y=2800,speed=speedScan,brake=1,type=Order.DESTINATION,num=113,rotation=rotation))      # erster check aussentour
-
-
-    orders.append(Order(zielwinkel=-90, speed=0.2, brake=1,dir=Order.CW, type=Order.WINKEL,rotation=rotation))
-    if not waitCompleteOrders():
-        return
-    time.sleep(0.5)
-    orders.append(Order(type=Order.REPOSITION))
-    orders.append(Order(toScan=[scanstart, scanstart+1, scanstart+2, scanstart+3],type=Order.SCAN))
-    time.sleep(0.5)
-    if not waitCompleteOrders():
-        return
-
-
-    if checkForColor(Hindernisse.RED, scanstart, scanstart+6):                                                              
-        #print("red")
-        orders.append(Order(x=823, y=2008, speed=speedScan, brake=1, type=Order.DESTINATION,num=114,rotation=rotation))             # exit außen-innen
-        #orders.append(Order(x=829, y=988, speed=speedScan, brake=1, type=Order.DESTINATION,num=115,rotation=rotation))
-        #orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION,num=116,rotation=rotation))
-    elif checkForColor(Hindernisse.GREEN, scanstart, scanstart+6):                                                                        
-        #print("green")
-        orders.append(Order(x=182, y=2049,speed=speedScan,brake=1,type=Order.DESTINATION,num=202,rotation=rotation))            # exit außen-außen
-        #corders.append(Order(x=235, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=118,rotation=rotation))
-    else:                                                                                                   # nichts gefunden in bereich 2, nachscannen
-        orders.append(Order(x=500, y=1830,speed=speedScan,brake=1,type=Order.DESTINATION,num=119,rotation=rotation))
-        orders.append(Order(zielwinkel=-90, speed=0.2, brake=1,dir=Order.CW, type=Order.WINKEL,rotation=rotation))
-        if not waitCompleteOrders():
-            return
-        time.sleep(0.5)
-        orders.append(Order(toScan=[scanstart, scanstart+1, scanstart+2, scanstart+3, scanstart+4, scanstart+5],type=Order.SCAN))
-        time.sleep(0.5)
-        if not waitCompleteOrders():
-            return
-        if checkForColor(Hindernisse.RED, scanstart, scanstart+6):
-            pass
-            #print("red")
-            #orders.append(Order(x=829, y=988, speed=speedScan, brake=1, type=Order.DESTINATION,num=120,rotation=rotation))      # exit außen-innen nachscannen
-            #orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION,num=121,rotation=rotation))
-        else:
-            #print("green")
-            orders.append(Order(x=200, y=1000, speed=speedScan, brake=1, type=Order.DESTINATION,num=122,rotation=rotation))     # exit außen-außen nachscannen
-           # orders.append(Order(x=235, y=616,speed=speedScan,brake=1,type=Order.DESTINATION,num=123,rotation=rotation))
-
-
-
+        # if ausgabe == 1:        #     print("time: ", variable)
 
 
 

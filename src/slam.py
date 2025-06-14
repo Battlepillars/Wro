@@ -155,28 +155,34 @@ class Slam:
             self.direction = self.CW
             self.eventType = self.ER
             self.setPostion(average, 3000 - self.scan[90],0)
+            self.logger.warning("Startposition: 1")
         if (average > 1345) and (average < 1450):
             self.direction = self.CCW
             self.eventType = self.ER
             self.setPostion(self.scan[180], 3000 - self.scan[-90],180)
+            self.logger.warning("Startposition: 2")
         if (average > 1550) and (average < 1660):
             self.direction = self.CCW
             self.eventType = self.ER
             self.setPostion(self.scan[180], 3000 - self.scan[-90],180)
+            self.logger.warning("Startposition: 3")
         if (average > 1040) and (average < 1200):
             self.direction = self.CW
             self.eventType = self.ER
             self.setPostion(average, 3000 - self.scan[90],0)
+            self.logger.warning("Startposition: 4")
         
 
-        elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
+        if (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
             self.direction = self.CW
             self.eventType = self.HR
             self.setPostion(2000 - self.scan[180], 3000 - self.scan[90],0)
+            self.logger.warning("Startposition: 5")
         elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[-90] < 400):
             self.direction = self.CCW
             self.eventType = self.HR
             self.setPostion(2000 - self.scan[0], 3000 - self.scan[-90],180)
+            self.logger.warning("Startposition: 6")
 
         # 1870 - 1970
         # 1345 - 1450

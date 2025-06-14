@@ -19,12 +19,13 @@ class PIDController:
     def compute(self, process_variable, dt, slam=None):
             # Calculate error
             error = self.setpoint - process_variable
+            
             # if (self.drive == 1) and (slam != None):
-            #     if len(slam.errorDriveList) > 50:
+            #     if len(slam.errorDriveList) > 41:
             #         slam.errorDriveList.pop(0)
-            #     slam.errorDriveList.append(self.setpoint * process_variable)
+            #     slam.errorDriveList.append(1 - (process_variable/self.setpoint))
             #     # print("errorDriveList: ", slam.errorDriveList, " mean: ", statistics.mean(slam.errorDriveList), " speed: ", slam.speed)
-            #     if (statistics.mean(slam.errorDriveList) < 0.1) and (slam.speed < 0.2) and (len(slam.errorDriveList) > 40):
+            #     if (statistics.mean(slam.errorDriveList) > 0.9) and (slam.speed < 0.1) and (len(slam.errorDriveList) > 40):
             #         slam.crash = 1
             
             # Proportional term
@@ -52,6 +53,14 @@ class PIDController:
                 output = self.max
             if output < self.min:
                 output = self.min
+            
+            # if (self.drive == 1) and (slam != None):
+            #     if len(slam.errorDriveList) > 100:
+            #         slam.errorDriveList.pop(0)
+            #     slam.errorDriveList.append(output)
+            #     # print("errorDriveList: ", slam.errorDriveList, " mean: ", statistics.mean(slam.errorDriveList), " speed: ", slam.speed)
+            #     if (statistics.mean(slam.errorDriveList) > (self.max/1.2)) and (slam.speed < 0.2) and (len(slam.errorDriveList) > 100):
+            #         slam.crash = 1
             
             return output
 
