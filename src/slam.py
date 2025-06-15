@@ -38,8 +38,10 @@ class Slam:
     angle = 0
     xpos = 0
     ypos = 0
-    lastXpos = 5000
-    lastYpos = 5000
+    lastXpos1 = 5000
+    lastYpos1 = 5000
+    lastXpos2 = 5000
+    lastYpos2 = 5000
     xToRepos=0
     yToRepos=0
     direction = 0
@@ -55,7 +57,13 @@ class Slam:
     ignoreSpeedUpdate = 0
     repostionEnable = 0
     noCurveReposition = 0
-    
+    healthy1 = 1
+    healthy2 = 1
+    errorsOtos1 = 0
+    errorsOtos2 = 0
+    errorsOtosSpeed1 = 0
+    errorsOtosSpeed2 = 0
+
     file_path = "/home/pi/Wro/src/log.log"
 
     open(file_path, 'w').close()
@@ -99,6 +107,8 @@ class Slam:
         self.xpos = 0
         self.ypos = 0
         self.speed = 0
+        self.speed1 = 0
+        self.speed2 = 0
         i2c = board.I2C()
         #self.sensor = adafruit_bno055.BNO055_I2C(i2c)
 
@@ -113,31 +123,44 @@ class Slam:
 
 
         # Create instance of device
-        self.myOtos = qwiic_otos.QwiicOTOS()
+        #self.myOtos = qwiic_otos.QwiicOTOS()
+        self.myOtos1 = qwiic_otos.QwiicOTOS(0x17)
+        self.myOtos2 = qwiic_otos.QwiicOTOS(0x18)
 
         # Check if it's connected
-        if self.myOtos.is_connected() == False:
-            print("The device isn't connected to the system. Please check your connection", \
+        if self.myOtos1.is_connected() == False:
+            print("The device 1 isn't connected to the system. Please check your connection", \
+                file=sys.stderr)
+            return
+        if self.myOtos2.is_connected() == False:
+            print("The device 2 isn't connected to the system. Please check your connection", \
                 file=sys.stderr)
             return
 
         # Initialize the device
-        self.myOtos.begin()
+        self.myOtos1.begin()
+        self.myOtos2.begin()
         
+        self.myOtos1.setLinearUnit(self.myOtos1.kLinearUnitMeters)
+        self.myOtos1.setAngularUnit(self.myOtos1.kAngularUnitDegrees)
+        self.myOtos2.setLinearUnit(self.myOtos2.kLinearUnitMeters)
+        self.myOtos2.setAngularUnit(self.myOtos2.kAngularUnitDegrees)
+
         print("Calibrating IMU...")
 
         # Calibrate the IMU, which removes the accelerometer and gyroscope offsets
-        self.myOtos.calibrateImu(255)
-        self.myOtos.setLinearUnit(self.myOtos.kLinearUnitMeters)
-        self.myOtos.setAngularUnit(self.myOtos.kAngularUnitDegrees)
-        #self.myOtos.setLinearScalar(1.036875438079873)
-        # self.myOtos.setLinearScalar(0.9)
-        #self.myOtos.setAngularScalar(0.9947222222222221)
-        
-        self.myOtos.setLinearScalar(1.04208)
-        self.myOtos.setAngularScalar(0.9961)
-    
-        self.myOtos.resetTracking()
+        self.myOtos1.calibrateImu(255)
+        self.myOtos2.calibrateImu(255)
+
+
+        self.myOtos1.setLinearScalar(1.04208)
+        self.myOtos1.setAngularScalar(0.9961)
+
+        self.myOtos2.setLinearScalar(1.01951)
+        self.myOtos2.setAngularScalar(0.9906)
+
+        self.myOtos1.resetTracking()
+        self.myOtos2.resetTracking()
         #pose = self.myOtos.getOffset()
         #pose.h = 45
         #self.myOtos.setOffset(pose)
@@ -189,45 +212,64 @@ class Slam:
         # 1550 - 1660
         # 1040 - 1200
     def setPostion(self, x, y,angle=-5000):
-        myPosition = self.myOtos.getPosition()
+        myPosition = self.myOtos1.getPosition()
         myPosition.y = -x / 1000
         myPosition.x = -y / 1000
         if (angle > -5000):
             myPosition.h=angle
-        self.myOtos.setPosition(myPosition)
+        self.myOtos1.setPosition(myPosition)
+
+        myPosition = self.myOtos2.getPosition()
+        myPosition.y = -x / 1000
+        myPosition.x = -y / 1000
+        if (angle > -5000):
+            myPosition.h=angle
+        self.myOtos2.setPosition(myPosition)
+
         self.xpos = x
         self.ypos = y
         self.lastXpos = x
         self.lastYpos = y
         self.ignoreSpeedUpdate = 1
         
+    def otusHealthReset(self):
+        self.healthy1 = 1
+        self.healthy2 = 1
+        self.errorsOtos1 = 0
+        self.errorsOtos2 = 0
+        self.errorsOtosSpeed1 = 0
+        self.errorsOtosSpeed2 = 0
+        self.logger.warning('Reset health of Otos')
     def update(self):
         
         if self.repostionEnable == 1:
             self.repositionDrive()
         
-        myPosition = self.myOtos.getPosition()
         
-        # sp=self.myOtos.getVelocity()  #buggy, do not use
-        if (self.lastXpos == 5000):
-            self.speed = 0
+        myPosition1 = self.myOtos1.getPosition()
+        
+        if (self.lastXpos1 == 5000):
+            self.speed1 = 0
+        else:
+            if self.ignoreSpeedUpdate != 1:
+                self.speed1 =  math.sqrt(math.pow(myPosition1.x-self.lastXpos1,2) + math.pow(myPosition1.y-self.lastYpos1,2))*100
+
+        self.lastXpos1 = myPosition1.x
+        self.lastYpos1 = myPosition1.y
+
+
+        myPosition2 = self.myOtos2.getPosition()
+        
+        if (self.lastXpos2 == 5000):
+            self.speed2 = 0
         else:
             if self.ignoreSpeedUpdate == 1:
                 self.ignoreSpeedUpdate = 0
             else:
-                self.speed =  math.sqrt(math.pow(myPosition.x-self.lastXpos,2) + math.pow(myPosition.y-self.lastYpos,2))*100
+                self.speed2 =  math.sqrt(math.pow(myPosition2.x-self.lastXpos2,2) + math.pow(myPosition2.y-self.lastYpos2,2))*100
 
-        self.lastXpos = myPosition.x
-        self.lastYpos = myPosition.y
-
-        
-        # if self.loopCounterGyro > 199:
-        #     #print("update........................................................................................................................................................................................................................................................................")
-        #     myPosition.h = -self.sensor.euler[0] + self.angleStart
-        #     self.myOtos.setPosition(myPosition)
-        #     self.loopCounterGyro = 0
-        # else:
-        #     self.loopCounterGyro += 1
+        self.lastXpos2 = myPosition2.x
+        self.lastYpos2 = myPosition2.y
         
         if self.loopCounter >= 9:
             self.lidar.getScan(self.scan)
@@ -235,9 +277,62 @@ class Slam:
         else:
             self.loopCounter += 1
         
-        self.xpos = -myPosition.y * 1000
-        self.ypos = -myPosition.x * 1000
-        self.angle = myPosition.h 
+        if self.healthy1 == 1 and self.healthy2 == 1:
+            if self.speed1+0.15 < self.speed2:
+                self.errorsOtos1 += 1
+            else:
+                if self.errorsOtos1 > 0:
+                    self.errorsOtos1 -= 1
+                    
+            if self.speed2+0.15 < self.speed1:
+                self.errorsOtos2 += 1
+            else:
+                if self.errorsOtos2 > 0:
+                    self.errorsOtos2 -= 1
+            
+            if self.speed1 > 1.5:
+                self.errorsOtosSpeed1 += 1
+            else:
+                if self.errorsOtosSpeed1 > 0:
+                    self.errorsOtosSpeed1 -= 1
+            
+            if self.speed2 > 1.5:
+                self.errorsOtosSpeed2 += 1
+            else:
+                if self.errorsOtosSpeed2 > 0:
+                    self.errorsOtosSpeed2 -= 1
+
+        if self.errorsOtos1 > 20:
+            self.healthy1 = 0
+            self.logger.warning('Otos1 not healthy, errors: %i',self.errorsOtos1)
+        if self.errorsOtos2 > 20:
+            self.healthy2 = 0
+            self.logger.warning('Otos2 not healthy, errors: %i',self.errorsOtos2)
+        if self.errorsOtosSpeed1 > 5:
+            self.healthy1 = -1
+            self.logger.warning('Otos1 speed not healthy, errors: %i',self.errorsOtosSpeed1)
+        if self.errorsOtosSpeed2 > 5:
+            self.healthy2 = -1
+            self.logger.warning('Otos2 speed not healthy, errors: %i',self.errorsOtosSpeed2)
+
+        if self.healthy1 == 1 and self.healthy2 == 1:
+            self.xpos = ((-myPosition1.y * 1000) + (-myPosition2.y * 1000)) / 2
+            self.ypos = ((-myPosition1.x * 1000) + (-myPosition2.x * 1000)) / 2
+            
+            self.angle = meanAngle(myPosition1.h, myPosition2.h)
+            if math.fabs(myPosition2.h - myPosition1.h) > 3:
+                self.logger.warning('A1: %i  A2: %i Mean angle: %i',myPosition1.h,myPosition2.h,self.angle)
+            self.speed = (self.speed1 + self.speed2) / 2
+        elif self.healthy1 == 1:
+            self.xpos = -myPosition1.y * 1000
+            self.ypos = -myPosition1.x * 1000
+            self.angle = myPosition1.h
+            self.speed = self.speed1
+        else:
+            self.xpos = -myPosition2.y * 1000
+            self.ypos = -myPosition2.x * 1000
+            self.angle = myPosition2.h
+            self.speed = self.speed2
 
         # print("Euler angle: {}".format(sensor.euler[0]))
     def hindernisseErkennung(self, scan, toScan, camera):
@@ -258,7 +353,7 @@ class Slam:
                 dots = 0
                 angles = []
                 for b in range(len(xposes)):                    # Checken ob Hindernis in der Nähe der lidarpunkte ist
-                    if (math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(100,2)) and (self.scan[b] > 200):
+                    if (math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(110,2)) and (self.scan[b] > 200):
                         dots += 1
                         angles.append(b)
                 if dots > 1:
@@ -509,3 +604,39 @@ class Slam:
             self.setPostion(self.xpos, average)
         self.lastRepostion = currentRepostion
         self.lastQuadrant = quadrant
+
+
+
+def meanAngle(angle1, angle2):
+    """
+    Calculate the mean of two angles    
+
+    Args:
+        angle1 (float): First angle in degrees
+        angle2 (float): Second angle in degrees
+        
+    Returns:
+        float: Mean angle in degrees, normalized to [-180, 180]
+    """
+    # Convert angles to radians
+    rad1 = math.radians(angle1)
+    rad2 = math.radians(angle2)
+    
+    # Convert to unit vectors
+    x1, y1 = math.cos(rad1), math.sin(rad1)
+    x2, y2 = math.cos(rad2), math.sin(rad2)
+    
+    # Calculate mean vector
+    mean_x = (x1 + x2) / 2
+    mean_y = (y1 + y2) / 2
+    
+    # Convert back to angle
+    mean_angle = math.degrees(math.atan2(mean_y, mean_x))
+    
+    # Normalize to [-180, 180]
+    while mean_angle > 180:
+        mean_angle -= 360
+    while mean_angle < -180:
+        mean_angle += 360
+        
+    return mean_angle

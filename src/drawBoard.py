@@ -210,6 +210,7 @@ class Playmat:
         
         pygame.draw.rect(screen, (0, 255, 0), ((self.wx + 1000) * self.matScale, 200 * matScale + height-height*slam.speed + ((screen.get_width() - self.wx * self.matScale) * 0.55078125), 70 * matScale, height * slam.speed))
 
+        lamp.fill(0x000000)
         
         for i in range(0, 13):
             lamp.pixel(i, 2, 0x000000)
@@ -225,6 +226,38 @@ class Playmat:
         
         lamp.pixel(math.floor(self.speedSetpoint*13), 2, 0xff0000)
         lamp.pixel(math.floor(self.speedSetpoint*13), 3, 0xff0000)
+        
+        if slam.healthy1 == 1:
+            lamp.pixel(12, 0, 0x00ff00)
+            lamp.pixel(12, 1, 0x00ff00)
+            lamp.pixel(11, 0, 0x00ff00)
+            lamp.pixel(11, 1, 0x00ff00)
+        elif slam.healthy1 == 0:
+            lamp.pixel(12, 0, 0xff0000)
+            lamp.pixel(12, 1, 0xff0000)
+            lamp.pixel(11, 0, 0xff0000)
+            lamp.pixel(11, 1, 0xff0000)
+        else:
+            lamp.pixel(12, 0, 0x0000ff)
+            lamp.pixel(12, 1, 0x0000ff)
+            lamp.pixel(11, 0, 0x0000ff)
+            lamp.pixel(11, 1, 0x0000ff)
+
+        if slam.healthy2 == 1:
+            lamp.pixel(12, 7, 0x00ff00)
+            lamp.pixel(12, 8, 0x00ff00)
+            lamp.pixel(11, 7, 0x00ff00)
+            lamp.pixel(11, 8, 0x00ff00)
+        elif slam.healthy2 == 0:
+            lamp.pixel(12, 7, 0xff0000)
+            lamp.pixel(12, 8, 0xff0000)
+            lamp.pixel(11, 7, 0xff0000)
+            lamp.pixel(11, 8, 0xff0000)
+        else:
+            lamp.pixel(12, 7, 0x0000ff)
+            lamp.pixel(12, 8, 0x0000ff)
+            lamp.pixel(11, 7, 0x0000ff)
+            lamp.pixel(11, 8, 0x0000ff)
         
         lamp.show()
         

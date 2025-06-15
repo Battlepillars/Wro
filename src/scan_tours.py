@@ -105,7 +105,7 @@ def scan_outer_tour(orders, speedScan, rotation, scanstart, Order, waitCompleteO
     if (rotation > 1000):
         direction = Order.CCW
         scan2=[scanstart+0, scanstart+1]
-        scan1=[scanstart+2, scanstart+3, scanstart+4, scanstart+3]
+        scan1=[scanstart+2, scanstart+3, scanstart+4, scanstart+5]
         outer=Hindernisse.RED
         inner=Hindernisse.GREEN
     else:
@@ -115,9 +115,7 @@ def scan_outer_tour(orders, speedScan, rotation, scanstart, Order, waitCompleteO
         outer=Hindernisse.GREEN
         inner=Hindernisse.RED
 
-    orders.append(Order(x=750, y=2800, speed=speedScan, brake=1, type=Order.DESTINATION, num=113, rotation=rotation))  # erster check aussentour
-
-
+    orders.append(Order(x=750, y=2700, speed=speedScan, brake=1, type=Order.DESTINATION, num=113, rotation=rotation))  # erster check aussentour
 
     orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=direction, type=Order.WINKEL, rotation=rotation))
     if not waitCompleteOrders():

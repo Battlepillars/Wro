@@ -261,7 +261,11 @@ def normalizeAngle(angle):
     Returns:
         float: The normalized angle between -180 and 180 degrees
     """
-    return (angle  % 360) - 180
+    while (angle>180):
+        angle -= 360
+    while (angle<-180):
+        angle += 360
+    return angle
 
 class Order:
     DESTINATION=0
@@ -323,8 +327,6 @@ class Order:
             sys.exit("Exiting program due to invalid rotation value in Order.")
 
         
-        if (angleCheckOverwrite != 1000):
-            angleCheckOverwrite = normalizeAngle(angleCheckOverwrite)
         rotation = normalizeAngle(rotation)
         print("zielwinkel normalized : " + str(zielwinkel))
         self.speed = speed
@@ -365,8 +367,8 @@ def commandLoop(slam):
             c += 1
         time.sleep(0.01)
 
-    lamp.fill(0x00ff00)
-    lamp.show()
+    # lamp.fill(0x00ff00)
+    # lamp.show()
 
     if c<15:
         c=0
@@ -387,7 +389,9 @@ def commandLoop(slam):
     lamp.show()
     
     time.sleep(1)        
-    slam.myOtos.calibrateImu(255)
+    slam.myOtos1.calibrateImu(255)
+    slam.myOtos2.calibrateImu(255)
+    slam.otusHealthReset()
     slam.startpostionsetzen()
     time.sleep(0.2)                    
     startTime = time.time()
@@ -522,7 +526,7 @@ def commandLoop(slam):
                     orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=156))
                 elif checkForColor(Hindernisse.RED, 6, 12) and checkForColor(Hindernisse.GREEN, 12, 18):
                     #print("Red")
-                    orders.append(Order(x=600, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=157))
+                    orders.append(Order(x=600, y=500,speed=speedi,brake=1,type=Order.DESTINATION,num=157))
 
                 if checkForColor(Hindernisse.GREEN, 12, 18):
                     #print("Green")
@@ -617,12 +621,12 @@ def commandLoop(slam):
         
         
         
-        # ----------------------------------------------------------------------------------------------- Hindernissrennen CCW
+        # -----------------------------------------------------------------------------------------------           Hindernissrennen CCW
         
         
         
-        else:                                                                                           # CCW Ausparken
-            orders.append(Order(steer=90, dist=160, speed=0.2, brake=1, type=Order.KURVE,num=1))
+        else:                                                                                           #           Hindernissrennen CCW
+            orders.append(Order(steer=90, dist=160, speed=0.2, brake=1, type=Order.KURVE,num=1))        #           CCW Ausparken
             orders.append(Order(steer=-90, dist=290, speed=0.2, brake=1, type=Order.KURVE,num=3))
             if not waitCompleteOrders():
                 return
@@ -703,16 +707,15 @@ def commandLoop(slam):
             print("scan south")
             if checkForColor(Hindernisse.GREEN, 6, 12):                                                                # scannen bereich  süd
                 scan_inner_tour(orders, speedScan,1500,0, Order, waitCompleteOrders, checkForColor)
-                orders.append(Order(x=2000, y=2250,speed=speedScan,brake=1,type=Order.DESTINATION,num=410))
+                orders.append(Order(x=2000, y=2250,speed=speedScan,brake=1,type=Order.DESTINATION,num=412))
             else:
                 scan_outer_tour(orders, speedScan,1500,0, Order, waitCompleteOrders, checkForColor)
-                orders.append(Order(x=2000, y=2750,speed=speedScan,brake=1,type=Order.DESTINATION,num=410))
+                orders.append(Order(x=1500, y=2600,speed=speedScan,brake=1,type=Order.DESTINATION,num=411))
+                orders.append(Order(x=2000, y=2600,speed=speedScan,brake=1,type=Order.DESTINATION,num=410))
 
 
 
 
-            time.sleep(5)
-            
             # if checkForColor(Hindernisse.GREEN, 18, 24):
             #     #print("green")
             #     #orders.append(Order(x=2200, y=1000,speed=speedScan,brake=1,type=Order.DESTINATION,num=110))
@@ -922,6 +925,7 @@ def commandLoop(slam):
                         if not waitCompleteOrders():
                             return
                         time.sleep(0.5)
+                        print("1")
                         orders.append(Order(angleCheckOverwrite=180,type=Order.REPOSITION,num=78))
                         if not waitCompleteOrders():
                             return
@@ -934,6 +938,7 @@ def commandLoop(slam):
                         if not waitCompleteOrders():
                             return
                         time.sleep(0.5)
+                        print("2")
                         orders.append(Order(angleCheckOverwrite=180,type=Order.REPOSITION,num=82))
                         if not waitCompleteOrders():
                             return
@@ -947,6 +952,7 @@ def commandLoop(slam):
                     if not waitCompleteOrders():
                         return
                     time.sleep(0.5)
+                    print("3")
                     orders.append(Order(angleCheckOverwrite=180,type=Order.REPOSITION,num=85))
                     if not waitCompleteOrders():
                         return
@@ -969,6 +975,7 @@ def commandLoop(slam):
                 if not waitCompleteOrders():
                     return
                 time.sleep(0.5)
+                print("4")
                 orders.append(Order(angleCheckOverwrite=180,type=Order.REPOSITION,num=78))
                 if not waitCompleteOrders():
                     return    

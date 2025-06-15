@@ -1,2 +1,6 @@
 cd /home/pi/Wro/src/
-su -c 'python main.py' pi
+su -c 'python stopwatch.py &' pi
+while true; do
+    su -c 'python main.py' pi
+    sleep 5
+done
