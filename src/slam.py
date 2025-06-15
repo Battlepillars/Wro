@@ -153,10 +153,10 @@ class Slam:
         self.myOtos2.calibrateImu(255)
 
 
-        self.myOtos1.setLinearScalar(1.04208)
+        self.myOtos1.setLinearScalar(1.031)
         self.myOtos1.setAngularScalar(0.9961)
 
-        self.myOtos2.setLinearScalar(1.01951)
+        self.myOtos2.setLinearScalar(1.017)
         self.myOtos2.setAngularScalar(0.9906)
 
         self.myOtos1.resetTracking()
@@ -234,17 +234,13 @@ class Slam:
         
     def otusHealthReset(self):
         self.healthy1 = 1
-        self.healthy2 = 1
+        self.healthy2 = 0
         self.errorsOtos1 = 0
         self.errorsOtos2 = 0
         self.errorsOtosSpeed1 = 0
         self.errorsOtosSpeed2 = 0
         self.logger.warning('Reset health of Otos')
     def update(self):
-        
-        if self.repostionEnable == 1:
-            self.repositionDrive()
-        
         
         myPosition1 = self.myOtos1.getPosition()
         
@@ -271,11 +267,11 @@ class Slam:
         self.lastXpos2 = myPosition2.x
         self.lastYpos2 = myPosition2.y
         
-        if self.loopCounter >= 9:
-            self.lidar.getScan(self.scan)
-            self.loopCounter = 0
-        else:
-            self.loopCounter += 1
+
+        myPosition1.x= -myPosition1.x * 1000
+        myPosition1.y= -myPosition1.y * 1000
+        myPosition2.x= -myPosition2.x * 1000
+        myPosition2.y= -myPosition2.y * 1000
         
         if self.healthy1 == 1 and self.healthy2 == 1:
             if self.speed1+0.15 < self.speed2:
@@ -289,18 +285,27 @@ class Slam:
             else:
                 if self.errorsOtos2 > 0:
                     self.errorsOtos2 -= 1
+            if (myPosition1.x < -100) or (myPosition1.x > 3100) or (myPosition1.y < -100) or (myPosition1.y > 3100):
+                self.healthy1=-2
+                self.logger.warning('Otos1 out of bounds: %i, %i', myPosition1.x, myPosition1.y)
             
-            if self.speed1 > 1.5:
+            
+            if self.speed1 > 2:
                 self.errorsOtosSpeed1 += 1
             else:
                 if self.errorsOtosSpeed1 > 0:
                     self.errorsOtosSpeed1 -= 1
             
-            if self.speed2 > 1.5:
+            if self.speed2 > 2:
                 self.errorsOtosSpeed2 += 1
             else:
                 if self.errorsOtosSpeed2 > 0:
                     self.errorsOtosSpeed2 -= 1
+
+            if (myPosition2.x < -100) or (myPosition2.x > 3100) or (myPosition2.y < -100) or (myPosition2.y > 3100):
+                self.healthy2=-2
+                self.logger.warning('Otos2 out of bounds: %i, %i', myPosition2.x, myPosition2.y)
+
 
         if self.errorsOtos1 > 20:
             self.healthy1 = 0
@@ -316,23 +321,34 @@ class Slam:
             self.logger.warning('Otos2 speed not healthy, errors: %i',self.errorsOtosSpeed2)
 
         if self.healthy1 == 1 and self.healthy2 == 1:
-            self.xpos = ((-myPosition1.y * 1000) + (-myPosition2.y * 1000)) / 2
-            self.ypos = ((-myPosition1.x * 1000) + (-myPosition2.x * 1000)) / 2
+            self.xpos = (myPosition1.y + myPosition2.y) / 2
+            self.ypos = (myPosition1.x + myPosition2.x) / 2
             
             self.angle = meanAngle(myPosition1.h, myPosition2.h)
-            if math.fabs(myPosition2.h - myPosition1.h) > 3:
-                self.logger.warning('A1: %i  A2: %i Mean angle: %i',myPosition1.h,myPosition2.h,self.angle)
             self.speed = (self.speed1 + self.speed2) / 2
+            if self.loopCounter >= 9:
+                self.logger.warning('A1: %.2f  A2: %.2f Mean angle: %.2f',myPosition1.h,myPosition2.h,self.angle)
+                self.logger.warning("speedav: %.2f Speed1: %.2f Speed2: %.2f",self.speed,self.speed1,self.speed2)
         elif self.healthy1 == 1:
-            self.xpos = -myPosition1.y * 1000
-            self.ypos = -myPosition1.x * 1000
+            self.xpos = myPosition1.y
+            self.ypos = myPosition1.x
             self.angle = myPosition1.h
             self.speed = self.speed1
         else:
-            self.xpos = -myPosition2.y * 1000
-            self.ypos = -myPosition2.x * 1000
+            self.xpos = myPosition2.y
+            self.ypos = myPosition2.x
             self.angle = myPosition2.h
             self.speed = self.speed2
+            
+            
+        if self.loopCounter >= 9:
+            self.lidar.getScan(self.scan)
+            self.loopCounter = 0
+        else:
+            self.loopCounter += 1
+            
+        if self.repostionEnable == 1:
+            self.repositionDrive()
 
         # print("Euler angle: {}".format(sensor.euler[0]))
     def hindernisseErkennung(self, scan, toScan, camera):
@@ -353,7 +369,7 @@ class Slam:
                 dots = 0
                 angles = []
                 for b in range(len(xposes)):                    # Checken ob Hindernis in der Nähe der lidarpunkte ist
-                    if (math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(110,2)) and (self.scan[b] > 200):
+                    if (math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(120,2)) and (self.scan[b] > 200):
                         dots += 1
                         angles.append(b)
                 if dots > 1:
@@ -386,7 +402,7 @@ class Slam:
         scanAngle = int(angleToScan - self.angle + 0.5)
         while scans <= 0:
             for i in range (scanAngle-5,scanAngle+6):
-                self.logger.warning('Scan angle: %i', i)
+                # self.logger.warning('Scan angle: %i', i)
                 v=i
                 if v>360:
                     v = i - 360

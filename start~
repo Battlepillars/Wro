@@ -1,2 +1,4 @@
+cd /home/pi/Wro
+python timer.py &
 cd /home/pi/Wro/src/
-python main.py
+su -c 'python main.py' pi

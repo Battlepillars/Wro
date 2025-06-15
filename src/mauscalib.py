@@ -45,6 +45,23 @@
 import qwiic_otos
 import sys
 import time
+import select
+import tty
+import termios
+
+def reset(myOtos1,myOtos2):
+    """Reset function called when a key is pressed during the main loop"""
+    print("\r\n=== RESET FUNCTION CALLED ===")
+    print("System reset completed!")
+    print("===============================\r\n")
+    myOtos1.calibrateImu(255)
+    myOtos2.calibrateImu(255)
+    myOtos1.resetTracking()
+    myOtos2.resetTracking()
+
+def kbhit():
+    """Check if a key has been pressed (non-blocking)"""
+    return select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], [])
 
 def runExample():
     print("\nQwiic OTOS Example 3 - Calibration\n")
@@ -70,6 +87,9 @@ def runExample():
     myOtos2.begin()
     myOtos2.setLinearUnit(myOtos2.kLinearUnitMeters)
 
+    print("Press any key during the loop to call reset function...")
+    print("Press Ctrl+C or 'q' to quit the program.")
+    
     print("Ensure the OTOS is flat and stationary during calibration!")
     for i in range(1, 0, -1):
         print("Calibrating in %d seconds..." % i)
@@ -120,10 +140,10 @@ def runExample():
     # multiple speeds to get an average, then set the linear scalar to the
     # inverse of the error. For example, if you move the robot 100 inches and
     # the sensor reports 103 inches, set the linear scalar to 100/103 = 0.971
-    myOtos1.setLinearScalar(1.04208)
+    myOtos1.setLinearScalar(1.031)
     myOtos1.setAngularScalar(0.9961)
 
-    myOtos2.setLinearScalar(1.01951)
+    myOtos2.setLinearScalar(1.017)
     myOtos2.setAngularScalar(0.9906)
 
     # Reset the tracking algorithm - this resets the position to the origin,
@@ -140,20 +160,46 @@ def runExample():
 
 
     # Main loop
-    while True:
-        # Get the latest position, which includes the x and y coordinates, plus
-        # the heading angle
-        myPosition1 = myOtos1.getPosition()
-        myPosition2 = myOtos2.getPosition()
 
-        # Print measurement
-        print()
-        print("Position:")
-        print("X1 : {:.1f} Y1 : {:.1f} H1: {:.1f}".format(myPosition1.x * 1000, myPosition1.y * 1000,myPosition1.h))
-        print("X2 : {:.1f} Y2 : {:.1f} H2: {:.1f}".format(myPosition2.x * 1000, myPosition2.y * 1000,myPosition2.h))
-        
-        # Wait a bit so we don't spam the serial port
-        time.sleep(0.5)
+
+    
+    # Set terminal to non-canonical mode for immediate key detection
+    old_settings = termios.tcgetattr(sys.stdin)
+    tty.setraw(sys.stdin.fileno())
+    
+    try:
+        while True:
+            # Check for keyboard input (non-blocking)
+            if kbhit():
+                key = sys.stdin.read(1)
+                
+                # Check for Ctrl+C (ASCII 3) or 'q' to quit
+                if ord(key) == 3 or key.lower() == 'q':  # Ctrl+C or 'q'
+                    print("\r\nExiting program...")
+                    break
+                else:
+                    reset(myOtos1, myOtos2)  # Call reset function for other keys
+            
+            
+            # Get the latest position, which includes the x and y coordinates, plus
+            # the heading angle
+            myPosition1 = myOtos1.getPosition()
+            myPosition2 = myOtos2.getPosition()
+            
+            # Get velocity information
+            myVelocity1 = myOtos1.getVelocity()
+            myVelocity2 = myOtos2.getVelocity()
+
+            # Print measurement
+            print("\r\nX1 : {:.1f} Y1 : {:.1f} H1: {:.1f} \r".format(myPosition1.x * 1000, myPosition1.y * 1000, myPosition1.h))
+            print("X2 : {:.1f} Y2 : {:.1f} H2: {:.1f} \r".format(myPosition2.x * 1000, myPosition2.y * 1000, myPosition2.h))
+
+            # Wait a bit so we don't spam the serial port
+            time.sleep(0.5)
+    
+    finally:
+        # Restore terminal settings
+        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
 
 if __name__ == '__main__':
     try:

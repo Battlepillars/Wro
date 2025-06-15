@@ -2,5 +2,10 @@ cd /home/pi/Wro/src/
 su -c 'python stopwatch.py &' pi
 while true; do
     su -c 'python main.py' pi
-    sleep 5
+    exit_code=$?
+    if [ $exit_code -eq 1 ]; then
+        echo "Program beendet mit Taste C - Neustart verhindert"
+        break
+    fi
+    sleep 1
 done

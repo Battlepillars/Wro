@@ -237,11 +237,16 @@ class Playmat:
             lamp.pixel(12, 1, 0xff0000)
             lamp.pixel(11, 0, 0xff0000)
             lamp.pixel(11, 1, 0xff0000)
-        else:
+        elif slam.healthy1 == -2:
             lamp.pixel(12, 0, 0x0000ff)
             lamp.pixel(12, 1, 0x0000ff)
             lamp.pixel(11, 0, 0x0000ff)
             lamp.pixel(11, 1, 0x0000ff)
+        else:
+            lamp.pixel(12, 0, 0xffff00)
+            lamp.pixel(12, 1, 0xffff00)
+            lamp.pixel(11, 0, 0xffff00)
+            lamp.pixel(11, 1, 0xffff00)
 
         if slam.healthy2 == 1:
             lamp.pixel(12, 7, 0x00ff00)
@@ -253,11 +258,16 @@ class Playmat:
             lamp.pixel(12, 8, 0xff0000)
             lamp.pixel(11, 7, 0xff0000)
             lamp.pixel(11, 8, 0xff0000)
-        else:
+        elif slam.healthy2 == -2:
             lamp.pixel(12, 7, 0x0000ff)
             lamp.pixel(12, 8, 0x0000ff)
             lamp.pixel(11, 7, 0x0000ff)
             lamp.pixel(11, 8, 0x0000ff)
+        else:
+            lamp.pixel(12, 7, 0xffff00)
+            lamp.pixel(12, 8, 0xffff00)
+            lamp.pixel(11, 7, 0xffff00)
+            lamp.pixel(11, 8, 0xffff00)
         
         lamp.show()
         

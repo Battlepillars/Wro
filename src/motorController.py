@@ -100,12 +100,15 @@ class DriveBase:
     def __init__(self, slam, kit):
         self.slam = slam
         self.kit = kit
-        if slam.eventType == slam.ER:
-            self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=80, drive=1)
-            self.pidSteer = PIDController(Kp=3, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
-        else:
-            self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=40, drive=1)
-            self.pidSteer = PIDController(Kp=5, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
+        # if slam.eventType == slam.ER:
+        #     self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=40, drive=1)
+        #     self.pidSteer = PIDController(Kp=3, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
+        # else:
+        #     self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=40, drive=1)
+        #     self.pidSteer = PIDController(Kp=5, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
+        
+        self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=40, drive=1)
+        self.pidSteer = PIDController(Kp=2, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
 
     def driveTo(self, x, y, speed, brake):
         self.pidController.setpoint = speed
