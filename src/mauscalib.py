@@ -68,7 +68,7 @@ def runExample():
 
     # Create instance of device
     myOtos1 = qwiic_otos.QwiicOTOS(0x17)
-    myOtos2 = qwiic_otos.QwiicOTOS(0x18)
+    myOtos2 = qwiic_otos.QwiicOTOS(0x19)
 
     # Check if it's connected
     if myOtos1.is_connected() == False:
@@ -81,11 +81,21 @@ def runExample():
         return
 
     # Initialize the device
+    
     myOtos1.begin()
     myOtos1.setLinearUnit(myOtos1.kLinearUnitMeters)
 
     myOtos2.begin()
     myOtos2.setLinearUnit(myOtos2.kLinearUnitMeters)
+
+
+    # myOtos1.setSignalProcessConfig(0b1111)
+    # myOtos2.setSignalProcessConfig(0b1111)
+
+    # c=myOtos1.getSignalProcessConfig()
+    # print("Signal Process Config 1: ", bin(c))
+    # c2=myOtos2.getSignalProcessConfig()
+    # print("Signal Process Config 2: ", bin(c2))
 
     print("Press any key during the loop to call reset function...")
     print("Press Ctrl+C or 'q' to quit the program.")
@@ -140,11 +150,13 @@ def runExample():
     # multiple speeds to get an average, then set the linear scalar to the
     # inverse of the error. For example, if you move the robot 100 inches and
     # the sensor reports 103 inches, set the linear scalar to 100/103 = 0.971
-    myOtos1.setLinearScalar(1.031)
+    myOtos1.setLinearScalar(1.030)
+    #myOtos1.setLinearScalar(1.126)
     myOtos1.setAngularScalar(0.9961)
 
-    myOtos2.setLinearScalar(1.017)
-    myOtos2.setAngularScalar(0.9906)
+    myOtos2.setLinearScalar(1.010)
+    #myOtos2.setLinearScalar(1.110)
+    myOtos2.setAngularScalar(0.9938)
 
     # Reset the tracking algorithm - this resets the position to the origin,
     # but can also be used to recover from some rare tracking errors
@@ -157,6 +169,9 @@ def runExample():
     pose = myOtos2.getOffset()
     pose.h = 0
     myOtos2.setOffset(pose)
+
+
+
 
 
     # Main loop

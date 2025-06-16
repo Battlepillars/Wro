@@ -125,7 +125,7 @@ class Slam:
         # Create instance of device
         #self.myOtos = qwiic_otos.QwiicOTOS()
         self.myOtos1 = qwiic_otos.QwiicOTOS(0x17)
-        self.myOtos2 = qwiic_otos.QwiicOTOS(0x18)
+        self.myOtos2 = qwiic_otos.QwiicOTOS(0x19)
 
         # Check if it's connected
         if self.myOtos1.is_connected() == False:
@@ -153,11 +153,11 @@ class Slam:
         self.myOtos2.calibrateImu(255)
 
 
-        self.myOtos1.setLinearScalar(1.031)
+        self.myOtos1.setLinearScalar(1.030)
         self.myOtos1.setAngularScalar(0.9961)
 
-        self.myOtos2.setLinearScalar(1.017)
-        self.myOtos2.setAngularScalar(0.9906)
+        self.myOtos2.setLinearScalar(1.010)
+        self.myOtos2.setAngularScalar(0.9938)
 
         self.myOtos1.resetTracking()
         self.myOtos2.resetTracking()
@@ -234,7 +234,7 @@ class Slam:
         
     def otusHealthReset(self):
         self.healthy1 = 1
-        self.healthy2 = 0
+        self.healthy2 = 1
         self.errorsOtos1 = 0
         self.errorsOtos2 = 0
         self.errorsOtosSpeed1 = 0
