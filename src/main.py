@@ -286,6 +286,7 @@ class Order:
     TIME=5
     DESTINATIONTIME=6
     MANUAL=7
+    REPOSITIONSINGLE=8
     CW=100
     CCW=101
     def __init__(self,speed=0,brake=0,type=0,x=0,y=0,steer=0,dist=0,timeDrive=0,toScan=[],zielwinkel=0,angleCheckOverwrite=1000,num=0,dir=0,rotation=0):
@@ -338,7 +339,7 @@ class Order:
 
         
         rotation = normalizeAngle(rotation)
-        print("zielwinkel normalized : " + str(zielwinkel))
+        # print("zielwinkel normalized : " + str(zielwinkel))
         self.speed = speed
         self.brake = brake
         self.type = type
@@ -814,14 +815,14 @@ def commandLoop(slam):
                     
                     
             #   --------------------------------------------------------------------------------------------  Einparken CCW
-            if checkForColor(Hindernisse.RED, 2, 6) and checkForColor(Hindernisse.GREEN, 6, 12):
+            if checkForColor(Hindernisse.RED, 2, 6) and checkForColor(Hindernisse.GREEN, 6, 12):                # von Grün nach Rot
                 orders.append(Order(x=1000, y=2770,speed=0.5,brake=0,type=Order.DESTINATION,num=176))
                 orders.append(Order(x=1400, y=2600,speed=0.5,brake=0,type=Order.DESTINATION,num=175))
                 orders.append(Order(x=1760, y=2600, speed=0.5, brake=1,type=Order.DESTINATION,num=171))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(x=1870, y=3000, speed=0.2, timeDrive=2, type=Order.DESTINATIONTIME))
             
-            elif checkForColor(Hindernisse.RED, 2, 6):
+            elif checkForColor(Hindernisse.RED, 2, 6):                                                          # von Rot nach Rot      
                 orders.append(Order(x=700, y=2770,speed=0.5,brake=1,type=Order.DESTINATION,num=177))
                 if not waitCompleteOrders():
                     return
@@ -836,12 +837,22 @@ def commandLoop(slam):
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(x=1860, y=3000, speed=0.2, timeDrive=2, type=Order.DESTINATIONTIME))
             
-            elif checkForColor(Hindernisse.GREEN, 6, 12):
-                orders.append(Order(x=1760, y=2200, speed=0.5, brake=1,type=Order.DESTINATION,num=171))
+            elif checkForColor(Hindernisse.GREEN, 6, 12): 
+                orders.append(Order(x=1500, y=2200, speed=0.5, brake=1,type=Order.DESTINATION,num=400))         # von Grün nach Grün   
+                if not waitCompleteOrders():
+                    return
+                time.sleep(0.5)
+                orders.append(Order(angleCheckOverwrite=-180,type=Order.REPOSITIONSINGLE,num=78))
+                if not waitCompleteOrders():
+                    return  
+                time.sleep(0.5)
+                
+            
+                orders.append(Order(x=1760, y=2200, speed=0.5, brake=1,type=Order.DESTINATION,num=401))
                 orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(x=1860, y=3000, speed=0.2, timeDrive=4, type=Order.DESTINATIONTIME))
             
-            else:
+            else:                                                                                               # von Rot nach Grün                                   
                 orders.append(Order(x=900, y=2200,speed=0.5, brake=1,type=Order.DESTINATION,num=173))
                 if not waitCompleteOrders():
                     return
@@ -966,6 +977,12 @@ def controlLoop(robot, camera, playmat):
             elif orders[0].type == Order.REPOSITION:
                 sem.acquire()
                 slam.reposition(orders[0].angleCheckOverwrite)
+                takePicture = True
+                sem.release()
+                nextOrder()
+            elif orders[0].type == Order.REPOSITIONSINGLE:
+                sem.acquire()
+                slam.repositionOneDirFront(orders[0].angleCheckOverwrite)
                 takePicture = True
                 sem.release()
                 nextOrder()

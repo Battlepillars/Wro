@@ -145,7 +145,8 @@ class Slam:
         self.myOtos1.setAngularUnit(self.myOtos1.kAngularUnitDegrees)
         self.myOtos2.setLinearUnit(self.myOtos2.kLinearUnitMeters)
         self.myOtos2.setAngularUnit(self.myOtos2.kAngularUnitDegrees)
-
+        self.myOtos1.setSignalProcessConfig(0b1101)
+        self.myOtos2.setSignalProcessConfig(0b1101)
         print("Calibrating IMU...")
 
         # Calibrate the IMU, which removes the accelerometer and gyroscope offsets
@@ -153,17 +154,15 @@ class Slam:
         self.myOtos2.calibrateImu(255)
 
 
-        self.myOtos1.setLinearScalar(1.030)
+        self.myOtos1.setLinearScalar(1.060)
         self.myOtos1.setAngularScalar(0.9961)
 
-        self.myOtos2.setLinearScalar(1.010)
+        self.myOtos2.setLinearScalar(1.040)
         self.myOtos2.setAngularScalar(0.9938)
 
         self.myOtos1.resetTracking()
         self.myOtos2.resetTracking()
-        #pose = self.myOtos.getOffset()
-        #pose.h = 45
-        #self.myOtos.setOffset(pose)
+        
 
     def startpostionsetzen(self):
         average = 0
@@ -173,6 +172,8 @@ class Slam:
                 average = average + self.scan[i]
                 scans += 1
         average = average / scans
+        
+        self.logger.warning("Set start position. Average: %.2f", average)
 
         if (average > 1870) and (average < 1970):
             self.direction = self.CW
@@ -218,6 +219,7 @@ class Slam:
         if (angle > -5000):
             myPosition.h=angle
         self.myOtos1.setPosition(myPosition)
+
 
         myPosition = self.myOtos2.getPosition()
         myPosition.y = -x / 1000
@@ -416,6 +418,39 @@ class Slam:
         # print("scanAngle:", scanAngle, "average:", average, "average3:", 3000 - average)
         return average
 
+    def repositionOneDirFront(self, angleCheck):
+        # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
+        
+        self.logger.warning('Manual Repostion Front angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheck,self.xpos,self.ypos,self.angle)
+
+        while angleCheck > 180:
+            angleCheck -= 360
+        while angleCheck < -180:
+            angleCheck += 360
+        # print("angleCheck:", angleCheck)
+        
+        if angleCheck < -140 or angleCheck > 140:                              # rechts/180
+            
+            average = self.calcualteScanAngel(0)
+            self.setPostion(average, self.ypos)
+            self.logger.warning('v1 x-> %i ',average)
+        if angleCheck < 130 and angleCheck > 50:                                # unten/90
+            # print("6")
+            average = self.calcualteScanAngel(-90)
+            self.setPostion(self.xpos, average)
+            self.logger.warning('v2 y-> %i ',average)
+        if angleCheck > -40 and angleCheck < 40:                                # links/0
+            # print("7")
+            average = self.calcualteScanAngel(180)
+            self.setPostion(3000 - average, self.ypos)
+            self.logger.warning('v3 x-> %i ',3000-average)
+        if angleCheck > -130 and angleCheck < -50:                              # oben/-90
+            # print("8")
+            average = self.calcualteScanAngel(90)
+            self.setPostion(self.xpos, 3000 - average)
+            self.logger.warning('v4 y-> %i ',3000-average)
+
+    
 
     def reposition(self, angleCheckOverwrite = 1000):
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)

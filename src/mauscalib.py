@@ -150,29 +150,26 @@ def runExample():
     # multiple speeds to get an average, then set the linear scalar to the
     # inverse of the error. For example, if you move the robot 100 inches and
     # the sensor reports 103 inches, set the linear scalar to 100/103 = 0.971
-    myOtos1.setLinearScalar(1.030)
+    myOtos1.setLinearScalar(1.060)
     #myOtos1.setLinearScalar(1.126)
     myOtos1.setAngularScalar(0.9961)
 
-    myOtos2.setLinearScalar(1.010)
+    myOtos2.setLinearScalar(1.040)
     #myOtos2.setLinearScalar(1.110)
     myOtos2.setAngularScalar(0.9938)
 
+    myOtos1.setSignalProcessConfig(0b1101)
+    myOtos2.setSignalProcessConfig(0b1101)
+
+
+
     # Reset the tracking algorithm - this resets the position to the origin,
     # but can also be used to recover from some rare tracking errors
+    
     myOtos1.resetTracking()
     myOtos2.resetTracking()
-    pose = myOtos1.getOffset()
-    pose.h = 0
-    myOtos1.setOffset(pose)
-
-    pose = myOtos2.getOffset()
-    pose.h = 0
-    myOtos2.setOffset(pose)
-
-
-
-
+    
+   
 
     # Main loop
 
