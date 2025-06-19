@@ -15,6 +15,10 @@ class PIDController:
         self.min = min
         self.max = max
         self.drive = drive
+    def reset(self):
+        self.previous_error = 0
+        self.integral = 0
+        
 
     def compute(self, process_variable, dt, slam=None):
             # Calculate error
@@ -88,7 +92,7 @@ def setServoAngle(kit,angle,slam=None):
         else:
             slam.wheelAngle = -(target - 80) * 1/80
         #slam.wheelAngle = target 
-    
+
 
 class DriveBase:
     slam:Slam
@@ -96,6 +100,7 @@ class DriveBase:
     zielWinkel = 5000
     distanci = 0
     startTimeDrive = 5000
+    lastKurveSpeed=1
 
     def __init__(self, slam, kit):
         self.slam = slam
@@ -147,11 +152,15 @@ class DriveBase:
             return False
 
     def drivekürvchen(self, dist, angli, speed, brake):
+        if (speed<0 and self.lastKurveSpeed > 0):
+            self.pidController.reset()
+            print("+++++++++++++++++++++++++++++++++++++++++++++reset PID Controller")
+        self.lastKurveSpeed = speed
         self.pidController.setpoint = speed
         speedTotal = self.slam.speed
 
         self.distanci = self.distanci + speedTotal * 10
-        distenceLeft= dist - self.distanci
+        distenceLeft = dist - self.distanci
 
         if (distenceLeft < 30) and (brake == 1):
             if (speed>0):
@@ -181,6 +190,7 @@ class DriveBase:
         if (distenceLeft<10) and ((speedTotal<0.05) or (brake == 0)):
             self.distanci = 0
             self.kit.servo[3].angle = 90
+            self.lastKurveSpeed=1
             return True
         else:
             return False

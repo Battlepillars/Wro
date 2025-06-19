@@ -54,6 +54,16 @@ class Robot:
         green = (0, 255, 0)
         blue = (0, 0, 128)
         self.semDb.acquire()
+        
+        for i in range(len(slam.hindernisse)):
+            if slam.hindernisse[i].farbe == 2: # 2=GREEN
+                pygame.draw.circle(screen, (0, 255, 0), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
+            elif slam.hindernisse[i].farbe == 1: # 1=RED
+                pygame.draw.circle(screen, (255, 0, 0), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
+            else:
+                pygame.draw.circle(screen, (0, 0, 255), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
+                
+                
         for i in range(len(self.circlexList)):
             
             pygame.draw.circle(screen, (0, 255, 0), ((self.circlexList[i] + 50) * matScale, (self.circleyList[i] + 50) * matScale), 30 * matScale)
@@ -65,13 +75,7 @@ class Robot:
         self.semDb.release()    
         pygame.draw.circle(screen, (255, 0, 0), ((self.circlex + 50) * matScale, (self.circley + 50) * matScale), 50 * matScale)
         
-        for i in range(len(slam.hindernisse)):
-            if slam.hindernisse[i].farbe == 2: # 2=GREEN
-                pygame.draw.circle(screen, (0, 255, 0), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
-            elif slam.hindernisse[i].farbe == 1: # 1=RED
-                pygame.draw.circle(screen, (255, 0, 0), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
-            else:
-                pygame.draw.circle(screen, (0, 0, 255), (slam.hindernisse[i].x * matScale + xoff, slam.hindernisse[i].y * matScale + yoff), 100 * matScale)
+
 
         for i in range(len(scan)):
             if scan[i] > 0:

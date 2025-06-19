@@ -84,8 +84,9 @@ def scan_inner_tour(orders, speedScan, rotation, scanStart, Order, waitCompleteO
             # orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION, num=116, rotation=rotation))  # exit innen-innen nachscannen
         elif checkForColor(outer, scanStart, scanStart+6):
             # print("green")
-            orders.append(Order(x=200, y=1500, speed=speedScan, brake=1, type=Order.DESTINATION, num=114, rotation=rotation))
-            orders.append(Order(x=200, y=1050, speed=speedScan, brake=1, type=Order.DESTINATION, num=112, rotation=rotation))
+            if not rotation == 1500:        # Beim scannen im süden ccw muss dieser teil weg weil er sonst den Parkplatz rammt
+                orders.append(Order(x=200, y=1500, speed=speedScan, brake=1, type=Order.DESTINATION, num=114, rotation=rotation))
+                orders.append(Order(x=200, y=1050, speed=speedScan, brake=1, type=Order.DESTINATION, num=112, rotation=rotation))
             # orders.append(Order(x=235, y=616, speed=speedScan, brake=1, type=Order.DESTINATION, num=118, rotation=rotation))  # exit innen-außen nachscannen
 
 

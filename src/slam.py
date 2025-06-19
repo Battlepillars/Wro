@@ -202,11 +202,14 @@ class Slam:
             self.eventType = self.HR
             self.setPostion(2000 - self.scan[180], 3000 - self.scan[90],0)
             self.logger.warning("Startposition: 5")
+            self.logger.warning("180: %.0f 90: %.0f",self.scan[180],self.scan[90])
         elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[-90] < 400):
+            
             self.direction = self.CCW
             self.eventType = self.HR
             self.setPostion(2000 - self.scan[0], 3000 - self.scan[-90],180)
             self.logger.warning("Startposition: 6")
+            self.logger.warning("0: %.0f -90: %.0f",self.scan[0],self.scan[-90])
 
         # 1870 - 1970
         # 1345 - 1450
@@ -331,6 +334,7 @@ class Slam:
             if self.loopCounter >= 9:
                 self.logger.warning('A1: %.2f  A2: %.2f Mean angle: %.2f',myPosition1.h,myPosition2.h,self.angle)
                 self.logger.warning("speedav: %.2f Speed1: %.2f Speed2: %.2f",self.speed,self.speed1,self.speed2)
+                self.logger.warning("X: %.0f Y: %.0f pos1: %.0f/%.0f pos2: %.0f/%.0f",self.xpos,self.ypos,myPosition1.x,myPosition1.y,myPosition2.x,myPosition2.y)
         elif self.healthy1 == 1:
             self.xpos = myPosition1.y
             self.ypos = myPosition1.x
@@ -420,31 +424,52 @@ class Slam:
 
     def repositionOneDirFront(self, angleCheck):
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
-        
+        self.logger.warn('-----------------------------------------------------------------------------------------')
         self.logger.warning('Manual Repostion Front angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheck,self.xpos,self.ypos,self.angle)
 
-        while angleCheck > 180:
-            angleCheck -= 360
-        while angleCheck < -180:
-            angleCheck += 360
-        # print("angleCheck:", angleCheck)
-        
-        if angleCheck < -140 or angleCheck > 140:                              # rechts/180
+        if angleCheck ==0:                              # rechts/180
             
             average = self.calcualteScanAngel(0)
             self.setPostion(average, self.ypos)
             self.logger.warning('v1 x-> %i ',average)
-        if angleCheck < 130 and angleCheck > 50:                                # unten/90
+        if angleCheck ==-90:                                # unten/90
             # print("6")
             average = self.calcualteScanAngel(-90)
             self.setPostion(self.xpos, average)
             self.logger.warning('v2 y-> %i ',average)
-        if angleCheck > -40 and angleCheck < 40:                                # links/0
+        if angleCheck == 180 or angleCheck == -180:                                # links/0
             # print("7")
             average = self.calcualteScanAngel(180)
             self.setPostion(3000 - average, self.ypos)
             self.logger.warning('v3 x-> %i ',3000-average)
-        if angleCheck > -130 and angleCheck < -50:                              # oben/-90
+        if angleCheck ==90:                              # oben/-90
+            # print("8")
+            average = self.calcualteScanAngel(90)
+            self.setPostion(self.xpos, 3000 - average)
+            self.logger.warning('v4 y-> %i ',3000-average)
+
+
+    def repositionOneDirSide(self, angleCheck):
+        # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
+        self.logger.warn('-----------------------------------------------------------------------------------------')
+        self.logger.warning('Manual Repostion Left angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheck,self.xpos,self.ypos,self.angle)
+
+
+        if angleCheck == 0:                              # rechts/180
+            average = self.calcualteScanAngel(0)
+            self.setPostion(average, self.ypos)
+            self.logger.warning('v1 x-> %i ',average)
+        if angleCheck == -90:                                # unten/90
+            # print("6")
+            average = self.calcualteScanAngel(-90)
+            self.setPostion(self.xpos, average)
+            self.logger.warning('v2 y-> %i ',average)
+        if angleCheck == 180 or angleCheck == -180:                                # links/0
+            # print("7")
+            average = self.calcualteScanAngel(180)
+            self.setPostion(3000 - average, self.ypos)
+            self.logger.warning('v3 x-> %i ',3000-average)
+        if angleCheck > 90:                              # oben/-90
             # print("8")
             average = self.calcualteScanAngel(90)
             self.setPostion(self.xpos, 3000 - average)
@@ -454,7 +479,7 @@ class Slam:
 
     def reposition(self, angleCheckOverwrite = 1000):
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
-        
+        self.logger.warn('-----------------------------------------------------------------------------------------')
         self.logger.warning('Manual Repostion angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheckOverwrite,self.xpos,self.ypos,self.angle)
             
         
