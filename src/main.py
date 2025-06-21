@@ -593,7 +593,10 @@ def commandLoop(slam):
                         orders.append(Order(angleCheckOverwrite=0,type=Order.REPOSITION))
                         if not waitCompleteOrders():
                             return
-                    orders.append(Order(x=2200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=167))
+                        orders.append(Order(x=slam.xpos, y=1970,speed=speedi,brake=0,type=Order.DESTINATION,num=167))
+                    else:
+                        orders.append(Order(x=2200, y=1970,speed=speedi,brake=0,type=Order.DESTINATION,num=167))
+                    
 
                 if checkForColor(Hindernisse.GREEN, 18, 24) and checkForColor(Hindernisse.RED, 0, 6):
                     #print("Green")
@@ -813,7 +816,7 @@ def commandLoop(slam):
                     if checkForColor(Hindernisse.RED, 0, 6):
                         #print("Red")
                         orders.append(Order(x=1000, y=2770,speed=speedi,brake=0,type=Order.DESTINATION,num=56))
-                        orders.append(Order(x=1400, y=2600,speed=speedi,brake=0,type=Order.DESTINATION,num=57))
+                        orders.append(Order(x=1520, y=2600,speed=speedi,brake=0,type=Order.DESTINATION,num=57))
                         orders.append(Order(x=2000, y=2560,speed=speedi,brake=0,type=Order.DESTINATION,num=58))
                     else:
                         #print("Green")
@@ -883,7 +886,7 @@ def commandLoop(slam):
                 else:
                     #print("Green")
                     orders.append(Order(x=800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=79))
-                    orders.append(Order(x=800, y=2000,speed=speedi,brake=1,type=Order.DESTINATION,num=80))
+                    orders.append(Order(x=800, y=1800,speed=speedi,brake=1,type=Order.DESTINATION,num=80))
                     if checkForColor(Hindernisse.GREEN, 0, 6) and (i == 0):
                         #orders.append(Order(x=800, y=2050,speed=speedScan,brake=1,type=Order.DESTINATION,num=81))
                         if not waitCompleteOrders():
@@ -893,6 +896,9 @@ def commandLoop(slam):
                         orders.append(Order(angleCheckOverwrite=180,type=Order.REPOSITION,num=82))
                         if not waitCompleteOrders():
                             return
+                        orders.append(Order(x=slam.xpos, y=1970,speed=speedi,brake=1,type=Order.DESTINATION,num=802))
+                    else:
+                        orders.append(Order(x=800, y=1970,speed=speedi,brake=1,type=Order.DESTINATION,num=803))
                     
                 if checkForColor(Hindernisse.RED, 6, 12) and checkForColor(Hindernisse.GREEN, 0, 6) and (i == 0):
                     #print("Red")
@@ -940,7 +946,7 @@ def commandLoop(slam):
             #     orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
             #     orders.append(Order(x=1860, y=3000, speed=0.2, timeDrive=2, type=Order.DESTINATIONTIME))           
             if checkForColor(Hindernisse.RED, 2, 6):                                                          # von Rot/Grün  nach Rot      
-                orders.append(Order(x=650, y=2770,speed=0.5,brake=1,type=Order.DESTINATION,num=177))
+                orders.append(Order(x=600, y=2700,speed=0.5,brake=1,type=Order.DESTINATION,num=177))
                 if not waitCompleteOrders():
                     return
                 time.sleep(0.5)
@@ -948,6 +954,7 @@ def commandLoop(slam):
                 orders.append(Order(angleCheckOverwrite=180,type=Order.REPOSITION,num=78))
                 if not waitCompleteOrders():
                     return    
+                orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL))
                 orders.append(Order(x=1000, y=2770,speed=0.5,brake=0,type=Order.DESTINATION,num=178))
                 orders.append(Order(x=1350, y=2600,speed=0.5,brake=0,type=Order.DESTINATION,num=175))
                 orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL))
@@ -955,7 +962,7 @@ def commandLoop(slam):
                     return 
                 time.sleep(0.5)
                 slam.repositionOneDirFront(180)
-                time.sleep(3)
+                time.sleep(4)
                 orders.append(Order(x=1770, y=2450, speed=0.4, brake=1,type=Order.DESTINATION,num=171))
                 orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL))
                 if not waitCompleteOrders():
