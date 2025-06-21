@@ -140,7 +140,10 @@ class DriveBase:
         
         output = self.pidController.compute(self.slam.speed,0.5,self.slam)
         
-        
+        if (outputSteer>55):
+            outputSteer = 55
+        if (outputSteer<-55):
+            outputSteer = -55
         setServoAngle(self.kit,90 + outputSteer,self.slam)
         self.kit.servo[3].angle = 99 + output
         
@@ -268,7 +271,27 @@ class DriveBase:
         else:
             return False
     
-    def driveTime(self, timeDrive, speed, startTime):
+    
+    def driveTimePower(self, timeDrive, speed, startTime):
+        
+
+        if self.startTimeDrive == 5000:
+            self.startTimeDrive = time.time()-startTime
+    
+        timeLeft = timeDrive - (time.time()-startTime - self.startTimeDrive) 
+
+        setServoAngle(self.kit, 90, self.slam) 
+
+
+        self.kit.servo[3].angle = speed
+
+        if timeLeft < 0.1:
+            self.kit.servo[3].angle = 90
+            self.startTimeDrive = 5000
+            return True
+        else:
+            return False
+    def driveTime(self, timeDrive, speed):
         self.pidController.setpoint = speed
         speedTotal = self.slam.speed
 

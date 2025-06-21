@@ -8,7 +8,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Stoppuhr")
 
 font = pygame.font.SysFont(None, 48)
-time.sleep(10)
+time.sleep(20)
 start_time = time.time()
 
 clock = pygame.time.Clock()

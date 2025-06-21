@@ -34,6 +34,7 @@ class Slam:
     playmat = Playmat
     loopCounter = 10
     loopCounterGyro = 0
+    infoCounter = 0
     wheelAngle = 0
     angle = 0
     xpos = 0
@@ -331,10 +332,12 @@ class Slam:
             
             self.angle = meanAngle(myPosition1.h, myPosition2.h)
             self.speed = (self.speed1 + self.speed2) / 2
-            if self.loopCounter >= 9:
+            self.infoCounter += 1
+            if self.infoCounter >= 30:
                 self.logger.warning('A1: %.2f  A2: %.2f Mean angle: %.2f',myPosition1.h,myPosition2.h,self.angle)
                 self.logger.warning("speedav: %.2f Speed1: %.2f Speed2: %.2f",self.speed,self.speed1,self.speed2)
                 self.logger.warning("X: %.0f Y: %.0f pos1: %.0f/%.0f pos2: %.0f/%.0f",self.xpos,self.ypos,myPosition1.x,myPosition1.y,myPosition2.x,myPosition2.y)
+                self.infoCounter = 0
         elif self.healthy1 == 1:
             self.xpos = myPosition1.y
             self.ypos = myPosition1.x
@@ -419,6 +422,7 @@ class Slam:
                     average = average + self.scan[v]
                     scans += 1
         average = average / scans
+        self.logger.warning('calcualteScanAngel  angleToScan: %i, self.angle: %i scans: %i  Average: %.2f', angleToScan, self.angle, scans, average)
         # print("scanAngle:", scanAngle, "average:", average, "average3:", 3000 - average)
         return average
 
@@ -452,7 +456,7 @@ class Slam:
     def repositionOneDirSide(self, angleCheck):
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         self.logger.warn('-----------------------------------------------------------------------------------------')
-        self.logger.warning('Manual Repostion Left angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheck,self.xpos,self.ypos,self.angle)
+        self.logger.warning('Manual Repostion Side angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheck,self.xpos,self.ypos,self.angle)
 
 
         if angleCheck == 0:                              # rechts/180
@@ -469,7 +473,7 @@ class Slam:
             average = self.calcualteScanAngel(180)
             self.setPostion(3000 - average, self.ypos)
             self.logger.warning('v3 x-> %i ',3000-average)
-        if angleCheck > 90:                              # oben/-90
+        if angleCheck == 90:                              # oben/-90
             # print("8")
             average = self.calcualteScanAngel(90)
             self.setPostion(self.xpos, 3000 - average)

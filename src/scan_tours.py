@@ -59,7 +59,10 @@ def scan_inner_tour(orders, speedScan, rotation, scanStart, Order, waitCompleteO
         # orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION, num=116, rotation=rotation))  # exit innen-innen
     elif checkForColor(outer, scanStart, scanStart+6):
         # print("green")
-        orders.append(Order(x=450, y=2400, speed=speedScan, brake=1, type=Order.DESTINATION, num=200, rotation=rotation))
+        # orders.append(Order(x=450, y=2400, speed=speedScan, brake=1, type=Order.DESTINATION, num=200, rotation=rotation))
+        orders.append(Order(zielwinkel=45, speed=0.2, brake=1, type=Order.WINKEL, rotation=rotation))
+        orders.append(Order(steer=0, dist=55, speed=0.2, brake=1, type=Order.KURVE,num=424)) 
+        orders.append(Order(zielwinkel=-45, speed=0.2, brake=1, type=Order.WINKEL, rotation=rotation))
         orders.append(Order(x=200, y=2000, speed=speedScan, brake=1, type=Order.DESTINATION, num=201, rotation=rotation))
         # orders.append(Order(x=200, y=1000, speed=speedScan, brake=1, type=Order.DESTINATION, num=117, rotation=rotation))
         # orders.append(Order(x=235, y=616, speed=speedScan, brake=1, type=Order.DESTINATION, num=118, rotation=rotation))  # exit innen-außen
@@ -135,7 +138,7 @@ def scan_outer_tour(orders, speedScan, rotation, scanstart, Order, waitCompleteO
         # orders.append(Order(x=244, y=641, speed=speedScan, brake=1, type=Order.DESTINATION, num=116, rotation=rotation))
     elif checkForColor(outer, scanstart, scanstart+6):
         # print("green")
-        orders.append(Order(x=182, y=2049, speed=speedScan, brake=1, type=Order.DESTINATION, num=202, rotation=rotation))  # exit außen-außen
+        orders.append(Order(x=250, y=2049, speed=speedScan, brake=1, type=Order.DESTINATION, num=202, rotation=rotation))  # exit außen-außen
         # orders.append(Order(x=235, y=616, speed=speedScan, brake=1, type=Order.DESTINATION, num=118, rotation=rotation))
     else:  # nichts gefunden in bereich 2, nachscannen
         orders.append(Order(x=500, y=1830, speed=speedScan, brake=1, type=Order.DESTINATION, num=119, rotation=rotation))
