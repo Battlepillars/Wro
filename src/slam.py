@@ -156,10 +156,11 @@ class Slam:
 
 
         self.myOtos1.setLinearScalar(1.060)
-        self.myOtos1.setAngularScalar(0.9961)
-
         self.myOtos2.setLinearScalar(1.040)
-        self.myOtos2.setAngularScalar(0.9938)
+        
+        
+        self.myOtos1.setAngularScalar(0.9933)
+        self.myOtos2.setAngularScalar(0.9915)
 
         self.myOtos1.resetTracking()
         self.myOtos2.resetTracking()
@@ -176,39 +177,41 @@ class Slam:
         
         self.logger.warning("Set start position. Average: %.2f", average)
 
+        winkelkorrektur = 0
+
         if (average > 1870) and (average < 1970):
             self.direction = self.CW
             self.eventType = self.ER
-            self.setPostion(average, 3000 - self.scan[90],0)
+            self.setPostion(average, 3000 - self.scan[90],0+winkelkorrektur)
             self.logger.warning("Startposition: 1")
         if (average > 1345) and (average < 1450):
             self.direction = self.CCW
             self.eventType = self.ER
-            self.setPostion(self.scan[180], 3000 - self.scan[-90],180)
+            self.setPostion(self.scan[180], 3000 - self.scan[-90],180+winkelkorrektur)
             self.logger.warning("Startposition: 2")
         if (average > 1550) and (average < 1660):
             self.direction = self.CCW
             self.eventType = self.ER
-            self.setPostion(self.scan[180], 3000 - self.scan[-90],180)
+            self.setPostion(self.scan[180], 3000 - self.scan[-90],180+winkelkorrektur)
             self.logger.warning("Startposition: 3")
         if (average > 1040) and (average < 1200):
             self.direction = self.CW
             self.eventType = self.ER
-            self.setPostion(average, 3000 - self.scan[90],0)
+            self.setPostion(average, 3000 - self.scan[90],0+winkelkorrektur)
             self.logger.warning("Startposition: 4")
         
 
         if (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
             self.direction = self.CW
             self.eventType = self.HR
-            self.setPostion(2000 - self.scan[180], 3000 - self.scan[90],0)
+            self.setPostion(2000 - self.scan[180], 3000 - self.scan[90],0+winkelkorrektur)
             self.logger.warning("Startposition: 5")
             self.logger.warning("180: %.0f 90: %.0f",self.scan[180],self.scan[90])
         elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[-90] < 400):
             
             self.direction = self.CCW
             self.eventType = self.HR
-            self.setPostion(2000 - self.scan[0], 3000 - self.scan[-90],180)
+            self.setPostion(2000 - self.scan[0], 3000 - self.scan[-90],180+winkelkorrektur)
             self.logger.warning("Startposition: 6")
             self.logger.warning("0: %.0f -90: %.0f",self.scan[0],self.scan[-90])
 

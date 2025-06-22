@@ -34,21 +34,21 @@ def scan_inner_tour(orders, speedScan, rotation, scanStart, Order, waitCompleteO
 
     if not waitCompleteOrders():
         return
-    time.sleep(0.5)
+    time.sleep(0.3)
     orders.append(Order(type=Order.REPOSITION, angleCheckOverwrite=-90, rotation=rotation))
     
     if not waitCompleteOrders():
         return
-    time.sleep(1)
+    time.sleep(0.5) 
     
     orders.append(Order(zielwinkel=-30, speed=0.2, brake=1, dir=direction, type=Order.WINKEL, rotation=rotation))
     
     if not waitCompleteOrders():
         return
-    time.sleep(1)
+    time.sleep(0.3)
     
     orders.append(Order(toScan=scan1, type=Order.SCAN))
-    time.sleep(0.5)
+    time.sleep(0.3)
     if not waitCompleteOrders():
         return
 
@@ -72,11 +72,11 @@ def scan_inner_tour(orders, speedScan, rotation, scanStart, Order, waitCompleteO
         
         if not waitCompleteOrders():
             return
-        time.sleep(0.5)
+        time.sleep(0.3)
         
         orders.append(Order(toScan=scan2, type=Order.SCAN, rotation=rotation))
         
-        time.sleep(0.5)
+        time.sleep(0.3)
         if not waitCompleteOrders():
             return
 
@@ -124,10 +124,11 @@ def scan_outer_tour(orders, speedScan, rotation, scanstart, Order, waitCompleteO
     orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=direction, type=Order.WINKEL, rotation=rotation))
     if not waitCompleteOrders():
         return
-    time.sleep(0.5)
+    time.sleep(0.3)
     orders.append(Order(type=Order.REPOSITION))
+    time.sleep(0.5) 
     orders.append(Order(toScan=scan1, type=Order.SCAN))
-    time.sleep(0.5)
+    time.sleep(0.3)
     if not waitCompleteOrders():
         return
 
@@ -145,9 +146,9 @@ def scan_outer_tour(orders, speedScan, rotation, scanstart, Order, waitCompleteO
         orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=direction, type=Order.WINKEL, rotation=rotation))
         if not waitCompleteOrders():
             return
-        time.sleep(0.5)
+        time.sleep(0.3)
         orders.append(Order(toScan=scan2, type=Order.SCAN))
-        time.sleep(0.5)
+        time.sleep(0.3)
         if not waitCompleteOrders():
             return
         if checkForColor(inner, scanstart, scanstart+6):

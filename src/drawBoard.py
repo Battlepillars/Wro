@@ -291,7 +291,7 @@ class Playmat:
             if i == 1:
                 text = self.font.render("y: " + str(math.floor(robot.ypos)), True, green, blue)
             if i == 2:
-                text = self.font.render("r: " + str(math.floor(robot.angle)), True, green, blue)
+                text = self.font.render("r: " + str(robot.angle), True, green, blue)
             if i == 3:
                 #text = self.font.render("matscale: "+str(matScale), True, green, blue)
                 text = self.font.render("wheel: " + str(slam.wheelAngle), True, green, blue)
