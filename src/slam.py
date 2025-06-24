@@ -363,7 +363,10 @@ class Slam:
             self.repositionDrive()
 
         # print("Euler angle: {}".format(sensor.euler[0]))
+
+            
     def hindernisseErkennung(self, scan, toScan, camera):
+        found=0
         camera.captureImage()
         for d in range(len(camera.blocksAngle)):
             # print("Block Angle: ", camera.blocksAngle[d], "Color: ", camera.blocksColor[d],"\n")
@@ -385,6 +388,7 @@ class Slam:
                         dots += 1
                         angles.append(b)
                 if dots > 1:
+                    found += dots
                     angle = 0
                     for c in angles:
                         # ("Angle: ",c)
@@ -407,6 +411,7 @@ class Slam:
                             self.hindernisse[i].farbe = Hindernisse.GREEN
                     else:
                         self.hindernisse[i].farbe = Hindernisse.RED
+        return found
 
     def calcualteScanAngel(self, angleToScan):
         average = 0

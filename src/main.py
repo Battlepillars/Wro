@@ -520,8 +520,17 @@ def commandLoop(slam):
                 if checkForColor(Hindernisse.GREEN, 0, 6):
                     #print("Green")
                     orders.append(Order(x=2100, y=2550,speed=speedi,brake=0,type=Order.DESTINATION,num=145))
+                    slam.repostionEnable = 0
                     orders.append(Order(x=1600, y=2600,speed=speedi,brake=0,type=Order.DESTINATION,num=146))
-                    orders.append(Order(x=1000, y=2800,speed=speedi,brake=0,type=Order.DESTINATION,num=147))
+                    orders.append(Order(x=1000, y=2800,speed=speedi,brake=1,type=Order.DESTINATION,num=147))
+                    orders.append(Order(zielwinkel=0, speed=0.2, brake=1, type=Order.WINKEL))
+                    if not waitCompleteOrders():
+                        return
+                    time.sleep(0.3)
+                    slam.repositionOneDirFront(0)
+                    time.sleep(0.5) 
+                    slam.lastQuadrant = 2
+                    slam.repostionEnable = 1
                 else:
                     #print("Red")
                     orders.append(Order(x=2000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=148))
@@ -1157,7 +1166,15 @@ def controlLoop(robot, camera, playmat):
                     nextOrder()
             elif orders[0].type == Order.SCAN:
                 sem.acquire()
-                slam.hindernisseErkennung(slam.scan,orders[0].toScan, camera)
+                found=slam.hindernisseErkennung(slam.scan,orders[0].toScan, camera)
+                slam.logger.warning('Found %i on first scan', found)
+                if (found == 0):
+                    time.sleep(0.2) 
+                    slam.loopCounter=10;
+                    slam.update()
+                    found= slam.hindernisseErkennung(slam.scan,orders[0].toScan, camera)
+                    slam.logger.warning('Found %i on second scan', found)
+
                 takePicture = True
                 sem.release()
                 nextOrder()
