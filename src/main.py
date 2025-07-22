@@ -24,6 +24,8 @@ from future.moves import pickle # type: ignore
 from drawBoard import *
 from camera import *
 from scan_tours import scan_inner_tour, scan_outer_tour
+from unpark import unparkCW
+from scan import scan
 from ctypes import *
 from adafruit_servokit import ServoKit # type: ignore
 
@@ -127,16 +129,15 @@ def main():
             slam.ypos = pos[1] / playmat.matScale
         
                     
-
-        if (wPressed == 0) and (sPressed == 0):
-            speedManual = 0
-        if (aPressed == 0) and (dPressed == 0):
-            steerManual = 0
-        
         if manual == 1:
-            if orders.__len__() > 0:
-                orders.pop(0)
-            orders.append(Order(speed=speedManual, steer=steerManual, type=Order.MANUAL))
+            print(aPressed, dPressed, wPressed, sPressed)
+            if (wPressed == 0) and (sPressed == 0):
+                kit.servo[3].angle = 90
+                print("Stop")
+            if (aPressed == 0) and (dPressed == 0):
+                steerManual = 0
+                print("Steer 0")
+            setServoAngle(kit,90 + steerManual,slam)
             
         #print("Wps: ",wPressed, "Sps: ",sPressed, "Aps: ",aPressed, "Dps: ",dPressed, "Manual: ",manual, "SpeedManual: ",speedManual, "SteerManual: ",steerManual)
         
@@ -187,7 +188,10 @@ def main():
                     kit.servo[3].angle = 90
                 if event.key == pygame.K_t:
                     orders.clear()
-                    orders.append(Order(toScan=[0, 23],type=Order.SCAN))
+                    orders.append(Order(toScan=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],type=Order.SCAN))
+                if event.key == pygame.K_z:
+                    orders.clear()
+                    orders.append(Order(toScan=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],checkHeightNear=True,type=Order.SCAN))
                 if event.key == pygame.K_e:
                     slam.setPostion(pygame.mouse.get_pos()[0] / playmat.matScale, pygame.mouse.get_pos()[1] / playmat.matScale)
                 if event.key == pygame.K_r:
@@ -198,18 +202,19 @@ def main():
                     manual = 1
                     running2 = False
                     orders.clear()
+                    orders.append(Order(type=Order.MANUAL))
                 
                 if event.key == pygame.K_w:
-                    speedManual = 0.75
+                    kit.servo[3].angle = 99 + 35
                     wPressed = 1
                 if event.key == pygame.K_s:
-                    speedManual = -0.5
+                    kit.servo[3].angle = 80 - 25
                     sPressed = 1
                 if event.key == pygame.K_a:
-                    steerManual = 45
+                    steerManual = 90
                     aPressed = 1
                 if event.key == pygame.K_d:
-                    steerManual = -45
+                    steerManual = -90
                     dPressed = 1
                     
             if event.type == pygame.KEYUP:
@@ -238,7 +243,7 @@ def main():
         playmat.draw(screen, info, camera, robot)
         robot.draw(screen, playmat.matScale, slam.scan, slam)
         if info == 1:
-            playmat.Infos(screen, robot, slam, playmat.matScale, startTime, time,lamp)
+            playmat.Infos(screen, robot, slam, playmat.matScale, startTime, time, lamp)
         if firstCapture == 1 and takePicture:
             folder = "/home/pi/Wro/src/capture"
             for filename in os.listdir(folder):
@@ -290,8 +295,7 @@ class Order:
     TIMEPOWER=9
     CW=100
     CCW=101
-    def __init__(self,speed=0,brake=0,type=0,x=0,y=0,steer=0,dist=0,timeDrive=0,toScan=[],zielwinkel=0,angleCheckOverwrite=1000,num=0,dir=0,rotation=0):
-        
+    def __init__(self,speed=0,brake=0,type=0,x=0,y=0,steer=0,dist=0,timeDrive=0,toScan=[],zielwinkel=0,angleCheckOverwrite=1000,num=0,dir=0,rotation=0,checkHeightNear=False):
         if (rotation == 0):
             self.x = x
             self.y = y
@@ -351,7 +355,8 @@ class Order:
         self.zielwinkel = zielwinkel
         self.angleCheckOverwrite = angleCheckOverwrite
         self.num = num
-        self.dir = dir        
+        self.dir = dir
+        self.checkHeightNear = checkHeightNear
 
 
 def waitCompleteOrders():
@@ -409,7 +414,13 @@ def commandLoop(slam):
     time.sleep(0.5)                    
     startTime = time.time()
     
-    if slam.eventType == slam.ER:           
+    ausparkenCWMachen = 1
+    
+    if ausparkenCWMachen == 1:
+        unparkCW(orders, Order, waitCompleteOrders, checkForColor)
+        scan(orders, Order, waitCompleteOrders, checkForColor)
+    
+    elif slam.eventType == slam.ER:           
         speedi = 0.75
         slam.repostionEnable = 1
         
@@ -1154,7 +1165,7 @@ def controlLoop(robot, camera, playmat):
                         
                 robot.semDb.release()
             if orders[0].type == Order.MANUAL:
-                driveBase.manual(orders[0].speed, orders[0].steer)
+                pass
             elif orders[0].type == Order.DESTINATION:
                 robot.circlex = orders[0].x
                 robot.circley = orders[0].y
@@ -1166,13 +1177,13 @@ def controlLoop(robot, camera, playmat):
                     nextOrder()
             elif orders[0].type == Order.SCAN:
                 sem.acquire()
-                found=slam.hindernisseErkennung(slam.scan,orders[0].toScan, camera)
+                found=slam.hindernisseErkennung(slam.scan,orders[0].toScan, camera, orders[0].checkHeightNear)
                 slam.logger.warning('Found %i on first scan', found)
                 if (found == 0):
                     time.sleep(0.2) 
-                    slam.loopCounter=10;
+                    slam.loopCounter=10
                     slam.update()
-                    found= slam.hindernisseErkennung(slam.scan,orders[0].toScan, camera)
+                    found=slam.hindernisseErkennung(slam.scan,orders[0].toScan, camera, orders[0].checkHeightNear)
                     slam.logger.warning('Found %i on second scan', found)
 
                 takePicture = True

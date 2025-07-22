@@ -29,13 +29,17 @@ class Camera():
         #self.picam2.switch_mode_and_capture_array(self.config, delay=10)
         self.picam2.start()
     
-    def captureImage(self):
+    def captureImage(self, checkHeightNear):
         self.blocksAngle = []
         self.blocksColor = []
         imgclear = self.picam2.capture_array()
         imgIn = cv.blur(imgclear,(10,10))
-        checkStart=470                    # Scanbalken einstellen, kleiner -> balken weiter oben
+        checkStart=450                    # Scanbalken einstellen, kleiner -> balken weiter oben
         checkHeight=30
+        
+        if checkHeightNear:
+            checkStart += 150
+        
         checkEnd=checkStart+checkHeight
         
         hsv = cv.cvtColor(imgIn, cv.COLOR_RGB2HSV)

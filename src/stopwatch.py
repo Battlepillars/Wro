@@ -8,8 +8,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Stoppuhr")
 
 font = pygame.font.SysFont(None, 48)
-time.sleep(20)
-start_time = time.time()
+start_time = pygame.time.get_ticks()  # Millisekunden seit pygame.init()
 
 clock = pygame.time.Clock()
 
@@ -19,7 +18,7 @@ while True:
       pygame.quit()
       sys.exit()
 
-  elapsed = time.time() - start_time
+  elapsed = (pygame.time.get_ticks() - start_time) / 1000.0  # Umrechnung von ms zu Sekunden
   mins = int(elapsed // 60)
   secs = int(elapsed % 60)
   millis = int((elapsed - int(elapsed)) * 100)

@@ -249,6 +249,7 @@ class Slam:
         self.errorsOtosSpeed1 = 0
         self.errorsOtosSpeed2 = 0
         self.logger.warning('Reset health of Otos')
+        
     def update(self):
         
         myPosition1 = self.myOtos1.getPosition()
@@ -365,9 +366,9 @@ class Slam:
         # print("Euler angle: {}".format(sensor.euler[0]))
 
             
-    def hindernisseErkennung(self, scan, toScan, camera):
+    def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
         found=0
-        camera.captureImage()
+        camera.captureImage(checkHeightNear)
         for d in range(len(camera.blocksAngle)):
             # print("Block Angle: ", camera.blocksAngle[d], "Color: ", camera.blocksColor[d],"\n")
             pass
@@ -387,7 +388,7 @@ class Slam:
                     if (math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(120,2)) and (self.scan[b] > 200):
                         dots += 1
                         angles.append(b)
-                if dots > 1:
+                if dots > 0:
                     found += dots
                     angle = 0
                     for c in angles:

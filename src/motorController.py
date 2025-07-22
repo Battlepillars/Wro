@@ -322,17 +322,6 @@ class DriveBase:
         else:
             return False
     
-    def manual(self, speed, steer):
-        self.pidController.setpoint = speed
-        
-        output = self.pidController.compute(self.slam.speed,0.5)
-        
-        setServoAngle(self.kit,90 + steer,self.slam)
-        if speed != 0:
-            self.kit.servo[3].angle = 99 + output
-        else:
-            self.kit.servo[3].angle = 90
-    
     def crashRecovery(self):
         self.kit.servo[3].angle = 70
         setServoAngle(self.kit,90,self.slam)
