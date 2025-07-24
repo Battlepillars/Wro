@@ -18,7 +18,7 @@ def unparkCW(orders,Order, waitCompleteOrders, checkForColor):
     if not waitCompleteOrders():
         return
     time.sleep(0.3)
-    orders.append(Order(toScan=[2, 2],type=Order.SCAN))
+    orders.append(Order(toScan=[2],type=Order.SCAN))
     if not waitCompleteOrders():
         return
     time.sleep(0.3)

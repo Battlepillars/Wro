@@ -368,6 +368,10 @@ class Slam:
             
     def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
         found=0
+        if checkHeightNear:
+            dotsNeeded = 1
+        else:
+            dotsNeeded = 0
         camera.captureImage(checkHeightNear)
         for d in range(len(camera.blocksAngle)):
             # print("Block Angle: ", camera.blocksAngle[d], "Color: ", camera.blocksColor[d],"\n")
@@ -388,7 +392,7 @@ class Slam:
                     if (math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(120,2)) and (self.scan[b] > 200):
                         dots += 1
                         angles.append(b)
-                if dots > 0:
+                if dots > dotsNeeded:
                     found += dots
                     angle = 0
                     for c in angles:

@@ -25,7 +25,8 @@ from drawBoard import *
 from camera import *
 from scan_tours import scan_inner_tour, scan_outer_tour
 from unpark import unparkCW
-from scan import scan
+from scanRound import scanRound
+from driveRound import driveRound
 from ctypes import *
 from adafruit_servokit import ServoKit # type: ignore
 
@@ -60,6 +61,7 @@ kit = ServoKit(channels=16)
 kit.servo[0].set_pulse_width_range(1160, 2440)
 kit.servo[3].set_pulse_width_range(1000, 2000)
 
+show = 0
 running2 = True
 running3 = True
 orders = []
@@ -104,6 +106,7 @@ def main():
     
     pygame.display.set_caption("WroONator4000")
     clock = pygame.time.Clock()
+    global show
     global running2
     global running3
     last_val = 0xFFFF
@@ -208,8 +211,11 @@ def main():
                     kit.servo[3].angle = 99 + 35
                     wPressed = 1
                 if event.key == pygame.K_s:
-                    kit.servo[3].angle = 80 - 25
-                    sPressed = 1
+                    if manual == 1:
+                        kit.servo[3].angle = 80 - 25
+                        sPressed = 1
+                    else:
+                        show = 1
                 if event.key == pygame.K_a:
                     steerManual = 90
                     aPressed = 1
@@ -361,10 +367,14 @@ class Order:
 
 def waitCompleteOrders():
     global running2
-    while orders.__len__() > 0 and running2:
+    global show
+    while orders.__len__() > 0 and running2 and show == 0:
         time.sleep(0.01)
     return running2
 def checkForColor(color, start, end):
+    if start > slam.hindernisse.__len__() or end > slam.hindernisse.__len__():
+        end = end - start
+        start = 0
     for i in range(start, end):
         #print("color: " + str(slam.hindernisse[i].farbe))
         if slam.hindernisse[i].farbe == color:
@@ -418,9 +428,29 @@ def commandLoop(slam):
     
     if ausparkenCWMachen == 1:
         unparkCW(orders, Order, waitCompleteOrders, checkForColor)
-        scan(orders, Order, waitCompleteOrders, checkForColor)
-    
-    elif slam.eventType == slam.ER:           
+        scanRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6)
+        scanRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
+        scanRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18)
+        scanRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
+        for i in range(0,2):
+            if not waitCompleteOrders():
+                return
+            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CW, type=Order.WINKEL))
+            if not waitCompleteOrders():
+                return
+            time.sleep(0.3)
+            orders.append(Order(angleCheckOverwrite=-90,type=Order.REPOSITION))
+            if not waitCompleteOrders():
+                return
+            time.sleep(0.3)
+            driveRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6)
+            driveRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
+            driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18)
+            if i == 0:
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
+
+
+    elif slam.eventType == slam.ER:
         speedi = 0.75
         slam.repostionEnable = 1
         
@@ -1115,6 +1145,7 @@ def controlLoop(robot, camera, playmat):
     global takePicture
     global sem
     global startTime
+    global show
     setServoAngle(kit,90)
     kit.servo[3].angle = 90
     
@@ -1164,7 +1195,7 @@ def controlLoop(robot, camera, playmat):
                         robot.circleNumList.append(orders[i].num)
                         
                 robot.semDb.release()
-            if orders[0].type == Order.MANUAL:
+            if orders[0].type == Order.MANUAL or show == 1:
                 pass
             elif orders[0].type == Order.DESTINATION:
                 robot.circlex = orders[0].x
