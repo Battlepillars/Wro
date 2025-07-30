@@ -2,7 +2,7 @@
 
 Fotos und kurze Beschreibung
 
-
+<br><br><br>
 
 # Mobility Management
 
@@ -55,7 +55,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 - Schaltplan
   
 
-### Code für alle Komponenten
+# Code für alle Komponenten
 - Schaltplan
 
 
