@@ -8,7 +8,7 @@ Fotos und kurze Beschreibung
 
 Kurzer Satz was in dem Kapitel alles benannt werden wird.
 
-
+<br><br>
 ## Powertrain
 
 ### Drivetrain
@@ -19,6 +19,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 
 ### Motor Driver
 - Bild + Spezifikationen
+<br><br>
 
 ## Steering
 - Erläuterung (auch Ackermann!)
@@ -26,7 +27,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 ### Servo Motor
 - Bild + Spezifikationen
 
-
+<br><br>
 ## Chassis
 - Erläuterung
 
@@ -35,6 +36,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 # Power and Sense Management
 
 Kurzer Satz was in dem Kapitel alles benannt werden wird.
+<br><br>
 
 ## Sensoren
   
@@ -50,7 +52,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 ### alle anderen Sensoren
 - Bild + Spezifikationen
 
-
+<br><br>
 ## Schaltplan der Bauteile
 - Schaltplan
   
