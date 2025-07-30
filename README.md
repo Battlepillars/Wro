@@ -4,30 +4,30 @@ Fotos und kurze Beschreibung
 
 
 
-#Mobility Management
+#M obility Management
 
 Kurzer Satz was in dem Kapitel alles benannt werden wird.
 
 
-##Powertrain
+## Powertrain
 
-###Drivetrain
+### Drivetrain
 - Erläuterung
 
-###Motor
+### Motor
 - Bild + Spezifikationen
 
-###Motor Driver
+### Motor Driver
 - Bild + Spezifikationen
 
-##Steering
+## Steering
 - Erläuterung (auch Ackermann!)
 
-###Servo Motor
+### Servo Motor
 - Bild + Spezifikationen
 
 
-##Chassis
+## Chassis
 - Erläuterung
 
 
