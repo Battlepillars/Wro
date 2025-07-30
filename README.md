@@ -53,7 +53,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 ### Kamera
 - Bild + Spezifikationen
 
-### alle anderen Sensoren
+### Odometrie Sensor
 - Bild + Spezifikationen
 
 <br><br>
