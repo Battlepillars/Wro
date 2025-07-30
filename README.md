@@ -1,28 +1,34 @@
-# A first-level heading THE TEAM
+# THE TEAM
 
 Fotos und kurze Beschreibung
 
 
 
-Mobility Management
+#Mobility Management
 
 Kurzer Satz was in dem Kapitel alles benannt werden wird.
 
 
-Powertrain
+##Powertrain
 
-Drivetrain
+###Drivetrain
 - Erläuterung
 
-Motor
+###Motor
 - Bild + Spezifikationen
 
-Motor Driver
+###Motor Driver
 - Bild + Spezifikationen
 
-Steering
+##Steering
 - Erläuterung (auch Ackermann!)
 
+###Servo Motor
+- Bild + Spezifikationen
+
+
+##Chassis
+- Erläuterung
 
 
 
