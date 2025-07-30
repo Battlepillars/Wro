@@ -18,7 +18,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 ### Motor
 - Bild + Spezifikationen
 
-### Motor Driver
+### Motor Driver (= Fahrtenregler)
 - Bild + Spezifikationen
   
 <br><br>
