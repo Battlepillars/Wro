@@ -64,7 +64,13 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 <br><br><br>
 
 # Code für alle Komponenten
-- Schaltplan
+- wird von Nils gefüllt
+
+<br><br><br>
+
+# Obstacle Management
+
+Dieses Kapitel schreibt Nils
 
 <br><br><br>
 
