@@ -32,6 +32,34 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 
 
 
+# Power and Sense Management
+
+Kurzer Satz was in dem Kapitel alles benannt werden wird.
+
+## Sensoren
+  
+### Li-Po Battery
+- Bild + Spezifikationen
+
+### LiDAR
+- Bild + Spezifikationen
+
+### Kamera
+- Bild + Spezifikationen
+
+### alle anderen Sensoren
+- Bild + Spezifikationen
+
+
+## Schaltplan der Bauteile
+- Schaltplan
+  
+
+### Code für alle Komponenten
+- Schaltplan
+
+
+
 
 
 Engineering materials
