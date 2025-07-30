@@ -30,7 +30,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 ## Chassis
 - Erläuterung
 
-
+<br><br><br>
 
 # Power and Sense Management
 
@@ -54,12 +54,12 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 ## Schaltplan der Bauteile
 - Schaltplan
   
-
+<br><br><br>
 # Code für alle Komponenten
 - Schaltplan
 
 
-
+<br><br><br>
 
 
 Engineering materials
