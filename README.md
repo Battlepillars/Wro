@@ -1,10 +1,12 @@
 # THE TEAM
+aus den Regeln: Pictures of the team and robot must be provided. The pictures of the robot must cover all sides of the robot, must be clear, in focus and show aspects of the mobility, power and sense, and obstacle management. Reference in the discussion sections 1, 2 and 3 can be made to these pictures. Team photo is necessary for judges to relate and identify the team during the local and international competitions. 
 
 Fotos und kurze Beschreibung
 
 <br><br><br>
 
 # Mobility Management
+aus den Regeln: Mobility management discussion should cover how the vehicle movements are managed. What motors are selected, how they are selected and implemented. A brief discussion regarding the vehicle chassis design /selection can be provided as well as the mounting of all components to the vehicle chassis/structure. The discussion may include engineering principles such as speed, torque, power etc. usage. Building or assembly instructions can be provided together with 3D CAD files to 3D print parts. 
 
 Kurzer Satz was in dem Kapitel alles benannt werden wird.
 
@@ -37,6 +39,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 <br><br><br>
 
 # Power and Sense Management
+aus den Regeln: Power and Sense management discussion should cover the power source for the vehicle as well as the sensors required to provide the vehicle with information to negotiate the different challenges. The discussion can include the reasons for selecting various sensors and how they are being used on the vehicle together with power consumption. The discussion could include a wiring diagram with BOM for the vehicle that includes all aspects of professional wiring diagrams. 
 
 Kurzer Satz was in dem Kapitel alles benannt werden wird.
 
