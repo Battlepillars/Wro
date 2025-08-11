@@ -76,6 +76,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 # Obstacle Management
 
 Dieses Kapitel schreibt Nils
+Die Diskussion zum Hindernismanagement sollte die Strategie des Fahrzeugs zur Bewältigung des Hindernisparcours in Bezug auf alle Herausforderungen beinhalten. Dies kann Flussdiagramme, Pseudocode sowie Quellcode mit ausführlichen Kommentaren umfassen.
 
 <br><br><br>
 
