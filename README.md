@@ -102,19 +102,31 @@ Two optical tracking sensors were installed to increase redundancy. If one senso
 
 - If the sensor reports a position outside the playing field, it is likewise deactivated as “not healthy”.
 
+### position corrections 
+Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
+
+- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position.
+
+- While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. The issue is that the LiDAR responds to the program's position request with a delay of 100–200 ms because it rotates, making repositioning less accurate while the robot is moving.
+
+### Obstacle Recognition 
+This function detects and stores obstacles within each section of the course using the LiDAR and the camera. The process is divided into two parts:
+
+**Determining the position of an obstacle within a course section**
+
+Five scan points were defined (see Appendix 4: Scan Point Diagram), at which the LiDAR determines which of the six possible positions within the section in front of the robot the obstacle is located. The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course. If no obstacle is detected at a scan point, the robot moves forward 50 cm and scans again.
+
+A list of coordinates was created for all possible obstacle positions. The LiDAR checks whether something is detected near (within a radius of 100 mm) any of these coordinates. If an obstacle is detected, the position is stored in a list.
+
+**Determining the color of the obstacle**
+
+The camera is then used to identify the color of the obstacle. For image recognition, information from the WRO support document (WRO Future Engineers Getting Started) was used. Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. For visualization, this angle is drawn on the map.
  
 <br><br><br><br>
-Position corrections 
 
-abweichung des maus- sensors 2-5cm/meter bei gerade fahrt, mehr nach kurven 
-
-on demand while standing (exact) beschreibung des delays des lidar bildes und der dazugehörigen probleme 
-
-automatic during driving 
 
  
 
-Obstacle Recognition 
 
 lidar obstacle recognition 
 
