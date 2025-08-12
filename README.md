@@ -86,11 +86,11 @@ For the Open Challenge, there are four different positions where we can place th
 
 In the Obstacle Challenge, two different positions are possible. Here as well, the robot uses the LiDAR to detect its position and then knows which direction it needs to drive.
 
- 
+ <br><br>
+## Position updates during driving 
 
- 
-
-Position updates during driving a optical tracking sensor function b sensor failure detection/health status c sensor selection based flow diagram for b&c 
+### optical tracking sensor function 
+For continuous position tracking, we use two optical tracking sensors. A downward-facing camera inside the sensor captures 20,000 images per second. Based on changes in the images, the sensor detects movement across the surface. Additionally, the sensor has a built-in gyroscope. Using data from the gyroscope and the movement across the ground, the sensor automatically calculates the current coordinates.
 
  
 
