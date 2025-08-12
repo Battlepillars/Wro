@@ -60,6 +60,7 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 
 ### Odometrie Sensor
 - Bild + Spezifikationen
+- Verbesserungsvorschlag: Einen dritten Sensor einbauen, damit echte Mehrheitsentscheidung, was der richtige Messwert ist
 
 <br><br>
 
@@ -92,10 +93,17 @@ In the Obstacle Challenge, two different positions are possible. Here as well, t
 ### optical tracking sensor function 
 For continuous position tracking, we use two optical tracking sensors. A downward-facing camera inside the sensor captures 20,000 images per second. Based on changes in the images, the sensor detects movement across the surface. Additionally, the sensor has a built-in gyroscope. Using data from the gyroscope and the movement across the ground, the sensor automatically calculates the current coordinates.
 
- 
+### sensor failure detection / health status 
+Two optical tracking sensors were installed to increase redundancy. If one sensor fails, for example due to dust on the lens, the robot can still accurately determine its position. A sensor is recognized by the program as “not healthy” under the following conditions:
+
+- One of the two sensors is at least 0.15 m/s slower than the other. Dust on the lens can prevent the sensor from accurately detecting changes in the ground, causing its reported speed to decrease. The slower sensor is then deactivated as “not healthy”.
+
+- If one sensor reports a speed greater than 2 m/s, it is also deactivated as “not healthy”.
+
+- If the sensor reports a position outside the playing field, it is likewise deactivated as “not healthy”.
 
  
-
+<br><br><br><br>
 Position corrections 
 
 abweichung des maus- sensors 2-5cm/meter bei gerade fahrt, mehr nach kurven 
