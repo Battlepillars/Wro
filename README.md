@@ -80,11 +80,11 @@ Die Diskussion zum Hindernismanagement sollte die Strategie des Fahrzeugs zur Be
 <br><br>
 ## Initial location aqusition 
 
-Am Anfang des Programms erkennt der Roboter in welche Richtung er fahren muss, anhand seiner Position auf der Matte. 
+At the beginning of the program, the robot detects the starting direction in which the car must drive on the track, based on its position on the mat.
 
-Für das Eröffnungsrennen gibt es vier verschiedene Positionen, auf die wir den Roboter stellen können und die ihn erkennen lassen, wie er fahren muss. Diese vier Möglichkeiten resultieren daraus, dass es zwei mögliche starting sections gibt und zwei directions of travel. 
+For the Open Challenge, there are four different positions where we can place the robot, which allow it to recognize how it must drive. These four options result from the fact that there are two possible starting sections and two directions of travel.
 
-Beim Hindernisrennen sind zwei verschiedene Positionen möglich. Auch hier erkennt der Roboter mit dem LiDar an welcher Position er sich befindet und weiß dann, in welche Richtung er fahren muss. 
+In the Obstacle Challenge, two different positions are possible. Here as well, the robot uses the LiDAR to detect its position and then knows which direction it needs to drive.
 
  
 
