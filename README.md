@@ -102,14 +102,14 @@ Two optical tracking sensors were installed to increase redundancy. If one senso
 
 - If the sensor reports a position outside the playing field, it is likewise deactivated as “not healthy”.
 
-### position corrections 
+## position corrections 
 Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
 
 - When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position.
 
 - While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. The issue is that the LiDAR responds to the program's position request with a delay of 100–200 ms because it rotates, making repositioning less accurate while the robot is moving.
 
-### Obstacle Recognition 
+## Obstacle Recognition 
 This function detects and stores obstacles within each section of the course using the LiDAR and the camera. The process is divided into two parts:
 
 **Determining the position of an obstacle within a course section**
