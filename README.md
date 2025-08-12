@@ -112,13 +112,13 @@ Position tracking using the optical tracking sensor leads to inaccuracies of 2â€
 ## Obstacle Recognition 
 This function detects and stores obstacles within each section of the course using the LiDAR and the camera. The process is divided into two parts:
 
-**Determining the position of an obstacle within a course section**
+### Determining the position of an obstacle within a course section
 
 Five scan points were defined (see Appendix 4: Scan Point Diagram), at which the LiDAR determines which of the six possible positions within the section in front of the robot the obstacle is located. The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course. If no obstacle is detected at a scan point, the robot moves forward 50 cm and scans again.
 
 A list of coordinates was created for all possible obstacle positions. The LiDAR checks whether something is detected near (within a radius of 100 mm) any of these coordinates. If an obstacle is detected, the position is stored in a list.
 
-**Determining the color of the obstacle**
+### Determining the color of the obstacle
 
 The camera is then used to identify the color of the obstacle. For image recognition, information from the WRO support document (WRO Future Engineers Getting Started) was used. Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. For visualization, this angle is drawn on the map.
  
