@@ -77,6 +77,75 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 
 Dieses Kapitel schreibt Nils
 Die Diskussion zum Hindernismanagement sollte die Strategie des Fahrzeugs zur Bewältigung des Hindernisparcours in Bezug auf alle Herausforderungen beinhalten. Dies kann Flussdiagramme, Pseudocode sowie Quellcode mit ausführlichen Kommentaren umfassen.
+<br><br>
+## Initial location aqusition 
+
+Am Anfang des Programms erkennt der Roboter in welche Richtung er fahren muss, anhand seiner Position auf der Matte. 
+
+Für das Eröffnungsrennen gibt es vier verschiedene Positionen, auf die wir den Roboter stellen können und die ihn erkennen lassen, wie er fahren muss. Diese vier Möglichkeiten resultieren daraus, dass es zwei mögliche starting sections gibt und zwei directions of travel. 
+
+Beim Hindernisrennen sind zwei verschiedene Positionen möglich. Auch hier erkennt der Roboter mit dem LiDar an welcher Position er sich befindet und weiß dann, in welche Richtung er fahren muss. 
+
+ 
+
+ 
+
+Position updates during driving a optical tracking sensor function b sensor failure detection/health status c sensor selection based flow diagram for b&c 
+
+ 
+
+ 
+
+Position corrections 
+
+abweichung des maus- sensors 2-5cm/meter bei gerade fahrt, mehr nach kurven 
+
+on demand while standing (exact) beschreibung des delays des lidar bildes und der dazugehörigen probleme 
+
+automatic during driving 
+
+ 
+
+Obstacle Recognition 
+
+lidar obstacle recognition 
+
+camera obstacle recognition 
+
+lidar/camera sensor fusion sample pseudo code 
+
+ 
+
+command loop / control loop / display loop explanation why 3 threads short description of each thread flow diagram for each thread 
+
+ 
+
+description of commands available to command loop (driveTo.... ) 
+
+ 
+
+navigation strategy open challenge 
+
+simple fixed waypoints 
+
+ 
+
+navigation strategy obstacle challenge -scan round drive to scan point flow diagram what happens depending on obstacle setup (dive to second scan point) 
+
+description of rotation for second scanpoint 
+
+second/third round 
+
+parking strategy 
+
+9 possible imüprovements - crash recovery - wegpunkte optimieren - open challenge kürzere strecke je nach wand - obstacle challenge momentan umfahren wir mögliche blöcke die vielleicht nicht da sind. wir könnten die strecke verkürzen, würden aber viel zusätzliche komplexibilität hinzufügen 
+
+- speed improvement by using different drive speeds (faster speed on streight ways for example) 
+ 
+- update of heading by measuring the wall angle 
+     
+- more contunuous position updates by lidar 
+ 
 
 <br><br><br>
 
