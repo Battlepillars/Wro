@@ -27,6 +27,7 @@ from scan_tours import scan_inner_tour, scan_outer_tour
 from unpark import unparkCW
 from scanRound import scanRound
 from driveRound import driveRound
+from park import park
 from ctypes import *
 from adafruit_servokit import ServoKit # type: ignore
 
@@ -373,8 +374,8 @@ def waitCompleteOrders():
     return running2
 def checkForColor(color, start, end):
     if start > slam.hindernisse.__len__() or end > slam.hindernisse.__len__():
-        end = end - start
-        start = 0
+        end = end - 23
+        start = start - 23
     for i in range(start, end):
         #print("color: " + str(slam.hindernisse[i].farbe))
         if slam.hindernisse[i].farbe == color:
@@ -432,22 +433,28 @@ def commandLoop(slam):
         scanRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
         scanRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18)
         scanRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
+        
+        if not waitCompleteOrders():
+            return
+        orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CW, type=Order.WINKEL))
+        if not waitCompleteOrders():
+            return
+        time.sleep(0.3)
+        orders.append(Order(angleCheckOverwrite=-90,type=Order.REPOSITION))
+        if not waitCompleteOrders():
+            return
+        time.sleep(0.3)
         for i in range(0,2):
-            if not waitCompleteOrders():
-                return
-            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CW, type=Order.WINKEL))
-            if not waitCompleteOrders():
-                return
-            time.sleep(0.3)
-            orders.append(Order(angleCheckOverwrite=-90,type=Order.REPOSITION))
-            if not waitCompleteOrders():
-                return
-            time.sleep(0.3)
             driveRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6)
             driveRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18)
+            if i == 0:
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18)
+            else:
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18, True)
+            
             if i == 0:
                 driveRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
+        park(orders, Order, waitCompleteOrders, checkForColor, 0, 18)
 
 
     elif slam.eventType == slam.ER:

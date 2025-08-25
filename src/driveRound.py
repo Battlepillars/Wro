@@ -10,7 +10,7 @@ def doReposition(orders, Order, waitCompleteOrders, rotation, angleCheck):
         return
     time.sleep(0.3)
     
-def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart):
+def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart, last = False):
     if (rotation > 1000):
         direction = Order.CCW
         outer=Hindernisse.RED
@@ -38,8 +38,8 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         orders.append(Order(x=800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
         if rotation != 90 and rotation != 1090:
             pass
-        else:
-            orders.append(Order(x=400, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=19, rotation=rotation))
+        # else:
+        #     orders.append(Order(x=400, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=19, rotation=rotation))
     else:
         if rotation != 90 and rotation != 1090:
             orders.append(Order(x=200, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=20, rotation=rotation))
@@ -48,9 +48,9 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
             orders.append(Order(x=400, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=25, rotation=rotation))
 
 
-    if rotation != 90 and rotation != 1090:
+    if not last:
         if checkForColor(Hindernisse.RED, scanStart+2, scanStart+6) or (not checkForColor(Hindernisse.GREEN, scanStart+2, scanStart+6) and checkForColor(Hindernisse.RED, scanStart, scanStart+4)):
-            if checkForColor(Hindernisse.RED, scanStart+6, scanStart+10) or (not checkForColor(Hindernisse.GREEN, scanStart+6, scanStart+10) and checkForColor(Hindernisse.RED, scanStart+4, scanStart+8)):
+            if checkForColor(Hindernisse.RED, scanStart+6, scanStart+10) or (not checkForColor(Hindernisse.GREEN, scanStart+6, scanStart+10) and checkForColor(Hindernisse.RED, scanStart+8, scanStart+12)):
                 pass
             else:
                 orders.append(Order(x=600, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=26, rotation=rotation))
@@ -58,4 +58,4 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
             if checkForColor(Hindernisse.RED, scanStart+6, scanStart+10) or (not checkForColor(Hindernisse.GREEN, scanStart+6, scanStart+10) and checkForColor(Hindernisse.RED, scanStart+4, scanStart+8)):
                 orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=27, rotation=rotation))
             else:
-                pass
+                orders.append(Order(x=400, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=28, rotation=rotation))
