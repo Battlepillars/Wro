@@ -374,8 +374,8 @@ def waitCompleteOrders():
     return running2
 def checkForColor(color, start, end):
     if start > slam.hindernisse.__len__() or end > slam.hindernisse.__len__():
-        end = end - 23
-        start = start - 23
+        end = end - 24
+        start = start - 24
     for i in range(start, end):
         #print("color: " + str(slam.hindernisse[i].farbe))
         if slam.hindernisse[i].farbe == color:
@@ -445,15 +445,14 @@ def commandLoop(slam):
             return
         time.sleep(0.3)
         for i in range(0,2):
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6)
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
+            driveRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6, i==1)
+            driveRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12, i==1)
+            driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18, i==1) 
             if i == 0:
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18)
-            else:
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18, True)
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0, i==1)
             
-            if i == 0:
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
+            if not waitCompleteOrders():
+                return
         park(orders, Order, waitCompleteOrders, checkForColor, 0, 18)
 
 
