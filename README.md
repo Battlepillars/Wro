@@ -19,9 +19,12 @@ Auch eine kurze Beschreibung des Designs oder der Auswahl des Fahrzeugchassis ka
 Die Diskussion kann ingenieurwissenschaftliche Prinzipien wie Geschwindigkeit, Drehmoment, Leistung usw. einbeziehen.
 Bauanleitungen oder Montagehinweise können zusammen mit 3D-CAD-Dateien bereitgestellt werden, um Bauteile im 3D-Druck herzustellen.
 
-Wir hatten die Idee, unser Auto kürzer als 20cm zu bauen, damit wir am Ende der drei Runden des Hindernisrennens einfach geradeaus einparken können. Dies war nach den regionalen deutschen Regeln zulässig. Kein Modellauto hat ein passendes Maß. Somit war uns bewusst, dass wir ein Auto werden umbauen müssen. Die meisten Modellautos sind um die 30cm lang. Wir trauten uns nicht zu, solch ein langes Auto auf 20cm zu kür-zen. Andere Modellautos sind nur um die 10cm lang. In diesen war kein Platz für unsere ganzen Komponenten. Nur ein einziges Modellauto hatte 22cm. Bei diesem sahen wir die Möglichkeit, es auf 20 cm zu kürzen. Dieses haben wir dann als Basis für unser selbstfahrendes Auto ausgesucht: LaTrax Rally.
+In diesem Kapitel “Mobility Management” werden wir den Motor, das Servo den Fahrtenregler und den Antriebsstrang des Modellautos näher vorstellen und erläutern, ob wir das jeweilige Bauteil übernommen haben oder ob wir es gegen eine Alternative ausgetauscht haben.
 
-Where to buy the car: https://traxxas.com/75054-5-118-latrax-rally
+A coordinated system consisting of the chassis, steering mechanism, and powertrain is responsible for the robot's mobility, allowing it to move with both precision and efficiency.
+
+## Chassis
+Wir hatten die Idee, unser Auto kürzer als 20cm zu bauen, damit wir am Ende der drei Runden des Hindernisrennens einfach geradeaus einparken können. Dies war nach den regionalen deutschen Regeln zulässig. Kein Modellauto hat ein passendes Maß. Somit war uns bewusst, dass wir ein Auto werden umbauen müssen. Die meisten Modellautos sind um die 30cm lang. Wir trauten uns nicht zu, solch ein langes Auto auf 20cm zu kür-zen. Andere Modellautos sind nur um die 10cm lang. In diesen war kein Platz für unsere ganzen Komponenten. Nur ein einziges Modellauto hatte 22cm. Bei diesem sahen wir die Möglichkeit, es auf 20 cm zu kürzen. Dieses haben wir dann als Basis für unser selbstfahrendes Auto ausgesucht: LaTrax Rally.
 
 <table>
   <tr>
@@ -30,28 +33,16 @@ Where to buy the car: https://traxxas.com/75054-5-118-latrax-rally
   </tr>
   <tr>
     <td><img src="https://github.com/Battlepillars/Wro/blob/main/auto1.jpg"><br><img src="https://github.com/Battlepillars/Wro/blob/main/auto2.jpg"> </td>
-    <td>Motorart:	Elektro<br>
-Antrieb:	4WD<br>
-Maßstab:	1:18<BR>
-Ausführung:	RTR - READY TO RUN<BR>
-Drive / Bau:	11<br>
+    <td><li>Motorart:	Elektro</li>
+<li>Antrieb:	4WD</li>
+<li>Maßstab:	1:18</li>
+<li>Ausführung:	RTR - READY TO RUN</li>
+<li>Drive / Bau:	11</li>
 </td>
    </tr>
 </table>
 
-<img src="URL des Bildes" />
-
-Motorart:	Elektro
-Antrieb:	4WD
-Maßstab:	1:18
-Ausführung:	RTR - READY TO RUN
-Drive / Bau:	11
-
-
-In diesem Kapitel “Mobility Management” werden wir den Motor, das Servo den Fahrtenregler und den Antriebsstrang des Modellautos näher vorstellen und erläutern, ob wir das jeweilige Bauteil übernommen haben oder ob wir es gegen eine Alternative ausgetauscht haben.
-
-
-A coordinated system consisting of the chassis, steering mechanism, and powertrain is responsible for the robot's mobility, allowing it to move with both precision and efficiency.
+Where to buy the car: https://traxxas.com/75054-5-118-latrax-rally
 
 <br><br>
 
@@ -82,10 +73,7 @@ Für den Bau der neuen Vorderachse haben wir vorab eine Konzeptzeichnung erstell
 ### Servo Motor
 - Bild + Spezifikationen
 
-<br><br>
 
-## Chassis
-- Erläuterung
 
 <br><br><br>
 
