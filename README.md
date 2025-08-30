@@ -87,6 +87,9 @@ For the Open Challenge, there are four different positions where we can place th
 
 In the Obstacle Challenge, two different positions are possible. Here as well, the robot uses the LiDAR to detect its position and then knows which direction it needs to drive.
 
+![WhatsApp Image 2025-08-30 at 15 24 43](https://github.com/user-attachments/assets/1f603c1c-980e-4192-8997-ed8e1bf1f1e4)
+
+
  <br><br>
 ## Position updates during driving 
 
