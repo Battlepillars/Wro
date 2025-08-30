@@ -18,12 +18,17 @@ Als Basis für unser selbstfahrendes Auto haben wir folgendes Modellauto verwend
 
 | Überschrift 1 | Überschrift 2 | Specifications |
 |---------------|---------------|---------------|
-| Zeile 1 Zelle 1 | Zeile 1 Zelle 2 | Motorart:	Elektro
+| ![auto1](https://github.com/user-attachments/assets/38bca414-9c02-4e8d-831e-e959cfc9063b)
+ |  ![auto2](https://github.com/user-attachments/assets/71093074-f71f-42ae-8dcd-02238430414c)
+| Motorart:	Elektro |
+| Zeile 2 Z![Uploading auto2.jpg…]()
+elle 1 | Zeile 2 Zelle 2 | Zeile 2 Zelle 3 |
+
+Motorart:	Elektro
 Antrieb:	4WD
 Maßstab:	1:18
 Ausführung:	RTR - READY TO RUN
-Drive / Bau:	11|
-| Zeile 2 Zelle 1 | Zeile 2 Zelle 2 | Zeile 2 Zelle 3 |
+Drive / Bau:	11
 
 
 In diesem Kapitel “Mobility Management” werden wir den Motor, das Servo den Fahrtenregler und den Antriebsstrang des Modellautos näher vorstellen und erläutern, ob wir das jeweilige Bauteil übernommen haben oder ob wir es gegen eine Alternative ausgetauscht haben.
