@@ -105,6 +105,9 @@ Two optical tracking sensors were installed to increase redundancy. If one senso
 
 - If the sensor reports a position outside the playing field, it is likewise deactivated as “not healthy”.
 
+![WhatsApp Image 2025-08-30 at 15 24 42](https://github.com/user-attachments/assets/6de3a1ca-4f9a-47d4-8c87-d71443b53063)
+
+
 ## position corrections 
 Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
 
