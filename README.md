@@ -16,9 +16,13 @@ aus den Regeln: Mobility management discussion should cover how the vehicle move
 
 Als Basis für unser selbstfahrendes Auto haben wir folgendes Modellauto verwendet: LaTrax Rally. 
 
-| Überschrift 1 | Überschrift 2 | Überschrift 3 |
+| Überschrift 1 | Überschrift 2 | Specifications |
 |---------------|---------------|---------------|
-| Zeile 1 Zelle 1 | Zeile 1 Zelle 2 | Zeile 1 Zelle 3 |
+| Zeile 1 Zelle 1 | Zeile 1 Zelle 2 | Motorart:	Elektro
+Antrieb:	4WD
+Maßstab:	1:18
+Ausführung:	RTR - READY TO RUN
+Drive / Bau:	11|
 | Zeile 2 Zelle 1 | Zeile 2 Zelle 2 | Zeile 2 Zelle 3 |
 
 
