@@ -16,27 +16,26 @@ aus den Regeln: Mobility management discussion should cover how the vehicle move
 
 Als Basis für unser selbstfahrendes Auto haben wir folgendes Modellauto verwendet: LaTrax Rally. 
 
-| ![auto1](https://github.com/user-attachments/assets/38bca414-9c02-4e8d-831e-e959cfc9063b)<br>
- ![auto2](https://github.com/user-attachments/assets/71093074-f71f-42ae-8dcd-02238430414c)  | Specifications:
-Voltage: 12V<br>
-Gear Ratio: 1:50<br>
-Speed: 650 ± 31% rpm<br>
-Torque: 0.67 ± kg·cm<br>
-Weight: 9.5g | Specifications |
-
-![auto1](https://github.com/user-attachments/assets/38bca414-9c02-4e8d-831e-e959cfc9063b)<br>
- ![auto2](https://github.com/user-attachments/assets/71093074-f71f-42ae-8dcd-02238430414c) 
+![auto1](https://github.com/user-attachments/assets/8dd730cc-99c7-47bf-97da-5233bb48fc21)
 
 
+<table>
+  <tr>
+    <th>LaTrax Rally</th>
+    <th>Specifications</th>
+  </tr>
+  <tr>
+    <td><img src=" ![auto1](https://github.com/user-attachments/assets/8dd730cc-99c7-47bf-97da-5233bb48fc21)"/> </td>
+    <td>Motorart:	Elektro<br>
+Antrieb:	4WD<br>
+Maßstab:	1:18<BR>
+Ausführung:	RTR - READY TO RUN<BR>
+Drive / Bau:	11<br>
+</td>
+   </tr>
+</table>
 
-
-| Überschrift 1 | Überschrift 2 | Specifications |
-|---------------|---------------|---------------|
-| ![auto1](https://github.com/user-attachments/assets/38bca414-9c02-4e8d-831e-e959cfc9063b)
- |  ![auto2](https://github.com/user-attachments/assets/71093074-f71f-42ae-8dcd-02238430414c)
-| Motorart:	Elektro |
-| Zeile 2 Z![Uploading auto2.jpg…]()
-elle 1 | Zeile 2 Zelle 2 | Zeile 2 Zelle 3 |
+<img src="URL des Bildes" />
 
 Motorart:	Elektro
 Antrieb:	4WD
