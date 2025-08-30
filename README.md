@@ -18,10 +18,10 @@ Als Basis für unser selbstfahrendes Auto haben wir folgendes Modellauto verwend
 
 | ![auto1](https://github.com/user-attachments/assets/38bca414-9c02-4e8d-831e-e959cfc9063b)<br>
  ![auto2](https://github.com/user-attachments/assets/71093074-f71f-42ae-8dcd-02238430414c)  | Specifications:
-Voltage: 12V
-Gear Ratio: 1:50
-Speed: 650 ± 31% rpm
-Torque: 0.67 ± kg·cm
+Voltage: 12V<br>
+Gear Ratio: 1:50<br>
+Speed: 650 ± 31% rpm<br>
+Torque: 0.67 ± kg·cm<br>
 Weight: 9.5g | Specifications |
 
 ![auto1](https://github.com/user-attachments/assets/38bca414-9c02-4e8d-831e-e959cfc9063b)<br>
