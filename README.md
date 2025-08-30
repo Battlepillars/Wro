@@ -1,7 +1,7 @@
 # THE TEAM
 
-<img width="1159" height="289" alt="battlepillars_schriftzug Kopie" src="https://github.com/user-attachments/assets/b1e74876-8f35-4747-abe6-3c268d19bde8" />
-<img width="798" height="262" alt="raupe Kopie" src="https://github.com/user-attachments/assets/5048b443-22c2-430e-9be0-1adfdb5afe0f" />
+<img width="600" height="289" alt="battlepillars_schriftzug Kopie" src="https://github.com/user-attachments/assets/b1e74876-8f35-4747-abe6-3c268d19bde8" />
+<img width="500" height="262" alt="raupe Kopie" src="https://github.com/user-attachments/assets/5048b443-22c2-430e-9be0-1adfdb5afe0f" />
 
 In this repository, you’ll find the documentation for the robot created by the "Battlepillars" for the 2025 World Robot Olympiad Future Engineers competition. The robot was the result of a collaborative effort by three students.
 
@@ -14,18 +14,22 @@ Fotos und kurze Beschreibung
 # Mobility Management
 aus den Regeln: Mobility management discussion should cover how the vehicle movements are managed. What motors are selected, how they are selected and implemented. A brief discussion regarding the vehicle chassis design /selection can be provided as well as the mounting of all components to the vehicle chassis/structure. The discussion may include engineering principles such as speed, torque, power etc. usage. Building or assembly instructions can be provided together with 3D CAD files to 3D print parts. 
 
-Als Basis für unser selbstfahrendes Auto haben wir folgendes Modellauto verwendet: LaTrax Rally. 
+Die Diskussion zur Bewegungssteuerung sollte beschreiben, wie die Bewegungen des Fahrzeugs gesteuert werden. Dabei sollte erläutert werden, welche Motoren ausgewählt wurden, nach welchen Kriterien sie ausgewählt wurden und wie sie im System implementiert sind.
+Auch eine kurze Beschreibung des Designs oder der Auswahl des Fahrzeugchassis kann enthalten sein, ebenso wie Informationen zur Befestigung aller Komponenten am Chassis bzw. an der Fahrzeugstruktur.
+Die Diskussion kann ingenieurwissenschaftliche Prinzipien wie Geschwindigkeit, Drehmoment, Leistung usw. einbeziehen.
+Bauanleitungen oder Montagehinweise können zusammen mit 3D-CAD-Dateien bereitgestellt werden, um Bauteile im 3D-Druck herzustellen.
 
-![auto1](https://github.com/user-attachments/assets/8dd730cc-99c7-47bf-97da-5233bb48fc21)
+Wir hatten die Idee, unser Auto kürzer als 20cm zu bauen, damit wir am Ende der drei Runden des Hindernisrennens einfach geradeaus einparken können. Dies war nach den regionalen deutschen Regeln zulässig. Kein Modellauto hat ein passendes Maß. Somit war uns bewusst, dass wir ein Auto werden umbauen müssen. Die meisten Modellautos sind um die 30cm lang. Wir trauten uns nicht zu, solch ein langes Auto auf 20cm zu kür-zen. Andere Modellautos sind nur um die 10cm lang. In diesen war kein Platz für unsere ganzen Komponenten. Nur ein einziges Modellauto hatte 22cm. Bei diesem sahen wir die Möglichkeit, es auf 20 cm zu kürzen. Dieses haben wir dann als Basis für unser selbstfahrendes Auto ausgesucht: LaTrax Rally.
 
+Where to buy the car: https://traxxas.com/75054-5-118-latrax-rally
 
 <table>
   <tr>
-    <th>LaTrax Rally</th>
-    <th>Specifications</th>
+    <th width=500>LaTrax Rally</th>
+    <th width=500>Specifications</th>
   </tr>
   <tr>
-    <td><img src=" ![auto1](https://github.com/user-attachments/assets/8dd730cc-99c7-47bf-97da-5233bb48fc21)"/> </td>
+    <td><img src="https://github.com/Battlepillars/Wro/blob/main/auto1.jpg"><br><img src="https://github.com/Battlepillars/Wro/blob/main/auto2.jpg"> </td>
     <td>Motorart:	Elektro<br>
 Antrieb:	4WD<br>
 Maßstab:	1:18<BR>
