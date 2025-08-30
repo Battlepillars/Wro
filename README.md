@@ -16,6 +16,12 @@ aus den Regeln: Mobility management discussion should cover how the vehicle move
 
 Als Basis für unser selbstfahrendes Auto haben wir folgendes Modellauto verwendet: LaTrax Rally. 
 
+| ![auto1](https://github.com/user-attachments/assets/38bca414-9c02-4e8d-831e-e959cfc9063b)
+ ![auto2](https://github.com/user-attachments/assets/71093074-f71f-42ae-8dcd-02238430414c)  | 
+
+
+
+
 | Überschrift 1 | Überschrift 2 | Specifications |
 |---------------|---------------|---------------|
 | ![auto1](https://github.com/user-attachments/assets/38bca414-9c02-4e8d-831e-e959cfc9063b)
