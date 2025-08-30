@@ -60,7 +60,26 @@ Das vorhandene Chassis hatte einen Allradantrieb eingebaut, der für den Wettbew
 Für den Bau der neuen Vorderachse haben wir vorab eine Konzeptzeichnung erstellt: 
 
 ### Motor
-- Bild + Spezifikationen
+Den bereits vorhandenen Brushed Motor haben wir anderen Motorarten gegenübergestellt, über deren Vor- und Nachteile wir uns im Internet informiert haben. Unsere Recherche hat ergeben, dass es neben dem Brushed Motor noch einen Brushless Motor und einen Schrittmotor gibt.
+
+- Brushless Motor: Dieser hätte mehr Leistung als der Motor, der im Modellauto verbaut war, was für den Wettbewerb jedoch nicht nötig ist. Außerdem sind diese Motoren bei niedrigen Geschwindigkeiten schwierig zu steuern, was ungünstig ist, wenn wir langsam die Hindernisse umfahren möchten.
+- Schrittmotor: Diese Motoren sind sehr genau zu steuern, aber aufwendig in der Ansteuerung. Außerdem brauchen sie viel Strom, sie sind groß und eher langsam.
+  
+=> Wir haben uns dafür entschieden, den bereits im Modellauto vorhandenen Brushed Motor zu verwenden.
+
+<table>
+  <tr>
+    <th width=500>Motor</th>
+    <th width=500>Specifications</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Battlepillars/Wro/blob/main/motor.jpg"> </td>
+    <td>23-turn brushed 370-size LaTrax® motor with bullet connectors
+</td>
+   </tr>
+</table>
+
+Where to buy the motor: [https://traxxas.com/75054-5-118-latrax-rally](https://traxxas.com/7575r-23-turn-brushed-370-size-motor)
 
 ### Motor Driver (= Fahrtenregler)
 - Bild + Spezifikationen
