@@ -14,14 +14,33 @@ Fotos und kurze Beschreibung
 # Mobility Management
 aus den Regeln: Mobility management discussion should cover how the vehicle movements are managed. What motors are selected, how they are selected and implemented. A brief discussion regarding the vehicle chassis design /selection can be provided as well as the mounting of all components to the vehicle chassis/structure. The discussion may include engineering principles such as speed, torque, power etc. usage. Building or assembly instructions can be provided together with 3D CAD files to 3D print parts. 
 
-Kurzer Satz was in dem Kapitel alles benannt werden wird.
+Als Basis für unser selbstfahrendes Auto haben wir folgendes Modellauto verwendet: LaTrax Rally. 
+
+| Überschrift 1 | Überschrift 2 | Überschrift 3 |
+|---------------|---------------|---------------|
+| Zeile 1 Zelle 1 | Zeile 1 Zelle 2 | Zeile 1 Zelle 3 |
+| Zeile 2 Zelle 1 | Zeile 2 Zelle 2 | Zeile 2 Zelle 3 |
+
+
+In diesem Kapitel “Mobility Management” werden wir den Motor, das Servo den Fahrtenregler und den Antriebsstrang des Modellautos näher vorstellen und erläutern, ob wir das jeweilige Bauteil übernommen haben oder ob wir es gegen eine Alternative ausgetauscht haben.
+
+
+A coordinated system consisting of the chassis, steering mechanism, and powertrain is responsible for the robot's mobility, allowing it to move with both precision and efficiency.
 
 <br><br>
 
 ## Powertrain
 
 ### Drivetrain
-- Erläuterung
+Folgende Antriebsarten gibt es bei Autos: 
+
+- Allradantrieb: Alle Räder werden angetrieben. 
+- Frontantrieb: Nur die vorderen Räder werden angetrieben. 
+- Heckantrieb: Nur die hinteren Räder werden angetrieben. 
+
+Das vorhandene Chassis hatte einen Allradantrieb eingebaut, der für den Wettbewerb in Ordnung gewesen wäre. Allerdings war mit der vorhandenen Lenkung kein großer Radeinschlag möglich. Wir konnten z.B. bei der Parkchallenge nicht in einem Zug ausparken. Somit haben wir überlegt, wie wir den Lenkausschlag erhöhen können. Dies haben wir erreicht, indem wir eine komplett neue Vorderachse konstruiert haben. Beim Umbau war es nicht möglich, den Antrieb der Vorderachse zu übernehmen, da die Kardangelenke diesen starken Einschlag nicht mitgemacht haben. Deshalb benutzen wir nur noch den Hinterradantrieb. 
+
+Für den Bau der neuen Vorderachse haben wir vorab eine Konzeptzeichnung erstellt: 
 
 ### Motor
 - Bild + Spezifikationen
