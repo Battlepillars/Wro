@@ -127,6 +127,9 @@ A list of coordinates was created for all possible obstacle positions. The LiDAR
 ### Determining the color of the obstacle
 
 The camera is then used to identify the color of the obstacle. For image recognition, information from the WRO support document (WRO Future Engineers Getting Started) was used. Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. For visualization, this angle is drawn on the map.
+
+![Programmausgabe Kopie](https://github.com/user-attachments/assets/9f9b5f2e-5cb8-4573-8a63-38dcde1bda16)
+
  
 <br><br><br><br>
 
