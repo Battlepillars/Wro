@@ -106,7 +106,7 @@ Nach weiterführender und intensiver Recherche haben wir herausgefunden, dass ei
    </tr>
 </table>
 
-Where to buy the motor: [https://traxxas.com/75054-5-118-latrax-rally](https://traxxas.com/7575r-23-turn-brushed-370-size-motor)
+Where to buy the motor driver: https://traxxas.com/75054-5-118-latrax-rally](https://traxxas.com/7575r-23-turn-brushed-370-size-motor)](https://www.hobbywingdirect.com/products/quicrun-1080-esc-g2?srsltid=AfmBOopVdrZArOQJL3USnKaYICXGXQEVZ-croIOSkYW3BAix10OO1lqr
   
 <br><br>
 
