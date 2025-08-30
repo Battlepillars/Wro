@@ -82,7 +82,31 @@ Den bereits vorhandenen Brushed Motor haben wir anderen Motorarten gegenüberges
 Where to buy the motor: [https://traxxas.com/75054-5-118-latrax-rally](https://traxxas.com/7575r-23-turn-brushed-370-size-motor)
 
 ### Motor Driver (= Fahrtenregler)
-- Bild + Spezifikationen
+Der Fahrtenregler sitzt zwischen der Batterie und dem Motor und ist zuständig für die Steuerung der Drehzahl des Motors. In unseren Experimenten hat sich gezeigt, dass der mitgelieferte Fahrtenregler für schnelles Fahren ausgelegt ist. Im langsamen Bereich lässt er sich nicht feinfühlig regeln. 
+
+Nach weiterführender und intensiver Recherche haben wir herausgefunden, dass einige Modellautos für das Fahren auf hügeligen und rauen Böden optimiert sind. Diese Autos nennen sich “Crawler”. Die Eigenschaften der Fahrtenregler von Crawlern entsprechen der Anforderung, die wir haben, nämlich das präzise Fahren bei langsamen Geschwindigkeiten.
+
+=> Wegen dieser spezifischen Vorteile haben wir uns für einen neuen den Fahrtenregler entschieden, den Quicrun WP 1080–G2.
+
+<table>
+  <tr>
+    <th width=500>Motor Driver</th>
+    <th width=500>Specifications</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Battlepillars/Wro/blob/main/fahrtenregler.jpg"> </td>
+    <td><li>Application: 1/10th Rock Crawler</li>
+<li>Motor Type: Brushed Motor (540 / 555 size motors)</li>
+<li>Cont./Peak Current: 80A/400A</li>
+<li>Input Voltage: 2-3S LiPo/5-9S Cell NiMH</li>
+<li>BEC Output: 6V / 7.4V / 8.4V @ 4A (Switch-mode)</li>
+<li>Wires & Connectors: Black-14AWG-200mm / Red-14AWG-200mm</li>
+<li>Programming device: LED program box</li>
+</td>
+   </tr>
+</table>
+
+Where to buy the motor: [https://traxxas.com/75054-5-118-latrax-rally](https://traxxas.com/7575r-23-turn-brushed-370-size-motor)
   
 <br><br>
 
