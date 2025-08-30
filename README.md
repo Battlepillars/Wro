@@ -3,6 +3,7 @@
 <img width="1159" height="289" alt="battlepillars_schriftzug Kopie" src="https://github.com/user-attachments/assets/b1e74876-8f35-4747-abe6-3c268d19bde8" />
 <img width="798" height="262" alt="raupe Kopie" src="https://github.com/user-attachments/assets/5048b443-22c2-430e-9be0-1adfdb5afe0f" />
 
+In this repository, you’ll find the documentation for the robot created by the "Battlepillars" for the 2025 World Robot Olympiad Future Engineers competition. The robot was the result of a collaborative effort by three students.
 
 aus den Regeln: Pictures of the team and robot must be provided. The pictures of the robot must cover all sides of the robot, must be clear, in focus and show aspects of the mobility, power and sense, and obstacle management. Reference in the discussion sections 1, 2 and 3 can be made to these pictures. Team photo is necessary for judges to relate and identify the team during the local and international competitions. 
 
