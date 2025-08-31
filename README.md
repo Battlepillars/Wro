@@ -19,12 +19,14 @@ Auch eine kurze Beschreibung des Designs oder der Auswahl des Fahrzeugchassis ka
 Die Diskussion kann ingenieurwissenschaftliche Prinzipien wie Geschwindigkeit, Drehmoment, Leistung usw. einbeziehen.
 Bauanleitungen oder Montagehinweise können zusammen mit 3D-CAD-Dateien bereitgestellt werden, um Bauteile im 3D-Druck herzustellen.
 
-In diesem Kapitel “Mobility Management” werden wir den Motor, das Servo den Fahrtenregler und den Antriebsstrang des Modellautos näher vorstellen und erläutern, ob wir das jeweilige Bauteil übernommen haben oder ob wir es gegen eine Alternative ausgetauscht haben.
-
-A coordinated system consisting of the chassis, steering mechanism, and powertrain is responsible for the robot's mobility, allowing it to move with both precision and efficiency.
+A coordinated system consisting of the chassis, steering mechanism, and powertrain is responsible for the robot's mobility, allowing it to move with both precision and efficiency. In den folgenden Kapiteln werden diese einzelnen Elemente näher erläutert.
 
 ## Chassis
-Wir hatten die Idee, unser Auto kürzer als 20cm zu bauen, damit wir am Ende der drei Runden des Hindernisrennens einfach geradeaus einparken können. Dies war nach den regionalen deutschen Regeln zulässig. Kein Modellauto hat ein passendes Maß. Somit war uns bewusst, dass wir ein Auto werden umbauen müssen. Die meisten Modellautos sind um die 30cm lang. Wir trauten uns nicht zu, solch ein langes Auto auf 20cm zu kür-zen. Andere Modellautos sind nur um die 10cm lang. In diesen war kein Platz für unsere ganzen Komponenten. Nur ein einziges Modellauto hatte 22cm. Bei diesem sahen wir die Möglichkeit, es auf 20 cm zu kürzen. Dieses haben wir dann als Basis für unser selbstfahrendes Auto ausgesucht: LaTrax Rally.
+Anfangs entstand die Idee, ein Fahrzeug mit einer Gesamtlänge von unter 20 cm zu konstruieren, um am Ende des dreirundigen Hindernisrennens einfach geradeaus in die Parklücke einfahren zu können. Diese Strategie war im Rahmen der regionalen deutschen Regelungen zulässig.
+
+Da handelsübliche Modellautos in der Regel nicht den erforderlichen Maßen entsprechen, war schnell klar, dass ein Umbau eines Modellautos notwendig sein würde. Die meisten verfügbaren Modelle weisen eine Länge von etwa 30 cm auf – eine Reduktion auf unter 20 cm erschien in diesen Fällen technisch zu aufwendig. Kleinere Modelle mit einer Länge von rund 10 cm boten hingegen nicht genügend Raum für sämtliche erforderlichen Komponenten.
+
+Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeignet erschien, auf die gewünschte Länge von 20 cm angepasst zu werden. Dieses Modell – der LaTrax Rally – wurde daher als Basis für das selbstfahrende Fahrzeug ausgewählt.
 
 <table>
   <tr>
