@@ -57,9 +57,33 @@ Folgende Antriebsarten gibt es bei Autos:
 - Frontantrieb: Nur die vorderen Räder werden angetrieben. 
 - Heckantrieb: Nur die hinteren Räder werden angetrieben. 
 
-Das vorhandene Chassis hatte einen Allradantrieb eingebaut, der für den Wettbewerb in Ordnung gewesen wäre. Allerdings war mit der vorhandenen Lenkung kein großer Radeinschlag möglich. Wir konnten z.B. bei der Parkchallenge nicht in einem Zug ausparken. Somit haben wir überlegt, wie wir den Lenkausschlag erhöhen können. Dies haben wir erreicht, indem wir eine komplett neue Vorderachse konstruiert haben. Beim Umbau war es nicht möglich, den Antrieb der Vorderachse zu übernehmen, da die Kardangelenke diesen starken Einschlag nicht mitgemacht haben. Deshalb benutzen wir nur noch den Hinterradantrieb. 
+Das vorhandene Chassis war serienmäßig mit einem Allradantrieb ausgestattet, der den Wettbewerbsanforderungen grundsätzlich genügt hätte. Die vorhandene Lenkung ließ jedoch keinen ausreichenden Radeinschlag zu, was beispielsweise ein Ausparken in einem Zug bei der Parkchallenge unmöglich machte.
 
-Für den Bau der neuen Vorderachse haben wir vorab eine Konzeptzeichnung erstellt: 
+Zur Verbesserung des Lenkeinschlags wurde daher eine alternative Lösung erarbeitet. Diese bestand in der Konstruktion einer vollständig neuen Vorderachse. Im Zuge des Umbaus konnte der Antrieb der Vorderräder nicht beibehalten werden, da die vorhandenen Kardangelenke den erhöhten Lenkeinschlag mechanisch nicht zuließen. Aus diesem Grund wurde auf einen reinen Hinterradantrieb umgestellt.
+
+Somit wurde ein Teil der Vorderachse mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt.
+
+<img width="600" height="983" alt="vorderachse_3d" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" />
+
+Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel benötigt.
+
+<table>
+  <tr>
+    <th width=500>Lenkgestänge und Achsschenkel</th>
+    <th width=500>Specifications</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Battlepillars/Wro/blob/main/lenkstange.jpg"> </td>
+    <td>23-turn brushed 370-size LaTrax® motor with bullet connectors
+</td>
+   </tr>
+</table>
+
+
+haben wir uns außerdem ein Set bestellt, aus dem wir die Achsschenkel und das Lenkgestänge verwendet haben (https://www.ebay.de/itm/176692013502). Die Räder sind von Lego. 
+
+
+
 
 ### Motor
 Den bereits vorhandenen Brushed Motor haben wir anderen Motorarten gegenübergestellt, über deren Vor- und Nachteile wir uns im Internet informiert haben. Unsere Recherche hat ergeben, dass es neben dem Brushed Motor noch einen Brushless Motor und einen Schrittmotor gibt.
