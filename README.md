@@ -42,34 +42,37 @@ Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeig
 <li>Drive / Bau:	11</li>
 </td>
    </tr>
+    <tr><TD colspan=2>Where to buy the car: https://traxxas.com/75054-5-118-latrax-rally</TD></tr>
 </table>
 
-Where to buy the car: https://traxxas.com/75054-5-118-latrax-rally
 
 <br><br>
 
 ## Powertrain
 
 ### Drivetrain
-Folgende Antriebsarten gibt es bei Autos: 
+Bei Automobilen lassen sich grundsätzlich drei Antriebsarten unterscheiden:
 
-- Allradantrieb: Alle Räder werden angetrieben. 
-- Frontantrieb: Nur die vorderen Räder werden angetrieben. 
-- Heckantrieb: Nur die hinteren Räder werden angetrieben. 
+- Allradantrieb: Sämtliche Räder werden mit Antriebskraft versorgt.
+- Frontantrieb: Die Antriebskraft wirkt ausschließlich auf die Vorderräder.
+- Heckantrieb: Nur die Hinterräder werden angetrieben.
 
 Das vorhandene Chassis war serienmäßig mit einem Allradantrieb ausgestattet, der den Wettbewerbsanforderungen grundsätzlich genügt hätte. Die vorhandene Lenkung ließ jedoch keinen ausreichenden Radeinschlag zu, was beispielsweise ein Ausparken in einem Zug bei der Parkchallenge unmöglich machte.
 
 Zur Verbesserung des Lenkeinschlags wurde daher eine alternative Lösung erarbeitet. Diese bestand in der Konstruktion einer vollständig neuen Vorderachse. Im Zuge des Umbaus konnte der Antrieb der Vorderräder nicht beibehalten werden, da die vorhandenen Kardangelenke den erhöhten Lenkeinschlag mechanisch nicht zuließen. Aus diesem Grund wurde auf einen reinen Hinterradantrieb umgestellt.
 
+So?
+Aus diesem Grund wurde der ursprüngliche Allradantrieb deaktiviert und stattdessen auf Heckantrieb umgestellt. Diese Konfiguration bietet im Kontext niedriger Geschwindigkeit und präziser Steuerung eine ausreichende Kraftübertragung, wobei gleichzeitig die Lenkung von Antriebseinflüssen entkoppelt wird – ein Vorteil, insbesondere bei feinfühligem Navigieren durch enge Hindernisparcours.
+
 Somit wurde ein Teil der Vorderachse mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt.
 
 <img width="600" height="983" alt="vorderachse_3d" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" />
-
-Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel benötigt.
-
+<br><br>
+Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel benötigt:
+<br><br>
 <table>
   <tr>
-    <th width=500>Lenkgestänge und Achsschenkel</th>
+    <th width=300>Lenkgestänge und Achsschenkel</th>
     <th width=500>Specifications</th>
   </tr>
   <tr>
@@ -77,15 +80,16 @@ Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel ben�
     <td>RC Metall Vorderachse Hinterachse Für WPL HengLong 1/16 Militär LKW RC LKW DE-
 </td>
    </tr>
+  <tr><TD colspan=2>Where to buy the set: https://www.ebay.de/itm/176692013502</TD></tr>
 </table>
 
-Where to buy the set: [https://traxxas.com/75054-5-118-latrax-rally](https://www.ebay.de/itm/176692013502)
 
-Die Räder sind von Lego. 
+<br><br>
+Die Räder der neuen Vorderachse sind von Lego:
 
 <table>
   <tr>
-    <th width=500>wheels</th>
+    <th width=300>wheels</th>
     <th width=500>Specifications</th>
   </tr>
   <tr>
@@ -93,9 +97,8 @@ Die Räder sind von Lego.
     <td>Size: 5,6cm x 1,5cm x 5,6cm
 </td>
    </tr>
+  <tr><TD colspan=2>Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</TD></tr>
 </table>
-
-Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367
 
 
 
@@ -121,9 +124,9 @@ Auf Grundlage dieser Analyse wurde entschieden, den bereits im Modellauto integr
     <td>23-turn brushed 370-size LaTrax® motor with bullet connectors
 </td>
    </tr>
+    <tr><TD colspan=2>Where to buy the motor: https://traxxas.com/7575r-23-turn-brushed-370-size-motor</TD></tr>
 </table>
 
-Where to buy the motor: [https://traxxas.com/75054-5-118-latrax-rally](https://traxxas.com/7575r-23-turn-brushed-370-size-motor)
 
 ### Motor Driver (= Fahrtenregler)
 Der Fahrtenregler ist zwischen der Energiequelle und dem Antriebsmotor positioniert und übernimmt die Regelung der Motordrehzahl. Im Rahmen experimenteller Untersuchungen konnte festgestellt werden, dass der ursprünglich verbaute Fahrtenregler primär auf den Hochgeschwindigkeitsbetrieb ausgelegt ist. Im unteren Drehzahlbereich ließ sich keine ausreichende Feinsteuerung realisieren.
