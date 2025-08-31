@@ -151,9 +151,9 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
 <li>Programming device: LED program box</li>
 </td>
    </tr>
+    <tr><TD colspan=2>Where to buy the motor driver: https://www.monsterhopups.de/Hobbywing-HW30120202-QuicRun-WP1080-G2-Crawler-Brushed-Regler-80A-BEC-4A?atxs=gads&atxm=18078629167&gad_source=1&gad_campaignid=17424345074&gbraid=0AAAAAD23jyTN7bxtsr3T6biU3aI9xmDWs&gclid=Cj0KCQjw5c_FBhDJARIsAIcmHK-dbxljt7XxOlX__MzJv28fV3wxcFXuAX0Qus8I1LeJkNiUO7n1ifYaAuffEALw_wcB</TD></tr>
 </table>
 
-Where to buy the motor driver: https://traxxas.com/75054-5-118-latrax-rally](https://traxxas.com/7575r-23-turn-brushed-370-size-motor)](https://www.hobbywingdirect.com/products/quicrun-1080-esc-g2?srsltid=AfmBOopVdrZArOQJL3USnKaYICXGXQEVZ-croIOSkYW3BAix10OO1lqr
   
 <br><br>
 
