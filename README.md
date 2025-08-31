@@ -73,25 +73,43 @@ Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel ben�
     <th width=500>Specifications</th>
   </tr>
   <tr>
-    <td><img src="https://github.com/Battlepillars/Wro/blob/main/lenkstange.jpg"> </td>
-    <td>23-turn brushed 370-size LaTrax® motor with bullet connectors
+    <td><img src="https://github.com/Battlepillars/Wro/blob/main/Lenkstange.jpg"> </td>
+    <td>RC Metall Vorderachse Hinterachse Für WPL HengLong 1/16 Militär LKW RC LKW DE-
 </td>
    </tr>
 </table>
 
+Where to buy the set: [https://traxxas.com/75054-5-118-latrax-rally](https://www.ebay.de/itm/176692013502)
 
-haben wir uns außerdem ein Set bestellt, aus dem wir die Achsschenkel und das Lenkgestänge verwendet haben (https://www.ebay.de/itm/176692013502). Die Räder sind von Lego. 
+Die Räder sind von Lego. 
+
+<table>
+  <tr>
+    <th width=500>wheels</th>
+    <th width=500>Specifications</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Battlepillars/Wro/blob/main/legorad.jpg"> </td>
+    <td>Size: 5,6cm x 1,5cm x 5,6cm
+</td>
+   </tr>
+</table>
+
+Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367
 
 
 
 
 ### Motor
-Den bereits vorhandenen Brushed Motor haben wir anderen Motorarten gegenübergestellt, über deren Vor- und Nachteile wir uns im Internet informiert haben. Unsere Recherche hat ergeben, dass es neben dem Brushed Motor noch einen Brushless Motor und einen Schrittmotor gibt.
+Der bereits vorhandene Brushed-Motor wurde im Rahmen einer vergleichenden Analyse verschiedenen Motorarten gegenübergestellt. Zur Bewertung der jeweiligen Vor- und Nachteile wurde eine internetgestützte Recherche durchgeführt. Dabei konnten neben dem Brushed-Motor insbesondere der Brushless-Motor sowie der Schrittmotor als relevante Alternativen identifiziert werden.
 
-- Brushless Motor: Dieser hätte mehr Leistung als der Motor, der im Modellauto verbaut war, was für den Wettbewerb jedoch nicht nötig ist. Außerdem sind diese Motoren bei niedrigen Geschwindigkeiten schwierig zu steuern, was ungünstig ist, wenn wir langsam die Hindernisse umfahren möchten.
-- Schrittmotor: Diese Motoren sind sehr genau zu steuern, aber aufwendig in der Ansteuerung. Außerdem brauchen sie viel Strom, sie sind groß und eher langsam.
-  
-=> Wir haben uns dafür entschieden, den bereits im Modellauto vorhandenen Brushed Motor zu verwenden.
+Brushless-Motor:
+Diese Bauart bietet grundsätzlich eine höhere Leistungsabgabe im Vergleich zum im Modellfahrzeug verbauten Brushed-Motor. Da im Rahmen des Wettbewerbs jedoch keine hohe Endgeschwindigkeit erforderlich ist, wurde dieser Vorteil als nicht entscheidungsrelevant eingestuft. Zudem weisen Brushless-Motoren insbesondere bei niedrigen Drehzahlen eine eingeschränkte Steuerbarkeit auf, was eine präzise Navigation im Hindernisparcours erschwert.
+
+Schrittmotor:
+Schrittmotoren zeichnen sich durch eine hohe Steuerpräzision aus. Allerdings ist ihre Ansteuerung vergleichsweise komplex. Zusätzlich gehen ein hoher Stromverbrauch, größere Bauformen und eine geringe maximale Drehzahl mit dieser Motorart einher, was sie für den vorgesehenen Einsatzbereich als ungeeignet erscheinen lässt.
+
+Auf Grundlage dieser Analyse wurde entschieden, den bereits im Modellauto integrierten Brushed-Motor weiterzuverwenden, da dieser unter den gegebenen Rahmenbedingungen die funktional und technisch sinnvollste Lösung darstellt.
 
 <table>
   <tr>
@@ -108,15 +126,15 @@ Den bereits vorhandenen Brushed Motor haben wir anderen Motorarten gegenüberges
 Where to buy the motor: [https://traxxas.com/75054-5-118-latrax-rally](https://traxxas.com/7575r-23-turn-brushed-370-size-motor)
 
 ### Motor Driver (= Fahrtenregler)
-Der Fahrtenregler sitzt zwischen der Batterie und dem Motor und ist zuständig für die Steuerung der Drehzahl des Motors. In unseren Experimenten hat sich gezeigt, dass der mitgelieferte Fahrtenregler für schnelles Fahren ausgelegt ist. Im langsamen Bereich lässt er sich nicht feinfühlig regeln. 
+Der Fahrtenregler ist zwischen der Energiequelle und dem Antriebsmotor positioniert und übernimmt die Regelung der Motordrehzahl. Im Rahmen experimenteller Untersuchungen konnte festgestellt werden, dass der ursprünglich verbaute Fahrtenregler primär auf den Hochgeschwindigkeitsbetrieb ausgelegt ist. Im unteren Drehzahlbereich ließ sich keine ausreichende Feinsteuerung realisieren.
 
-Nach weiterführender und intensiver Recherche haben wir herausgefunden, dass einige Modellautos für das Fahren auf hügeligen und rauen Böden optimiert sind. Diese Autos nennen sich “Crawler”. Die Eigenschaften der Fahrtenregler von Crawlern entsprechen der Anforderung, die wir haben, nämlich das präzise Fahren bei langsamen Geschwindigkeiten.
+Im Zuge weiterführender Recherchen wurde festgestellt, dass bestimmte Modellfahrzeuge, sogenannte Crawler, speziell für den Einsatz auf unebenem und steilem Gelände konzipiert sind. Die in diesen Fahrzeugen eingesetzten Fahrtenregler zeichnen sich durch eine besonders feinfühlige Steuerbarkeit im Niedriggeschwindigkeitsbereich aus und erfüllen somit die für das Projekt relevanten Anforderungen an präzises Fahrverhalten bei geringer Geschwindigkeit.
 
-=> Wegen dieser spezifischen Vorteile haben wir uns für einen neuen den Fahrtenregler entschieden, den Quicrun WP 1080–G2.
+Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprünglich verbauten Regler durch ein geeignetes Modell zu ersetzen. Die Wahl fiel auf den Quicrun WP 1080–G2, dessen technische Eigenschaften den spezifizierten Anforderungen in vollem Umfang entsprechen.
 
 <table>
   <tr>
-    <th width=500>Motor Driver</th>
+    <th width=500>Motor Driver Quicrun WP 1080–G2</th>
     <th width=500>Specifications</th>
   </tr>
   <tr>
@@ -140,7 +158,11 @@ Where to buy the motor driver: https://traxxas.com/75054-5-118-latrax-rally](htt
 - Erläuterung (auch Ackermann!)
 
 ### Servo Motor
-- Bild + Spezifikationen
+Der Servo ist für die Lenkung der Vorderräder verantwortlich und sitzt direkt im Modellfahrzeug. Die Stellgeschwindigkeit sowie das Drehmoment dieses Servos wurden im Rahmen einer technischen Bewertung als vollumfänglich ausreichend für die Wettbewerbsanforderungen eingestuft.
+
+Konkret handelt es sich um den Traxxas Waterproof Sub-Micro Servo (Modellnummer 2065A). Dieser erzeugt bei einer Betriebsspannung von 6,0 V ein Drehmoment von 2,3 kg·cm (≈ 32 oz-in) und erreicht eine Stellzeit von 0,20 s pro 60°.
+
+Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wurde beschlossen, den bereits im Modell vorhandenen Servo weiterhin zu verwenden.
 
 
 
