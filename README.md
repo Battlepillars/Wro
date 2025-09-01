@@ -106,10 +106,10 @@ Die Räder der neuen Vorderachse sind von Lego:
 ### Motor
 Der bereits vorhandene Brushed-Motor wurde im Rahmen einer vergleichenden Analyse verschiedenen Motorarten gegenübergestellt. Zur Bewertung der jeweiligen Vor- und Nachteile wurde eine internetgestützte Recherche durchgeführt. Dabei konnten neben dem Brushed-Motor insbesondere der Brushless-Motor sowie der Schrittmotor als relevante Alternativen identifiziert werden.
 
-Brushless-Motor:
+- Brushless-Motor:<br>
 Diese Bauart bietet grundsätzlich eine höhere Leistungsabgabe im Vergleich zum im Modellfahrzeug verbauten Brushed-Motor. Da im Rahmen des Wettbewerbs jedoch keine hohe Endgeschwindigkeit erforderlich ist, wurde dieser Vorteil als nicht entscheidungsrelevant eingestuft. Zudem weisen Brushless-Motoren insbesondere bei niedrigen Drehzahlen eine eingeschränkte Steuerbarkeit auf, was eine präzise Navigation im Hindernisparcours erschwert.
 
-Schrittmotor:
+- Schrittmotor:<br>
 Schrittmotoren zeichnen sich durch eine hohe Steuerpräzision aus. Allerdings ist ihre Ansteuerung vergleichsweise komplex. Zusätzlich gehen ein hoher Stromverbrauch, größere Bauformen und eine geringe maximale Drehzahl mit dieser Motorart einher, was sie für den vorgesehenen Einsatzbereich als ungeeignet erscheinen lässt.
 
 Auf Grundlage dieser Analyse wurde entschieden, den bereits im Modellauto integrierten Brushed-Motor weiterzuverwenden, da dieser unter den gegebenen Rahmenbedingungen die funktional und technisch sinnvollste Lösung darstellt.
@@ -133,7 +133,7 @@ Der Fahrtenregler ist zwischen der Energiequelle und dem Antriebsmotor positioni
 
 Im Zuge weiterführender Recherchen wurde festgestellt, dass bestimmte Modellfahrzeuge, sogenannte Crawler, speziell für den Einsatz auf unebenem und steilem Gelände konzipiert sind. Die in diesen Fahrzeugen eingesetzten Fahrtenregler zeichnen sich durch eine besonders feinfühlige Steuerbarkeit im Niedriggeschwindigkeitsbereich aus und erfüllen somit die für das Projekt relevanten Anforderungen an präzises Fahrverhalten bei geringer Geschwindigkeit.
 
-Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprünglich verbauten Regler durch ein geeignetes Modell zu ersetzen. Die Wahl fiel auf den Quicrun WP 1080–G2, dessen technische Eigenschaften den spezifizierten Anforderungen in vollem Umfang entsprechen.
+Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprünglich verbauten Regler durch ein geeigneteres Modell zu ersetzen. Die Wahl fiel auf den Quicrun WP 1080–G2, dessen technische Eigenschaften den spezifizierten Anforderungen in vollem Umfang entsprechen.
 
 <table>
   <tr>
@@ -141,7 +141,7 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
     <th width=500>Specifications</th>
   </tr>
   <tr>
-    <td><img src="https://github.com/Battlepillars/Wro/blob/main/fahrtenregler.jpg"> </td>
+    <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/fahrtenregler.jpg"> </td>
     <td><li>Application: 1/10th Rock Crawler</li>
 <li>Motor Type: Brushed Motor (540 / 555 size motors)</li>
 <li>Cont./Peak Current: 80A/400A</li>
@@ -151,7 +151,7 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
 <li>Programming device: LED program box</li>
 </td>
    </tr>
-    <tr><TD colspan=2>Where to buy the motor driver: https://www.monsterhopups.de/Hobbywing-HW30120202-QuicRun-WP1080-G2-Crawler-Brushed-Regler-80A-BEC-4A?atxs=gads&atxm=18078629167&gad_source=1&gad_campaignid=17424345074&gbraid=0AAAAAD23jyTN7bxtsr3T6biU3aI9xmDWs&gclid=Cj0KCQjw5c_FBhDJARIsAIcmHK-dbxljt7XxOlX__MzJv28fV3wxcFXuAX0Qus8I1LeJkNiUO7n1ifYaAuffEALw_wcB</TD></tr>
+    <tr><TD colspan=2>Where to buy the motor driver: https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</TD></tr>
 </table>
 
   
