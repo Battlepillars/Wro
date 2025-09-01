@@ -60,13 +60,13 @@ Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 36
   </tr>
 </table>
 
-An der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtewnregler, die Odometriesensoren und der Gyro. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden.
+Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtenregler und die Odometriesensoren. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
 <img width="600" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte3.jpeg">
 
 ### Mitteldeck
 
-Anschließend haben wir noch ein Mitteldeck mit Fusion 360 designt. Bei den Maßen haben wir uns an der Bodenplatte orientiert. 
+Anschließend wurde noch ein Mitteldeck mit Fusion 360 designt. Die Maße orientieren sich an der Bodenplatte.
 
 <table>
   <tr>
@@ -75,9 +75,24 @@ Anschließend haben wir noch ein Mitteldeck mit Fusion 360 designt. Bei den Maß
   </tr>
 </table>
 
-Dort verbaut haben wir den Servo-Controller, die Batterie, den Raspberry und den Spannungsregler. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
+Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spannungsregler. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
-<img width="600" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Mitteldeck3.jpeg">
+<img width="600" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Mitteldeck3.jpg">
+
+### Oberdeck
+
+Um den LiDAR zu befestigen, wurde noch ein Oberdeck designt. An diesem wurde der LiDAR auf dem Kopf stehend befestigt.
+
+<table>
+  <tr>
+     <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Oberdeck1.jpeg"></td>
+     <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Oberdeck2.jpeg"></td>
+  </tr>
+</table>
+
+Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
+
+<img width="600" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Oberdeck3.jpg">
 
 ## Powertrain
 
@@ -253,6 +268,17 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 ### Odometrie Sensor
 - Bild + Spezifikationen
 - Verbesserungsvorschlag: Einen dritten Sensor einbauen, damit echte Mehrheitsentscheidung, was der richtige Messwert ist
+
+### Status-Display
+Zusätzlich wurde ein Status-Display integriert, über das verschiedene Systemparameter visualisiert werden. Die aktuelle Geschwindigkeit sowie die Zielgeschwindigkeit werden dabei durch Balkenanzeigen in Metern pro Sekunde dargestellt.
+
+Der Betriebszustand der beiden Odometrie-Sensoren wird durch ein Farbsystem signalisiert:
+
+- Grünes Licht zeigt an, dass der betreffende Maussensor aktiviert ist und ordnungsgemäß arbeitet.
+- Rotes Licht wird angezeigt, wenn ein Sensor eine mehr als 0,2 m/s geringere Geschwindigkeit im Vergleich zum zweiten Sensor misst; in diesem Fall wird der Sensor als fehlerhaft klassifiziert.
+- Blaues Licht weist darauf hin, dass der Sensor eine Geschwindigkeit über 1 m/s registriert, was physikalisch nicht plausibel ist; der Sensor wird daraufhin automatisch deaktiviert.
+
+Dieses Display ist eine optionale Komponente und für die Funktionalitüt des Roboters nicht unbedingt erforderlich.
 
 <br><br>
 
