@@ -47,6 +47,38 @@ Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeig
 
 <br>
 
+## Umbau des Modellautos
+
+### Bodenplatte
+
+Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 360 konstruiert, wodurch die Gesamtlänge des Fahrzeugs auf etwa 19 cm reduziert wurde. Die Konstruktion erfolgte unter Berücksichtigung einer kompakten Bauweise zur Verbesserung der Manövrierfähigkeit. Zur Positionsbestimmung mittels Odometrie-Sensoren wurden zwei Öffnungen in der Bodenplatte integriert, um eine direkte optische Erfassung der Bodenstruktur zu ermöglichen. Die Fertigung der Platte erfolgte mittels 3D-Druck. Die Bodenplatte wurde zunächst in einfachem PLA gedruckt. Allerdings hat sich ergeben, dass schon ein leichtes Durchbiegen der Bodenplatte zu einer kritischen Veränderung des Kamerawinkels geführt hat. Deswegen wurde nach Wegen gesucht, die Bodenplatte steifer zu machen. Neben Verstärkungen der Geometrie wurde zusätzlich entschieden, ein anderes Material beim Druck zu verwenden. Im Vergleich aller Materialien, die das Team selber drucken kann, hat PPA-CF sich als das Material mit der höchsten Steifigkeit herausgestellt. Dieses Filament hat das Problem des Durchbiegens der Bodenplatte komplett eliminiert.
+
+<table>
+  <tr>
+     <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte1.jpeg"></td>
+     <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte2.jpeg"></td>
+  </tr>
+</table>
+
+An der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtewnregler, die Odometriesensoren und der Gyro. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden.
+
+<img width="600" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte3.jpeg">
+
+### Mitteldeck
+
+Anschließend haben wir noch ein Mitteldeck mit Fusion 360 designt. Bei den Maßen haben wir uns an der Bodenplatte orientiert. 
+
+<table>
+  <tr>
+     <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Mitteldeck1.jpeg"></td>
+     <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Mitteldeck2.jpeg"></td>
+  </tr>
+</table>
+
+Dort verbaut haben wir den Servo-Controller, die Batterie, den Raspberry und den Spannungsregler. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
+
+<img width="600" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Mitteldeck3.jpeg">
+
 ## Powertrain
 
 ### Drivetrain
