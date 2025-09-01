@@ -20,7 +20,7 @@ Die Diskussion kann ingenieurwissenschaftliche Prinzipien wie Geschwindigkeit, D
 Bauanleitungen oder Montagehinweise können zusammen mit 3D-CAD-Dateien bereitgestellt werden, um Bauteile im 3D-Druck herzustellen.
 
 A coordinated system consisting of the chassis, steering mechanism, and powertrain is responsible for the robot's mobility, allowing it to move with both precision and efficiency. In den folgenden Kapiteln werden diese einzelnen Elemente näher erläutert.
-
+<br><br>
 ## Chassis
 Anfangs entstand die Idee, ein Fahrzeug mit einer Gesamtlänge von unter 20 cm zu konstruieren, um am Ende des dreirundigen Hindernisrennens einfach geradeaus in die Parklücke einfahren zu können, was Teil der regionalen Aufgabe war. Diese Strategie war im Rahmen des deutschen Regelwerks zulässig.
 
@@ -45,8 +45,7 @@ Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeig
     <tr><TD colspan=2>Where to buy the car: https://traxxas.com/75054-5-118-latrax-rally</TD></tr>
 </table>
 
-
-<br><br>
+<br>
 
 ## Powertrain
 
@@ -57,9 +56,7 @@ Bei Automobilen lassen sich grundsätzlich drei Antriebsarten unterscheiden:
 - Frontantrieb: Die Antriebskraft wirkt ausschließlich auf die Vorderräder.
 - Heckantrieb: Nur die Hinterräder werden angetrieben.
 
-Das vorhandene Chassis war serienmäßig mit einem Allradantrieb ausgestattet, der den Wettbewerbsanforderungen grundsätzlich genügt hätte. Die vorhandene Lenkung ließ jedoch keinen ausreichenden Radeinschlag zu, was beispielsweise ein Ausparken in einem Zug bei der Parkchallenge unmöglich machte.
-
-Zur Verbesserung des Lenkeinschlags wurde daher eine alternative Lösung erarbeitet. Diese bestand in der Konstruktion einer vollständig neuen Vorderachse. Im Zuge des Umbaus konnte der Antrieb der Vorderräder nicht beibehalten werden, da die vorhandenen Kardangelenke den erhöhten Lenkeinschlag mechanisch nicht zuließen. Aus diesem Grund wurde auf einen reinen Hinterradantrieb umgestellt.
+Das vorhandene Chassis war serienmäßig mit einem Allradantrieb ausgestattet, der den Wettbewerbsanforderungen grundsätzlich genügt hätte. Die vorhandene Lenkung ließ jedoch keinen ausreichenden Radeinschlag zu, was beispielsweise ein Ausparken in einem Zug bei der Parkchallenge unmöglich machte. Zur Verbesserung des Lenkeinschlags wurde daher eine alternative Lösung erarbeitet. Diese bestand in der Konstruktion einer vollständig neuen Vorderachse. Im Zuge des Umbaus konnte der Antrieb der Vorderräder nicht beibehalten werden, da die vorhandenen Kardangelenke den erhöhten Lenkeinschlag mechanisch nicht zuließen. Aus diesem Grund wurde auf einen reinen Hinterradantrieb umgestellt.
 
 So?
 Aus diesem Grund wurde der ursprüngliche Allradantrieb deaktiviert und stattdessen auf Heckantrieb umgestellt. Diese Konfiguration bietet im Kontext niedriger Geschwindigkeit und präziser Steuerung eine ausreichende Kraftübertragung, wobei gleichzeitig die Lenkung von Antriebseinflüssen entkoppelt wird – ein Vorteil, insbesondere bei feinfühligem Navigieren durch enge Hindernisparcours.
@@ -82,9 +79,7 @@ Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel ben�
    </tr>
   <tr><TD colspan=2>Where to buy the set: https://www.ebay.de/itm/176692013502</TD></tr>
 </table>
-
-
-<br><br>
+<br>
 Die Räder der neuen Vorderachse sind von Lego:
 
 <table>
@@ -99,8 +94,8 @@ Die Räder der neuen Vorderachse sind von Lego:
    </tr>
   <tr><TD colspan=2>Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</TD></tr>
 </table>
-
-Wie funktioniert der Antrieb in unserem Auto?
+<br>
+Wie funktioniert der Antrieb in unserem Auto?<br>
 Das Getriebe besteht aus einem Motorritzel mit 14 Zähnen und einem größeren Hauptzahnrad
 mit 61 Zähnen. Das Motorritzel wird vom Motor gedreht. Das Ritzel wiederum dreht das größere
 Hauptzahnrad. Das Hauptzahnrad ist mit dem Differential verbunden, welches die Kraft auf die
@@ -108,10 +103,13 @@ beiden Hinterräder verteilt. Um feinfühlig steuern zu können und weil wir kei
 schwindigkeit brauchen, haben wir die größtmögliche Übersetzung gewählt, die sich in unser
 Chassis einbauen ließ. Die Übersetzung wird vom Hauptzahnrad und dem Motorritzel bestimmt
 und ist bei uns 61:14 = 1:4,35.
-
+<br><br>
 Hier eine Zeichnung der Komponenten des Antriebs:
 
-[antrieb_neu.tif](https://github.com/user-attachments/files/22080846/antrieb_neu.tif)
+![antrieb_klein](https://github.com/user-attachments/assets/a08d4d30-1519-45db-9810-cb36feab0b4f)
+
+
+
 
 
 ### Motor
