@@ -22,7 +22,7 @@ Bauanleitungen oder Montagehinweise können zusammen mit 3D-CAD-Dateien bereitge
 A coordinated system consisting of the chassis, steering mechanism, and powertrain is responsible for the robot's mobility, allowing it to move with both precision and efficiency. In den folgenden Kapiteln werden diese einzelnen Elemente näher erläutert.
 
 ## Chassis
-Anfangs entstand die Idee, ein Fahrzeug mit einer Gesamtlänge von unter 20 cm zu konstruieren, um am Ende des dreirundigen Hindernisrennens einfach geradeaus in die Parklücke einfahren zu können. Diese Strategie war im Rahmen der regionalen deutschen Regelungen zulässig.
+Anfangs entstand die Idee, ein Fahrzeug mit einer Gesamtlänge von unter 20 cm zu konstruieren, um am Ende des dreirundigen Hindernisrennens einfach geradeaus in die Parklücke einfahren zu können, was Teil der regionalen Aufgabe war. Diese Strategie war im Rahmen des deutschen Regelwerks zulässig.
 
 Da handelsübliche Modellautos in der Regel nicht den erforderlichen Maßen entsprechen, war schnell klar, dass ein Umbau eines Modellautos notwendig sein würde. Die meisten verfügbaren Modelle weisen eine Länge von etwa 30 cm auf – eine Reduktion auf unter 20 cm erschien in diesen Fällen technisch zu aufwendig. Kleinere Modelle mit einer Länge von rund 10 cm boten hingegen nicht genügend Raum für sämtliche erforderlichen Komponenten.
 
@@ -100,7 +100,18 @@ Die Räder der neuen Vorderachse sind von Lego:
   <tr><TD colspan=2>Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</TD></tr>
 </table>
 
+Wie funktioniert der Antrieb in unserem Auto?
+Das Getriebe besteht aus einem Motorritzel mit 14 Zähnen und einem größeren Hauptzahnrad
+mit 61 Zähnen. Das Motorritzel wird vom Motor gedreht. Das Ritzel wiederum dreht das größere
+Hauptzahnrad. Das Hauptzahnrad ist mit dem Differential verbunden, welches die Kraft auf die
+beiden Hinterräder verteilt. Um feinfühlig steuern zu können und weil wir keine hohe Endge-
+schwindigkeit brauchen, haben wir die größtmögliche Übersetzung gewählt, die sich in unser
+Chassis einbauen ließ. Die Übersetzung wird vom Hauptzahnrad und dem Motorritzel bestimmt
+und ist bei uns 61:14 = 1:4,35.
 
+Hier eine Zeichnung der Komponenten des Antriebs:
+
+[antrieb_neu.tif](https://github.com/user-attachments/files/22080846/antrieb_neu.tif)
 
 
 ### Motor
