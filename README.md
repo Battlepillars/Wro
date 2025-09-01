@@ -62,7 +62,7 @@ Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 36
 
 Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtenregler und die Odometriesensoren. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
-<img width="600" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte3.jpeg">
+<img width="500" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte3.jpeg">
 
 ### Mitteldeck
 
@@ -92,7 +92,7 @@ Um den LiDAR zu befestigen, wurde noch ein Oberdeck designt. An diesem wurde der
 
 Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
-<img width="600" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Oberdeck3.jpg">
+<img width="500" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Oberdeck3.jpg">
 
 ## Powertrain
 
@@ -110,7 +110,7 @@ Aus diesem Grund wurde der ursprüngliche Allradantrieb deaktiviert und stattdes
 
 Somit wurde ein Teil der Vorderachse mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt.
 
-<img width="600" height="983" alt="vorderachse_3d" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" />
+<img width="500" height="983" alt="vorderachse_3d" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" />
 <br><br>
 Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel benötigt:
 <br><br>
@@ -142,22 +142,6 @@ Die Räder der neuen Vorderachse sind von Lego:
   <tr><TD colspan=2>Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</TD></tr>
 </table>
 <br>
-Wie funktioniert der Antrieb in unserem Auto?<br>
-Das Getriebe besteht aus einem Motorritzel mit 14 Zähnen und einem größeren Hauptzahnrad
-mit 61 Zähnen. Das Motorritzel wird vom Motor gedreht. Das Ritzel wiederum dreht das größere
-Hauptzahnrad. Das Hauptzahnrad ist mit dem Differential verbunden, welches die Kraft auf die
-beiden Hinterräder verteilt. Um feinfühlig steuern zu können und weil wir keine hohe Endge-
-schwindigkeit brauchen, haben wir die größtmögliche Übersetzung gewählt, die sich in unser
-Chassis einbauen ließ. Die Übersetzung wird vom Hauptzahnrad und dem Motorritzel bestimmt
-und ist bei uns 61:14 = 1:4,35.
-<br><br>
-Hier eine Zeichnung der Komponenten des Antriebs:
-<br><br>
-<img width="600" height="983" alt="vorderachse_3d" src=https://github.com/user-attachments/assets/a08d4d30-1519-45db-9810-cb36feab0b4f>
-
-
-
-
 
 ### Motor
 Der bereits vorhandene Brushed-Motor wurde im Rahmen einer vergleichenden Analyse verschiedenen Motorarten gegenübergestellt. Zur Bewertung der jeweiligen Vor- und Nachteile wurde eine internetgestützte Recherche durchgeführt. Dabei konnten neben dem Brushed-Motor insbesondere der Brushless-Motor sowie der Schrittmotor als relevante Alternativen identifiziert werden.
@@ -213,9 +197,6 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
   
 <br><br>
 
-## Steering
-- Erläuterung (auch Ackermann!)
-
 ### Servo Motor
 Der Servo ist für die Lenkung der Vorderräder verantwortlich und sitzt direkt im Modellfahrzeug. Die Stellgeschwindigkeit sowie das Drehmoment dieses Servos wurden im Rahmen einer technischen Bewertung als vollumfänglich ausreichend für die Wettbewerbsanforderungen eingestuft.
 
@@ -241,7 +222,23 @@ Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wur
     <tr><TD colspan=2>Where to buy the motor: https://traxxas.com/2065a-waterproof-sub-micro-servo</TD></tr>
 </table>
 
+### Funktionsweise Antrieb
 
+Das Getriebe besteht aus einem Motorritzel mit 14 Zähnen und einem größeren Hauptzahnrad
+mit 61 Zähnen. Das Motorritzel wird vom Motor gedreht. Das Ritzel wiederum dreht das größere
+Hauptzahnrad. Das Hauptzahnrad ist mit dem Differential verbunden, welches die Kraft auf die
+beiden Hinterräder verteilt. Um feinfühlig steuern zu können und weil wir keine hohe Endge-
+schwindigkeit brauchen, haben wir die größtmögliche Übersetzung gewählt, die sich in unser
+Chassis einbauen ließ. Die Übersetzung wird vom Hauptzahnrad und dem Motorritzel bestimmt
+und ist bei uns 61:14 = 1:4,35.
+<br><br>
+Hier eine Zeichnung der Komponenten des Antriebs:
+<br><br>
+<img width="600" height="983" alt="vorderachse_3d" src=https://github.com/user-attachments/assets/a08d4d30-1519-45db-9810-cb36feab0b4f>
+
+
+## Steering
+- Erläuterung (auch Ackermann!)
 
 <br><br><br>
 
