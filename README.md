@@ -105,8 +105,8 @@ Chassis einbauen ließ. Die Übersetzung wird vom Hauptzahnrad und dem Motorritz
 und ist bei uns 61:14 = 1:4,35.
 <br><br>
 Hier eine Zeichnung der Komponenten des Antriebs:
-
-![antrieb_klein](https://github.com/user-attachments/assets/a08d4d30-1519-45db-9810-cb36feab0b4f)
+<br><br>
+<img width="600" height="983" alt="vorderachse_3d" src=https://github.com/user-attachments/assets/a08d4d30-1519-45db-9810-cb36feab0b4f>
 
 
 
@@ -175,6 +175,24 @@ Der Servo ist für die Lenkung der Vorderräder verantwortlich und sitzt direkt 
 Konkret handelt es sich um den Traxxas Waterproof Sub-Micro Servo (Modellnummer 2065A). Dieser erzeugt bei einer Betriebsspannung von 6,0 V ein Drehmoment von 2,3 kg·cm (≈ 32 oz-in) und erreicht eine Stellzeit von 0,20 s pro 60°.
 
 Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wurde beschlossen, den bereits im Modell vorhandenen Servo weiterhin zu verwenden.
+
+<table>
+  <tr>
+    <th width=500>Waterproof Sub-Micro Servo</th>
+    <th width=500>Specifications</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Battlepillars/Wro/blob/main/motordriver.jpg"> </td>
+    <td><li>Fully waterproof</li>
+<li>Fits steering in LaTrax models</li>
+<li>Power: 2.3kg/cm</li>
+<li>Operating voltage: 6.0V</li>
+<li>Speed: 0.20 sec/60°</li>
+<li>Dimensions: 22.6×12.6×22.5 mm</li>
+</td>
+   </tr>
+    <tr><TD colspan=2>Where to buy the motor: https://traxxas.com/2065a-waterproof-sub-micro-servo</TD></tr>
+</table>
 
 
 
