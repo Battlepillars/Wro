@@ -331,11 +331,11 @@ Im Folgenden sind die wesentlichen verbauten Komponenten sowie deren typischer E
 Der gesamte Energiebedarf des Systems liegt abhängig vom bei geschätzten 8–20 W im Betrieb. Dabei entfallen die größten Verbraucher auf:
 
 - Den Raspberry Pi 5
-- - Den DC-Motor (hoher Strom bei Beschleunigung)
+- Den DC-Motor (hoher Strom bei Beschleunigung)
 - Das LiDAR-Modul, das dauerhaft aktiv ist
 
 Bei einer Akkukapazität von 2200 mAh (7,4 V) ergibt sich eine verfügbare Energie von 16,28 Wh. Damit kann eine Betriebsdauer von ca. 45 bis 120 Minuten erreicht werden, abhängig von Fahrverhalten, Streckenprofil und Rechenlast.
-Erfahrungswerte haben gezeigt das wir eine sichere Betriebszeit von ca. 90 Minuten erreichen können. Danach wechseln wir den Akku aus um eine Tiefentladung zu verhindern, da wir keine Spannungsüberwachung implementiert haben.
+Basierend auf Erfahrungswerten wurde festgestellt, dass eine sichere Betriebszeit von ca. 90 Minuten zuverlässig erreicht wird. Im Anschluss wird der Akku routinemäßig gewechselt, um einer Tiefentladung vorzubeugen, da keine Spannungsüberwachung im System integriert wurde.
 
 ### Spannungsversorgung
 
