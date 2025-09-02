@@ -85,14 +85,14 @@ Um den LiDAR zu befestigen, wurde noch ein Oberdeck designt. An diesem wurde der
 
 <table>
   <tr>
+     <td width=280><img src="https://github.com/Battlepillars/Wro/blob/main/Oberdeck2.jpeg"></td>
      <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Oberdeck1.jpeg"></td>
-     <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Oberdeck2.jpeg"></td>
   </tr>
 </table>
 
 Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
-<img width="500" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Oberdeck3.jpg">
+<img width="400" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Oberdeck3.jpg">
 
 ## Powertrain
 
@@ -106,7 +106,7 @@ Bei Automobilen lassen sich grundsätzlich drei Antriebsarten unterscheiden:
 Das vorhandene Chassis war serienmäßig mit einem Allradantrieb ausgestattet, der den Wettbewerbsanforderungen grundsätzlich genügt hätte. Die vorhandene Lenkung ließ jedoch keinen ausreichenden Radeinschlag zu, was beispielsweise ein Ausparken in einem Zug bei der Parkchallenge unmöglich machte. Zur Verbesserung des Lenkeinschlags wurde daher eine alternative Lösung erarbeitet. Diese bestand in der Konstruktion einer vollständig neuen Vorderachse. Im Zuge des Umbaus konnte der Antrieb der Vorderräder nicht beibehalten werden, da die vorhandenen Kardangelenke den erhöhten Lenkeinschlag mechanisch nicht zuließen. Aus diesem Grund wurde auf einen reinen Hinterradantrieb umgestellt.
 
 So?
-Aus diesem Grund wurde der ursprüngliche Allradantrieb deaktiviert und stattdessen auf Heckantrieb umgestellt. Diese Konfiguration bietet im Kontext niedriger Geschwindigkeit und präziser Steuerung eine ausreichende Kraftübertragung, wobei gleichzeitig die Lenkung von Antriebseinflüssen entkoppelt wird – ein Vorteil, insbesondere bei feinfühligem Navigieren durch enge Hindernisparcours.
+Aus diesem Grund wurde der ursprüngliche Allradantrieb deaktiviert und stattdessen auf Heckantrieb umgestellt. Diese Konfiguration bietet im Kontext niedriger Geschwindigkeit und präziser Steuerung eine ausreichende Kraftübertragung, wobei gleichzeitig die Lenkung von Antriebseinflüssen entkoppelt wird – ein Vorteil, insbesondere bei feinfühligem Navigieren durch den Hindernisparcours.
 
 Somit wurde ein Teil der Vorderachse mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt.
 
@@ -141,6 +141,10 @@ Die Räder der neuen Vorderachse sind von Lego:
    </tr>
   <tr><TD colspan=2>Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</TD></tr>
 </table>
+
+Die neue Vorderachse in einer Detailaufnahme:
+<br><br>
+<img width="500" height="983" alt="vorderachse" src=https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be>
 <br>
 
 ### Motor
