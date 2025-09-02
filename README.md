@@ -146,7 +146,6 @@ Die neue Vorderachse in einer Detailaufnahme:
 <br><br>
 <img width="500" height="983" alt="vorderachse" src=https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be>
 <br>
-<br>
 
 ### Motor
 Der bereits vorhandene Brushed-Motor wurde im Rahmen einer vergleichenden Analyse verschiedenen Motorarten gegenübergestellt. Zur Bewertung der jeweiligen Vor- und Nachteile wurde eine internetgestützte Recherche durchgeführt. Dabei konnten neben dem Brushed-Motor insbesondere der Brushless-Motor sowie der Schrittmotor als relevante Alternativen identifiziert werden.
@@ -198,9 +197,6 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
    </tr>
     <tr><TD colspan=2>Where to buy the motor driver: https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</TD></tr>
 </table>
-
-  
-<br><br>
 
 ### Servo Motor
 Der Servo ist für die Lenkung der Vorderräder verantwortlich und sitzt direkt im Modellfahrzeug. Die Stellgeschwindigkeit sowie das Drehmoment dieses Servos wurden im Rahmen einer technischen Bewertung als vollumfänglich ausreichend für die Wettbewerbsanforderungen eingestuft.
@@ -308,10 +304,61 @@ Der Betriebszustand der beiden Odometrie-Sensoren wird durch ein Farbsystem sign
 
 Dieses Display ist eine optionale Komponente und für die Funktionalität des Roboters nicht unbedingt erforderlich.
 
-<br><br>
+<br>
 
 ## Energieversorgung des Fahrzeugs
-dfwnbdfc
+
+Die Energieversorgung des autonomen Fahrzeugs wurde so ausgelegt, dass sie sämtliche Sensoren, Steuerungseinheiten und Aktuatoren zuverlässig mit Energie versorgen kann. Als zentrale Stromquelle kommt ein 7,4 V Lithium-Polymer-Akku (LiPo, 2S, 2200 mAh) zum Einsatz, der direkt mit dem Fahrtenregler verbunden ist und über einen 5V Spannungswandler auch den Raspberry mit Strom versorgt.
+
+### Energieverbrauch der Komponenten
+
+Im Folgenden sind die wesentlichen verbauten Komponenten sowie deren typischer Energieverbrauch aufgeführt:
+
+| Komponente  | Betriebsspannung | Leistungsaufnahme (typisch)  | Bemerkung |
+| ------------- | ------------- | ------------- | ------------- |
+| Raspberry Pi 5  | 5 V  | 3–8 W  | Hauptsteuerung, hohe CPU-Leistung  | 
+| Raspberry Pi Camera Module 3 Wide (12 MP)  | 5 V  | 1–2 W  | Direkt am CSI-Port des RPi angeschlossen  |
+| 2× SparkFun Optical Tracking Odometry Sensor  | 3,3 V  | je ca. 0,1 W  | Geringer Stromverbrauch, über I²C kommunizierend  |
+| RpLidar S2  | 5 V  | 2 W  | Kontinuierlicher Betrieb zur Umfelderfassung  |
+| LaTrax 370 brushed DC-Motor (23-turn)  | 7,4 V  | 1-10 W (je nach Last)  | Hauptantrieb, stark lastabhängig  |
+| Quicrun WP 1080–G2 Motor Driver  | 7,4 V  | geringer Eigenverbrauch  | Steuerung des Antriebsmotors  |
+| Traxxas Sub-Micro Servo 2065A (Lenkung)  | 6 V  | 1–2 W kurzzeitig  | Stromspitzen bei Bewegung, Versorgung über BEC  |
+| Led Anzeigefeld (Status-Display) | 3,3 V  | 0-0,5 W  | Der Stromverbrauch ist abhängig davon, wie viele Pixel leuchten  |
+| Servo-Controller  | 5 V  | 0,1 W  | Geringer Stromverbrauch, über I²C kommunizierend  |
+
+
+
+
+Komponente  |  Betriebsspannung  |  Leistungsaufnahme (typisch)	 |  Bemerkung
+Raspberry Pi 5	5 V	3–8 W	Hauptsteuerung, hohe CPU-Leistung
+Raspberry Pi Camera Module 3 Wide (12 MP)	5 V	1–2 W	Direkt am CSI-Port des RPi angeschlossen
+2× SparkFun Optical Tracking Odometry Sensor	3,3 V	je ca. 0,1 W	Geringer Stromverbrauch, über I²C kommunizierend
+RpLidar S2	5 V	2,0 W	Kontinuierlicher Betrieb zur Umfelderfassung
+LaTrax 370 brushed DC-Motor (23-turn)	7,4 V	1–10 W (je nach Last)	Hauptantrieb, stark lastabhängig
+Quicrun WP 1080–G2 Motor Driver	7,4 V	Geringer Eigenverbrauch	Steuerung des Antriebsmotors
+Traxxas Sub-Micro Servo 2065A (Lenkung)	6 V	1–2 W kurzzeitig	Stromspitzen bei Bewegung, Versorgung über BEC
+Led Anzeigefeld	3.3 V	0-0.5 W 	Der Stromverbrauch ist abhängig davon wie viele Pixel leuch
+Servo-Controller	5 V	0.1 W	Geringer Stromverbrauch, über I²C kommunizierend
+
+
+Gesamtleistungsbedarf
+Der gesamte Energiebedarf des Systems liegt abhängig vom bei geschätzten 8–20 W im Betrieb. Dabei entfallen die größten Verbraucher auf:
+•	Den Raspberry Pi 5 
+•	Den DC-Motor (hoher Strom bei Beschleunigung)
+•	Das LiDAR-Modul, das dauerhaft aktiv ist
+Bei einer Akkukapazität von 2200 mAh (7,4 V) ergibt sich eine verfügbare Energie von 16,28 Wh. Damit kann eine Betriebsdauer von ca. 45 bis 120 Minuten erreicht werden, abhängig von Fahrverhalten, Streckenprofil und Rechenlast.
+Erfahrungswerte haben gezeigt das wir eine sichere Betriebszeit von ca. 90 Minuten erreichen können. Danach wechseln wir den Akku aus um eine Tiefentladung zu verhindern, da wir keine Spannungsüberwachung implementiert haben.
+Spannungsversorgung
+Die Spannungsversorgung der einzelnen Komponenten wird wie folgt realisiert:
+•	7,4 V direkt: DC-Motor über den Fahrtenregker
+•	5 V über Step-Down-Regler (DC-DC-Wandler): Raspberry Pi 5, LiDAR, Kamera, Servo, Servocontroller
+•	3,3 V über in den Raspberry integrierten Regler : Odometry-Sensoren, Led Anzeigefeld
+
+Sicherheit und Verdrahtung
+•	Der Akkustecker ist verpolungssicher
+•	Ein Hauptschalter trennt die Versorgung komplett
+
+
 
 
 ## Schaltplan der Bauteile
