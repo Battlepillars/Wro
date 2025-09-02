@@ -326,39 +326,27 @@ Im Folgenden sind die wesentlichen verbauten Komponenten sowie deren typischer E
 | Led Anzeigefeld (Status-Display) | 3,3 V  | 0-0,5 W  | Der Stromverbrauch ist abhängig davon, wie viele Pixel leuchten  |
 | Servo-Controller  | 5 V  | 0,1 W  | Geringer Stromverbrauch, über I²C kommunizierend  |
 
+### Gesamtleistungsbedarf
 
-
-
-Komponente  |  Betriebsspannung  |  Leistungsaufnahme (typisch)	 |  Bemerkung
-Raspberry Pi 5	5 V	3–8 W	Hauptsteuerung, hohe CPU-Leistung
-Raspberry Pi Camera Module 3 Wide (12 MP)	5 V	1–2 W	Direkt am CSI-Port des RPi angeschlossen
-2× SparkFun Optical Tracking Odometry Sensor	3,3 V	je ca. 0,1 W	Geringer Stromverbrauch, über I²C kommunizierend
-RpLidar S2	5 V	2,0 W	Kontinuierlicher Betrieb zur Umfelderfassung
-LaTrax 370 brushed DC-Motor (23-turn)	7,4 V	1–10 W (je nach Last)	Hauptantrieb, stark lastabhängig
-Quicrun WP 1080–G2 Motor Driver	7,4 V	Geringer Eigenverbrauch	Steuerung des Antriebsmotors
-Traxxas Sub-Micro Servo 2065A (Lenkung)	6 V	1–2 W kurzzeitig	Stromspitzen bei Bewegung, Versorgung über BEC
-Led Anzeigefeld	3.3 V	0-0.5 W 	Der Stromverbrauch ist abhängig davon wie viele Pixel leuch
-Servo-Controller	5 V	0.1 W	Geringer Stromverbrauch, über I²C kommunizierend
-
-
-Gesamtleistungsbedarf
 Der gesamte Energiebedarf des Systems liegt abhängig vom bei geschätzten 8–20 W im Betrieb. Dabei entfallen die größten Verbraucher auf:
-•	Den Raspberry Pi 5 
-•	Den DC-Motor (hoher Strom bei Beschleunigung)
-•	Das LiDAR-Modul, das dauerhaft aktiv ist
+
+- Den Raspberry Pi 5
+- - Den DC-Motor (hoher Strom bei Beschleunigung)
+- Das LiDAR-Modul, das dauerhaft aktiv ist
+
 Bei einer Akkukapazität von 2200 mAh (7,4 V) ergibt sich eine verfügbare Energie von 16,28 Wh. Damit kann eine Betriebsdauer von ca. 45 bis 120 Minuten erreicht werden, abhängig von Fahrverhalten, Streckenprofil und Rechenlast.
 Erfahrungswerte haben gezeigt das wir eine sichere Betriebszeit von ca. 90 Minuten erreichen können. Danach wechseln wir den Akku aus um eine Tiefentladung zu verhindern, da wir keine Spannungsüberwachung implementiert haben.
-Spannungsversorgung
+
+### Spannungsversorgung
+
 Die Spannungsversorgung der einzelnen Komponenten wird wie folgt realisiert:
-•	7,4 V direkt: DC-Motor über den Fahrtenregker
-•	5 V über Step-Down-Regler (DC-DC-Wandler): Raspberry Pi 5, LiDAR, Kamera, Servo, Servocontroller
-•	3,3 V über in den Raspberry integrierten Regler : Odometry-Sensoren, Led Anzeigefeld
+- 7,4 V direkt: DC-Motor über den Fahrtenregker
+- 5 V über Step-Down-Regler (DC-DC-Wandler): Raspberry Pi 5, LiDAR, Kamera, Servo, Servocontroller
+- 3,3 V über in den Raspberry integrierten Regler : Odometry-Sensoren, Led Anzeigefeld
 
-Sicherheit und Verdrahtung
-•	Der Akkustecker ist verpolungssicher
-•	Ein Hauptschalter trennt die Versorgung komplett
-
-
+### Sicherheit und Verdrahtung
+- Der Akkustecker ist verpolungssicher
+- Ein Hauptschalter trennt die Versorgung komplett
 
 
 ## Schaltplan der Bauteile
@@ -366,7 +354,6 @@ Sicherheit und Verdrahtung
 ![Schematic_Battlecar_2025-05-21](https://github.com/user-attachments/assets/e5cade62-716a-46cd-814c-f3818447c41c)
 
 
-  
 <br><br><br>
 
 # Code für alle Komponenten
