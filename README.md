@@ -141,10 +141,11 @@ Die Räder der neuen Vorderachse sind von Lego:
    </tr>
   <tr><TD colspan=2>Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</TD></tr>
 </table>
-
+<br>
 Die neue Vorderachse in einer Detailaufnahme:
 <br><br>
 <img width="500" height="983" alt="vorderachse" src=https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be>
+<br>
 <br>
 
 ### Motor
@@ -160,8 +161,8 @@ Auf Grundlage dieser Analyse wurde entschieden, den bereits im Modellauto integr
 
 <table>
   <tr>
-    <th width=500>Motor</th>
-    <th width=500>Specifications</th>
+    <th width=300>Motor</th>
+    <th width=600>Specifications</th>
   </tr>
   <tr>
     <td><img src="https://github.com/Battlepillars/Wro/blob/main/motor.jpg"> </td>
@@ -181,11 +182,11 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
 
 <table>
   <tr>
-    <th width=500>Motor Driver Quicrun WP 1080–G2</th>
-    <th width=500>Specifications</th>
+    <th width=300>Motor Driver Quicrun WP 1080–G2</th>
+    <th width=600>Specifications</th>
   </tr>
   <tr>
-    <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/fahrtenregler.jpg"> </td>
+    <td width=300><img src="https://github.com/Battlepillars/Wro/blob/main/fahrtenregler.jpg"> </td>
     <td><li>Application: 1/10th Rock Crawler</li>
 <li>Motor Type: Brushed Motor (540 / 555 size motors)</li>
 <li>Cont./Peak Current: 80A/400A</li>
@@ -210,8 +211,8 @@ Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wur
 
 <table>
   <tr>
-    <th width=500>Waterproof Sub-Micro Servo</th>
-    <th width=500>Specifications</th>
+    <th width=300>Waterproof Sub-Micro Servo</th>
+    <th width=600>Specifications</th>
   </tr>
   <tr>
     <td><img src="https://github.com/Battlepillars/Wro/blob/main/motordriver.jpg"> </td>
@@ -270,7 +271,8 @@ Eine erhöhte Umgebungswahrnehmung wird erzielt, wenn die LiDAR-Daten mit weiter
 
 In der nachfolgenden Tabelle wurden die für die Auswahl relevanten technischen Kriterien verschiedener LiDAR-Systeme zusammengestellt und entsprechend unserer Anforderungen farblich bewertet. Im Ergebnis stellte sich heraus, dass der RpLidar S2 die geeignetste Option für unsere Anwendung darstellt.
 
-![lidar tabelle](https://github.com/user-attachments/assets/9beae8fb-1bd3-4d9e-9e44-baab9635c230)
+<img width="600" height="983" alt="tabelle" src=https://github.com/user-attachments/assets/9beae8fb-1bd3-4d9e-9e44-baab9635c230>
+
 
 Nach der Integration des LiDAR-Systems in den Roboter wurde festgestellt, dass die Spielfeldbegrenzung nicht zuverlässig erkannt wurde. Ursache hierfür war, dass die vom Sensor ausgesendeten Laserstrahlen über die Begrenzung hinweg projiziert wurden.
 
@@ -284,7 +286,6 @@ Zunächst wurde die Raspberry Pi Global Shutter Camera bestellt, da deren techni
 Infolgedessen wurde auf eine kompaktere Alternative zurückgegriffen: das Raspberry Pi Camera Module 3 Wide (12 MP). Obwohl ursprünglich eine Global-Shutter-Kamera angedacht war, wurde festgestellt, dass die im System auftretenden Geschwindigkeiten keine kritischen Rolling-Shutter-Artefakte verursachen. Die gewählte Kamera erfüllt die Anforderungen in Bezug auf Sichtfeld, Auflösung (12 MP), Integration und Rechenkompatibilität und stellt somit eine praktikable Lösung für die Bildverarbeitung im gegebenen Kontext dar.
 
 ### Odometrie Sensor
-
 In den letzten zwei Jahren wurde im Rahmen der Teilnahme an der Kategorie RoboMission die Bedeutung einer kontinuierlichen Positionsbestimmung deutlich. Dort wurde die Position durch Auswertung der Radumdrehungen und ergänzend durch ein Gyroskop bestimmt. Das aktuelle Modellbau-Chassis bietet jedoch keine Möglichkeit, die Radbewegung direkt zu messen.
 
 Bei der Suche nach Alternativen wurde festgestellt, dass die Bewegung auch optisch – ähnlich wie bei einer Computermaus – erfasst werden kann. Auf dieser Grundlage wurde der „Optical Tracking Odometry Sensor“ von SparkFun ausgewählt. Dieser integriert einen optischen Bewegungssensor, ein Gyroskop sowie einen Mikrocontroller, der die Odometrieberechnungen eigenständig durchführt.
@@ -292,7 +293,6 @@ Bei der Suche nach Alternativen wurde festgestellt, dass die Bewegung auch optis
 Zur Erhöhung der Genauigkeit und Redundanz wurden zwei dieser Sensoren verbaut.
 
 Funktionsweise
-
 Die Bewegungserkennung erfolgt durch eine nach unten gerichtete Kamera, die mit bis zu 20.000 Bildern pro Sekunde Veränderungen der Bodenstruktur analysiert. Aus den Bilddifferenzen wird die Verschiebung des Fahrzeugs über den Untergrund ermittelt. Diese Methode ist unempfindlich gegenüber Rutsch- oder Schlupfeffekten, wie sie bei Encoder-basierten Verfahren auftreten können.
 
 - Verbesserungsvorschlag: Einen dritten Sensor einbauen, damit echte Mehrheitsentscheidung, was der richtige Messwert ist
