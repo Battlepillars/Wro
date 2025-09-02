@@ -306,17 +306,18 @@ Der Betriebszustand der beiden Odometrie-Sensoren wird durch ein Farbsystem sign
 - Rotes Licht wird angezeigt, wenn ein Sensor eine mehr als 0,2 m/s geringere Geschwindigkeit im Vergleich zum zweiten Sensor misst; in diesem Fall wird der Sensor als fehlerhaft klassifiziert.
 - Blaues Licht weist darauf hin, dass der Sensor eine Geschwindigkeit über 1 m/s registriert, was physikalisch nicht plausibel ist; der Sensor wird daraufhin automatisch deaktiviert.
 
-Dieses Display ist eine optionale Komponente und für die Funktionalitüt des Roboters nicht unbedingt erforderlich.
+Dieses Display ist eine optionale Komponente und für die Funktionalität des Roboters nicht unbedingt erforderlich.
 
 <br><br>
 
 ## Energieversorgung des Fahrzeugs
-
+dfwnbdfc
 
 
 ## Schaltplan der Bauteile
 
-![Uploading Schematic_Battlecar_2025-05-21.jpg…]()
+![Schematic_Battlecar_2025-05-21](https://github.com/user-attachments/assets/e5cade62-716a-46cd-814c-f3818447c41c)
+
 
   
 <br><br><br>
