@@ -55,14 +55,14 @@ Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 36
 
 <table>
   <tr>
-     <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte1.jpeg"></td>
+     <td width=320><img src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte1.jpeg"></td>
      <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte2.jpeg"></td>
   </tr>
 </table>
 
 Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtenregler und die Odometriesensoren. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
-<img width="500" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte3.jpeg">
+<img width="400" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Bodenplatte3.jpg">
 
 ### Mitteldeck
 
@@ -70,14 +70,14 @@ Anschließend wurde noch ein Mitteldeck mit Fusion 360 designt. Die Maße orient
 
 <table>
   <tr>
+     <td width=320><img src="https://github.com/Battlepillars/Wro/blob/main/Mitteldeck2.jpeg"></td>
      <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Mitteldeck1.jpeg"></td>
-     <td width=500><img src="https://github.com/Battlepillars/Wro/blob/main/Mitteldeck2.jpeg"></td>
   </tr>
 </table>
 
 Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spannungsregler. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
-<img width="600" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Mitteldeck3.jpg">
+<img width="400" height="983" alt="vorderachse_3d" src="https://github.com/Battlepillars/Wro/blob/main/Mitteldeck3.jpg">
 
 ### Oberdeck
 
