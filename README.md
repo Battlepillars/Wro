@@ -233,9 +233,7 @@ schwindigkeit brauchen, haben wir die größtmögliche Übersetzung gewählt, di
 Chassis einbauen ließ. Die Übersetzung wird vom Hauptzahnrad und dem Motorritzel bestimmt
 und ist bei uns 61:14 = 1:4,35.
 <br><br>
-Hier eine Zeichnung der Komponenten des Antriebs:
-<br><br>
-<img width="600" height="983" alt="vorderachse_3d" src=https://github.com/user-attachments/assets/a08d4d30-1519-45db-9810-cb36feab0b4f>
+Durch die gewählte Übersetzung von 61:14 ergibt sich eine signifikante Verstärkung des Drehmoments am Antriebsstrang. Diese Konfiguration wurde gezielt gewählt, um eine zuverlässige Kraftübertragung auch bei niedrigen Geschwindigkeiten sicherzustellen. Während der Testläufe zeigte sich, dass die Wettbewerbsfläche oft kleinere Unebenheiten und Wellen aufweist. Diese können dazu führen, dass Fahrzeuge mit unzureichendem Drehmoment hängen bleiben oder an Traktion verlieren. In unseren Versuchen bewährte sich die getroffene Antriebswahl: Der Roboter konnte auch über wellige Mattenbereiche hinweg gleichmäßig beschleunigen und blieb dabei jederzeit kontrollierbar. Somit trägt die kraftbetonte Getriebeübersetzung wesentlich zur Zuverlässigkeit des Fahrzeugs im realen Einsatz bei.
 
 
 ## Steering
