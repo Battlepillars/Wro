@@ -112,7 +112,7 @@ class DriveBase:
         #     self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=40, drive=1)
         #     self.pidSteer = PIDController(Kp=5, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
         
-        self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-30, max=40, drive=1)
+        self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, setpoint=1, min=-50, max=40, drive=1)
         self.pidSteer = PIDController(Kp=2, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
 
     def driveTo(self, x, y, speed, brake):
@@ -185,7 +185,7 @@ class DriveBase:
         if (self.pidController.setpoint==0):
             self.kit.servo[3].angle=90
         else:
-            if (output>0):
+            if (speed>0):
                 self.kit.servo[3].angle = 110 + output
             else:
                 self.kit.servo[3].angle = 80 + output
@@ -208,8 +208,12 @@ class DriveBase:
         while fehlerwinkel < -180:
             fehlerwinkel += 360
 
-        if (abs(fehlerwinkel) < 10) and (brake == 1):
-            self.pidController.setpoint = speed * abs(fehlerwinkel) / 10
+        if (abs(fehlerwinkel) < 50) and (brake == 1):
+            if speed > 0:
+                self.pidController.setpoint = 0.1
+            elif speed < 0:
+                self.pidController.setpoint = -0.1
+
         if (dir==0):
             if fehlerwinkel < 0:
                 outputSteer = 90
@@ -220,15 +224,24 @@ class DriveBase:
         else:
             outputSteer = 90           #CCW
 
-        speedTotal = self.slam.speed
+        if speed < 0:
+            speedTotal = -self.slam.speed
+        else:
+            speedTotal = self.slam.speed
         output = self.pidController.compute(speedTotal, 0.5)
-
         #print(" head: ", math.floor(self.slam.angle), "zielwinkel: ", math.floor(zielwinkel), "Fehlerwinkel: ", fehlerwinkel)
 
+        if speed < 0:
+            outputSteer = -outputSteer
         setServoAngle(self.kit, 90 + outputSteer,self.slam)
-        self.kit.servo[3].angle = 99 + output
+        # print(output)
+        
+        if (output>0):
+            self.kit.servo[3].angle = 99 + output
+        else:
+            self.kit.servo[3].angle = 91 + output
 
-        if abs(fehlerwinkel) < 5:
+        if abs(fehlerwinkel) < 4:
             self.kit.servo[3].angle = 90
             return True
         else:
@@ -329,3 +342,54 @@ class DriveBase:
         self.kit.servo[3].angle = 90
         self.slam.crash = 0
         self.slam.errorDriveList.clear()
+    
+    def driveToY(self, y, zielwinkel, speed, brake):
+        self.pidController.setpoint = speed
+        
+        if speed > 0:
+            speedTotal = self.slam.speed
+        else:
+            speedTotal = -self.slam.speed
+
+        distenceLeft = abs(y - self.slam.ypos)
+        print("distenceLeft: ", distenceLeft)
+
+        if (distenceLeft < 30) and (brake == 1):
+            if (speed>0):
+                self.pidController.setpoint = 0.1
+            else:
+                self.pidController.setpoint = -0.1
+
+        if (distenceLeft < 10) and (brake == 1):
+            self.pidController.setpoint = 0
+        
+
+        output = self.pidController.compute(speedTotal,0.5)
+
+        fehlerwinkel = -zielwinkel + self.slam.angle
+        while fehlerwinkel > 180:
+            fehlerwinkel -= 360
+        while fehlerwinkel < -180:
+            fehlerwinkel += 360
+        
+        outputSteer = self.pidSteer.compute(fehlerwinkel,1)
+        if (outputSteer>55):
+            outputSteer = 55
+        if (outputSteer<-55):
+            outputSteer = -55
+        setServoAngle(self.kit,90 + outputSteer,self.slam)
+        self.kit.servo[3].angle = 99 + output
+
+        # if (self.pidController.setpoint==0):
+        #     self.kit.servo[3].angle=90
+        # else:
+        #     if (output>0):
+        #         self.kit.servo[3].angle = 110 + output
+        #     else:
+        #         self.kit.servo[3].angle = 80 + output
+        
+        if (distenceLeft<10) and ((speedTotal<0.05) or (brake == 0)):
+            self.kit.servo[3].angle = 90
+            return True
+        else:
+            return False

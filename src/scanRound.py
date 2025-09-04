@@ -18,14 +18,6 @@ def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSta
     
     
     speedi = 0.5
-
-    if not waitCompleteOrders():
-        return
-    time.sleep(0.3)
-    orders.append(Order(angleCheckOverwrite=-90,type=Order.REPOSITION, rotation=rotation))
-    if not waitCompleteOrders():
-        return
-    time.sleep(0.3)
     
     orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=direction, type=Order.WINKEL, rotation=rotation))
     
@@ -59,6 +51,8 @@ def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSta
     
     orders.append(Order(steer=0, dist=100, speed=-speedi, brake=1, type=Order.KURVE))
     
+    sinside= checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)  or ((not checkForColor(Hindernisse.GREEN, scanStart+2, scanStart+6)) and checkForColor(Hindernisse.RED, scanStart, scanStart+4))
+    dinside= checkForColor(Hindernisse.RED, scanStart+6, scanStart+10)  or ((not checkForColor(Hindernisse.GREEN, scanStart+6, scanStart+10)) and checkForColor(Hindernisse.RED, scanStart+8, scanStart+12))
 
     if checkForColor(Hindernisse.RED, scanStart, scanStart+4) or (not checkForColor(Hindernisse.GREEN, scanStart, scanStart+4) and checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)):
         orders.append(Order(x=750, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=14, rotation=rotation))

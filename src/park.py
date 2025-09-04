@@ -31,12 +31,13 @@ def park(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart):
     
     if checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
         orders.append(Order(x=2000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=35, rotation=rotation))
-        orders.append(Order(x=1700, y=2200,speed=speedi,brake=1,type=Order.DESTINATION,num=35, rotation=rotation))
+        orders.append(Order(x=1600, y=2200,speed=speedi,brake=1,type=Order.DESTINATION,num=36, rotation=rotation))
+        time.sleep(3)
         orders.append(Order(zielwinkel=-90, speed=-0.2, brake=1, type=Order.WINKEL))
+        doReposition(orders, Order, waitCompleteOrders, rotation, 0)
         
-        # orders.append(Order(x=1775, y=2275,speed=0.2,brake=1,type=Order.DESTINATION,num=32, rotation=rotation))
-        # orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
-        # doReposition(orders, Order, waitCompleteOrders, rotation, 0)
+        orders.append(Order(y=2685, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
+        orders.append(Order(zielwinkel=0, speed=-0.2, brake=1, type=Order.WINKEL))
     else:
         orders.append(Order(x=2000, y=2600,speed=speedi,brake=0,type=Order.DESTINATION,num=30, rotation=rotation))
         orders.append(Order(x=1870, y=2600,speed=speedi,brake=1,type=Order.DESTINATION,num=31, rotation=rotation))

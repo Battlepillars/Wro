@@ -300,6 +300,7 @@ class Order:
     MANUAL=7
     REPOSITIONSINGLE=8
     TIMEPOWER=9
+    DRIVETOY=10
     CW=100
     CCW=101
     def __init__(self,speed=0,brake=0,type=0,x=0,y=0,steer=0,dist=0,timeDrive=0,toScan=[],zielwinkel=0,angleCheckOverwrite=1000,num=0,dir=0,rotation=0,checkHeightNear=False):
@@ -445,11 +446,11 @@ def commandLoop(slam):
             return
         time.sleep(0.3)
         for i in range(0,2):
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6, i==1)
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12, i==1)
+            driveRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6)
+            driveRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
             driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18, i==1) 
             if i == 0:
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0, i==1)
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
             
             if not waitCompleteOrders():
                 return
@@ -860,7 +861,7 @@ def commandLoop(slam):
                     return
                 if checkForColor(Hindernisse.RED, 18, 24):
                     #print("red")
-                    orders.append(Order(x=2800, y=1000, speed=speedScan, brake=1, type=Order.DESTINATION,num=19))
+                    orders.append(Order(x=2800, y=1000, speed=speedScan, brake=1, type=Order.DESTINATION,num=819))
                 else:  
                     #print("green")
                     orders.append(Order(x=2200, y=1000,speed=speedScan,brake=1,type=Order.DESTINATION,num=20))
@@ -1249,6 +1250,9 @@ def controlLoop(robot, camera, playmat):
                     nextOrder()
             elif orders[0].type == Order.DESTINATIONTIME:
                 if driveBase.driveToTime(orders[0].x,orders[0].y,orders[0].speed,orders[0].timeDrive,startTime):
+                    nextOrder()
+            elif orders[0].type == Order.DRIVETOY:
+                if driveBase.driveToY(orders[0].y,orders[0].zielwinkel,orders[0].speed,orders[0].brake):
                     nextOrder()
         else:
             setServoAngle(kit,90,slam)

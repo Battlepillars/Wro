@@ -63,14 +63,13 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
     if not last:
         sinside= checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)  or ((not checkForColor(Hindernisse.GREEN, scanStart+2, scanStart+6)) and checkForColor(Hindernisse.RED, scanStart, scanStart+4))
         dinside= checkForColor(Hindernisse.RED, scanStart+6, scanStart+10)  or ((not checkForColor(Hindernisse.GREEN, scanStart+6, scanStart+10)) and checkForColor(Hindernisse.RED, scanStart+8, scanStart+12))
-        # print("sinside:",sinside)
-        # print("dinside:",dinside)
-        
-        if ( not sinside and not dinside):
-            orders.append(Order(x=600, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=26, rotation=rotation))
-        if ( not sinside and  dinside):
+        print("Rotation: ",rotation, "  sinside: " ,sinside, "   dinside: ",dinside)
+
+        if ( sinside and not  dinside):
+            orders.append(Order(x=600, y=550,speed=speedi,brake=0,type=Order.DESTINATION,num=26, rotation=rotation))
+        if ( not sinside and dinside):
             orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=27, rotation=rotation))
-        if ( sinside and  not dinside):
+        if ( not sinside and  not dinside):
             orders.append(Order(x=400, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=28, rotation=rotation))
             
         # if (
