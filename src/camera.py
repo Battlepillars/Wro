@@ -16,6 +16,8 @@ class Camera():
     imgCam = np.zeros((1536,846,3), np.uint8)
     blocksAngle = []
     blocksColor = []
+    blocksAngleDraw = []
+    blocksColorDraw = []
     RED = 0
     GREEN = 1
     pictureNum=0
@@ -32,6 +34,8 @@ class Camera():
     def captureImage(self, checkHeightNear):
         self.blocksAngle = []
         self.blocksColor = []
+        self.blocksAngleDraw = []
+        self.blocksColorDraw = []
         imgclear = self.picam2.capture_array()
         imgIn = cv.blur(imgclear,(10,10))
         checkStart=450                    # Scanbalken einstellen, kleiner -> balken weiter oben
@@ -103,6 +107,8 @@ class Camera():
                 #print("Green at: ", (mid - cX) / split)
                 self.blocksAngle.append((mid - cX) / split)
                 self.blocksColor.append(self.GREEN)
+                self.blocksAngleDraw.append((mid - cX) / split)
+                self.blocksColorDraw.append(self.GREEN)
 
         for c in cntsred:
             # compute the center of the contour
@@ -118,6 +124,8 @@ class Camera():
                 #print("Red at: ", (mid - cX) / split)
                 self.blocksAngle.append((mid - cX) / split)
                 self.blocksColor.append(self.RED)
+                self.blocksAngleDraw.append((mid - cX) / split)
+                self.blocksColorDraw.append(self.RED)
         
         cv.imwrite(f'capture/hsvStreifen{self.pictureNum}.jpg', hsv)
         cv.imwrite(f'capture/capture{self.pictureNum}.jpg', imgclear)

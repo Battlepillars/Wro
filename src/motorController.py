@@ -372,7 +372,7 @@ class DriveBase:
         while fehlerwinkel < -180:
             fehlerwinkel += 360
         
-        outputSteer = self.pidSteer.compute(fehlerwinkel,1)
+        outputSteer = -self.pidSteer.compute(fehlerwinkel,1)
         if (outputSteer>55):
             outputSteer = 55
         if (outputSteer<-55):

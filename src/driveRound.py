@@ -28,7 +28,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         orders.append(Order(x=800, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=15, rotation=rotation))
     else:
         if rotation != 90 and rotation != 1090:
-            orders.append(Order(x=250, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=16, rotation=rotation))
+            orders.append(Order(x=200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=16, rotation=rotation))
             orders.append(Order(x=200, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=17, rotation=rotation))
         else:
             orders.append(Order(x=400, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=22, rotation=rotation))
@@ -64,14 +64,21 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         sinside= checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)  or ((not checkForColor(Hindernisse.GREEN, scanStart+2, scanStart+6)) and checkForColor(Hindernisse.RED, scanStart, scanStart+4))
         dinside= checkForColor(Hindernisse.RED, scanStart+6, scanStart+10)  or ((not checkForColor(Hindernisse.GREEN, scanStart+6, scanStart+10)) and checkForColor(Hindernisse.RED, scanStart+8, scanStart+12))
         print("Rotation: ",rotation, "  sinside: " ,sinside, "   dinside: ",dinside)
-
-        if ( sinside and not  dinside):
-            orders.append(Order(x=600, y=550,speed=speedi,brake=0,type=Order.DESTINATION,num=26, rotation=rotation))
-        if ( not sinside and dinside):
-            orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=27, rotation=rotation))
-        if ( not sinside and  not dinside):
-            orders.append(Order(x=400, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=28, rotation=rotation))
-            
+        
+        if rotation != 180 and rotation != 1180:
+            if ( sinside and not  dinside):
+                orders.append(Order(x=600, y=550,speed=speedi,brake=0,type=Order.DESTINATION,num=26, rotation=rotation))
+            if ( not sinside and dinside):
+                orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=27, rotation=rotation))
+            if ( not sinside and  not dinside):
+                orders.append(Order(x=400, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=28, rotation=rotation))
+        else:
+            if ( sinside and not  dinside):
+                orders.append(Order(x=700, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=261, rotation=rotation))
+            if ( not sinside and dinside):
+                orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=272, rotation=rotation))
+            if ( not sinside and  not dinside):
+                orders.append(Order(x=450, y=550,speed=speedi,brake=0,type=Order.DESTINATION,num=283, rotation=rotation))
         # if (
         #     checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)                # source inner
         #     or ((not checkForColor(Hindernisse.GREEN, scanStart+2, scanStart+6)) and checkForColor(Hindernisse.RED, scanStart, scanStart+4))

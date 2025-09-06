@@ -143,15 +143,18 @@ class Playmat:
         xoff = 50 * self.matScale
         yoff = 50 * self.matScale
         
-        for i in range(len(camera.blocksAngle)):
-            rad = (-camera.blocksAngle[i] + robot.angle) / 180 * math.pi
+        for i in range(len(camera.blocksAngleDraw)):
+            rad = (-camera.blocksAngleDraw[i] + robot.angle) / 180 * math.pi
             x = math.cos(rad) * -2000 + robot.xpos
             y = math.sin(rad) * 2000 + robot.ypos
-            if camera.blocksColor[i] == camera.GREEN:
+            if camera.blocksColorDraw[i] == camera.GREEN:
                 pygame.draw.line(screen, (0,255,0), (robot.xpos * self.matScale + xoff, robot.ypos * self.matScale + yoff), (x * self.matScale + xoff, y * self.matScale + yoff), int(5 * self.matScale))
-            if camera.blocksColor[i] == camera.RED:
+            if camera.blocksColorDraw[i] == camera.RED:
                 pygame.draw.line(screen, (255,0,0), (robot.xpos * self.matScale + xoff, robot.ypos * self.matScale + yoff), (x * self.matScale + xoff, y * self.matScale + yoff), int(5 * self.matScale))
-
+        if len(camera.blocksAngleDraw) > 0:
+            camera.blocksAngleDraw.clear()
+            camera.blocksColorDraw.clear()
+        
         screen.blit(frame, (self.wx * self.matScale, 0))
 
 
