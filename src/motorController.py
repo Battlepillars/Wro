@@ -116,43 +116,81 @@ class DriveBase:
         self.pidSteer = PIDController(Kp=2, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
 
     def driveTo(self, x, y, speed, brake):
+        """
+        Drive the robot to a specific coordinate (x, y) with controlled speed and optional braking.
+        
+        Args:
+            x (float): Target x-coordinate in millimeters
+            y (float): Target y-coordinate in millimeters  
+            speed (float): Desired speed in m/s (positive for forward, negative for reverse)
+            brake (int): Braking mode (1 = enable progressive braking near target, 0 = no braking)
+            
+        Returns:
+            bool: True when target is reached (within 30mm), False while still driving
+        """
+        # Set the target speed for the PID controller
         self.pidController.setpoint = speed
         
+        # Calculate straight-line distance from current position to target
         distance = math.sqrt(math.pow((self.slam.xpos - x),2) + math.pow((self.slam.ypos - y),2))
+        
+        # Calculate the required heading angle to reach the target
+        # atan2 gives angle from current position to target, negated to match robot coordinate system
         zielwinkel = -(math.atan2(self.slam.ypos - y, self.slam.xpos - x) / math.pi * 180)
         
-        
+        # Calculate heading error (difference between current and required heading)
         fehlerwinkel = -zielwinkel + self.slam.angle
+        
+        # Normalize heading error to [-180, +180] degree range
+        # This ensures we always take the shortest angular path to the target
         while fehlerwinkel > 180:
             fehlerwinkel -= 360
         while fehlerwinkel < -180:
             fehlerwinkel += 360
         
+        # Initialize target angle on first call (5000 is sentinel value for "not set")
         if self.zielWinkel == 5000:
             self.zielWinkel = zielwinkel
         
+        # Calculate distance along the original target line (corrected for any heading drift)
+        # This gives us the "useful" distance - how much progress we've made toward the target
         distanceLine = distance * math.cos((self.zielWinkel - zielwinkel) / 180 * math.pi)
         
+        # Progressive braking: reduce speed as we approach the target
+        # When within 200mm and braking enabled, scale speed proportionally to remaining distance
         if (abs(distanceLine) < 200) and (brake == 1):
             self.pidController.setpoint = speed * distanceLine / 200
         
+        # Calculate steering correction using PID controller
+        # fehlerwinkel is the input, outputSteer is the steering angle correction
         outputSteer = self.pidSteer.compute(fehlerwinkel,1)
         
+        # Calculate motor speed correction using PID controller
+        # Compares actual speed (slam.speed) with target speed (setpoint)
         output = self.pidController.compute(self.slam.speed,0.5,self.slam)
         
+        # Limit steering output to prevent excessive steering angles
+        # ±55 degrees is the maximum safe steering for faster driving
         if (outputSteer>55):
             outputSteer = 55
         if (outputSteer<-55):
             outputSteer = -55
+            
+        # Apply steering: 90° is straight ahead, add correction for turning
         setServoAngle(self.kit,90 + outputSteer,self.slam)
+        
+        # Apply motor control: 99° is forward base speed, add PID correction
         self.kit.servo[3].angle = 99 + output
         
+        # Check if we've reached the target (within 30mm tolerance)
         if distanceLine < 30:
+            # Reset target angle for next movement command
             self.zielWinkel = 5000
+            # Stop the motor (90° = neutral position)
             self.kit.servo[3].angle = 90
-            return True
+            return True  # Target reached
         else:
-            return False
+            return False  # Still driving to target
 
     def drivekürvchen(self, dist, angli, speed, brake):
         if (speed<0 and self.lastKurveSpeed > 0):
