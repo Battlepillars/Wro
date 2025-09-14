@@ -27,7 +27,7 @@ def park(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart, s
     
     if (checkForColor(Hindernisse.RED, scanStart, scanStart+6) and not checkForColor(Hindernisse.GREEN, scanStart+4, scanStart+6)):
         if not checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
-            orders.append(Order(x=2400, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=34, rotation=rotation))
+            orders.append(Order(x=2300, y=2300,speed=speedi,brake=0,type=Order.DESTINATION,num=34, rotation=rotation))
     
     if checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
         orders.append(Order(x=2000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=35, rotation=rotation))
@@ -50,7 +50,7 @@ def park(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart, s
     doReposition(orders, Order, waitCompleteOrders, 0, 0)
     
     loops = 0
-    while (slam.xpos < 1775 or slam.xpos > 1815) and (loops < 3):
+    while (slam.xpos < 1775 or slam.xpos > 1815) and (loops < 2):
         loops += 1
         orders.append(Order(x=1795, y=2200, speed=0.2, brake=1, type=Order.DESTINATION, num=33))
         doReposition(orders, Order, waitCompleteOrders, 0, 0)

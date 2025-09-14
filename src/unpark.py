@@ -10,6 +10,29 @@ def scan(toscan, orders, Order, waitCompleteOrders):
         return
     time.sleep(0.3)
 
+
+def unparkCCW(orders,Order, waitCompleteOrders, checkForColor):
+    speedi = 0.5
+    
+    orders.append(Order(steer=90, dist=100, speed=0.2, brake=1, type=Order.KURVE))
+    
+    if not waitCompleteOrders():
+        return
+    time.sleep(0.3)
+    orders.append(Order(toScan=[0],type=Order.SCAN))
+    if not waitCompleteOrders():
+        return
+    time.sleep(0.3)
+    
+    if checkForColor(Hindernisse.GREEN, 0, 1):
+        orders.append(Order(x=1.875, y=2450,speed=speedi,brake=0,type=Order.DESTINATION,num=1))
+        orders.append(Order(x=2000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=2))
+        orders.append(Order(x=2300, y=2650,speed=speedi,brake=0,type=Order.DESTINATION,num=4))
+    else: # Red 
+        orders.append(Order(x=2000, y=2600,speed=speedi,brake=0,type=Order.DESTINATION,num=5))
+        orders.append(Order(x=2300, y=2650,speed=speedi,brake=0,type=Order.DESTINATION,num=7))
+
+
 def unparkCW(orders,Order, waitCompleteOrders, checkForColor):
     speedi = 0.5
     
@@ -24,7 +47,6 @@ def unparkCW(orders,Order, waitCompleteOrders, checkForColor):
     time.sleep(0.3)
     
     if checkForColor(Hindernisse.RED, 2, 3):
-        print("red")
         orders.append(Order(x=1750, y=2450,speed=speedi,brake=0,type=Order.DESTINATION,num=1))
         orders.append(Order(x=1500, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=2))
         orders.append(Order(x=1000, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=3))

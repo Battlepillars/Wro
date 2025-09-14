@@ -158,7 +158,10 @@ class Playmat:
         screen.blit(frame, (self.wx * self.matScale, 0))
 
 
-    def Infos(self,screen,robot,slam,matScale,startTime,time,lamp):
+    def Infos(self,screen,robot,slam,matScale,startTime,time,lamp,virtual_cursor_x, virtual_cursor_y):
+        pygame.draw.circle(screen, (255, 0, 0), (virtual_cursor_x, virtual_cursor_y), 8, 2)
+        pygame.draw.line(screen, (255, 0, 0), (virtual_cursor_x - 10, virtual_cursor_y), (virtual_cursor_x + 10, virtual_cursor_y), 2)
+        pygame.draw.line(screen, (255, 0, 0), (virtual_cursor_x, virtual_cursor_y - 10), (virtual_cursor_x, virtual_cursor_y + 10), 2)
         green = (0, 255, 0)
         blue = (0, 0, 128)
         self.font = pygame.font.Font('freesansbold.ttf',20)

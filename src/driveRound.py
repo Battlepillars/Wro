@@ -42,7 +42,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         #     orders.append(Order(x=400, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=19, rotation=rotation))
     else:
         if rotation != 90 and rotation != 1090:
-            orders.append(Order(x=200, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=20, rotation=rotation))
+            orders.append(Order(x=200, y=1100,speed=speedi,brake=0,type=Order.DESTINATION,num=20, rotation=rotation))
         else:
             orders.append(Order(x=400, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=24, rotation=rotation))
             orders.append(Order(x=400, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=25, rotation=rotation))
