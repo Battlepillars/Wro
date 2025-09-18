@@ -436,65 +436,65 @@ def commandLoop(slam):
     slam.startpostionsetzen()
     time.sleep(0.5)                    
     startTime = time.time()
+
     
-    ausparkenCWMachen = 0
-    ausparkenCCWMachen = 1
-    
-    if ausparkenCCWMachen == 1:
-        unparkCCW(orders, Order, waitCompleteOrders, checkForColor)
-        scanRound(orders, Order, waitCompleteOrders, checkForColor, 1000, 6)
-        scanRound(orders, Order, waitCompleteOrders, checkForColor, 1090, 12)
-        scanRound(orders, Order, waitCompleteOrders, checkForColor, 1180, 18)
-        scanRound(orders, Order, waitCompleteOrders, checkForColor, 1500, 0)
-        
-        if not waitCompleteOrders():
-            return
-        orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CW, type=Order.WINKEL))
-        if not waitCompleteOrders():
-            return
-        time.sleep(0.3)
-        orders.append(Order(angleCheckOverwrite=90,type=Order.REPOSITION))
-        if not waitCompleteOrders():
-            return
-        time.sleep(0.3)
-        for i in range(0,2):
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, 1000, 6)
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, 1500, 12)
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, 1180, 18, i==1) 
-            if i == 0:
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 1090, 0)
+    if slam.eventType == slam.HR:
+        if slam.direction == slam.CW:
+            unparkCW(orders, Order, waitCompleteOrders, checkForColor)
+            slam.repostionEnable = 1
+            scanRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6)
+            scanRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
+            scanRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18)
+            scanRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
             
             if not waitCompleteOrders():
                 return
-        park(orders, Order, waitCompleteOrders, checkForColor, 0, 18, slam)
-    
-    if ausparkenCWMachen == 1:
-        unparkCW(orders, Order, waitCompleteOrders, checkForColor)
-        scanRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6)
-        scanRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
-        scanRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18)
-        scanRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
-        
-        if not waitCompleteOrders():
-            return
-        orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CW, type=Order.WINKEL))
-        if not waitCompleteOrders():
-            return
-        time.sleep(0.3)
-        orders.append(Order(angleCheckOverwrite=-90,type=Order.REPOSITION))
-        if not waitCompleteOrders():
-            return
-        time.sleep(0.3)
-        for i in range(0,2):
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6)
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
-            driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18, i==1) 
-            if i == 0:
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
+            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CW, type=Order.WINKEL))
+            if not waitCompleteOrders():
+                return
+            time.sleep(0.3)
+            orders.append(Order(angleCheckOverwrite=-90,type=Order.REPOSITION))
+            if not waitCompleteOrders():
+                return
+            time.sleep(0.3)
+            for i in range(0,2):
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6)
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18, i==1) 
+                if i == 0:
+                    driveRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
+                
+                if not waitCompleteOrders():
+                    return
+            park(orders, Order, waitCompleteOrders, checkForColor, 0, 18, slam)
+        else:
+            unparkCCW(orders, Order, waitCompleteOrders, checkForColor)
+            slam.repostionEnable = 1
+            scanRound(orders, Order, waitCompleteOrders, checkForColor, 1000, 18)
+            scanRound(orders, Order, waitCompleteOrders, checkForColor, 1090, 12)
+            scanRound(orders, Order, waitCompleteOrders, checkForColor, 1180, 6)
+            scanRound(orders, Order, waitCompleteOrders, checkForColor, 1500, 0)
             
             if not waitCompleteOrders():
                 return
-        park(orders, Order, waitCompleteOrders, checkForColor, 0, 18, slam)
+            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CCW, type=Order.WINKEL))
+            if not waitCompleteOrders():
+                return
+            time.sleep(0.3)
+            orders.append(Order(type=Order.REPOSITION))
+            if not waitCompleteOrders():
+                return
+            time.sleep(0.3)
+            for i in range(0,2):
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 1000, 18)
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 1090, 12)
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 1180, 6, i==1) 
+                if i == 0:
+                    driveRound(orders, Order, waitCompleteOrders, checkForColor, 1500, 0)
+                
+                if not waitCompleteOrders():
+                    return
+            park(orders, Order, waitCompleteOrders, checkForColor, 0, 18, slam)
 
 
     elif slam.eventType == slam.ER:
