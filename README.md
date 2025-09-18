@@ -1,11 +1,21 @@
 # THE TEAM
-
-<img width="400" src="img/test.jpeg">
-
+<div align="center"><img width="500" src="img/teamname.jpg"></div>
 
 In this repository, you’ll find the documentation for the robot created by the "Battlepillars" for the 2025 World Robot Olympiad Future Engineers competition. The robot was the result of a collaborative effort by three students.
 
-aus den Regeln: Pictures of the team and robot must be provided. The pictures of the robot must cover all sides of the robot, must be clear, in focus and show aspects of the mobility, power and sense, and obstacle management. Reference in the discussion sections 1, 2 and 3 can be made to these pictures. Team photo is necessary for judges to relate and identify the team during the local and international competitions. 
+## Nils Stauff
+
+## Olivia Greilich
+
+## Leonard Kolo
+<div align="center"><img width="300" src="img/leonard.jpg"></div>
+
+## Team photo
+
+<div align="center"><img width="500" src="img/team.jpg"></div>
+
+ 
+s den Regeln: Pictures of the team and robot must be provided. The pictures of the robot must cover all sides of the robot, must be clear, in focus and show aspects of the mobility, power and sense, and obstacle management. Reference in the discussion sections 1, 2 and 3 can be made to these pictures. Team photo is necessary for judges to relate and identify the team during the local and international competitions. 
 
 Fotos und kurze Beschreibung
 
@@ -34,7 +44,7 @@ Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeig
     <th width=500>Specifications</th>
   </tr>
   <tr>
-    <td><img src="img/auto1.jpg"><br><img src="img/auto2.jpg"></td>
+    <td><img src="img/auto1.jpg"><br><img src="img/auto2.jpg"><
     <td><li>Motorart:	Elektro</li>
 <li>Antrieb:	4WD</li>
 <li>Maßstab:	1:18</li>
@@ -53,6 +63,8 @@ Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeig
 
 Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 360 konstruiert, wodurch die Gesamtlänge des Fahrzeugs auf etwa 19 cm reduziert wurde. Die Konstruktion erfolgte unter Berücksichtigung einer kompakten Bauweise zur Verbesserung der Manövrierfähigkeit. Zur Positionsbestimmung mittels Odometrie-Sensoren wurden zwei Öffnungen in der Bodenplatte integriert, um eine direkte optische Erfassung der Bodenstruktur zu ermöglichen. Die Fertigung der Platte erfolgte mittels 3D-Druck. Die Bodenplatte wurde zunächst in einfachem PLA gedruckt. Allerdings hat sich ergeben, dass schon ein leichtes Durchbiegen der Bodenplatte zu einer kritischen Veränderung des Kamerawinkels geführt hat. Deswegen wurde nach Wegen gesucht, die Bodenplatte steifer zu machen. Neben Verstärkungen der Geometrie wurde zusätzlich entschieden, ein anderes Material beim Druck zu verwenden. Im Vergleich aller Materialien, die das Team selber drucken kann, hat PPA-CF sich als das Material mit der höchsten Steifigkeit herausgestellt. Dieses Filament hat das Problem des Durchbiegens der Bodenplatte komplett eliminiert.
 
+
+
 <table>
   <tr>
      <td width=320><img src="img/Bodenplatte1.jpeg"></td>
@@ -60,9 +72,22 @@ Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 36
   </tr>
 </table>
 
+<div align="center"><img width="400" img src= "img/Maße/Lowerdeck.jpg"></div>
+
+
 Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtenregler und die Odometriesensoren. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
-<img width="400" img src= "img/Bodenplatte3.jpg">
+Das Servo wird in die Bodenplatte in einer vorhergesehenen Halterung eingesetzt und mittels des Servobrackets befestigt.
+
+Hier die Bemaßung:
+<div align="center"><img width="400" img src= "img/Maße/Servobracket.jpg"></div>
+
+<div align="center"><img width="400" img src= "img/Bodenplatte3.jpg"></div>
+
+Damit der Fahrtenregler nicht von der Bodenplatte fällt, sind zwischen den Distanzbolzen zwei 3D-gedruckte Sidebars eingebaut.
+
+Hier die Bemaßung:
+<div align="center"><img width="400" img src= "img/Maße/Sidebars.jpg"></div>
 
 ### Mitteldeck
 
@@ -75,9 +100,11 @@ Anschließend wurde noch ein Mitteldeck mit Fusion 360 designt. Die Maße orient
   </tr>
 </table>
 
-Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spannungsregler. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
+<div align="center"><img width="400" img src= "img/Maße/Middledeck.jpg"></div>
 
-<img width="400" src="img/Mitteldeck3.jpg">
+Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spannungsregler. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden. Außerdem haben wir hier eine Kamera integriert.
+
+<div align="center"><img width="400" src="img/Mitteldeck3.jpg"></div>
 
 ### Oberdeck
 
@@ -90,9 +117,11 @@ Um den LiDAR zu befestigen, wurde noch ein Oberdeck designt. An diesem wurde der
   </tr>
 </table>
 
+<div align="center"><img width="400" img src= "img/Maße/Lidar.jpg"></div>
+
 Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
-<img width="400" src="img/Oberdeck3.jpg">
+<div align="center"><img width="400" src="img/Oberdeck3.jpg"></div>
 
 ## Powertrain
 
@@ -110,7 +139,10 @@ Aus diesem Grund wurde der ursprüngliche Allradantrieb deaktiviert und stattdes
 
 Somit wurde ein Teil der Vorderachse mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt.
 
-<img width="500" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" />
+<div align="center"><img width="500" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" /></div>
+
+Hier die Bemaßung:
+<div align="center"><img width="400" img src= "img/Maße/Frontaxle.jpg"></div>
 <br><br>
 Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel benötigt:
 <br><br>
@@ -144,7 +176,7 @@ Die Räder der neuen Vorderachse sind von Lego:
 <br>
 Die neue Vorderachse in einer Detailaufnahme:
 <br><br>
-<img width="500" src=https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be>
+<div align="center"><img width="500" src=https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be></div>
 <br>
 
 ### Motor
@@ -198,447 +230,6 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
     <tr><TD colspan=2>Where to buy the motor driver: https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</TD></tr>
 </table>
 
-### Drive Motor
-
-
-The drive motor control system consists of three main components:
-
-1. **Adafruit ServoKit PWM Driver**: Generates the PWM control signals for the motor driver
-2. **Motor Driver (ESC)**: Converts PWM signals to appropriate power levels for the brushed DC motor  
-3. **PID Control Algorithm**: Provides closed-loop speed control using feedback from odometry sensors
-
-#### Hardware Interface
-
-The motor is controlled via PWM signals sent to the motor driver through the Adafruit ServoKit library:
-
-- **Control Channel**: Servo channel 3 on the ServoKit
-- **PWM Range**: 90° to 180° (forward), 90° to 0° (reverse), 90° = neutral/brake
-- **Communication**: I²C between Raspberry Pi and ServoKit
-- **Update Rate**: 70 Hz depending on control loop timing
-
-#### Software Implementation
-
-The motor control is implemented in the `DriveBase` class within `motorController.py`. Here is a sample code that implements driving to a specifix x/y coordinate. We have other functions that do different maneuvers in this class.
-
-```python
-class DriveBase:
-    
-    def driveTo(self, x, y, speed, brake):
-        """
-        Drive the robot to a specific coordinate (x, y) with controlled speed and optional braking.
-        
-        Args:
-            x (float): Target x-coordinate in millimeters
-            y (float): Target y-coordinate in millimeters  
-            speed (float): Desired speed in m/s (positive for forward, negative for reverse)
-            brake (int): Braking mode (1 = enable progressive braking near target, 0 = no braking)
-            
-        Returns:
-            bool: True when target is reached (within 30mm), False while still driving
-        """
-        # Set the target speed for the PID controller
-        self.pidController.setpoint = speed
-        
-        # Calculate straight-line distance from current position to target
-        distance = math.sqrt(math.pow((self.slam.xpos - x),2) + math.pow((self.slam.ypos - y),2))
-        
-        # Calculate the required heading angle to reach the target
-        # atan2 gives angle from current position to target, negated to match robot coordinate system
-        zielwinkel = -(math.atan2(self.slam.ypos - y, self.slam.xpos - x) / math.pi * 180)
-        
-        # Calculate heading error (difference between current and required heading)
-        fehlerwinkel = -zielwinkel + self.slam.angle
-        
-        # Normalize heading error to [-180, +180] degree range
-        # This ensures we always take the shortest angular path to the target
-        while fehlerwinkel > 180:
-            fehlerwinkel -= 360
-        while fehlerwinkel < -180:
-            fehlerwinkel += 360
-        
-        # Initialize target angle on first call (5000 is sentinel value for "not set")
-        if self.zielWinkel == 5000:
-            self.zielWinkel = zielwinkel
-        
-        # Calculate distance along the original target line (corrected for any heading drift)
-        # This gives us the "useful" distance - how much progress we've made toward the target
-        distanceLine = distance * math.cos((self.zielWinkel - zielwinkel) / 180 * math.pi)
-        
-        # Progressive braking: reduce speed as we approach the target
-        # When within 200mm and braking enabled, scale speed proportionally to remaining distance
-        if (abs(distanceLine) < 200) and (brake == 1):
-            self.pidController.setpoint = speed * distanceLine / 200
-        
-        # Calculate steering correction using PID controller
-        # fehlerwinkel is the input, outputSteer is the steering angle correction
-        outputSteer = self.pidSteer.compute(fehlerwinkel,1)
-        
-        # Calculate motor speed correction using PID controller
-        # Compares actual speed (slam.speed) with target speed (setpoint)
-        output = self.pidController.compute(self.slam.speed,0.5,self.slam)
-        
-        # Limit steering output to prevent excessive steering angles
-        # ±55 degrees is the maximum safe steering for faster driving
-        if (outputSteer>55):
-            outputSteer = 55
-        if (outputSteer<-55):
-            outputSteer = -55
-            
-        # Apply steering: 90° is straight ahead, add correction for turning
-        setServoAngle(self.kit,90 + outputSteer,self.slam)
-        
-        # Apply motor control: 99° is forward base speed, add PID correction
-        self.kit.servo[3].angle = 99 + output
-        
-        # Check if we've reached the target (within 30mm tolerance)
-        if distanceLine < 30:
-            # Reset target angle for next movement command
-            self.zielWinkel = 5000
-            # Stop the motor (90° = neutral position)
-            self.kit.servo[3].angle = 90
-            return True  # Target reached
-        else:
-            return False  # Still driving to target
-```
-
-
-#### Advanced Control Features
-
-**Adaptive Braking**: The system implements intelligent braking that adjusts deceleration based on remaining distance:
-
-```python
-if (distance_remaining < 30) and (brake == 1):
-    if speed > 0:
-        self.pidController.setpoint = 0.1  # Gentle deceleration
-    else:
-        self.pidController.setpoint = -0.1
-
-if (distance_remaining < 10) and (brake == 1):
-    self.pidController.setpoint = 0  # Full stop
-```
-
-**Direction-Dependent Control**: The system handles forward and reverse motion differently to account for mechanical asymmetries:
-
-```python
-if speed > 0:  # Forward
-    self.kit.servo[3].angle = 110 + output
-else:  # Reverse  
-    self.kit.servo[3].angle = 80 + output
-```
-
-**Safety Features**: 
-- Automatic motor cutoff when target reached
-- PID reset when changing directions to prevent windup
-- Speed limiting for better reliability
-
-
-
-#### Optical Tracking Odometry SensorsT
-
-The odometry system uses two **SparkFun Qwiic Optical Tracking Odometry Sensors (OTOS)** connected via I²C at addresses `0x17` and `0x19`. Here's how we implement the odometry system:
-
-##### Position and Speed Tracking
-
-```python
-def update(self):
-    """Main odometry update function called every control loop iteration"""
-    
-    # Read position data from both sensors
-    myPosition1 = self.myOtos1.getPosition()  # Returns x, y, h (heading)
-    myPosition2 = self.myOtos2.getPosition()
-    
-    # Calculate speed from position changes (speed in m/s * 100)
-    if self.lastXpos1 != 5000:  # Skip first iteration
-        self.speed1 = math.sqrt((myPosition1.x - self.lastXpos1)**2 + 
-                               (myPosition1.y - self.lastYpos1)**2) * 100
-    
-    if self.lastXpos2 != 5000:
-        self.speed2 = math.sqrt((myPosition2.x - self.lastXpos2)**2 + 
-                               (myPosition2.y - self.lastYpos2)**2) * 100
-    
-    # Store positions for next speed calculation
-    self.lastXpos1, self.lastYpos1 = myPosition1.x, myPosition1.y
-    self.lastXpos2, self.lastYpos2 = myPosition2.x, myPosition2.y
-    
-    # Convert to robot coordinate system (mm, with coordinate transformation)
-    myPosition1.x = -myPosition1.x * 1000
-    myPosition1.y = -myPosition1.y * 1000
-    myPosition2.x = -myPosition2.x * 1000
-    myPosition2.y = -myPosition2.y * 1000
-```
-
-##### Sensor Health Monitoring and Redundancy
-
-```python
-def update(self):
-    # Health monitoring: compare sensor readings for anomalies
-    if self.healthy1 == 1 and self.healthy2 == 1:
-        # Check for speed discrepancies between sensors
-        if self.speed1 + 0.15 < self.speed2:
-            self.errorsOtos1 += 1  # Sensor 1 significantly slower
-        else:
-            if self.errorsOtos1 > 0:
-                self.errorsOtos1 -= 1  # Decrease error count
-                
-        if self.speed2 + 0.15 < self.speed1:
-            self.errorsOtos2 += 1  # Sensor 2 significantly slower
-        else:
-            if self.errorsOtos2 > 0:
-                self.errorsOtos2 -= 1
-        
-        # Check for impossible speeds (> 2 m/s indicates sensor failure)
-        if self.speed1 > 2:
-            self.errorsOtosSpeed1 += 1
-        if self.speed2 > 2:
-            self.errorsOtosSpeed2 += 1
-            
-        # Check position bounds (robot should stay within field)
-        if (myPosition1.x < -100 or myPosition1.x > 3100 or 
-            myPosition1.y < -100 or myPosition1.y > 3100):
-            self.healthy1 = -2  # Position out of bounds
-            
-    # Mark sensors as unhealthy after repeated errors
-    if self.errorsOtos1 > 20:
-        self.healthy1 = 0
-        print(f"Sensor 1 unhealthy, errors: {self.errorsOtos1}")
-    if self.errorsOtosSpeed1 > 5:
-        self.healthy1 = -1
-        print(f"Sensor 1 speed errors: {self.errorsOtosSpeed1}")
-```
-
-##### Data Fusion and Final Position Calculation
-
-```python
-def update(self):
-    # Use best available sensor data for robot position
-    if self.healthy1 == 1 and self.healthy2 == 1:
-        # Both sensors healthy: average their readings
-        self.xpos = (myPosition1.y + myPosition2.y) / 2
-        self.ypos = (myPosition1.x + myPosition2.x) / 2
-        self.angle = meanAngle(myPosition1.h, myPosition2.h)  # Average angles
-        self.speed = (self.speed1 + self.speed2) / 2
-        
-    elif self.healthy1 == 1:
-        # Only sensor 1 healthy: use its data
-        self.xpos = myPosition1.y
-        self.ypos = myPosition1.x
-        self.angle = myPosition1.h
-        self.speed = self.speed1
-        
-    else:
-        # Only sensor 2 healthy: use its data
-        self.xpos = myPosition2.y
-        self.ypos = myPosition2.x
-        self.angle = myPosition2.h
-        self.speed = self.speed2
-```
-
-##### Position Reset and Calibration
-
-```python
-def setPosition(self, x, y, angle=-5000):
-    """Set absolute position (used for LiDAR-based corrections)"""
-    
-    # Update sensor 1 position
-    myPosition = self.myOtos1.getPosition()
-    myPosition.y = -x / 1000  # Convert mm to meters and apply coordinate transform
-    myPosition.x = -y / 1000
-    if angle > -5000:
-        myPosition.h = angle
-    self.myOtos1.setPosition(myPosition)
-    
-    # Update sensor 2 position
-    myPosition = self.myOtos2.getPosition()
-    myPosition.y = -x / 1000
-    myPosition.x = -y / 1000
-    if angle > -5000:
-        myPosition.h = angle
-    self.myOtos2.setPosition(myPosition)
-    
-    # Update internal position tracking
-    self.xpos = x
-    self.ypos = y
-    self.ignoreSpeedUpdate = 1  # Skip next speed calculation
-```
-
-#### Key Features of Our Implementation
-
-1. **Dual Sensor Redundancy**: Two sensors provide backup if one fails due to dust or surface issues
-2. **Automatic Health Monitoring**: Continuous error detection and sensor status tracking
-3. **Speed Calculation**: Real-time velocity calculation from position differences
-4. **Coordinate System Integration**: Seamless integration with robot's navigation coordinate system
-5. **LiDAR Fusion**: Position corrections using LiDAR wall measurements when sensors drift
-
-This odometry system provides continuous position tracking with 2-5cm accuracy per meter of travel, enabling  autonomous navigation throughout the competition course.
-
-
-
-
-
-#### LiDAR 
-
-Our LiDAR system uses the **RpLidar S2L** which provides 360-degree scanning with up to 32000 samples per second. The implementation consists of hardware interface, data processing, and multiple application functions. The raspberry communicates with the lidar via a serial uart port at 1 Mbps. The communication is handled by a library supplied by Slamtec.
-
-##### Hardware Interface and Initialization
-
-
-##### Real-time Scanning and Data Acquisition
-
-```python
-def update(self):
-    """Main update loop - called every control cycle"""
-    
-    # Scan every 10th loop iteration to optimize performance
-    if self.loopCounter >= 9:
-        # Get complete 360° scan from LiDAR
-        self.lidar.getScan(self.scan)  # Updates self.scan array
-        self.loopCounter = 0
-    else:
-        self.loopCounter += 1
-    
-    # self.scan[angle] now contains distance in mm for each degree
-    # Example: self.scan[0] = distance at 0°, self.scan[90] = distance at 90°
-```
-
-##### Position Detection and Localization
-
-```python
-def startpostionsetzen(self):
-    """Detect robot's starting position using LiDAR wall measurements"""
-    
-    # Calculate average distance in forward direction (-5° to +5°)
-    average = 0
-    scans = 0
-    for i in range(-5, 6):
-        if self.scan[i] > 0:
-            average += self.scan[i]
-            scans += 1
-    average = average / scans
-    
-    # Determine starting position based on wall distances
-    if (average > 1870) and (average < 1970):
-        # Position 1: Near front wall, clockwise direction
-        self.direction = self.CW
-        self.eventType = self.ER
-        self.setPosition(average, 3000 - self.scan[90], 0)
-        
-    elif (average > 1345) and (average < 1450):
-        # Position 2: Different wall configuration
-        self.direction = self.CCW
-        self.setPosition(self.scan[180], 3000 - self.scan[-90], 180)
-        
-    # Additional position detection logic...
-```
-
-##### Dynamic Position Correction During Driving
-
-```python
-def repositionDrive(self):
-    """Correct robot position using LiDAR while driving"""
-    
-    # Determine robot's orientation quadrant
-    quadrant = 0
-    quadrant_range = 1050
-    
-    if (self.xpos < quadrant_range and self.ypos < quadrant_range):
-        quadrant = 1  # Top-left
-    elif (self.xpos < quadrant_range and self.ypos > 3000 - quadrant_range):
-        quadrant = 2  # Bottom-left
-    # ... additional quadrants
-    
-    # Correct position based on current heading
-    angle_check = self.angle
-    while angle_check > 180:
-        angle_check -= 360
-    while angle_check < -180:
-        angle_check += 360
-    
-    # Facing right (180°): use distance to right wall
-    if abs(angle_check - 180) < 30:
-        wall_distance = self.scan[90]  # Distance to right wall
-        corrected_x = 3000 - wall_distance
-        self.setPosition(corrected_x, self.ypos, self.angle)
-        
-    # Facing forward (0°): use distance to front wall
-    elif abs(angle_check) < 30:
-        wall_distance = self.scan[0]   # Distance to front wall
-        corrected_y = wall_distance
-        self.setPosition(self.xpos, corrected_y, self.angle)
-```
-
-##### Obstacle Detection and Recognition
-
-```python
-def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
-    """Detect obstacles using LiDAR and determine their positions"""
-    
-    found = 0
-    
-    # Convert polar LiDAR data to Cartesian coordinates
-    xposes = []
-    yposes = []
-    for i in range(len(scan)):
-        # Convert angle + robot position to world coordinates
-        rad = (i + self.angle) / 180 * math.pi
-        xposes.append(math.cos(rad) * -scan[i] + self.xpos)
-        yposes.append(math.sin(rad) * scan[i] + self.ypos)
-    
-    # Check each predefined obstacle position
-    for i in range(len(self.hindernisse)):
-        if i in toScan:  # Only check specified positions
-            self.hindernisse[i].farbe = Hindernisse.NICHTS
-            dots = 0
-            angles = []
-            
-            # Find LiDAR points near this obstacle position
-            for b in range(len(xposes)):
-                distance_to_obstacle = math.sqrt(
-                    (xposes[b] - self.hindernisse[i].x)**2 + 
-                    (yposes[b] - self.hindernisse[i].y)**2
-                )
-                
-                # If LiDAR point is within 120mm of obstacle position
-                if distance_to_obstacle < 120 and self.scan[b] > 200:
-                    dots += 1
-                    angles.append(b)
-            
-            if dots > 0:  # Obstacle detected
-                found += dots
-                
-                # Calculate average angle to obstacle
-                angle = sum(angles) / len(angles)
-                angle = -angle  # Coordinate system correction
-                
-                # Use camera to determine obstacle color
-                # (camera processing code integration here)
-```
-
-##### Key Features of Our LiDAR Implementation
-
-1. **Real-time 360° Scanning**: Continuous environment monitoring at 10 kHz
-2. **Automatic Position Correction**: Uses wall distances to correct odometry drift
-3. **Starting Position Detection**: Automatically determines robot placement
-4. **Obstacle Detection**: Identifies obstacle positions
-5. **Coordinate Transformation**: Converts polar scan data to robot coordinate system
-6. **Performance Optimization**: Strategic scan timing to maintain control loop performance
-
-##### Data Structure and Access Patterns
-
-```python
-# LiDAR scan data structure
-self.scan[0]     # Distance to front (0°)
-self.scan[90]    # Distance to right (90°) 
-self.scan[180]   # Distance to back (180°)
-self.scan[270]   # Distance to left (270°/-90°)
-
-# Example: Check if path is clear ahead
-if self.scan[0] > 500:  # More than 500mm clear ahead
-    # Safe to drive forward
-    
-# Example: Distance to nearest wall on right side
-right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
-```
-
 
 
 ### Servo Motor
@@ -683,40 +274,6 @@ Durch die gewählte Übersetzung von 61:14 ergibt sich eine signifikante Verstä
 
 The steering system of our robot employs a servo-controlled front axle with Ackermann steering geometry.
 
-### Servo Control System
-
-The steering is controlled through an Adafruit 16 Channel Servo Driver connected to the Raspberry Pi via I²C communication. The servo driver board manages the PWM signal generation required for the servo positioning. For the communication with the board we use the Adafruit servokit library
-
-#### Software Implementation
-
-The servo control is implemented in the `motorController.py` file through the `setServoAngle()` function:
-
-```python
-def setServoAngle(kit, angle, slam=None):
-    servoMitte = 80  # Center position (straight ahead)
-    
-    # Convert desired steering angle to servo position
-    target = angle - 90 + servoMitte
-    
-    # Limit servo travel to prevent damage
-    if target > 180:
-        target = 180
-    if target < 0:
-        target = 0
-    
-    # Send command to servo on channel 0
-    kit.servo[0].angle = target
-
-```
-
-#### Steering Range and Calibration
-
-- **Center Position**: 80° (servo angle) = straight ahead. This value needs to be set up by hand accoring to the exact servo arm mounting
-- **Maximum Left**: 0° (servo angle) = full left lock
-- **Maximum Right**: 180° (servo angle) = full right lock
-- **Steering Input Range**: The function accepts angles where 90° represents straight ahead, with deviations from 90° controlling the steering direction
-
-
 
 
 
@@ -749,7 +306,7 @@ Eine erhöhte Umgebungswahrnehmung wird erzielt, wenn die LiDAR-Daten mit weiter
 
 In der nachfolgenden Tabelle wurden die für die Auswahl relevanten technischen Kriterien verschiedener LiDAR-Systeme zusammengestellt und entsprechend unserer Anforderungen farblich bewertet. Im Ergebnis stellte sich heraus, dass der RpLidar S2 die geeignetste Option für unsere Anwendung darstellt.
 
-<img width="600" alt="tabelle" src=https://github.com/user-attachments/assets/9beae8fb-1bd3-4d9e-9e44-baab9635c230>
+<div align="center"><img width="600" alt="tabelle" src=https://github.com/user-attachments/assets/9beae8fb-1bd3-4d9e-9e44-baab9635c230></div>
 
 
 Nach der Integration des LiDAR-Systems in den Roboter wurde festgestellt, dass die Spielfeldbegrenzung nicht zuverlässig erkannt wurde. Ursache hierfür war, dass die vom Sensor ausgesendeten Laserstrahlen über die Begrenzung hinweg projiziert wurden.
@@ -840,9 +397,609 @@ Die Spannungsversorgung der einzelnen Komponenten wird wie folgt realisiert:
 <br><br><br>
 
 # Code für alle Komponenten
-- wird von Nils gefüllt
 
-Steering Servo
+
+## Servo 
+
+The steering is controlled through an Adafruit 16 Channel Servo Driver connected to the Raspberry Pi via I²C communication. The servo driver board manages the PWM signal generation required for the servo positioning. For the communication with the board we use the Adafruit servokit library
+
+### Software Implementation
+
+The servo control is implemented in the `motorController.py` file through the `setServoAngle()` function:
+
+```python
+def setServoAngle(kit, angle, slam=None):
+    servoMitte = 80  # Center position (straight ahead)
+    
+    # Convert desired steering angle to servo position
+    target = angle - 90 + servoMitte
+    
+    # Limit servo travel to prevent damage
+    if target > 180:
+        target = 180
+    if target < 0:
+        target = 0
+    
+    # Send command to servo on channel 0
+    kit.servo[0].angle = target
+
+```
+
+### Steering Range and Calibration
+
+- **Center Position**: 80° (servo angle) = straight ahead. This value needs to be set up by hand accoring to the exact servo arm mounting
+- **Maximum Left**: 0° (servo angle) = full left lock
+- **Maximum Right**: 180° (servo angle) = full right lock
+- **Steering Input Range**: The function accepts angles where 90° represents straight ahead, with deviations from 90° controlling the steering direction
+
+
+
+## Drive Motor
+
+### Components
+
+The drive motor control system consists of three main components:
+
+1. **Adafruit ServoKit PWM Driver**: Generates the PWM control signals for the motor driver
+2. **Motor Driver (ESC)**: Converts PWM signals to appropriate power levels for the brushed DC motor  
+3. **PID Control Algorithm**: Provides closed-loop speed control using feedback from odometry sensors
+
+### Hardware Interface
+
+The motor is controlled via PWM signals sent to the motor driver through the Adafruit ServoKit library:
+
+- **Control Channel**: Servo channel 3 on the ServoKit
+- **PWM Range**: 90° to 180° (forward), 90° to 0° (reverse), 90° = neutral/brake
+- **Communication**: I²C between Raspberry Pi and ServoKit
+- **Update Rate**: 70 Hz depending on control loop timing
+
+### Software Implementation
+
+The motor control is implemented in the `DriveBase` class within `motorController.py`. Here is a sample code that implements driving to a specifix x/y coordinate. We have other functions that do different maneuvers in this class.
+
+```python
+class DriveBase:
+    
+    def driveTo(self, x, y, speed, brake):
+        """
+        Drive the robot to a specific coordinate (x, y) with controlled speed and optional braking.
+        
+        Args:
+            x (float): Target x-coordinate in millimeters
+            y (float): Target y-coordinate in millimeters  
+            speed (float): Desired speed in m/s (positive for forward, negative for reverse)
+            brake (int): Braking mode (1 = enable progressive braking near target, 0 = no braking)
+            
+        Returns:
+            bool: True when target is reached (within 30mm), False while still driving
+        """
+        # Set the target speed for the PID controller
+        self.pidController.setpoint = speed
+        
+        # Calculate straight-line distance from current position to target
+        distance = math.sqrt(math.pow((self.slam.xpos - x),2) + math.pow((self.slam.ypos - y),2))
+        
+        # Calculate the required heading angle to reach the target
+        # atan2 gives angle from current position to target, negated to match robot coordinate system
+        zielwinkel = -(math.atan2(self.slam.ypos - y, self.slam.xpos - x) / math.pi * 180)
+        
+        # Calculate heading error (difference between current and required heading)
+        fehlerwinkel = -zielwinkel + self.slam.angle
+        
+        # Normalize heading error to [-180, +180] degree range
+        # This ensures we always take the shortest angular path to the target
+        while fehlerwinkel > 180:
+            fehlerwinkel -= 360
+        while fehlerwinkel < -180:
+            fehlerwinkel += 360
+        
+        # Initialize target angle on first call (5000 is sentinel value for "not set")
+        if self.zielWinkel == 5000:
+            self.zielWinkel = zielwinkel
+        
+        # Calculate distance along the original target line (corrected for any heading drift)
+        # This gives us the "useful" distance - how much progress we've made toward the target
+        distanceLine = distance * math.cos((self.zielWinkel - zielwinkel) / 180 * math.pi)
+        
+        # Progressive braking: reduce speed as we approach the target
+        # When within 200mm and braking enabled, scale speed proportionally to remaining distance
+        if (abs(distanceLine) < 200) and (brake == 1):
+            self.pidController.setpoint = speed * distanceLine / 200
+        
+        # Calculate steering correction using PID controller
+        # fehlerwinkel is the input, outputSteer is the steering angle correction
+        outputSteer = self.pidSteer.compute(fehlerwinkel,1)
+        
+        # Calculate motor speed correction using PID controller
+        # Compares actual speed (slam.speed) with target speed (setpoint)
+        output = self.pidController.compute(self.slam.speed,0.5,self.slam)
+        
+        # Limit steering output to prevent excessive steering angles
+        # ±55 degrees is the maximum safe steering for faster driving
+        if (outputSteer>55):
+            outputSteer = 55
+        if (outputSteer<-55):
+            outputSteer = -55
+            
+        # Apply steering: 90° is straight ahead, add correction for turning
+        setServoAngle(self.kit,90 + outputSteer,self.slam)
+        
+        # Apply motor control: 99° is forward base speed, add PID correction
+        self.kit.servo[3].angle = 99 + output
+        
+        # Check if we've reached the target (within 30mm tolerance)
+        if distanceLine < 30:
+            # Reset target angle for next movement command
+            self.zielWinkel = 5000
+            # Stop the motor (90° = neutral position)
+            self.kit.servo[3].angle = 90
+            return True  # Target reached
+        else:
+            return False  # Still driving to target
+```
+
+### PID Controller Implementation
+
+Our robot uses two separate PID controllers for motion control: one for speed regulation and another for steering control. The PID (Proportional-Integral-Derivative) controllers provide smooth and stable control by continuously adjusting outputs based on error feedback.
+
+#### <ins>PID Controller Class Structure</ins>
+
+```python
+class PIDController:
+    def __init__(self, Kp, Ki, Kd, setpoint, min, max, drive=0):
+        self.Kp = Kp              # Proportional gain
+        self.Ki = Ki              # Integral gain  
+        self.Kd = Kd              # Derivative gain
+        self.setpoint = setpoint  # Target value
+        self.previous_error = 0   # Previous error for derivative calculation
+        self.integral = 0         # Accumulated error for integral term
+        self.min = min           # Minimum output limit
+        self.max = max           # Maximum output limit
+        self.drive = drive       # Flag for drive motor (used for diagnostics)
+    
+    def reset(self):
+        """Reset integral and derivative terms - used when changing direction"""
+        self.previous_error = 0
+        self.integral = 0
+```
+
+#### <ins>PID Computation Algorithm</ins>
+
+```python
+def compute(self, process_variable, dt, slam=None):
+    """
+    Calculate PID output based on current measurement and target setpoint
+    
+    Args:
+        process_variable: Current measured value (speed, angle, etc.)
+        dt: Time delta since last computation 
+        slam: Optional SLAM object for diagnostics
+        
+    Returns:
+        Control output value (within min/max bounds)
+    """
+    # Calculate error between target and actual value
+    error = self.setpoint - process_variable
+    
+    # Proportional term: immediate response to current error
+    P_out = self.Kp * error
+    
+    # Integral term: accumulated error over time (eliminates steady-state error)
+    self.integral += error * dt
+    
+    # Integral windup protection: prevent integral from exceeding output limits
+    if self.Ki * self.integral > self.max:
+        self.integral = self.max / self.Ki
+    if self.Ki * self.integral < self.min:
+        self.integral = self.min / self.Ki
+    I_out = self.Ki * self.integral
+    
+    # Derivative term: rate of error change (reduces oscillation)
+    derivative = (error - self.previous_error) / dt
+    D_out = self.Kd * derivative
+    
+    # Combine all three terms
+    output = P_out + I_out + D_out
+    
+    # Update previous error for next derivative calculation
+    self.previous_error = error
+    
+    # Apply output limits for safety
+    if output > self.max:
+        output = self.max
+    if output < self.min:
+        output = self.min
+        
+    return output
+```
+
+#### <ins>Dual PID Controller Configuration</ins>
+
+Our robot uses two PID controllers with different tuning parameters optimized for their specific control tasks:
+
+**Speed Control PID**:
+```python
+# Speed controller: maintains target velocity
+self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, 
+                                 setpoint=1, min=-50, max=40, drive=1)
+```
+- **Kp=20**: High proportional gain for responsive speed changes
+- **Ki=5**: Moderate integral gain to eliminate steady-state speed errors  
+- **Kd=1.0**: Small derivative gain to reduce speed oscillations
+- **Range**: -50 to +40 (asymmetric for different forward/reverse characteristics)
+
+**Steering Control PID**:
+```python
+# Steering controller: maintains target heading/direction
+self.pidSteer = PIDController(Kp=2, Ki=0, Kd=0, 
+                            setpoint=0, min=-90, max=90)
+```
+- **Kp=2**: Moderate proportional gain for smooth steering response
+- **Ki=0**: No integral term (avoids steering drift accumulation)
+- **Kd=0**: No derivative term (steering doesn't need oscillation damping)
+- **Range**: ±90° maximum steering angle
+
+#### <ins>PID Controllers in Action</ins>
+
+**Speed Control Example**:
+```python
+# Set target speed and calculate correction
+self.pidController.setpoint = speed  # Target speed in m/s
+output = self.pidController.compute(self.slam.speed, 0.5, self.slam)
+
+# Apply motor control with PID correction
+self.kit.servo[3].angle = 99 + output  # Base speed + PID adjustment
+```
+
+**Steering Control Example**:
+```python
+# Calculate heading error and steering correction
+fehlerwinkel = target_angle - current_angle  # Heading error in degrees
+outputSteer = self.pidSteer.compute(fehlerwinkel, 1)
+
+# Apply steering with limits
+if outputSteer > 55: outputSteer = 55
+if outputSteer < -55: outputSteer = -55
+setServoAngle(self.kit, 90 + outputSteer, self.slam)
+```
+
+
+
+### Advanced Control Features
+
+**Adaptive Braking**: The system implements intelligent braking that adjusts deceleration based on remaining distance:
+
+```python
+if (distance_remaining < 30) and (brake == 1):
+    if speed > 0:
+        self.pidController.setpoint = 0.1  # Gentle deceleration
+    else:
+        self.pidController.setpoint = -0.1
+
+if (distance_remaining < 10) and (brake == 1):
+    self.pidController.setpoint = 0  # Full stop
+```
+
+**Direction-Dependent Control**: The system handles forward and reverse motion differently to account for mechanical asymmetries:
+
+```python
+if speed > 0:  # Forward
+    self.kit.servo[3].angle = 110 + output
+else:  # Reverse  
+    self.kit.servo[3].angle = 80 + output
+```
+
+**Safety Features**: 
+- Automatic motor cutoff when target reached
+- PID reset when changing directions to prevent windup
+- Speed limiting for better reliability
+
+
+
+
+## Optical Tracking Odometry Sensors
+
+The odometry system uses two **SparkFun Qwiic Optical Tracking Odometry Sensors (OTOS)** connected via I²C at addresses `0x17` and `0x19`. Here's how we implement the odometry system:
+
+### Position and Speed Tracking
+
+```python
+def update(self):
+    """Main odometry update function called every control loop iteration"""
+    
+    # Read position data from both sensors
+    myPosition1 = self.myOtos1.getPosition()  # Returns x, y, h (heading)
+    myPosition2 = self.myOtos2.getPosition()
+    
+    # Calculate speed from position changes (speed in m/s * 100)
+    if self.lastXpos1 != 5000:  # Skip first iteration
+        self.speed1 = math.sqrt((myPosition1.x - self.lastXpos1)**2 + 
+                               (myPosition1.y - self.lastYpos1)**2) * 100
+    
+    if self.lastXpos2 != 5000:
+        self.speed2 = math.sqrt((myPosition2.x - self.lastXpos2)**2 + 
+                               (myPosition2.y - self.lastYpos2)**2) * 100
+    
+    # Store positions for next speed calculation
+    self.lastXpos1, self.lastYpos1 = myPosition1.x, myPosition1.y
+    self.lastXpos2, self.lastYpos2 = myPosition2.x, myPosition2.y
+    
+    # Convert to robot coordinate system (mm, with coordinate transformation)
+    myPosition1.x = -myPosition1.x * 1000
+    myPosition1.y = -myPosition1.y * 1000
+    myPosition2.x = -myPosition2.x * 1000
+    myPosition2.y = -myPosition2.y * 1000
+```
+
+### Sensor Health Monitoring and Redundancy
+
+```python
+def update(self):
+    # Health monitoring: compare sensor readings for anomalies
+    if self.healthy1 == 1 and self.healthy2 == 1:
+        # Check for speed discrepancies between sensors
+        if self.speed1 + 0.15 < self.speed2:
+            self.errorsOtos1 += 1  # Sensor 1 significantly slower
+        else:
+            if self.errorsOtos1 > 0:
+                self.errorsOtos1 -= 1  # Decrease error count
+                
+        if self.speed2 + 0.15 < self.speed1:
+            self.errorsOtos2 += 1  # Sensor 2 significantly slower
+        else:
+            if self.errorsOtos2 > 0:
+                self.errorsOtos2 -= 1
+        
+        # Check for impossible speeds (> 2 m/s indicates sensor failure)
+        if self.speed1 > 2:
+            self.errorsOtosSpeed1 += 1
+        if self.speed2 > 2:
+            self.errorsOtosSpeed2 += 1
+            
+        # Check position bounds (robot should stay within field)
+        if (myPosition1.x < -100 or myPosition1.x > 3100 or 
+            myPosition1.y < -100 or myPosition1.y > 3100):
+            self.healthy1 = -2  # Position out of bounds
+            
+    # Mark sensors as unhealthy after repeated errors
+    if self.errorsOtos1 > 20:
+        self.healthy1 = 0
+        print(f"Sensor 1 unhealthy, errors: {self.errorsOtos1}")
+    if self.errorsOtosSpeed1 > 5:
+        self.healthy1 = -1
+        print(f"Sensor 1 speed errors: {self.errorsOtosSpeed1}")
+```
+
+### Data Fusion and Final Position Calculation
+
+```python
+def update(self):
+    # Use best available sensor data for robot position
+    if self.healthy1 == 1 and self.healthy2 == 1:
+        # Both sensors healthy: average their readings
+        self.xpos = (myPosition1.y + myPosition2.y) / 2
+        self.ypos = (myPosition1.x + myPosition2.x) / 2
+        self.angle = meanAngle(myPosition1.h, myPosition2.h)  # Average angles
+        self.speed = (self.speed1 + self.speed2) / 2
+        
+    elif self.healthy1 == 1:
+        # Only sensor 1 healthy: use its data
+        self.xpos = myPosition1.y
+        self.ypos = myPosition1.x
+        self.angle = myPosition1.h
+        self.speed = self.speed1
+        
+    else:
+        # Only sensor 2 healthy: use its data
+        self.xpos = myPosition2.y
+        self.ypos = myPosition2.x
+        self.angle = myPosition2.h
+        self.speed = self.speed2
+```
+
+### Position Reset and Calibration
+
+```python
+def setPosition(self, x, y, angle=-5000):
+    """Set absolute position (used for LiDAR-based corrections)"""
+    
+    # Update sensor 1 position
+    myPosition = self.myOtos1.getPosition()
+    myPosition.y = -x / 1000  # Convert mm to meters and apply coordinate transform
+    myPosition.x = -y / 1000
+    if angle > -5000:
+        myPosition.h = angle
+    self.myOtos1.setPosition(myPosition)
+    
+    # Update sensor 2 position
+    myPosition = self.myOtos2.getPosition()
+    myPosition.y = -x / 1000
+    myPosition.x = -y / 1000
+    if angle > -5000:
+        myPosition.h = angle
+    self.myOtos2.setPosition(myPosition)
+    
+    # Update internal position tracking
+    self.xpos = x
+    self.ypos = y
+    self.ignoreSpeedUpdate = 1  # Skip next speed calculation
+```
+
+### Key Features of Our Implementation
+
+1. **Dual Sensor Redundancy**: Two sensors provide backup if one fails due to dust or surface issues
+2. **Automatic Health Monitoring**: Continuous error detection and sensor status tracking
+3. **Speed Calculation**: Real-time velocity calculation from position differences
+4. **Coordinate System Integration**: Seamless integration with robot's navigation coordinate system
+5. **LiDAR Fusion**: Position corrections using LiDAR wall measurements when sensors drift
+
+This odometry system provides continuous position tracking with 2-5cm accuracy per meter of travel, enabling  autonomous navigation throughout the competition course.
+
+
+
+
+
+## LiDAR 
+
+Our LiDAR system uses the **RpLidar S2L** which provides 360-degree scanning with up to 32000 samples per second. The raspberry communicates with the lidar via a serial uart port at 1 Mbps. The communication is handled by a library supplied by Slamtec.
+
+### Real-time Scanning and Data Acquisition
+
+```python
+def update(self):
+    """Main update loop - called every control cycle"""
+    
+    # Scan every 10th loop iteration to optimize performance
+    if self.loopCounter >= 9:
+        # Get complete 360° scan from LiDAR
+        self.lidar.getScan(self.scan)  # Updates self.scan array
+        self.loopCounter = 0
+    else:
+        self.loopCounter += 1
+    
+    # self.scan[angle] now contains distance in mm for each degree
+    # Example: self.scan[0] = distance at 0°, self.scan[90] = distance at 90°
+```
+
+### Position Detection and Localization
+
+```python
+def startpostionsetzen(self):
+    """Detect robot's starting position using LiDAR wall measurements"""
+    
+    # Calculate average distance in forward direction (-5° to +5°)
+    average = 0
+    scans = 0
+    for i in range(-5, 6):
+        if self.scan[i] > 0:
+            average += self.scan[i]
+            scans += 1
+    average = average / scans
+    
+    # Determine starting position based on wall distances
+    if (average > 1870) and (average < 1970):
+        # Position 1: Near front wall, clockwise direction
+        self.direction = self.CW
+        self.eventType = self.ER
+        self.setPosition(average, 3000 - self.scan[90], 0)
+        
+    elif (average > 1345) and (average < 1450):
+        # Position 2: Different wall configuration
+        self.direction = self.CCW
+        self.setPosition(self.scan[180], 3000 - self.scan[-90], 180)
+        
+    # Additional position detection logic...
+```
+
+### Dynamic Position Correction During Driving
+
+```python
+def repositionDrive(self):
+    """Correct robot position using LiDAR while driving"""
+    
+    # Determine robot's orientation quadrant
+    quadrant = 0
+    quadrant_range = 1050
+    
+    if (self.xpos < quadrant_range and self.ypos < quadrant_range):
+        quadrant = 1  # Top-left
+    elif (self.xpos < quadrant_range and self.ypos > 3000 - quadrant_range):
+        quadrant = 2  # Bottom-left
+    # ... additional quadrants
+    
+    # Correct position based on current heading
+    angle_check = self.angle
+    while angle_check > 180:
+        angle_check -= 360
+    while angle_check < -180:
+        angle_check += 360
+    
+    # Facing right (180°): use distance to right wall
+    if abs(angle_check - 180) < 30:
+        wall_distance = self.scan[90]  # Distance to right wall
+        corrected_x = 3000 - wall_distance
+        self.setPosition(corrected_x, self.ypos, self.angle)
+        
+    # Facing forward (0°): use distance to front wall
+    elif abs(angle_check) < 30:
+        wall_distance = self.scan[0]   # Distance to front wall
+        corrected_y = wall_distance
+        self.setPosition(self.xpos, corrected_y, self.angle)
+```
+
+### Obstacle Detection and Recognition
+
+```python
+def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
+    """Detect obstacles using LiDAR and determine their positions"""
+    
+    found = 0
+    
+    # Convert polar LiDAR data to Cartesian coordinates
+    xposes = []
+    yposes = []
+    for i in range(len(scan)):
+        # Convert angle + robot position to world coordinates
+        rad = (i + self.angle) / 180 * math.pi
+        xposes.append(math.cos(rad) * -scan[i] + self.xpos)
+        yposes.append(math.sin(rad) * scan[i] + self.ypos)
+    
+    # Check each predefined obstacle position
+    for i in range(len(self.hindernisse)):
+        if i in toScan:  # Only check specified positions
+            self.hindernisse[i].farbe = Hindernisse.NICHTS
+            dots = 0
+            angles = []
+            
+            # Find LiDAR points near this obstacle position
+            for b in range(len(xposes)):
+                distance_to_obstacle = math.sqrt(
+                    (xposes[b] - self.hindernisse[i].x)**2 + 
+                    (yposes[b] - self.hindernisse[i].y)**2
+                )
+                
+                # If LiDAR point is within 120mm of obstacle position
+                if distance_to_obstacle < 120 and self.scan[b] > 200:
+                    dots += 1
+                    angles.append(b)
+            
+            if dots > 0:  # Obstacle detected
+                found += dots
+                
+                # Calculate average angle to obstacle
+                angle = sum(angles) / len(angles)
+                angle = -angle  # Coordinate system correction
+                
+                # Use camera to determine obstacle color
+                # (camera processing code integration here)
+```
+
+### Key Features of Our LiDAR Implementation
+
+1. **Real-time 360° Scanning**: Continuous environment monitoring at 10 kHz
+2. **Automatic Position Correction**: Uses wall distances to correct odometry drift
+3. **Starting Position Detection**: Automatically determines robot placement
+4. **Obstacle Detection**: Identifies obstacle positions
+5. **Coordinate Transformation**: Converts polar scan data to robot coordinate system
+6. **Performance Optimization**: Strategic scan timing to maintain control loop performance
+
+### Data Structure and Access Patterns
+
+```python
+# LiDAR scan data structure
+self.scan[0]     # Distance to front (0°)
+self.scan[90]    # Distance to right (90°) 
+self.scan[180]   # Distance to back (180°)
+self.scan[270]   # Distance to left (270°/-90°)
+
+# Example: Check if path is clear ahead
+if self.scan[0] > 500:  # More than 500mm clear ahead
+    # Safe to drive forward
+    
+# Example: Distance to nearest wall on right side
+right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
+```
+
 
 
 
@@ -854,7 +1011,7 @@ Steering Servo
 Dieses Kapitel schreibt Nils
 Die Diskussion zum Hindernismanagement sollte die Strategie des Fahrzeugs zur Bewältigung des Hindernisparcours in Bezug auf alle Herausforderungen beinhalten. Dies kann Flussdiagramme, Pseudocode sowie Quellcode mit ausführlichen Kommentaren umfassen.
 <br><br>
-## Initial location aqusition 
+## Initial Location Acquisition 
 
 At the beginning of the program, the robot detects the starting direction in which the car must drive on the track, based on its position on the mat.
 
@@ -868,7 +1025,7 @@ In the Obstacle Challenge, two different positions are possible. Here as well, t
  <br><br>
 ## Position updates during driving 
 
-### optical tracking sensor function 
+### Optical tracking sensor function 
 For continuous position tracking, we use two optical tracking sensors. A downward-facing camera inside the sensor captures 20,000 images per second. Based on changes in the images, the sensor detects movement across the surface. Additionally, the sensor has a built-in gyroscope. Using data from the gyroscope and the movement across the ground, the sensor automatically calculates the current coordinates.
 
 ### sensor failure detection / health status 
@@ -883,7 +1040,7 @@ Two optical tracking sensors were installed to increase redundancy. If one senso
 ![WhatsApp Image 2025-08-30 at 15 24 42](https://github.com/user-attachments/assets/6de3a1ca-4f9a-47d4-8c87-d71443b53063)
 
 
-## position corrections 
+## Position corrections 
 Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
 
 - When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position.
