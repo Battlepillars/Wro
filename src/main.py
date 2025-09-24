@@ -409,6 +409,12 @@ def commandLoop(slam):
 
     lamp.fill(0x00ff00)
     lamp.show()
+    while slam.xpos == 0 and slam.ypos == 0 and running2:
+        lamp.fill(0x000001)
+        lamp.show()
+        time.sleep(0.05)
+    lamp.fill(0x00ff00)
+    lamp.show()
 
     if c<15:
         c=0
@@ -466,7 +472,7 @@ def commandLoop(slam):
                 
                 if not waitCompleteOrders():
                     return
-            park(orders, Order, waitCompleteOrders, checkForColor, 0, 18, slam)
+            park(orders, Order, waitCompleteOrders, checkForColor, Order.CW, 18, slam)
         else:
             unparkCCW(orders, Order, waitCompleteOrders, checkForColor)
             slam.repostionEnable = 1
@@ -494,7 +500,7 @@ def commandLoop(slam):
                 
                 if not waitCompleteOrders():
                     return
-            park(orders, Order, waitCompleteOrders, checkForColor, 0, 18, slam)
+            park(orders, Order, waitCompleteOrders, checkForColor, Order.CCW, 11, slam)
 
 
     elif slam.eventType == slam.ER:

@@ -15,7 +15,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         direction = Order.CCW
         scan1=(scanStart+8-12, scanStart+12-12)
         scan2=(scanStart+6-12, scanStart+10-12)
-        scan3=(scanStart+2, scanStart+6)
+        scan3=(scanStart+4, scanStart+6)
         scan4=(scanStart, scanStart+4)
         outer=Hindernisse.RED
         inner=Hindernisse.GREEN
@@ -24,7 +24,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         scan1=(scanStart+6, scanStart+10)
         scan2=(scanStart+8, scanStart+12)
         scan3=(scanStart, scanStart+4)
-        scan4=(scanStart+2, scanStart+6)
+        scan4=(scanStart+4, scanStart+6)
         outer=Hindernisse.GREEN
         inner=Hindernisse.RED
     

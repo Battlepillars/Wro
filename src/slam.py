@@ -116,11 +116,13 @@ class Slam:
         script_dir = os.path.abspath(os.path.dirname(__file__))
         lib_path = os.path.join(script_dir, "sg.so")
         
+        
         self.lidar = CDLL(lib_path)
         self.lidar.initLidar()
         
         arr = [1]
         self.scan = (c_int * 361)(*arr)
+        
 
 
         # Create instance of device

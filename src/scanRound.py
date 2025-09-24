@@ -6,7 +6,7 @@ def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSta
         direction = Order.CCW
         scan1=[scanStart+4, scanStart+5]
         scan2=[scanStart, scanStart+1, scanStart+2, scanStart+3]
-        scan3=(scanStart+2, scanStart+6)
+        scan3=(scanStart+4, scanStart+6)
         scan4=(scanStart, scanStart+4)
         outer=Hindernisse.RED
         inner=Hindernisse.GREEN
@@ -15,7 +15,7 @@ def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSta
         scan1=[scanStart, scanStart+1]
         scan2=[scanStart+2, scanStart+3, scanStart+4, scanStart+5]
         scan3=(scanStart, scanStart+4)
-        scan4=(scanStart+2, scanStart+6)
+        scan4=(scanStart+4, scanStart+6)
         outer=Hindernisse.GREEN
         inner=Hindernisse.RED
     
