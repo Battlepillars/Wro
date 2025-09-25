@@ -28,6 +28,12 @@ Da handelsübliche Modellautos in der Regel nicht den erforderlichen Maßen ents
 
 Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeignet erschien, auf die gewünschte Länge von 20 cm angepasst zu werden. Dieses Modell – der LaTrax Rally – wurde daher als Basis für das selbstfahrende Fahrzeug ausgewählt.
 
+In the beginning, the idea to construct a robot with the ... below 20 cm was formed to enable our robot to park by simply driving forward after the three rounds of the parkour challenge. This strategy is permitted in the framework of the german rulebook.
+
+As the usual model cars don't conform to the required ..., it quickly became clear that a reassembly / repurpose of a model car was necessary. The most common and accesible models have a length of about 30 cm - a reduction to under 20 cm seemed to be unfeasable regarding the technological aspects.  Smaller models with a total length of around 10 cm, however, don't have much leeway for the additional components required for the challenges.
+
+Following that, a model with a length of 22 cm was found that we've been able to modify to the desired total length of 20 cm. This model - the LaTrax Rally - is the base used for the selfdriving vehicle.
+
 <table>
   <tr>
     <th width=500>LaTrax Rally</th>
@@ -52,6 +58,8 @@ Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeig
 ### Bodenplatte
 
 Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 360 konstruiert, wodurch die Gesamtlänge des Fahrzeugs auf etwa 19 cm reduziert wurde. Die Konstruktion erfolgte unter Berücksichtigung einer kompakten Bauweise zur Verbesserung der Manövrierfähigkeit. Zur Positionsbestimmung mittels Odometrie-Sensoren wurden zwei Öffnungen in der Bodenplatte integriert, um eine direkte optische Erfassung der Bodenstruktur zu ermöglichen. Die Fertigung der Platte erfolgte mittels 3D-Druck. Die Bodenplatte wurde zunächst in einfachem PLA gedruckt. Allerdings hat sich ergeben, dass schon ein leichtes Durchbiegen der Bodenplatte zu einer kritischen Veränderung des Kamerawinkels geführt hat. Deswegen wurde nach Wegen gesucht, die Bodenplatte steifer zu machen. Neben Verstärkungen der Geometrie wurde zusätzlich entschieden, ein anderes Material beim Druck zu verwenden. Im Vergleich aller Materialien, die das Team selber drucken kann, hat PPA-CF sich als das Material mit der höchsten Steifigkeit herausgestellt. Dieses Filament hat das Problem des Durchbiegens der Bodenplatte komplett eliminiert.
+
+For the optimisation of the vehicle's architecture, a new baseplate was digitally constructed using Fusion 360, which resulted in the total length of the vehicle getting reduced to around 19 cm. The construction entailed the requirement for a compact construction method for the improvement of the maneuverability. Two holes / openings have been added for the positioning via the odometer sensors, to allow 
 
 <table>
   <tr>
