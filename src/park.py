@@ -59,9 +59,10 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
             if not checkForColor(Hindernisse.RED, scanStart-6, scanStart-7):
                 orders.append(Order(x=700, y=2300,speed=speedi,brake=0,type=Order.DESTINATION,num=34))
         
-        if checkForColor(Hindernisse.RED, scanStart-6, scanStart-7):
+        if checkForColor(Hindernisse.GREEN, scanStart-12, scanStart-6):
             orders.append(Order(x=1000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=39))
-            orders.append(Order(x=1900, y=2200,speed=speedi,brake=1,type=Order.DESTINATION,num=40))
+            orders.append(Order(x=1700, y=2200,speed=speedi,brake=1,type=Order.DESTINATION,num=40))
+            orders.append(Order(x=1850, y=2200,speed=0.2,brake=1,type=Order.DESTINATION,num=40))
             time.sleep(3)
             orders.append(Order(zielwinkel=-90, speed=-0.2, brake=1, type=Order.WINKEL))
             doReposition(orders, Order, waitCompleteOrders, -90)
