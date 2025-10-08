@@ -25,8 +25,8 @@ def unparkCCW(orders,Order, waitCompleteOrders, checkForColor):
     time.sleep(0.3)
     
     if checkForColor(Hindernisse.GREEN, 0, 1):
-        orders.append(Order(x=1.875, y=2450,speed=speedi,brake=0,type=Order.DESTINATION,num=1))
-        orders.append(Order(x=2000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=2))
+        orders.append(Order(x=1875, y=2450,speed=speedi,brake=0,type=Order.DESTINATION,num=1))
+        orders.append(Order(x=2000, y=2300,speed=speedi,brake=1,type=Order.DESTINATION,num=2))
         orders.append(Order(x=2300, y=2650,speed=speedi,brake=0,type=Order.DESTINATION,num=4))
     else: # Red 
         orders.append(Order(x=2000, y=2600,speed=speedi,brake=0,type=Order.DESTINATION,num=5))

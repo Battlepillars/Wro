@@ -390,7 +390,7 @@ class DriveBase:
             speedTotal = -self.slam.speed
 
         distenceLeft = abs(y - self.slam.ypos)
-        print("distenceLeft: ", distenceLeft)
+        # print("distenceLeft: ", distenceLeft)
 
         if (distenceLeft < 30) and (brake == 1):
             if (speed>0):

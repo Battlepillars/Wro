@@ -2,23 +2,25 @@ import time
 from slam import Hindernisse
 
 def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart):
-    
     if (rotation >= 1000):
         direction = Order.CCW
-        scan1=[24-scanStart+4, 24-scanStart+5]
-        scan2=[24-scanStart+0, 24-scanStart+1, 24-scanStart+2, 24-scanStart+3]
-        # scan1=[24-scanStart, 24-scanStart+1]
-        # scan2=[24-scanStart+2, 24-scanStart+3, 24-scanStart+4, 24-scanStart+5]
+        scan1=[scanStart+4, scanStart+5]
+        scan2=[scanStart, scanStart+1, scanStart+2, scanStart+3]
+        scan3=(scanStart+4, scanStart+6)
+        scan4=(scanStart, scanStart+4)
         outer=Hindernisse.RED
         inner=Hindernisse.GREEN
     else:
         direction = Order.CW
         scan1=[scanStart, scanStart+1]
         scan2=[scanStart+2, scanStart+3, scanStart+4, scanStart+5]
+        scan3=(scanStart, scanStart+4)
+        scan4=(scanStart+4, scanStart+6)
         outer=Hindernisse.GREEN
         inner=Hindernisse.RED
     
     
+
     speedi = 0.5
     
     orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=direction, type=Order.WINKEL, rotation=rotation))
@@ -53,10 +55,8 @@ def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSta
     
     orders.append(Order(steer=0, dist=100, speed=-speedi, brake=1, type=Order.KURVE))
     
-    sinside= checkForColor(inner, scanStart+2, scanStart+6)  or ((not checkForColor(outer, scanStart+2, scanStart+6)) and checkForColor(inner, scanStart, scanStart+4))
-    dinside= checkForColor(inner, scanStart+6, scanStart+10)  or ((not checkForColor(outer, scanStart+6, scanStart+10)) and checkForColor(inner, scanStart+8, scanStart+12))
-
-    if checkForColor(inner, scanStart, scanStart+4) or (not checkForColor(outer, scanStart, scanStart+4) and checkForColor(inner, scanStart+2, scanStart+6)):
+    
+    if checkForColor(inner, scan3[0], scan3[1]) or (not checkForColor(outer, scan3[0], scan3[1]) and checkForColor(inner, scan4[0], scan4[1])):
         orders.append(Order(x=750, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=14, rotation=rotation))
         orders.append(Order(x=800, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=15, rotation=rotation))
     else:
@@ -67,7 +67,7 @@ def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSta
             orders.append(Order(x=400, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=22, rotation=rotation))
             orders.append(Order(x=400, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=23, rotation=rotation))
 
-    if checkForColor(inner, scanStart+2, scanStart+6) or (not checkForColor(outer, scanStart+2, scanStart+6) and checkForColor(inner, scanStart, scanStart+4)):
+    if checkForColor(inner, scan4[0], scan4[1]) or (not checkForColor(outer, scan4[0], scan4[1]) and checkForColor(inner, scan3[0], scan3[1])):
         orders.append(Order(x=800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
         orders.append(Order(x=400, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=19, rotation=rotation))
     else:
