@@ -1,11 +1,16 @@
 # THE TEAM
-<div align="center"><img width="500" src="img/teamname.jpg"></div>
-
+<div align="center"><img width="800" src="img/teamname.jpg"></div>
 In this repository, you’ll find the documentation for the robot created by the "Battlepillars" for the 2025 World Robot Olympiad Future Engineers competition. The robot was the result of a collaborative effort by three students.
 
 ## Nils Stauff
 
 ## Olivia Greilich
+
+Hello everyone! My name is Olivia Greilich and I'm 16, currently attending the Lise-Meitner Gymnasium in Anrath. Languages, communicating and connecting with people is my passion, same with painting, sculpting and crocheting!
+One interesting fact about me is that I am simply enamored with jellyfish of all types, colours, shapes and sizes. I have two jellyfish lamps, tons of stickers, books and of course a phone charm.
+In my free time, I usually occupy myself with writing fanfiction on Archive Of Our Own (AO3).
+
+My part of the team effort is the documentation and images you'll see below.
 
 ## Leonard Kolo
 <div align="center"><img width="300" src="img/leonard.jpg"></div>
@@ -38,22 +43,7 @@ Da handelsübliche Modellautos in der Regel nicht den erforderlichen Maßen ents
 
 Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeignet erschien, auf die gewünschte Länge von 20 cm angepasst zu werden. Dieses Modell – der LaTrax Rally – wurde daher als Basis für das selbstfahrende Fahrzeug ausgewählt.
 
-<table>
-  <tr>
-    <th width=500>LaTrax Rally</th>
-    <th width=500>Specifications</th>
-  </tr>
-  <tr>
-    <td><img src="img/auto1.jpg"><br><img src="img/auto2.jpg"><
-    <td><li>Motorart:	Elektro</li>
-<li>Antrieb:	4WD</li>
-<li>Maßstab:	1:18</li>
-<li>Ausführung:	RTR - READY TO RUN</li>
-<li>Drive / Bau:	11</li>
-</td>
-   </tr>
-    <tr><TD colspan=2>Where to buy the car: https://traxxas.com/75054-5-118-latrax-rally</TD></tr>
-</table>
+
 
 <br>
 
@@ -123,6 +113,14 @@ Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt w
 
 <div align="center"><img width="400" src="img/Oberdeck3.jpg"></div>
 
+## Potential improvements - Chassis
+- Construct an outer hull to improve the outer appearance of the vehicle and prevent potential dust or debris from reaching the inner works.
+- Furthermore, we could free up some space for a third odometry sensor.
+
+- We could lower the chassis height in order to allow the LiDAR to be mo lower, thus removing the need for support beams, which curently block LiDAR vision.
+
+
+
 ## Powertrain
 
 ### Drivetrain
@@ -137,47 +135,7 @@ Das vorhandene Chassis war serienmäßig mit einem Allradantrieb ausgestattet, d
 So?
 Aus diesem Grund wurde der ursprüngliche Allradantrieb deaktiviert und stattdessen auf Heckantrieb umgestellt. Diese Konfiguration bietet im Kontext niedriger Geschwindigkeit und präziser Steuerung eine ausreichende Kraftübertragung, wobei gleichzeitig die Lenkung von Antriebseinflüssen entkoppelt wird – ein Vorteil, insbesondere bei feinfühligem Navigieren durch den Hindernisparcours.
 
-Somit wurde ein Teil der Vorderachse mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt.
 
-<div align="center"><img width="500" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" /></div>
-
-Hier die Bemaßung:
-<div align="center"><img width="400" img src= "img/Maße/Frontaxle.jpg"></div>
-<br><br>
-Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel benötigt:
-<br><br>
-<table>
-  <tr>
-    <th width=300>Lenkgestänge und Achsschenkel</th>
-    <th width=500>Specifications</th>
-  </tr>
-  <tr>
-    <td><img src="img/lenkstange.jpg"> </td>
-    <td>RC Metall Vorderachse Hinterachse Für WPL HengLong 1/16 Militär LKW RC LKW DE-
-</td>
-   </tr>
-  <tr><TD colspan=2>Where to buy the set: https://www.ebay.de/itm/176692013502</TD></tr>
-</table>
-<br>
-Die Räder der neuen Vorderachse sind von Lego:
-
-<table>
-  <tr>
-    <th width=300>wheels</th>
-    <th width=500>Specifications</th>
-  </tr>
-  <tr>
-    <td><img src="img/legorad.jpg"> </td>
-    <td>Size: 5,6cm x 1,5cm x 5,6cm
-</td>
-   </tr>
-  <tr><TD colspan=2>Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</TD></tr>
-</table>
-<br>
-Die neue Vorderachse in einer Detailaufnahme:
-<br><br>
-<div align="center"><img width="500" src=https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be></div>
-<br>
 
 ### Motor
 Der bereits vorhandene Brushed-Motor wurde im Rahmen einer vergleichenden Analyse verschiedenen Motorarten gegenübergestellt. Zur Bewertung der jeweiligen Vor- und Nachteile wurde eine internetgestützte Recherche durchgeführt. Dabei konnten neben dem Brushed-Motor insbesondere der Brushless-Motor sowie der Schrittmotor als relevante Alternativen identifiziert werden.
@@ -192,17 +150,18 @@ Auf Grundlage dieser Analyse wurde entschieden, den bereits im Modellauto integr
 
 <table>
   <tr>
-    <th width=300>Motor</th>
-    <th width=600>Specifications</th>
+    <th bgcolor=#CCFFCC width=300>Motor</th>
+    <th bgcolor=#9ae4fd width=600>Specifications</th>
   </tr>
   <tr>
     <td><img src="img/motor.jpg"> </td>
-    <td>23-turn brushed 370-size LaTrax® motor with bullet connectors
+    <td bgcolor=#c8f0fd>23-turn brushed 370-size LaTrax® motor with bullet connectors
 </td>
    </tr>
-    <tr><TD colspan=2>Where to buy the motor: https://traxxas.com/7575r-23-turn-brushed-370-size-motor</TD></tr>
+    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor: https://traxxas.com/7575r-23-turn-brushed-370-size-motor</TD></tr>
 </table>
-
+<tr> 
+<tr> Potential improvements: 
 
 ### Motor Driver (= Fahrtenregler)
 Der Fahrtenregler ist zwischen der Energiequelle und dem Antriebsmotor positioniert und übernimmt die Regelung der Motordrehzahl. Im Rahmen experimenteller Untersuchungen konnte festgestellt werden, dass der ursprünglich verbaute Fahrtenregler primär auf den Hochgeschwindigkeitsbetrieb ausgelegt ist. Im unteren Drehzahlbereich ließ sich keine ausreichende Feinsteuerung realisieren.
@@ -213,12 +172,12 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
 
 <table>
   <tr>
-    <th width=300>Motor Driver Quicrun WP 1080–G2</th>
-    <th width=600>Specifications</th>
+    <th bgcolor=#CCFFCC width=300>Motor Driver Quicrun WP 1080–G2</th>
+    <th bgcolor=#9ae4fd width=600>Specifications</th>
   </tr>
   <tr>
     <td width=300><img src="img/fahrtenregler.jpg"> </td>
-    <td><li>Application: 1/10th Rock Crawler</li>
+    <td bgcolor=#c8f0fd ><li>Application: 1/10th Rock Crawler</li>
 <li>Motor Type: Brushed Motor (540 / 555 size motors)</li>
 <li>Cont./Peak Current: 80A/400A</li>
 <li>Input Voltage: 2-3S LiPo/5-9S Cell NiMH</li>
@@ -227,35 +186,13 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
 <li>Programming device: LED program box</li>
 </td>
    </tr>
-    <tr><TD colspan=2>Where to buy the motor driver: https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</TD></tr>
+    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor driver: https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</TD></tr>
 </table>
+<tr> 
+Potential improvements:
 
 
 
-### Servo Motor
-Der Servo ist für die Lenkung der Vorderräder verantwortlich und sitzt direkt im Modellfahrzeug. Die Stellgeschwindigkeit sowie das Drehmoment dieses Servos wurden im Rahmen einer technischen Bewertung als vollumfänglich ausreichend für die Wettbewerbsanforderungen eingestuft.
-
-Konkret handelt es sich um den Traxxas Waterproof Sub-Micro Servo (Modellnummer 2065A). Dieser erzeugt bei einer Betriebsspannung von 6,0 V ein Drehmoment von 2,3 kg·cm (≈ 32 oz-in) und erreicht eine Stellzeit von 0,20 s pro 60°.
-
-Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wurde beschlossen, den bereits im Modell vorhandenen Servo weiterhin zu verwenden.
-
-<table>
-  <tr>
-    <th width=300>Waterproof Sub-Micro Servo</th>
-    <th width=600>Specifications</th>
-  </tr>
-  <tr>
-    <td><img src="img/motordriver.jpg"> </td>
-    <td><li>Fully waterproof</li>
-<li>Fits steering in LaTrax models</li>
-<li>Power: 2.3kg/cm</li>
-<li>Operating voltage: 6.0V</li>
-<li>Speed: 0.20 sec/60°</li>
-<li>Dimensions: 22.6×12.6×22.5 mm</li>
-</td>
-   </tr>
-    <tr><TD colspan=2>Where to buy the motor: https://traxxas.com/2065a-waterproof-sub-micro-servo</TD></tr>
-</table>
 
 ### Funktionsweise Antrieb
 
@@ -269,13 +206,91 @@ und ist bei uns 61:14 = 1:4,35.
 <br><br>
 Durch die gewählte Übersetzung von 61:14 ergibt sich eine signifikante Verstärkung des Drehmoments am Antriebsstrang. Diese Konfiguration wurde gezielt gewählt, um eine zuverlässige Kraftübertragung auch bei niedrigen Geschwindigkeiten sicherzustellen. Während der Testläufe zeigte sich, dass die Wettbewerbsfläche oft kleinere Unebenheiten und Wellen aufweist. Diese können dazu führen, dass Fahrzeuge mit unzureichendem Drehmoment hängen bleiben oder an Traktion verlieren. In unseren Versuchen bewährte sich die getroffene Antriebswahl: Der Roboter konnte auch über wellige Mattenbereiche hinweg gleichmäßig beschleunigen und blieb dabei jederzeit kontrollierbar. Somit trägt die kraftbetonte Getriebeübersetzung wesentlich zur Zuverlässigkeit des Fahrzeugs im realen Einsatz bei.
 
+## Potential improvements - Drivetrain:
+- Use the same wheels for the back wheels as the front axis, as the front wheels have better traction and are easier to clean and maintain.
+
+- Encoders on rear wheels for precise wheel slip detection, better traction control, more accurate speed control and for the detection of the wheels spinning on uneven surfaces, e.g. bumps.
+
+- Maintain high steering angles while providing front wheel drive. That would prevent the front weels from sliding at high steering angles.
+
+
 
 ## Steering
 
-The steering system of our robot employs a servo-controlled front axle with Ackermann steering geometry.
+After testing different steering concepts, including parallelogram and bell-crank mechanisms, we carefully evaluated their pros and cons. In the end, we decided to implement an Ackermann steering system. This choice was made because Ackermann geometry optimizes wheel angles during turns, reducing tire slip and improving maneuverability—especially important for precise movements in our small, lightweight robot. Compared to simpler systems, Ackermann steering provides more accurate cornering and better control, which was crucial for our performance goals.
 
+The steering assembly consists of two symmetrical wheel mounts connected by a steering linkage, which is actuated by a servo motor. Steel rods form the joints between the wheel mounts and the steering linkage, ensuring precise and reliable movement.
 
+Ein Teil der Vorderachse wurde mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt. 
 
+<div align="center"><img width="500" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" /></div>
+
+Hier die Bemaßung:
+<div align="center"><img width="400" img src= "img/Maße/Frontaxle.jpg"></div>
+<br><br>
+Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel benötigt:
+<br><br>
+<table>
+  <tr>
+    <th bgcolor=#CCFFCC width=300>Lenkgestänge und Achsschenkel</th>
+    <th bgcolor=#9ae4fd width=500>Specifications</th>
+  </tr>
+  <tr>
+    <td><img src="img/lenkstange.jpg"> </td>
+    <td bgcolor=#c8f0fd>RC Metall Vorderachse Hinterachse Für WPL HengLong 1/16 Militär LKW RC LKW DE-
+</td>
+   </tr>
+  <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the set: https://www.ebay.de/itm/176692013502</TD></tr>
+</table>
+<tr> 
+<tr> 
+
+<br>
+Die Räder der neuen Vorderachse sind von Lego:
+
+<table>
+  <tr>
+    <th bgcolor=#CCFFCC width=300>Wheels</th>
+    <th bgcolor=#9ae4fd width=500>Specifications</th>
+  </tr>
+  <tr>
+    <td><img src="img/legorad.jpg"> </td>
+    <td bgcolor=#c8f0fd>Size: 5,6cm x 1,5cm x 5,6cm
+</td>
+   </tr>
+  <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</TD></tr>
+</table>
+<br>
+Die neue Vorderachse in einer Detailaufnahme:
+<br><br>
+<div align="center"><img width="500" src=https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be></div>
+<br>
+
+### Servo Motor
+Der Servo ist für die Lenkung der Vorderräder verantwortlich und sitzt direkt im Modellfahrzeug. Die Stellgeschwindigkeit sowie das Drehmoment dieses Servos wurden im Rahmen einer technischen Bewertung als vollumfänglich ausreichend für die Wettbewerbsanforderungen eingestuft.
+
+Konkret handelt es sich um den Traxxas Waterproof Sub-Micro Servo (Modellnummer 2065A). Dieser erzeugt bei einer Betriebsspannung von 6,0 V ein Drehmoment von 2,3 kg·cm (≈ 32 oz-in) und erreicht eine Stellzeit von 0,20 s pro 60°.
+
+Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wurde beschlossen, den bereits im Modell vorhandenen Servo weiterhin zu verwenden.
+
+<table>
+  <tr>
+    <th bgcolor=#CCFFCC width=300>Waterproof Sub-Micro Servo</th>
+    <th bgcolor=#9ae4fd width=600>Specifications</th>
+  </tr>
+  <tr>
+    <td ><img src="img/motordriver.jpg"> </td>
+    <td bgcolor=#c8f0fd><li>Fully waterproof</li>
+<li>Fits steering in LaTrax models</li>
+<li>Power: 2.3kg/cm</li>
+<li>Operating voltage: 6.0V</li>
+<li>Speed: 0.20 sec/60°</li>
+<li>Dimensions: 22.6×12.6×22.5 mm</li>
+</td>
+   </tr>
+    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor: https://traxxas.com/2065a-waterproof-sub-micro-servo</TD></tr>
+</table>
+<tr> 
 
 
 
@@ -1008,8 +1023,7 @@ right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
 
 # Obstacle Management
 
-Dieses Kapitel schreibt Nils
-Die Diskussion zum Hindernismanagement sollte die Strategie des Fahrzeugs zur Bewältigung des Hindernisparcours in Bezug auf alle Herausforderungen beinhalten. Dies kann Flussdiagramme, Pseudocode sowie Quellcode mit ausführlichen Kommentaren umfassen.
+
 <br><br>
 ## Initial Location Acquisition 
 
@@ -1039,55 +1053,166 @@ Two optical tracking sensors were installed to increase redundancy. If one senso
 
 ![WhatsApp Image 2025-08-30 at 15 24 42](https://github.com/user-attachments/assets/6de3a1ca-4f9a-47d4-8c87-d71443b53063)
 
+When both sensors are healthy, we take the average of the readings of both sensors. Otherwise, we just take the data from the healthy sensor.
 
 ## Position corrections 
 Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
 
-- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position.
+- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This type of repositioning hast to be manually set up in the programm, after stopping the robot.
 
-- While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. The issue is that the LiDAR responds to the program's position request with a delay of 100–200 ms because it rotates, making repositioning less accurate while the robot is moving.
+- While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. The issue is that the LiDAR responds to the program's position request with a delay of 100–200 ms because it rotates, making repositioning less accurate while the robot is moving. Therefore this kind of repositioning is automatically triggered when certain conditions are met :
+  - The lidar has just transmitted the distance to the front
+  - The robot has crossed the line to one of the corner squares and has a good visibility to the wall in front.
+
+
+## Navigation strategy open challenge 
+
+For the open challenge, we navigate using simple fixed waypoints. They are choosen in way they work independent of the inner wall configuration.
+
+
+## Navigation strategy obstacle challenge
+
+In the first round of the obstacle challenge, the waypoints 
 
 ## Obstacle Recognition 
 This function detects and stores obstacles within each section of the course using the LiDAR and the camera. The process is divided into two parts:
 
 ### Determining the position of an obstacle within a course section
 
-Five scan points were defined (see Appendix 4: Scan Point Diagram), at which the LiDAR determines which of the six possible positions within the section in front of the robot the obstacle is located. The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course. If no obstacle is detected at a scan point, the robot moves forward 50 cm and scans again.
+The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course: after leaving the parking area and at 4 additional points (see Appendix 4: Scan Point Diagram).
+
+At these points the LiDAR determines at which of the six possible positions within the section in front of the robot the obstacles are located. 
 
 A list of coordinates was created for all possible obstacle positions. The LiDAR checks whether something is detected near (within a radius of 100 mm) any of these coordinates. If an obstacle is detected, the position is stored in a list.
 
 ### Determining the color of the obstacle
 
-The camera is then used to identify the color of the obstacle. For image recognition, information from the WRO support document (WRO Future Engineers Getting Started) was used. Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. For visualization, this angle is drawn on the map.
+The camera is then used to identify the color of the obstacle. The object recognition is strongly based on the WRO support document (WRO Future Engineers Getting Started), so I wont describe this process in detail here. Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map:
 
 ![Programmausgabe Kopie](https://github.com/user-attachments/assets/9f9b5f2e-5cb8-4573-8a63-38dcde1bda16)
 
  
 <br><br><br><br>
 
+### Software Structure
 
- 
+## Multi-Threading Architecture
+
+Our robot system uses a multi-threaded architecture to handle real-time control, high-level navigation, and user interface operations simultaneously. 
+
+### Why Three Threads?
+
+The decision to implement a three-thread architecture was driven by the need to:
+
+1. **Separate Time-Critical Operations**: Real-time motor control and sensor processing require consistent timing that cannot be interrupted by slower operations
+2. **Enable Concurrent Processing**: Allow navigation planning, sensor data processing, and user interface updates to run simultaneously  
+3. **Prevent System Blocking**: Ensure that slow operations (like screen updates) don't interfere with critical control loops
+
+### Thread 1: Control Loop 
+
+**Purpose**: Handles all time-critical operations requiring precise timing and immediate response.
+
+**Frequency**: 70 Hz 
+
+**Key Responsibilities**:
+- **Sensor Data Acquisition**: Continuous reading from odometry sensors, LiDAR, and gyroscope
+- **Motor Control**: Real-time speed and steering adjustments using PID controllers
+- **Position Tracking**: Updates robot position and orientation 
+- **Order Execution**: Processes navigation commands from the command queue
+
+**Flow Diagram**:
+```
+Start Control Loop (70Hz)
+    ↓
+Update All Sensors
+    ↓
+Process Current Order
+    ├─ DESTINATION → Execute PID Control
+    ├─ SCAN → Perform LiDAR/Camera Analysis  
+    ├─ REPOSITION → LiDAR Position Correction
+    └─ MANUAL → Direct Motor Control
+    ↓
+Update Motor Outputs
+    ↓
+Timing Control (Sleep to maintain 70Hz)
+    ↓
+Loop Back to Start
+```
+
+### Thread 2: Command Loop (High-Level Navigation Thread)
+
+**Purpose**: Manages high-level navigation strategy and autonomous decision-making.
+
+**Frequency**: Event-driven (responds to navigation phases and external triggers)
+
+**Key Responsibilities**:
+- **Competition Strategy**: Implements complete race strategies (Open Challenge, Obstacle Challenge)
+- **Navigation Planning**: Generates sequences of waypoints and maneuvers
+- **Obstacle Analysis**: Processes obstacle detection results and plans avoidance routes
+- **Race Phase Management**: Coordinates unparking, scanning rounds, driving rounds, and parking
+- **Button Interface**: Handles physical start button
+
+**Flow Diagram**:
+```
+Start Command Loop
+    ↓
+Wait for Start Signal
+    ↓
+Initialize Odometry & LiDAR
+    ↓
+Detect Starting Position
+    ↓
+┌─────────────────┐
+│ Competition     │
+│ Strategy        │
+├─────────────────┤
+│ Open Challenge: │
+│ • 3x Lap Cycles │  
+│ • Fixed Route   │
+│                 │
+│Obstacle Chall.: │
+│ • Unpark        │
+│ • Scan Round    │
+│ • 2x Drive Rnds │
+│ • Park          │
+└─────────────────┘
+
+```
+
+### Thread 3: Display Loop (User Interface Thread)
+
+**Purpose**: Provides real-time visualization and user interaction capabilities.
+
+**Frequency**: depends on system load, about 5 to 10 Hz 
+
+**Key Responsibilities**:
+- **Real-Time Visualization**: Displays robot position, obstacles, and navigation path
+- **Sensor Status Display**: Shows health status of odometry sensors and LiDAR
+- **Performance Monitoring**: Displays speed, timing, and system diagnostics
+- **User Input Processing**: Handles keyboard commands for manual control and debugging
+- **Image Capture**: Takes screenshots for documentation and analysis
 
 
-lidar obstacle recognition 
+### Thread Synchronization and Communication
 
-camera obstacle recognition 
+**Semaphore Protection**: Critical shared data structures are protected using threading semaphores:
+```python
+sem = threading.Semaphore()  # Global display semaphore
+robot.semDb = threading.Semaphore()  # Robot data semaphore
+```
 
-lidar/camera sensor fusion sample pseudo code 
+**Order Queue System**: The three threads communicate through a thread-safe order queue:
+- **Command Loop** adds high-level navigation orders
+- **Control Loop** executes orders and removes completed ones  
+- **Display Loop** visualizes current and pending orders
 
- 
+**Shared Data Structures**:
+- `orders[]` - Navigation command queue
+- `slam` object - Sensor data and robot state
+- `robot` object - Visualization and diagnostic data
 
-command loop / control loop / display loop explanation why 3 threads short description of each thread flow diagram for each thread 
 
- 
-
-description of commands available to command loop (driveTo.... ) 
-
- 
-
-navigation strategy open challenge 
-
-simple fixed waypoints 
+## Available Commands in the Order System 
 
  
 
