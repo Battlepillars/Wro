@@ -55,7 +55,7 @@ Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 36
 
 
 
-<table>
+<table align="center">
   <tr>
      <td width=320><img src="img/Bodenplatte1.jpeg"></td>
      <td width=500><img src="img/Bodenplatte2.jpeg"></td>
@@ -189,8 +189,6 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
     <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor driver: https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</TD></tr>
 </table>
 <tr> 
-Potential improvements:
-
 
 
 
@@ -206,10 +204,10 @@ und ist bei uns 61:14 = 1:4,35.
 <br><br>
 Durch die gewählte Übersetzung von 61:14 ergibt sich eine signifikante Verstärkung des Drehmoments am Antriebsstrang. Diese Konfiguration wurde gezielt gewählt, um eine zuverlässige Kraftübertragung auch bei niedrigen Geschwindigkeiten sicherzustellen. Während der Testläufe zeigte sich, dass die Wettbewerbsfläche oft kleinere Unebenheiten und Wellen aufweist. Diese können dazu führen, dass Fahrzeuge mit unzureichendem Drehmoment hängen bleiben oder an Traktion verlieren. In unseren Versuchen bewährte sich die getroffene Antriebswahl: Der Roboter konnte auch über wellige Mattenbereiche hinweg gleichmäßig beschleunigen und blieb dabei jederzeit kontrollierbar. Somit trägt die kraftbetonte Getriebeübersetzung wesentlich zur Zuverlässigkeit des Fahrzeugs im realen Einsatz bei.
 
-## Potential improvements - Drivetrain:
+## Potential improvements - Powertrain:
 - Use the same wheels for the back wheels as the front axis, as the front wheels have better traction and are easier to clean and maintain.
 
-- Encoders on rear wheels for precise wheel slip detection, better traction control, more accurate speed control and for the detection of the wheels spinning on uneven surfaces, e.g. bumps.
+- Encoders on rear wheels or the motor for precise wheel slip detection, better traction control, more accurate speed control and for the detection of the wheels spinning on uneven surfaces, e.g. bumps.
 
 - Maintain high steering angles while providing front wheel drive. That would prevent the front weels from sliding at high steering angles.
 
@@ -261,13 +259,24 @@ Die Räder der neuen Vorderachse sind von Lego:
   <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</TD></tr>
 </table>
 <br>
+ 
+## Servo Saver
+The Servo Saver is installed on the Servo and connects to the steering linkage. The Servo Saver, when the front wheels collide against an obstacle, uses a spring to prevent an overload on the Servo.
+
+
+## Potential improvements - Steering:
+- The Servo Saver occasionally gives out and gives a false alarm during tight and fast turns. An improvement would be to tighten said Servo Saver in order to prevent that.
+
+- Furthermore, the wheels could be better grip-wise to prevent slipping.
+
 Die neue Vorderachse in einer Detailaufnahme:
 <br><br>
 <div align="center"><img width="500" src=https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be></div>
 <br>
 
-### Servo Motor
-Der Servo ist für die Lenkung der Vorderräder verantwortlich und sitzt direkt im Modellfahrzeug. Die Stellgeschwindigkeit sowie das Drehmoment dieses Servos wurden im Rahmen einer technischen Bewertung als vollumfänglich ausreichend für die Wettbewerbsanforderungen eingestuft.
+
+### Servo Motor ANDERS einsortieren - ungünstig als eigener Unterpunkt
+Der Servo ist für die Lenkung der Vorderräder verantwortlich. Die Stellgeschwindigkeit sowie das Drehmoment dieses Servos wurden im Rahmen einer technischen Bewertung als vollumfänglich ausreichend für die Wettbewerbsanforderungen eingestuft.
 
 Konkret handelt es sich um den Traxxas Waterproof Sub-Micro Servo (Modellnummer 2065A). Dieser erzeugt bei einer Betriebsspannung von 6,0 V ein Drehmoment von 2,3 kg·cm (≈ 32 oz-in) und erreicht eine Stellzeit von 0,20 s pro 60°.
 
@@ -307,9 +316,6 @@ Kurzer Satz was in dem Kapitel alles benannt werden wird.
 <br><br>
 
 ## Sensoren
-  
-### Li-Po Battery
-- Bild + Spezifikationen
 
 ### LiDAR
 
@@ -330,10 +336,19 @@ In mehreren Iterationen wurde der Sensor schrittweise tiefer im Gehäuse des Rob
 
 Daraufhin wurde beim Hersteller angefragt, ob eine Montage des LiDARs in umgekehrter (invertierter) Ausrichtung technisch zulässig sei. Die Rückmeldung fiel positiv aus, sodass der Sensor nun in umgekehrter Position im Roboter verbaut ist. Durch diese Anordnung wird erreicht, dass die Scanebene die Spielfeldbegrenzung zuverlässig detektiert.
 
+## Potential improvements - LiDAR:
+- Ein LiDAR finden, der parallel / nach unten scannt, statt nach oben
+
+- Recherche nach einem LiDAR mit einer höheren Aktualisiergeschwindigkeit, genaueren Abstandsmessung und eine höhere Winkelauflösung
+
+
 ### Kamera
 Während zur Positionsbestimmung eines Hindernisses der LiDar verwendet wird, wird zusätzlich eine Kamera benötigt, um die Farbe des Hindernisses zu erkennen. Zunächst wurde die Raspberry Pi Global Shutter Camera bestellt, da deren technische Eigenschaften als besonders geeignet für den Einsatz in einem mobilen Robotersystem eingeschätzt wurden. Die Kamera ermöglicht die verzerrungsfreie Erfassung schneller Bewegungen, da sie – im Gegensatz zu Rolling-Shutter-Systemen – typische Bewegungsartefakte vermeidet. Zudem erlaubt die Unterstützung von Wechselobjektiven eine flexible Anpassung an unterschiedliche Anwendungsszenarien. Nach dem Eintreffen der Kamera stellte sich jedoch heraus, dass deren physische Abmessungen deutlich größer ausfielen als ursprünglich angenommen. Aufgrund der begrenzten Platzverhältnisse im Fahrzeugchassis konnte sie nicht integriert werden.
 
 Infolgedessen wurde auf eine kompaktere Alternative zurückgegriffen: das Raspberry Pi Camera Module 3 Wide (12 MP). Obwohl ursprünglich eine Global-Shutter-Kamera angedacht war, wurde festgestellt, dass die im System auftretenden Geschwindigkeiten keine kritischen Rolling-Shutter-Artefakte verursachen. Die gewählte Kamera erfüllt die Anforderungen in Bezug auf Sichtfeld, Auflösung (12 MP), Integration und Rechenkompatibilität und stellt somit eine praktikable Lösung für die Bildverarbeitung im gegebenen Kontext dar.
+
+## Potential improvements - Kamera:
+- Eine bessere Kamera mit einem höheren Blickwinkel
 
 ### Odometrie Sensor
 In den letzten zwei Jahren wurde im Rahmen der Teilnahme an der Kategorie RoboMission die Bedeutung einer kontinuierlichen Positionsbestimmung deutlich. Dort wurde die Position durch Auswertung der Radumdrehungen und ergänzend durch ein Gyroskop bestimmt. Das aktuelle Modellbau-Chassis bietet jedoch keine Möglichkeit, die Radbewegung direkt zu messen.
@@ -345,8 +360,9 @@ Zur Erhöhung der Genauigkeit und Redundanz wurden zwei dieser Sensoren verbaut.
 Funktionsweise
 Die Bewegungserkennung erfolgt durch eine nach unten gerichtete Kamera, die mit bis zu 20.000 Bildern pro Sekunde Veränderungen der Bodenstruktur analysiert. Aus den Bilddifferenzen wird die Verschiebung des Fahrzeugs über den Untergrund ermittelt. Diese Methode ist unempfindlich gegenüber Rutsch- oder Schlupfeffekten, wie sie bei Encoder-basierten Verfahren auftreten können.
 
+## Potential improvements - Odometriesensor:
 
-- Verbesserungsvorschlag: Einen dritten Sensor einbauen, damit echte Mehrheitsentscheidung, was der richtige Messwert ist
+- Einen dritten Sensor einbauen, damit echte Mehrheitsentscheidung, was der richtige Messwert ist
 
 ### Status-Display
 Zusätzlich wurde ein Status-Display integriert, über das verschiedene Systemparameter visualisiert werden. Die aktuelle Geschwindigkeit sowie die Zielgeschwindigkeit werden dabei durch Balkenanzeigen in Metern pro Sekunde dargestellt.
@@ -355,15 +371,20 @@ Der Betriebszustand der beiden Odometrie-Sensoren wird durch ein Farbsystem sign
 
 - Grünes Licht zeigt an, dass der betreffende Maussensor aktiviert ist und ordnungsgemäß arbeitet.
 - Rotes Licht wird angezeigt, wenn ein Sensor eine mehr als 0,2 m/s geringere Geschwindigkeit im Vergleich zum zweiten Sensor misst; in diesem Fall wird der Sensor als fehlerhaft klassifiziert.
-- Blaues Licht weist darauf hin, dass der Sensor eine Geschwindigkeit über 1 m/s registriert, was physikalisch nicht plausibel ist; der Sensor wird daraufhin automatisch deaktiviert.
+- Blaues Licht weist darauf hin, dass der Sensor eine Geschwindigkeit über 2 m/s registriert, was physikalisch nicht plausibel ist; der Sensor wird daraufhin automatisch deaktiviert.
 
 Dieses Display ist eine optionale Komponente und für die Funktionalität des Roboters nicht unbedingt erforderlich.
 
+## Potential improvements - Odometriesensor:
+- Mehr Informationen während der Fahrt anzeigen, z.B. welche Farben die Hindernisse haben
 <br>
 
 ## Energieversorgung des Fahrzeugs
 
 Die Energieversorgung des autonomen Fahrzeugs wurde so ausgelegt, dass sie sämtliche Sensoren, Steuerungseinheiten und Aktuatoren zuverlässig mit Energie versorgen kann. Als zentrale Stromquelle kommt ein 7,4 V Lithium-Polymer-Akku (LiPo, 2S, 2200 mAh) zum Einsatz, der direkt mit dem Fahrtenregler verbunden ist und über einen 5V Spannungswandler auch den Raspberry mit Strom versorgt.
+
+### Li-Po Battery
+- Bild + Spezifikationen
 
 ### Energieverbrauch der Komponenten
 
@@ -402,6 +423,13 @@ Die Spannungsversorgung der einzelnen Komponenten wird wie folgt realisiert:
 ### Sicherheit und Verdrahtung
 - Der Akkustecker ist verpolungssicher
 - Ein Hauptschalter trennt die Versorgung komplett
+
+
+## Potential improvements - Energieversorgung:
+- Akkuspannung messen, um den Akku rechtzeitig zu tauschen
+- Ein Baseboard(PCB) designen, welches alle Komponenten verbindet und den Verkabelungsaufwand reduziert.
+
+
 
 
 ## Schaltplan der Bauteile
