@@ -46,9 +46,9 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
 
     if checkForColor(inner, scan4[0], scan4[1]) or (not checkForColor(outer, scan4[0], scan4[1]) and checkForColor(inner, scan3[0], scan3[1])):
         if dinside:
-            orders.append(Order(x=800, y=1200,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
+            orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
         else:
-            orders.append(Order(x=800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
+            orders.append(Order(x=800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=19, rotation=rotation))
     
     else:
         if rotation != 90 and rotation != 1500:

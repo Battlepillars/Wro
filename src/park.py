@@ -45,9 +45,9 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
             doReposition(orders, Order, waitCompleteOrders, 0)
         else:
             orders.append(Order(x=2000, y=2600,speed=speedi,brake=0,type=Order.DESTINATION,num=30))
-            orders.append(Order(x=1870, y=2600,speed=speedi,brake=1,type=Order.DESTINATION,num=31))
+            orders.append(Order(x=1800, y=2600,speed=speedi,brake=1,type=Order.DESTINATION,num=31))
             orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
-            orders.append(Order(x=1775, y=2275,speed=0.2,brake=1,type=Order.DESTINATION,num=32))
+            orders.append(Order(x=1745, y=2275,speed=0.2,brake=1,type=Order.DESTINATION,num=32))
             orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
             doReposition(orders, Order, waitCompleteOrders, 0)
     
@@ -75,18 +75,30 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
             doReposition(orders, Order, waitCompleteOrders, -90)
 
 
-    # (1795|2685) - Optimale Position zum Einparken
-    orders.append(Order(y=2685, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
+    optimalX = 1745 # (1795|2685) - Optimale Position zum Einparken
+    optimalY = 2655
+    adjustedX = optimalX
+    if slam.xpos < optimalX - 10:
+        adjustedX += 40
+    elif slam.xpos > optimalX + 10:
+        adjustedX -= 40
+    
+    orders.append(Order(y=optimalY, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
+    orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
     doReposition2(orders, Order, waitCompleteOrders, direction)
     loops = 0
-    while (slam.xpos < 1775 or slam.xpos > 1815) and (loops < 2):
+    while (slam.xpos < (optimalX - 10) or slam.xpos > (optimalX + 10)) and (loops < 3):
         loops += 1
-        orders.append(Order(x=1795, y=2200, speed=0.2, brake=1, type=Order.DESTINATION, num=37))
-        doReposition2(orders, Order, waitCompleteOrders, direction)
+        adjustedX = optimalX            # move waypoint left or right to account for movement caused by turning
+        if slam.xpos < optimalX:
+            adjustedX += 40
+            print("adjusting right")
+        elif slam.xpos > optimalX:
+            adjustedX -= 40
+            print("adjusting left")
+        orders.append(Order(x=adjustedX, y=2200, speed=0.2, brake=1, type=Order.DESTINATION, num=37))
         orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
-        if not waitCompleteOrders():
-            return
-        time.sleep(0.3)
-        orders.append(Order(y=2685, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
+        doReposition2(orders, Order, waitCompleteOrders, direction)
+        orders.append(Order(y=optimalY, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
         doReposition2(orders, Order, waitCompleteOrders, direction)
     orders.append(Order(zielwinkel=0, speed=-0.2, brake=1, type=Order.WINKEL))
