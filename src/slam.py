@@ -156,10 +156,14 @@ class Slam:
         self.myOtos1.calibrateImu(255)
         self.myOtos2.calibrateImu(255)
 
-
-        self.myOtos1.setLinearScalar(1.060)
-        self.myOtos2.setLinearScalar(1.040)
-        
+        # German Playfield / MyDisplay
+        # self.myOtos1.setLinearScalar(1.060)
+        # self.myOtos2.setLinearScalar(1.040)
+            
+            
+        # Singapur playfield
+        self.myOtos1.setLinearScalar(0.980)
+        self.myOtos2.setLinearScalar(0.970)        
         
         self.myOtos1.setAngularScalar(0.9933)
         self.myOtos2.setAngularScalar(0.9915)
@@ -406,18 +410,18 @@ class Slam:
                     angle = -angle
                     # print("Hinderniss: ",i," erkannt, winkel: ",angle)
                     closestAngle = 0
-                    for d in range(len(camera.blocksAngle)):
-                        if abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle):
+                    for d in range(len(camera.blocksAngle)):    # richtige Farbe auswählen
+                        if (abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle)):
                             closestAngle = d
                     
                     # print(closestAngle)
-                    if len(camera.blocksAngle) > 0:
-                        if camera.blocksColor[closestAngle] == camera.RED:
+                        if len(camera.blocksAngle) > 0:
+                            if camera.blocksColor[closestAngle] == camera.RED:
+                                self.hindernisse[i].farbe = Hindernisse.RED
+                            if camera.blocksColor[closestAngle] == camera.GREEN:
+                                self.hindernisse[i].farbe = Hindernisse.GREEN
+                        else:
                             self.hindernisse[i].farbe = Hindernisse.RED
-                        if camera.blocksColor[closestAngle] == camera.GREEN:
-                            self.hindernisse[i].farbe = Hindernisse.GREEN
-                    else:
-                        self.hindernisse[i].farbe = Hindernisse.RED
         return found
 
     def calcualteScanAngel(self, angleToScan):
