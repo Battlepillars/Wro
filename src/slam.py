@@ -369,55 +369,96 @@ class Slam:
 
             
     def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
-        found=0
+        """
+        Detect obstacles using LiDAR and determine their colors using the camera.
+        
+        This function combines LiDAR distance measurements with camera color detection
+        to identify and classify obstacles at predefined positions on the competition field.
+        
+        Args:
+            scan: Array of LiDAR distance measurements (360 degrees)
+            toScan: List of obstacle indices to check (limits scanning to relevant positions)
+            camera: Camera object for capturing images and detecting colored obstacles
+            checkHeightNear: Boolean flag for near-distance obstacle detection mode
+            
+        Returns:
+            found: Total number of LiDAR points detected near obstacles
+        """
+        found = 0
+        
+        # Set detection threshold based on distance
+        # Near obstacles require fewer LiDAR points for reliable detection
         if checkHeightNear:
-            dotsNeeded = 1
+            dotsNeeded = 1  # Lower threshold for near obstacles
         else:
-            dotsNeeded = 0
+            dotsNeeded = 0  # Standard threshold for distant obstacles
+        
+        # Capture camera image for color detection
         camera.captureImage(checkHeightNear)
-        for d in range(len(camera.blocksAngle)):
-            # print("Block Angle: ", camera.blocksAngle[d], "Color: ", camera.blocksColor[d],"\n")
-            pass
         xposes = []
         yposes = []
         for i in range(len(scan)):
+            # Convert degree angle to radians and account for robot's current heading
             rad = (i + self.angle) / 180 * math.pi
-            xposes.append(math.cos(rad) * -scan[i] + self.xpos) # Koordinaten aus dem Lidar Winkelscan berechnen
-            yposes.append(math.sin(rad) * scan[i] + self.ypos)
+            # Calculate world coordinates from LiDAR angle scan
+            xposes.append(math.cos(rad) * -scan[i] + self.xpos) 
+            yposes.append(math.sin(rad) * scan[i] + self.ypos)  
 
-        for i in range(len(self.hindernisse)):                  # Hindernisse sind die vordefinierten möglichen Positionen
-            if i in toScan:                                     # To scan : welche Hindernisse aktuell überprüft werden sollen
+        # Step 2: Check each predefined obstacle position against LiDAR data
+        # hindernisse = the predefined possible obstacle positions
+        for i in range(len(self.hindernisse)):
+            # toScan = which obstacles should currently be checked (performance optimization)
+            if i in toScan:
+                # Reset obstacle status to "nothing detected"
                 self.hindernisse[i].farbe = Hindernisse.NICHTS
-                dots = 0
-                angles = []
-                for b in range(len(xposes)):                    # Checken ob Hindernis in der Nähe der lidarpunkte ist
-                    if (math.pow((xposes[b] - self.hindernisse[i].x),2) + math.pow((yposes[b] - self.hindernisse[i].y),2) < math.pow(120,2)) and (self.scan[b] > 200):
-                        dots += 1
-                        angles.append(b)
+                dots = 0        # Counter for LiDAR points near this obstacle position
+                angles = []     # List to store angles of detected points
+                
+                # Step 3: Check if obstacle is near any LiDAR points
+                for b in range(len(xposes)):
+                    # Calculate if LiDAR point is within 120mm radius of expected obstacle position
+                    # and has valid distance reading (> 200mm filters out noise)
+                    if (math.pow((xposes[b] - self.hindernisse[i].x), 2) + 
+                        math.pow((yposes[b] - self.hindernisse[i].y), 2) < math.pow(120, 2)) and (self.scan[b] > 200):
+                        dots += 1           # Count detected point
+                        angles.append(b)    # Store angle index for camera matching
+                
+                # Step 4: If sufficient LiDAR points detected, process obstacle
                 if dots > dotsNeeded:
-                    found += dots
+                    found += dots  # Add to total detection count
+                    
+                    # Calculate average angle to obstacle for camera alignment
                     angle = 0
                     for c in angles:
-                        # ("Angle: ",c)
+                        # Normalize angle to [-180, 180] range
                         while c > 180:
                             c -= 360
                         angle += c
+                    # Average angle points to the center of detected obstacle
                     angle = angle / len(angles)
-                    angle = -angle
-                    # print("Hinderniss: ",i," erkannt, winkel: ",angle)
+                    angle = -angle  # Coordinate system correction
+                    # Debug: print("Obstacle: ", i, " detected, angle: ", angle)
+                    
+                    # Step 5: Match LiDAR detection with camera color detection
+                    # Find camera-detected block closest to calculated LiDAR angle
                     closestAngle = 0
                     for d in range(len(camera.blocksAngle)):
+                        # Find the camera block with angle closest to LiDAR angle
                         if abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle):
                             closestAngle = d
                     
-                    # print(closestAngle)
+                    # Step 6: Assign color to detected obstacle based on camera detection
                     if len(camera.blocksAngle) > 0:
+                        # Color detected by camera - assign it to obstacle
                         if camera.blocksColor[closestAngle] == camera.RED:
                             self.hindernisse[i].farbe = Hindernisse.RED
                         if camera.blocksColor[closestAngle] == camera.GREEN:
                             self.hindernisse[i].farbe = Hindernisse.GREEN
                     else:
+                        # Fallback: if no camera detection, assume RED
+                        # This ensures we still avoid obstacles even if color detection fails
                         self.hindernisse[i].farbe = Hindernisse.RED
+        
         return found
 
     def calcualteScanAngel(self, angleToScan):

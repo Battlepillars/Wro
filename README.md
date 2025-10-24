@@ -1,8 +1,158 @@
-# THE TEAM
-<div align="center"><img width="800" src="img/teamname.jpg"></div>
+# Inhaltsverzeichnis
+
+<ul dir="auto">
+<li><a href="#the-team">The Team</a>
+<ul dir="auto">
+<li><a href="#nils-stauff">Nils Stauff</a></li>
+<li><a href="#olivia-greilich">Olivia Greilich</a></li>
+<li><a href="#leonard-kolo">Leonard Kolo</a></li>
+<li><a href="#team-photo">Team Photo</a></li>
+</ul>
+</li>
+<li><a href="#mobility-management">Mobility Management</a>
+<ul dir="auto">
+<li><a href="#chassis">Chassis</a></li>
+<li><a href="#umbau-des-modellautos">Umbau des Modellautos</a>
+<ul dir="auto">
+<li><a href="#bodenplatte">Bodenplatte</a></li>
+<li><a href="#mitteldeck">Mitteldeck</a></li>
+<li><a href="#oberdeck">Oberdeck</a></li>
+</ul>
+</li>
+<li><a href="#potential-improvements---chassis">Potential improvements - Chassis</a></li>
+<li><a href="#powertrain">Powertrain</a>
+<ul dir="auto">
+<li><a href="#drivetrain">Drivetrain</a></li>
+<li><a href="#motor">Motor</a></li>
+<li><a href="#motor-driver--fahrtenregler">Motor Driver (= Fahrtenregler)</a></li>
+<li><a href="#funktionsweise-antrieb">Funktionsweise Antrieb</a></li>
+</ul>
+</li>
+<li><a href="#potential-improvements---powertrain">Potential improvements - Powertrain</a></li>
+<li><a href="#steering">Steering</a>
+<ul dir="auto">
+<li><a href="#servo-saver">Servo Saver</a></li>
+<li><a href="#servo-motor-anders-einsortieren---ungünstig-als-eigener-unterpunkt">Servo Motor</a></li>
+</ul>
+</li>
+<li><a href="#potential-improvements---steering">Potential improvements - Steering</a></li>
+</ul>
+</li>
+<li><a href="#power-and-sense-management">Power and Sense Management</a>
+<ul dir="auto">
+<li><a href="#sensoren">Sensoren</a>
+<ul dir="auto">
+<li><a href="#lidar">LiDAR</a></li>
+<li><a href="#potential-improvements---lidar">Potential improvements - LiDAR</a></li>
+<li><a href="#kamera">Kamera</a></li>
+<li><a href="#potential-improvements---kamera">Potential improvements - Kamera</a></li>
+<li><a href="#odometrie-sensor">Odometrie Sensor</a></li>
+<li><a href="#potential-improvements---odometriesensor">Potential improvements - Odometriesensor</a></li>
+<li><a href="#status-display">Status-Display</a></li>
+</ul>
+</li>
+<li><a href="#energieversorgung-des-fahrzeugs">Energieversorgung des Fahrzeugs</a>
+<ul dir="auto">
+<li><a href="#li-po-battery">Li-Po Battery</a></li>
+<li><a href="#energieverbrauch-der-komponenten">Energieverbrauch der Komponenten</a></li>
+<li><a href="#gesamtleistungsbedarf">Gesamtleistungsbedarf</a></li>
+<li><a href="#spannungsversorgung">Spannungsversorgung</a></li>
+<li><a href="#sicherheit-und-verdrahtung">Sicherheit und Verdrahtung</a></li>
+</ul>
+</li>
+<li><a href="#potential-improvements---energieversorgung">Potential improvements - Energieversorgung</a></li>
+<li><a href="#schaltplan-der-bauteile">Schaltplan der Bauteile</a></li>
+</ul>
+</li>
+<li><a href="#code-für-alle-komponenten">Code für alle Komponenten</a>
+<ul dir="auto">
+<li><a href="#servo">Servo</a>
+<ul dir="auto">
+<li><a href="#software-implementation">Software Implementation</a></li>
+<li><a href="#steering-range-and-calibration">Steering Range and Calibration</a></li>
+</ul>
+</li>
+<li><a href="#drive-motor">Drive Motor</a>
+<ul dir="auto">
+<li><a href="#components">Components</a></li>
+<li><a href="#hardware-interface">Hardware Interface</a></li>
+<li><a href="#software-implementation-1">Software Implementation</a></li>
+<li><a href="#pid-controller-implementation">PID Controller Implementation</a></li>
+<li><a href="#advanced-control-features">Advanced Control Features</a></li>
+</ul>
+</li>
+<li><a href="#optical-tracking-odometry-sensors">Optical Tracking Odometry Sensors</a>
+<ul dir="auto">
+<li><a href="#position-and-speed-tracking">Position and Speed Tracking</a></li>
+<li><a href="#sensor-health-monitoring-and-redundancy">Sensor Health Monitoring and Redundancy</a></li>
+<li><a href="#data-fusion-and-final-position-calculation">Data Fusion and Final Position Calculation</a></li>
+<li><a href="#position-reset-and-calibration">Position Reset and Calibration</a></li>
+<li><a href="#key-features-of-our-implementation">Key Features of Our Implementation</a></li>
+</ul>
+</li>
+<li><a href="#lidar-1">LiDAR</a>
+<ul dir="auto">
+<li><a href="#real-time-scanning-and-data-acquisition">Real-time Scanning and Data Acquisition</a></li>
+<li><a href="#position-detection-and-localization">Position Detection and Localization</a></li>
+<li><a href="#dynamic-position-correction-during-driving">Dynamic Position Correction During Driving</a></li>
+<li><a href="#obstacle-detection-and-recognition">Obstacle Detection and Recognition</a></li>
+<li><a href="#key-features-of-our-lidar-implementation">Key Features of Our LiDAR Implementation</a></li>
+<li><a href="#data-structure-and-access-patterns">Data Structure and Access Patterns</a></li>
+</ul>
+</li>
+<li><a href="#potential-improvements---code-for-all-components">Potential improvements - Code for all components</a></li>
+</ul>
+</li>
+<li><a href="#obstacle-management">Obstacle Management</a>
+<ul dir="auto">
+<li><a href="#initial-location-acquisition">Initial Location Acquisition</a></li>
+<li><a href="#position-updates-during-driving">Position updates during driving</a>
+<ul dir="auto">
+<li><a href="#optical-tracking-sensor-function">Optical tracking sensor function</a></li>
+<li><a href="#sensor-failure-detection--health-status">Sensor failure detection / health status</a></li>
+</ul>
+</li>
+<li><a href="#position-corrections">Position corrections</a></li>
+<li><a href="#obstacle-recognition">Obstacle Recognition</a>
+<ul dir="auto">
+<li><a href="#determining-the-position-of-an-obstacle-within-a-course-section">Determining the position of an obstacle within a course section</a></li>
+<li><a href="#determining-the-color-of-the-obstacle">Determining the color of the obstacle</a></li>
+</ul>
+</li>
+<li><a href="#software-structure">Software Structure</a>
+<ul dir="auto">
+<li><a href="#multi-threading-architecture">Multi-Threading Architecture</a></li>
+<li><a href="#why-three-threads">Why Three Threads?</a></li>
+<li><a href="#thread-1-control-loop">Thread 1: Control Loop</a></li>
+<li><a href="#thread-2-command-loop-high-level-navigation-thread">Thread 2: Command Loop (High-Level Navigation Thread)</a></li>
+<li><a href="#thread-3-display-loop-user-interface-thread">Thread 3: Display Loop (User Interface Thread)</a></li>
+<li><a href="#thread-synchronization-and-communication">Thread Synchronization and Communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+# THE TEAM 
+<div align="center">
+    <a href="img/teamname.jpg" target="_blank">
+        <img width="800" src="img/teamname.jpg">
+    </a>
+</div>
 In this repository, you’ll find the documentation for the robot created by the "Battlepillars" for the 2025 World Robot Olympiad Future Engineers competition. The robot was the result of a collaborative effort by three students.
 
 ## Nils Stauff
+
+<div align="center">
+    <a href="img/nils.jpg" target="_blank">
+        <img width="300" src="img/nils.jpg">
+    </a>
+</div>
+
+Hi! Ich bin Nils und bin 16 Jahre alt. Ich bin der Programmierer in unserem Team und beschäftige mich gerne mit Code und dem Lösen technischer Probleme. In meiner Freizeit gehe ich tauchen und genieße die Unterwasserwelt. Im Winter fahre ich regelmäßig Ski und mag auch Katzen sehr gerne.
+
+Bei unserem WRO-Projekt bin ich für die Programmierung des Roboters zuständig und entwickle die Software, die ihn steuert. Das kann manchmal herausfordernd sein, aber es ist sehr befriedigend wenn alles wie geplant funktioniert!
 
 ## Olivia Greilich
 
@@ -13,16 +163,32 @@ In my free time, I usually occupy myself with writing fanfiction on Archive Of O
 My part of the team effort is the documentation and images you'll see below.
 
 ## Leonard Kolo
-<div align="center"><img width="300" src="img/leonard.jpg"></div>
+<div align="center">
+    <a href="img/leonard.jpg" target="_blank">
+        <img width="300" src="img/leonard.jpg">
+    </a>
+</div>
+
+Hi! I'm Leonard from Germany and I'm 15 years old, currently attending the Max Steenbeck Gymnasium in Cottbus. This is not my first WRO season. Last year I participated in the Robo Mission category and this year me and my team wanted to try something new so we are participating now in the category Future Engineers. My hobby’s are go karting playing games building LEGO and flying drone.
+
+Ich bringe meine technische Expertise in den Bereichen Roboterbau, Komponentenrecherche und -auswahl sowie in der Entwicklung und Fertigung von 3D-gedruckten Bauteilen ein, die für die mechanische Realisierung unseres Projekts von entscheidender Bedeutung sind.
 
 ## Team photo
 
-<div align="center"><img width="500" src="img/team.jpg"></div>
+<div align="center">
+    <a href="img/team.jpg" target="_blank">
+        <img width="500" src="img/team.jpg">
+    </a>
+</div>
 
  
 s den Regeln: Pictures of the team and robot must be provided. The pictures of the robot must cover all sides of the robot, must be clear, in focus and show aspects of the mobility, power and sense, and obstacle management. Reference in the discussion sections 1, 2 and 3 can be made to these pictures. Team photo is necessary for judges to relate and identify the team during the local and international competitions. 
 
 Fotos und kurze Beschreibung
+<br><br>
+
+# The Robot
+## Photos of the Robot
 
 <br><br><br>
 
@@ -57,12 +223,26 @@ Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 36
 
 <table align="center">
   <tr>
-     <td width=320><img src="img/Bodenplatte1.jpeg"></td>
-     <td width=500><img src="img/Bodenplatte2.jpeg"></td>
+     <td width=320>
+       <a href="img/Bodenplatte1.jpeg" target="_blank">
+         <img src="img/Bodenplatte1.jpeg">
+       </a>
+     </td>
+     <td width=500>
+       <a href="img/Bodenplatte2.jpeg" target="_blank">
+         <img src="img/Bodenplatte2.jpeg">
+       </a>
+     </td>
   </tr>
 </table>
 
-<div align="center"><img width="400" img src= "img/Maße/Lowerdeck.jpg"></div>
+
+
+<div align="center">
+    <a href="img/Masse/Lowerdeck.jpg" target="_blank">
+        <img width="400" src="img/Masse/Lowerdeck.jpg">
+    </a>
+</div>
 
 
 Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtenregler und die Odometriesensoren. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden.
@@ -70,48 +250,92 @@ Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das 
 Das Servo wird in die Bodenplatte in einer vorhergesehenen Halterung eingesetzt und mittels des Servobrackets befestigt.
 
 Hier die Bemaßung:
-<div align="center"><img width="400" img src= "img/Maße/Servobracket.jpg"></div>
+<div align="center">
+    <a href="img/Masse/Servobracket.jpg" target="_blank">
+        <img width="400" src="img/Masse/Servobracket.jpg">
+    </a>
+</div>
 
-<div align="center"><img width="400" img src= "img/Bodenplatte3.jpg"></div>
+<div align="center">
+    <a href="img/Bodenplatte3.jpg" target="_blank">
+        <img width="400" src="img/Bodenplatte3.jpg">
+    </a>
+</div>
 
 Damit der Fahrtenregler nicht von der Bodenplatte fällt, sind zwischen den Distanzbolzen zwei 3D-gedruckte Sidebars eingebaut.
 
 Hier die Bemaßung:
-<div align="center"><img width="400" img src= "img/Maße/Sidebars.jpg"></div>
+<div align="center">
+    <a href="img/Masse/Sidebar.jpg" target="_blank">
+        <img width="400" src="img/Masse/Sidebar.jpg">
+    </a>
+</div>
 
 ### Mitteldeck
 
 Anschließend wurde noch ein Mitteldeck mit Fusion 360 designt. Die Maße orientieren sich an der Bodenplatte.
 
-<table>
+<table align="center">
   <tr>
-     <td width=320><img src="img/Mitteldeck2.jpeg"></td>
-     <td width=500><img src="img/Mitteldeck1.jpeg"></td>
+     <td width=320>
+       <a href="img/Mitteldeck2.jpeg" target="_blank">
+         <img src="img/Mitteldeck2.jpeg">
+       </a>
+     </td>
+     <td width=500>
+       <a href="img/Mitteldeck1.jpeg" target="_blank">
+         <img src="img/Mitteldeck1.jpeg">
+       </a>
+     </td>
   </tr>
 </table>
 
-<div align="center"><img width="400" img src= "img/Maße/Middledeck.jpg"></div>
+<div align="center">
+    <a href="img/Masse/Middledeck.jpg" target="_blank">
+        <img width="400" src="img/Masse/Middledeck.jpg">
+    </a>
+</div>
 
 Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spannungsregler. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden. Außerdem haben wir hier eine Kamera integriert.
 
-<div align="center"><img width="400" src="img/Mitteldeck3.jpg"></div>
+<div align="center">
+    <a href="img/Mitteldeck3.jpg" target="_blank">
+        <img width="400" src="img/Mitteldeck3.jpg">
+    </a>
+</div>
 
 ### Oberdeck
 
 Um den LiDAR zu befestigen, wurde noch ein Oberdeck designt. An diesem wurde der LiDAR auf dem Kopf stehend befestigt.
 
-<table>
+<table align="center">
   <tr>
-     <td width=280><img src="img/Oberdeck2.jpeg"></td>
-     <td width=500><img src="img/Oberdeck1.jpeg"></td>
+     <td width=280>
+       <a href="img/Oberdeck2.jpeg" target="_blank">
+         <img src="img/Oberdeck2.jpeg">
+       </a>
+     </td>
+     <td width=500>
+       <a href="img/Oberdeck1.jpeg" target="_blank">
+         <img src="img/Oberdeck1.jpeg">
+       </a>
+     </td>
   </tr>
 </table>
 
-<div align="center"><img width="400" img src= "img/Maße/Lidar.jpg"></div>
+<div align="center">
+    <a href="img/Masse/Lidar.jpg" target="_blank">
+        <img width="400" src="img/Masse/Lidar.jpg">
+    </a>
+</div>
 
 Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
-<div align="center"><img width="400" src="img/Oberdeck3.jpg"></div>
+<div align="center">
+    <a href="img/Oberdeck3.jpg" target="_blank">
+        <img width="400" src="img/Oberdeck3.jpg">
+    </a>
+</div>
 
 ## Potential improvements - Chassis
 - Construct an outer hull to improve the outer appearance of the vehicle and prevent potential dust or debris from reaching the inner works.
@@ -148,13 +372,17 @@ Schrittmotoren zeichnen sich durch eine hohe Steuerpräzision aus. Allerdings is
 
 Auf Grundlage dieser Analyse wurde entschieden, den bereits im Modellauto integrierten Brushed-Motor weiterzuverwenden, da dieser unter den gegebenen Rahmenbedingungen die funktional und technisch sinnvollste Lösung darstellt.
 
-<table>
+<table align="center">
   <tr>
     <th bgcolor=#CCFFCC width=300>Motor</th>
     <th bgcolor=#9ae4fd width=600>Specifications</th>
   </tr>
   <tr>
-    <td><img src="img/motor.jpg"> </td>
+    <td>
+      <a href="img/motor.jpg" target="_blank">
+        <img src="img/motor.jpg">
+      </a>
+    </td>
     <td bgcolor=#c8f0fd>23-turn brushed 370-size LaTrax® motor with bullet connectors
 </td>
    </tr>
@@ -170,13 +398,17 @@ Im Zuge weiterführender Recherchen wurde festgestellt, dass bestimmte Modellfah
 
 Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprünglich verbauten Regler durch ein geeigneteres Modell zu ersetzen. Die Wahl fiel auf den Quicrun WP 1080–G2, dessen technische Eigenschaften den spezifizierten Anforderungen in vollem Umfang entsprechen.
 
-<table>
+<table align="center">
   <tr>
     <th bgcolor=#CCFFCC width=300>Motor Driver Quicrun WP 1080–G2</th>
     <th bgcolor=#9ae4fd width=600>Specifications</th>
   </tr>
   <tr>
-    <td width=300><img src="img/fahrtenregler.jpg"> </td>
+    <td width=300>
+      <a href="img/fahrtenregler.jpg" target="_blank">
+        <img src="img/fahrtenregler.jpg">
+      </a>
+    </td>
     <td bgcolor=#c8f0fd ><li>Application: 1/10th Rock Crawler</li>
 <li>Motor Type: Brushed Motor (540 / 555 size motors)</li>
 <li>Cont./Peak Current: 80A/400A</li>
@@ -221,20 +453,32 @@ The steering assembly consists of two symmetrical wheel mounts connected by a st
 
 Ein Teil der Vorderachse wurde mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt. 
 
-<div align="center"><img width="500" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" /></div>
+<div align="center">
+    <a href="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" target="_blank">
+        <img width="500" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06">
+    </a>
+</div>
 
 Hier die Bemaßung:
-<div align="center"><img width="400" img src= "img/Maße/Frontaxle.jpg"></div>
+<div align="center">
+    <a href="img/Masse/Frontaxle.jpg" target="_blank">
+        <img width="400" src="img/Masse/Frontaxle.jpg">
+    </a>
+</div>
 <br><br>
 Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel benötigt:
 <br><br>
-<table>
+<table align="center">
   <tr>
     <th bgcolor=#CCFFCC width=300>Lenkgestänge und Achsschenkel</th>
     <th bgcolor=#9ae4fd width=500>Specifications</th>
   </tr>
   <tr>
-    <td><img src="img/lenkstange.jpg"> </td>
+    <td>
+      <a href="img/lenkstange.jpg" target="_blank">
+        <img src="img/lenkstange.jpg">
+      </a>
+    </td>
     <td bgcolor=#c8f0fd>RC Metall Vorderachse Hinterachse Für WPL HengLong 1/16 Militär LKW RC LKW DE-
 </td>
    </tr>
@@ -246,13 +490,17 @@ Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel ben�
 <br>
 Die Räder der neuen Vorderachse sind von Lego:
 
-<table>
+<table align="center">
   <tr>
     <th bgcolor=#CCFFCC width=300>Wheels</th>
     <th bgcolor=#9ae4fd width=500>Specifications</th>
   </tr>
   <tr>
-    <td><img src="img/legorad.jpg"> </td>
+    <td>
+      <a href="img/legorad.jpg" target="_blank">
+        <img src="img/legorad.jpg">
+      </a>
+    </td>
     <td bgcolor=#c8f0fd>Size: 5,6cm x 1,5cm x 5,6cm
 </td>
    </tr>
@@ -271,7 +519,11 @@ The Servo Saver is installed on the Servo and connects to the steering linkage. 
 
 Die neue Vorderachse in einer Detailaufnahme:
 <br><br>
-<div align="center"><img width="500" src=https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be></div>
+<div align="center">
+    <a href="https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be" target="_blank">
+        <img width="500" src="https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be">
+    </a>
+</div>
 <br>
 
 
@@ -282,13 +534,17 @@ Konkret handelt es sich um den Traxxas Waterproof Sub-Micro Servo (Modellnummer 
 
 Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wurde beschlossen, den bereits im Modell vorhandenen Servo weiterhin zu verwenden.
 
-<table>
+<table align="center">
   <tr>
     <th bgcolor=#CCFFCC width=300>Waterproof Sub-Micro Servo</th>
     <th bgcolor=#9ae4fd width=600>Specifications</th>
   </tr>
   <tr>
-    <td ><img src="img/motordriver.jpg"> </td>
+    <td>
+      <a href="img/motordriver.jpg" target="_blank">
+        <img src="img/motordriver.jpg">
+      </a>
+    </td>
     <td bgcolor=#c8f0fd><li>Fully waterproof</li>
 <li>Fits steering in LaTrax models</li>
 <li>Power: 2.3kg/cm</li>
@@ -327,7 +583,11 @@ Eine erhöhte Umgebungswahrnehmung wird erzielt, wenn die LiDAR-Daten mit weiter
 
 In der nachfolgenden Tabelle wurden die für die Auswahl relevanten technischen Kriterien verschiedener LiDAR-Systeme zusammengestellt und entsprechend unserer Anforderungen farblich bewertet. Im Ergebnis stellte sich heraus, dass der RpLidar S2 die geeignetste Option für unsere Anwendung darstellt.
 
-<div align="center"><img width="600" alt="tabelle" src=https://github.com/user-attachments/assets/9beae8fb-1bd3-4d9e-9e44-baab9635c230></div>
+<div align="center">
+    <a href="https://github.com/user-attachments/assets/9beae8fb-1bd3-4d9e-9e44-baab9635c230" target="_blank">
+        <img width="600" alt="tabelle" src="https://github.com/user-attachments/assets/9beae8fb-1bd3-4d9e-9e44-baab9635c230">
+    </a>
+</div>
 
 
 Nach der Integration des LiDAR-Systems in den Roboter wurde festgestellt, dass die Spielfeldbegrenzung nicht zuverlässig erkannt wurde. Ursache hierfür war, dass die vom Sensor ausgesendeten Laserstrahlen über die Begrenzung hinweg projiziert wurden.
@@ -434,7 +694,7 @@ Die Spannungsversorgung der einzelnen Komponenten wird wie folgt realisiert:
 
 ## Schaltplan der Bauteile
 
-![Schematic_Battlecar_2025-05-21](https://github.com/user-attachments/assets/e5cade62-716a-46cd-814c-f3818447c41c)
+[![Schematic_Battlecar_2025-05-21](https://github.com/user-attachments/assets/e5cade62-716a-46cd-814c-f3818447c41c)](https://github.com/user-attachments/assets/e5cade62-716a-46cd-814c-f3818447c41c)
 
 
 <br><br><br>
@@ -1043,25 +1303,36 @@ if self.scan[0] > 500:  # More than 500mm clear ahead
 right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
 ```
 
+## Potential improvements - Code for all components:
 
+- **Crash detection and recovery**: Implement automatic detection of collisions (using accelerometer data or sudden motor load changes) and recovery procedures such as backing up, to prevent getting stuck on walls.
 
+- **Error recovery mechanisms**: Add more automatic recovery routines for sensor failures, communication timeouts, and unexpected situations to improve system robustness.
+
+- **Performance optimization**: Optimize critical loops and data structures using profiling tools to reduce computational load and improve real-time performance.
+
+- **Configuration management**: Implement a centralized configuration system to easily adjust parameters without code changes for different competition scenarios.
+
+- **Logging and diagnostics**: Enhance logging system with structured data output and real-time performance metrics for better analysis and troubleshooting.
+
+- **Backup navigation modes**: Implement fallback navigation strategies when primary sensors fail, such as wall-following or simple waypoint navigation.
 
 
 <br><br><br>
 
 # Obstacle Management
 
-
 <br><br>
 ## Initial Location Acquisition 
+The inital position is aquired by mneasuring the distance to the borders with the lidar.
 
-At the beginning of the program, the robot detects the starting direction in which the car must drive on the track, based on its position on the mat.
+The starting direction is determinded based on its position on the mat. 
 
 For the Open Challenge, there are four different positions where we can place the robot, which allow it to recognize how it must drive. These four options result from the fact that there are two possible starting sections and two directions of travel.
 
 In the Obstacle Challenge, two different positions are possible. Here as well, the robot uses the LiDAR to detect its position and then knows which direction it needs to drive.
 
-![WhatsApp Image 2025-08-30 at 15 24 43](https://github.com/user-attachments/assets/1f603c1c-980e-4192-8997-ed8e1bf1f1e4)
+[![WhatsApp Image 2025-08-30 at 15 24 43](https://github.com/user-attachments/assets/1f603c1c-980e-4192-8997-ed8e1bf1f1e4)](https://github.com/user-attachments/assets/1f603c1c-980e-4192-8997-ed8e1bf1f1e4)
 
 
  <br><br>
@@ -1079,178 +1350,217 @@ Two optical tracking sensors were installed to increase redundancy. If one senso
 
 - If the sensor reports a position outside the playing field, it is likewise deactivated as “not healthy”.
 
-![WhatsApp Image 2025-08-30 at 15 24 42](https://github.com/user-attachments/assets/6de3a1ca-4f9a-47d4-8c87-d71443b53063)
+[![WhatsApp Image 2025-08-30 at 15 24 42](https://github.com/user-attachments/assets/6de3a1ca-4f9a-47d4-8c87-d71443b53063)](https://github.com/user-attachments/assets/6de3a1ca-4f9a-47d4-8c87-d71443b53063)
 
 When both sensors are healthy, we take the average of the readings of both sensors. Otherwise, we just take the data from the healthy sensor.
 
 ## Position corrections 
-Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
+Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases even more. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
 
-- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This type of repositioning hast to be manually set up in the programm, after stopping the robot.
+- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This can not be done while driving, because the lidar measurement is delayed by about 100 to 200ms, so we would already have moved on.  This type of repositioning has to be manually set up in the programm, after stopping the robot. This is donbe when we need a hight accuracy, for example before scanning the obstacles.
 
-- While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. The issue is that the LiDAR responds to the program's position request with a delay of 100–200 ms because it rotates, making repositioning less accurate while the robot is moving. Therefore this kind of repositioning is automatically triggered when certain conditions are met :
+
+- While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. For this, we do not use the complete 360° scan from the lidar, but we trigger the reposition automatically exactly when the front distance is measured by the lidar. On this way we reduce the delay of the lidar measurement. This kind of repositioning is automatically triggered when certain conditions are met:
   - The lidar has just transmitted the distance to the front
   - The robot has crossed the line to one of the corner squares and has a good visibility to the wall in front.
 
 
-## Navigation strategy open challenge 
 
-For the open challenge, we navigate using simple fixed waypoints. They are choosen in way they work independent of the inner wall configuration.
-
-
-## Navigation strategy obstacle challenge
-
-In the first round of the obstacle challenge, the waypoints 
 
 ## Obstacle Recognition 
 This function detects and stores obstacles within each section of the course using the LiDAR and the camera. The process is divided into two parts:
 
 ### Determining the position of an obstacle within a course section
 
-The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course: after leaving the parking area and at 4 additional points (see Appendix 4: Scan Point Diagram).
+The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course, after leaving the parking area and at 4 additional points.
 
 At these points the LiDAR determines at which of the six possible positions within the section in front of the robot the obstacles are located. 
 
 A list of coordinates was created for all possible obstacle positions. The LiDAR checks whether something is detected near (within a radius of 100 mm) any of these coordinates. If an obstacle is detected, the position is stored in a list.
 
+
 ### Determining the color of the obstacle
 
-The camera is then used to identify the color of the obstacle. The object recognition is strongly based on the WRO support document (WRO Future Engineers Getting Started), so I wont describe this process in detail here. Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map:
+The camera is then used to identify the color of the obstacle. The object recognition is strongly based on the [WRO support document](https://world-robot-olympiad-association.github.io/future-engineers-gs/p04-cv/#objects-recognition) (WRO Future Engineers Getting Started). Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map:
 
-![Programmausgabe Kopie](https://github.com/user-attachments/assets/9f9b5f2e-5cb8-4573-8a63-38dcde1bda16)
+[![Programmausgabe Kopie](https://github.com/user-attachments/assets/9f9b5f2e-5cb8-4573-8a63-38dcde1bda16)](https://github.com/user-attachments/assets/9f9b5f2e-5cb8-4573-8a63-38dcde1bda16)
 
- 
-<br><br><br><br>
+### Complete Obstacle Detection Function
 
-### Software Structure
+The following function implements the complete obstacle detection and color recognition algorithm combining LiDAR and camera data:
 
-## Multi-Threading Architecture
-
-Our robot system uses a multi-threaded architecture to handle real-time control, high-level navigation, and user interface operations simultaneously. 
-
-### Why Three Threads?
-
-The decision to implement a three-thread architecture was driven by the need to:
-
-1. **Separate Time-Critical Operations**: Real-time motor control and sensor processing require consistent timing that cannot be interrupted by slower operations
-2. **Enable Concurrent Processing**: Allow navigation planning, sensor data processing, and user interface updates to run simultaneously  
-3. **Prevent System Blocking**: Ensure that slow operations (like screen updates) don't interfere with critical control loops
-
-### Thread 1: Control Loop 
-
-**Purpose**: Handles all time-critical operations requiring precise timing and immediate response.
-
-**Frequency**: 70 Hz 
-
-**Key Responsibilities**:
-- **Sensor Data Acquisition**: Continuous reading from odometry sensors, LiDAR, and gyroscope
-- **Motor Control**: Real-time speed and steering adjustments using PID controllers
-- **Position Tracking**: Updates robot position and orientation 
-- **Order Execution**: Processes navigation commands from the command queue
-
-**Flow Diagram**:
-```
-Start Control Loop (70Hz)
-    ↓
-Update All Sensors
-    ↓
-Process Current Order
-    ├─ DESTINATION → Execute PID Control
-    ├─ SCAN → Perform LiDAR/Camera Analysis  
-    ├─ REPOSITION → LiDAR Position Correction
-    └─ MANUAL → Direct Motor Control
-    ↓
-Update Motor Outputs
-    ↓
-Timing Control (Sleep to maintain 70Hz)
-    ↓
-Loop Back to Start
-```
-
-### Thread 2: Command Loop (High-Level Navigation Thread)
-
-**Purpose**: Manages high-level navigation strategy and autonomous decision-making.
-
-**Frequency**: Event-driven (responds to navigation phases and external triggers)
-
-**Key Responsibilities**:
-- **Competition Strategy**: Implements complete race strategies (Open Challenge, Obstacle Challenge)
-- **Navigation Planning**: Generates sequences of waypoints and maneuvers
-- **Obstacle Analysis**: Processes obstacle detection results and plans avoidance routes
-- **Race Phase Management**: Coordinates unparking, scanning rounds, driving rounds, and parking
-- **Button Interface**: Handles physical start button
-
-**Flow Diagram**:
-```
-Start Command Loop
-    ↓
-Wait for Start Signal
-    ↓
-Initialize Odometry & LiDAR
-    ↓
-Detect Starting Position
-    ↓
-┌─────────────────┐
-│ Competition     │
-│ Strategy        │
-├─────────────────┤
-│ Open Challenge: │
-│ • 3x Lap Cycles │  
-│ • Fixed Route   │
-│                 │
-│Obstacle Chall.: │
-│ • Unpark        │
-│ • Scan Round    │
-│ • 2x Drive Rnds │
-│ • Park          │
-└─────────────────┘
-
-```
-
-### Thread 3: Display Loop (User Interface Thread)
-
-**Purpose**: Provides real-time visualization and user interaction capabilities.
-
-**Frequency**: depends on system load, about 5 to 10 Hz 
-
-**Key Responsibilities**:
-- **Real-Time Visualization**: Displays robot position, obstacles, and navigation path
-- **Sensor Status Display**: Shows health status of odometry sensors and LiDAR
-- **Performance Monitoring**: Displays speed, timing, and system diagnostics
-- **User Input Processing**: Handles keyboard commands for manual control and debugging
-- **Image Capture**: Takes screenshots for documentation and analysis
-
-
-### Thread Synchronization and Communication
-
-**Semaphore Protection**: Critical shared data structures are protected using threading semaphores:
 ```python
-sem = threading.Semaphore()  # Global display semaphore
-robot.semDb = threading.Semaphore()  # Robot data semaphore
+def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
+    """
+    Detect obstacles using LiDAR and determine their colors using the camera.
+    
+    This function combines LiDAR distance measurements with camera color detection
+    to identify and classify obstacles at predefined positions on the competition field.
+    
+    Args:
+        scan: Array of LiDAR distance measurements (360 degrees)
+        toScan: List of obstacle indices to check (limits scanning to relevant positions)
+        camera: Camera object for capturing images and detecting colored obstacles
+        checkHeightNear: Boolean flag for near-distance obstacle detection mode
+        
+    Returns:
+        found: Total number of LiDAR points detected near obstacles
+    """
+    found = 0
+    
+    # Set detection threshold based on distance
+    # Near obstacles require fewer LiDAR points for reliable detection
+    if checkHeightNear:
+        dotsNeeded = 1  # Lower threshold for near obstacles
+    else:
+        dotsNeeded = 0  # Standard threshold for distant obstacles
+    
+    # Capture camera image for color detection
+    camera.captureImage(checkHeightNear)
+    
+    # Step 1: Convert LiDAR polar coordinates to Cartesian world coordinates
+    xposes = []
+    yposes = []
+    for i in range(len(scan)):
+        # Convert degree angle to radians and account for robot's current heading
+        rad = (i + self.angle) / 180 * math.pi
+        # Calculate world coordinates from LiDAR angle scan
+        xposes.append(math.cos(rad) * -scan[i] + self.xpos) 
+        yposes.append(math.sin(rad) * scan[i] + self.ypos)  
+
+    # Step 2: Check each predefined obstacle position against LiDAR data
+    # hindernisse = the predefined possible obstacle positions
+    for i in range(len(self.hindernisse)):
+        # toScan = which obstacles should currently be checked (performance optimization)
+        if i in toScan:
+            # Reset obstacle status to "nothing detected"
+            self.hindernisse[i].farbe = Hindernisse.NICHTS
+            dots = 0        # Counter for LiDAR points near this obstacle position
+            angles = []     # List to store angles of detected points
+            
+            # Step 3: Check if obstacle is near any LiDAR points
+            for b in range(len(xposes)):
+                # Calculate if LiDAR point is within 120mm radius of expected obstacle position
+                # and has valid distance reading (> 200mm filters out noise)
+                if (math.pow((xposes[b] - self.hindernisse[i].x), 2) + 
+                    math.pow((yposes[b] - self.hindernisse[i].y), 2) < math.pow(120, 2)) and (self.scan[b] > 200):
+                    dots += 1           # Count detected point
+                    angles.append(b)    # Store angle index for camera matching
+            
+            # Step 4: If sufficient LiDAR points detected, process obstacle
+            if dots > dotsNeeded:
+                found += dots  # Add to total detection count
+                
+                # Calculate average angle to obstacle for camera alignment
+                angle = 0
+                for c in angles:
+                    # Normalize angle to [-180, 180] range
+                    while c > 180:
+                        c -= 360
+                    angle += c
+                # Average angle points to the center of detected obstacle
+                angle = angle / len(angles)
+                angle = -angle  # Coordinate system correction
+                
+                # Step 5: Match LiDAR detection with camera color detection
+                # Find camera-detected block closest to calculated LiDAR angle
+                closestAngle = 0
+                for d in range(len(camera.blocksAngle)):
+                    # Find the camera block with angle closest to LiDAR angle
+                    if abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle):
+                        closestAngle = d
+                
+                # Step 6: Assign color to detected obstacle based on camera detection
+                if len(camera.blocksAngle) > 0:
+                    # Color detected by camera - assign it to obstacle
+                    if camera.blocksColor[closestAngle] == camera.RED:
+                        self.hindernisse[i].farbe = Hindernisse.RED
+                    if camera.blocksColor[closestAngle] == camera.GREEN:
+                        self.hindernisse[i].farbe = Hindernisse.GREEN
+                else:
+                    # Fallback: if no camera detection, assume RED
+                    # This ensures we still avoid obstacles even if color detection fails
+                    self.hindernisse[i].farbe = Hindernisse.RED
+    
+    return found
 ```
 
-**Order Queue System**: The three threads communicate through a thread-safe order queue:
-- **Command Loop** adds high-level navigation orders
-- **Control Loop** executes orders and removes completed ones  
-- **Display Loop** visualizes current and pending orders
 
-**Shared Data Structures**:
-- `orders[]` - Navigation command queue
-- `slam` object - Sensor data and robot state
-- `robot` object - Visualization and diagnostic data
+ ## Navigation strategy open challenge 
+
+For the open challenge, we navigate using simple fixed waypoints. They are chosen in a way that they work independent of the inner wall configuration.
+
+### Complete code for waypoint generation
 
 
-## Available Commands in the Order System 
+```python
+        if slam.direction == slam.CW:  #  open challenge CW                                               
+            
+            
+            orders.append(Order(x=450, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=100))
+            
+            for i in range(0,3):
+                if i >= 1:
+                    orders.append(Order(x=450, y=2700,speed=speedi,brake=0,type=Order.DESTINATION,num=101))
+                orders.append(Order(x=300, y=450,speed=speedi,brake=0,type=Order.DESTINATION,num=102))
+                orders.append(Order(x=2550, y=300,speed=speedi,brake=0,type=Order.DESTINATION,num=103))
+                orders.append(Order(x=2700, y=2550,speed=speedi,brake=0,type=Order.DESTINATION,num=104))
+            
+            orders.append(Order(x=1500, y=2700,speed=speedi,brake=1,type=Order.DESTINATION,num=105))
+        else:  #  open challenge CCW                                                                                               
+            orders.append(Order(x=2550, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=105))
+            
+            for i in range(0,3):
+                if i >= 1:
+                    orders.append(Order(x=2550, y=2700,speed=speedi,brake=0,type=Order.DESTINATION,num=106))
+                orders.append(Order(x=2700, y=450,speed=speedi,brake=0,type=Order.DESTINATION,num=107))
+                orders.append(Order(x=450, y=300,speed=speedi,brake=0,type=Order.DESTINATION,num=108))
+                orders.append(Order(x=300, y=2550,speed=speedi,brake=0,type=Order.DESTINATION,num=109))
+            
+            orders.append(Order(x=1500, y=2700,speed=speedi,brake=1,type=Order.DESTINATION,num=110))
+```
 
- 
+
+
+
+
+## Navigation strategy obstacle challenge
+
+The obstacle challenge is seperated in different phases:
+
+#### Unparking
+First we leave the parking spot. Before completing the unparking, we have to do our first scan to check for an obstacle in the middle postition.
+´
+#### First round : Scanning
+We drive one complete round and scan for obstacles on the way. For scanning the obstacles, we drive to fixed positions where we can scan all 6 positions on one part of the track. To scan all obstacles at one, we made sure the car is positioned exactly in the middle between tho two front obstacle positions.
+
+TODO: BILD
+
+After that, we generate the waypoints to drive to the next scan point.
+
+#### Second and third round
+
+On the second and third round, we do not scan for obstacles anymore. The positions are remembered from the first round.
+
+#### Parking
+
+To get all points possible we chosed to implement the paralel parking challenge. We tried many different strategys. What worked best was driving backwards perpendicular to the wall and then swing in with maximum steering angle. The position must be very accurate, so we do several repositions and drive front and back several times if needed until the measured position is accurate enough.
+The neccesary position accuracy for the starting point of this manuver is about +-5 cm in the x-direction and +- 3 cm in the y-direction. 
+
+
+###Obstacle avoidance Waypoint generation
+
+Based on the scanned obstacles, we generate waypoints to drive around them on the right side.
+To make the programm less complex, we do not differentiate if the obstacle is on the inner or the outer side. We always drive in a way so we avoid both.
+
 
 navigation strategy obstacle challenge -scan round drive to scan point flow diagram what happens depending on obstacle setup (dive to second scan point) 
 
-description of rotation for second scanpoint 
+a) description of rotation for second scanpoint 
 
-second/third round 
+b) second/third round 
 
-parking strategy 
+c) parking strategy 
 
 9 possible imüprovements - crash recovery - wegpunkte optimieren - open challenge kürzere strecke je nach wand - obstacle challenge momentan umfahren wir mögliche blöcke die vielleicht nicht da sind. wir könnten die strecke verkürzen, würden aber viel zusätzliche komplexibilität hinzufügen 
 
@@ -1262,31 +1572,3 @@ parking strategy
  
 
 <br><br><br>
-
-
-Engineering materials
-====
-
-This repository contains engineering materials of a self-driven vehicle's model participating in the WRO Future Engineers competition in the season 2022.
-
-## Content
-
-* `t-photos` contains 2 photos of the team (an official one and one funny photo with all team members)
-* `v-photos` contains 6 photos of the vehicle (from every side, from top and bottom)
-* `video` contains the video.md file with the link to a video where driving demonstration exists
-* `schemes` contains one or several schematic diagrams in form of JPEG, PNG or PDF of the electromechanical components illustrating all the elements (electronic components and motors) used in the vehicle and how they connect to each other.
-* `src` contains code of control software for all components which were programmed to participate in the competition
-* `models` is for the files for models used by 3D printers, laser cutting machines and CNC machines to produce the vehicle elements. If there is nothing to add to this location, the directory can be removed.
-* `other` is for other files which can be used to understand how to prepare the vehicle for the competition. It may include documentation how to connect to a SBC/SBM and upload files there, datasets, hardware specifications, communication protocols descriptions etc. If there is nothing to add to this location, the directory can be removed.
-
-## Introduction
-
-_This part must be filled by participants with the technical clarifications about the code: which modules the code consists of, how they are related to the electromechanical components of the vehicle, and what is the process to build/compile/upload the code to the vehicle’s controllers._
-
-## How to prepare the repo based on the template
-
-_Remove this section before the first commit to the repository_
-
-1. Clone this repo by using the `git clone` functionality.
-2. Remove `.git` directory
-3. [Initialize a new public repository on GitHub](https://github.com/new) by following instructions from "create a new repository on the command line" section (appeared after pressing "Create repository" button).
