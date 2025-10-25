@@ -9,11 +9,41 @@ import board # type: ignore
 import adafruit_bno055 # type: ignore
 import threading
 import logging
+import math
 
 from future.moves import pickle # type: ignore
 from drawBoard import *
 from ctypes import *
 from adafruit_servokit import ServoKit # type: ignore
+
+
+def calculateAngularWidth(diameter_mm, distance_mm):
+    """
+    Calculate the apparent angular width of an object in degrees.
+    
+    An object with diameter diameter_mm at distance distance_mm
+    appears at a certain angle to the observer.
+    
+    Args:
+        diameter_mm: Diameter of the object in millimeters (e.g. 120mm)
+        distance_mm: Distance to the observer in millimeters
+    
+    Returns:
+        Angle in degrees at which the object appears
+        
+    Formula: angular_width = 2 * arctan(diameter / (2 * distance))
+    """
+    if distance_mm <= 0:
+        raise ValueError("Distance must be greater than 0")
+    
+    # Calculate the half angle (in radians)
+    half_angle_rad = math.atan(diameter_mm / (2 * distance_mm))
+    
+    # Double for the full angle and convert to degrees
+    angular_width_deg = 2 * math.degrees(half_angle_rad)
+    
+    return angular_width_deg
+
 
 
 class Hindernisse:
@@ -418,10 +448,16 @@ class Slam:
                 dots = 0        # Counter for LiDAR points near this obstacle position
                 angles = []     # List to store angles of detected points
                 
+                # Calculate distance from robot to obstacle position
+                distance = math.sqrt(math.pow((self.xpos - self.hindernisse[i].x), 2) +  math.pow((self.ypos - self.hindernisse[i].y), 2))
+                angularWidth = calculateAngularWidth(100, distance)
+                logging.warning("Obstacle %i at distance %.2f mm has angular width %.2f degrees", i, distance, angularWidth)
+
                 # Step 3: Check if obstacle is near any LiDAR points
                 for b in range(len(xposes)):
                     # Calculate if LiDAR point is within 120mm radius of expected obstacle position
                     # and has valid distance reading (> 200mm filters out noise)
+                    
                     if (math.pow((xposes[b] - self.hindernisse[i].x), 2) + 
                         math.pow((yposes[b] - self.hindernisse[i].y), 2) < math.pow(120, 2)) and (self.scan[b] > 200):
                         dots += 1           # Count detected point
@@ -441,26 +477,34 @@ class Slam:
                     # Average angle points to the center of detected obstacle
                     angle = angle / len(angles)
                     angle = -angle  # Coordinate system correction
-                    # Debug: print("Obstacle: ", i, " detected, angle: ", angle)
+
+                    logging.warning("Obstacle %i detected, angle: %.2f", i, angle)
                     
                     # Step 5: Match LiDAR detection with camera color detection
                     # Find camera-detected block closest to calculated LiDAR angle
                     closestAngle = 0
+                    objectDetected = False
                     for d in range(len(camera.blocksAngle)):    # richtige Farbe auswählen
-                        if (abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle)):
-                            closestAngle = d
-                    
+
+                        logging.warning("Camera block angle: %.2f vs LiDAR angle: %.2f diff: %.2f", camera.blocksAngle[d], angle, abs(camera.blocksAngle[d] - angle))
+                        if (abs(camera.blocksAngle[d] - angle) < angularWidth / 2):
+                            logging.warning("-> within angular width of obstacle")
+                            objectDetected = True
+                            if (abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle)):
+                                closestAngle = d
                     # Step 6: Assign color to detected obstacle based on camera detection
-                    if len(camera.blocksAngle) > 0:
+                    if len(camera.blocksAngle) > 0 and objectDetected:
                         # Color detected by camera - assign it to obstacle
                         if camera.blocksColor[closestAngle] == camera.RED:
                             self.hindernisse[i].farbe = Hindernisse.RED
+                            logging.warning("-> Set obstacle %i color to RED", i)
                         if camera.blocksColor[closestAngle] == camera.GREEN:
                             self.hindernisse[i].farbe = Hindernisse.GREEN
+                            logging.warning("-> Set obstacle %i color to GREEN", i)
                     else:
-                        # Fallback: if no camera detection, assume RED
-                        # This ensures we still avoid obstacles even if color detection fails
-                        self.hindernisse[i].farbe = Hindernisse.RED
+                        # Fallback: if no camera detection, set obstacle color to "nothing"
+                        self.hindernisse[i].farbe = Hindernisse.NICHTS
+                        logging.warning("-> No camera blocks detected, obstacle %i color set to NOTHING", i)
         
         return found
 
