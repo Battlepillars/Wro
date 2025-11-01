@@ -153,8 +153,10 @@ def runExample():
     myOtos1.setLinearScalar(0.980)
     myOtos2.setLinearScalar(0.970)
     
-    myOtos1.setAngularScalar(0.9933)
-    myOtos2.setAngularScalar(0.9915)
+    # myOtos1.setAngularScalar(0.9933)
+    myOtos1.setAngularScalar(0.9920)
+    # myOtos2.setAngularScalar(0.9915)
+    myOtos2.setAngularScalar(0.9890)
 
     myOtos1.setSignalProcessConfig(0b1101)
     myOtos2.setSignalProcessConfig(0b1101)

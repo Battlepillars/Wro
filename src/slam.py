@@ -195,8 +195,12 @@ class Slam:
         self.myOtos1.setLinearScalar(0.980)
         self.myOtos2.setLinearScalar(0.970)        
         
-        self.myOtos1.setAngularScalar(0.9933)
-        self.myOtos2.setAngularScalar(0.9915)
+        
+        # self.myOtos1.setAngularScalar(0.9933)
+        self.myOtos1.setAngularScalar(0.9920)
+        # self.myOtos2.setAngularScalar(0.9915)
+        self.myOtos2.setAngularScalar(0.9890)
+
 
         self.myOtos1.resetTracking()
         self.myOtos2.resetTracking()
@@ -388,8 +392,9 @@ class Slam:
             self.ypos = myPosition2.x
             self.angle = myPosition2.h
             self.speed = self.speed2
-            
-            
+
+        print(f"{myPosition1.h:.2f}, {myPosition2.h:.2f}")
+
         if self.loopCounter >= 9:
             self.lidar.getScan(self.scan)
             self.loopCounter = 0

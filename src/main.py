@@ -443,8 +443,13 @@ def commandLoop(slam):
     time.sleep(0.5)                    
     startTime = time.time()
 
+    runTestCode = False
     
-    if slam.eventType == slam.HR:
+    if runTestCode:
+        orders.append(Order(zielwinkel=-45, speed=0.2, brake=1, dir=Order.CW, type=Order.WINKEL))
+        orders.append(Order(y=2800, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
+    
+    elif slam.eventType == slam.HR:
         if slam.direction == slam.CW:
             unparkCW(orders, Order, waitCompleteOrders, checkForColor)
             slam.repostionEnable = 1

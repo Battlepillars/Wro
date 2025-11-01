@@ -25,8 +25,6 @@ def doReposition2(orders, Order, waitCompleteOrders, direction):
     time.sleep(0.3)
 
 def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, slam):
-    
-    
     speedi = 0.5
     
     if direction == Order.CW:
@@ -79,9 +77,9 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
     optimalY = 2655
     adjustedX = optimalX
     if slam.xpos < optimalX - 10:
-        adjustedX += 40
+        adjustedX += 10
     elif slam.xpos > optimalX + 10:
-        adjustedX -= 40
+        adjustedX -= 10
     
     orders.append(Order(y=optimalY, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
     orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
@@ -91,10 +89,10 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
         loops += 1
         adjustedX = optimalX            # move waypoint left or right to account for movement caused by turning
         if slam.xpos < optimalX:
-            adjustedX += 40
+            adjustedX += 10
             print("adjusting right")
         elif slam.xpos > optimalX:
-            adjustedX -= 40
+            adjustedX -= 10
             print("adjusting left")
         orders.append(Order(x=adjustedX, y=2200, speed=0.2, brake=1, type=Order.DESTINATION, num=37))
         orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
