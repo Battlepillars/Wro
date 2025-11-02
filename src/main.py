@@ -469,11 +469,11 @@ def commandLoop(slam):
                 return
             time.sleep(0.3)
             for i in range(0,2):
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6)
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12)
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18, i==1) 
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 0, 6, slam)
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, -90, 12, slam)
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 180, 18, slam, i==1) 
                 if i == 0:
-                    driveRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0)
+                    driveRound(orders, Order, waitCompleteOrders, checkForColor, 90, 0, slam)
                 
                 if not waitCompleteOrders():
                     return
@@ -497,11 +497,11 @@ def commandLoop(slam):
                 return
             time.sleep(0.3)
             for i in range(0,2):
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 1000, 18)
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 1090, 12)
-                driveRound(orders, Order, waitCompleteOrders, checkForColor, 1180, 6, i==1) 
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 1000, 18, slam)
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 1090, 12, slam)
+                driveRound(orders, Order, waitCompleteOrders, checkForColor, 1180, 6, slam, i==1) 
                 if i == 0:
-                    driveRound(orders, Order, waitCompleteOrders, checkForColor, 1500, 0)
+                    driveRound(orders, Order, waitCompleteOrders, checkForColor, 1500, 0, slam)
                 
                 if not waitCompleteOrders():
                     return

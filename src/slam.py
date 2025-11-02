@@ -773,22 +773,22 @@ class Slam:
         self.logger.warn('Floating Reposition dir %i   av %.0f dir %.0f  angle %.0f',currentRepostion,average,dir,self.angle)
         print("rp: ",currentRepostion," av ", average," dir ", dir," angle ", self.angle)
         if currentRepostion == 1:
-            self.playmat.log("x: " + str(math.floor(self.xpos)) + " -> " + str(math.floor(3000 - average)))
+            self.playmat.log("fr x: " + str(math.floor(self.xpos)) + " -> " + str(math.floor(3000 - average)))
             print("x: ", math.floor(self.xpos), " -> ", math.floor(3000 - average))
             self.logger.warn('X %.0f -> %.0f',math.floor(self.xpos), math.floor(3000 - average))
             self.setPostion(3000 - average, self.ypos)
         if currentRepostion == 2:
-            self.playmat.log("y: " + str(math.floor(self.ypos)) + " -> " + str(math.floor(3000 - average)))
+            self.playmat.log("fr y: " + str(math.floor(self.ypos)) + " -> " + str(math.floor(3000 - average)))
             print("y: ", math.floor(self.ypos), " -> ", math.floor(3000 - average))
             self.logger.warn('Y %.0f -> %.0f',math.floor(self.ypos), math.floor(3000 - average))
             self.setPostion(self.xpos, 3000 - average)
         if currentRepostion == 3:
-            self.playmat.log("x: " + str(math.floor(self.xpos)) + " -> " + str(math.floor(average)))
+            self.playmat.log("fr x: " + str(math.floor(self.xpos)) + " -> " + str(math.floor(average)))
             print("x: ", math.floor(self.xpos), " -> ", math.floor(average))
             self.logger.warn('X %.0f -> %.0f', math.floor(self.xpos), math.floor(average))
             self.setPostion(average, self.ypos)
         if currentRepostion == 4:
-            self.playmat.log("y: " + str(math.floor(self.ypos)) + " -> " + str(math.floor(average)))
+            self.playmat.log("fr y: " + str(math.floor(self.ypos)) + " -> " + str(math.floor(average)))
             print("y: ", math.floor(self.ypos), " -> ", math.floor(average))
             self.logger.warn('Y %.0f -> %.0f',math.floor(self.ypos), math.floor(average))
             self.setPostion(self.xpos, average)

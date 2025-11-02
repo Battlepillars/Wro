@@ -1,5 +1,6 @@
 import time
 from slam import Hindernisse
+import slam
 
 def doReposition(orders, Order, waitCompleteOrders, rotation, angleCheck):
     """
@@ -27,7 +28,7 @@ def doReposition(orders, Order, waitCompleteOrders, rotation, angleCheck):
         return
     time.sleep(0.3)  # Allow position to settle after correction
     
-def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart, last = False):
+def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart, slam, last = False):
     """
     Generate adaptive waypoints for navigating one section of the obstacle challenge course.
     This function analyzes detected obstacles and generates appropriate waypoints to navigate around them
@@ -44,6 +45,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
                                  1000=CCW-0°, 1090=CCW-90°, 
         scanStart: Starting index for obstacle scanning 
                   Identifies which of 3 sections we're currently navigating
+        slam: Slam instance for accessing repostionEnable and other properties
         last: Boolean flag indicating if this is the last section before parking
     
     """
@@ -70,6 +72,10 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         inner=Hindernisse.RED    # Inner obstacles (toward center) are RED in CW
     
     speedi = 0.5  # Target speed in m/s (constant throughout section)
+
+    # if not waitCompleteOrders():
+    #     return
+    # slam.repostionEnable=True
 
     # Step 2: Analyze obstacle configuration in source and destination areas
     # Determine if inner obstacles are present in source area (where robot currently is)
@@ -152,6 +158,17 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
                 # Source is outer-only, destination has inner obstacles
                 # Use higher corner at (400, 800) - extra y clearance for destination
                 orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=27, rotation=rotation))
+                orders.append(Order(zielwinkel=-180, speed=speedi*0.75, brake=1, type=Order.WINKEL, rotation=rotation))
+                if not waitCompleteOrders():
+                    return
+                time.sleep(0.3)
+                orders.append(Order(angleCheckOverwrite=-180,type=Order.REPOSITION, rotation=rotation))
+                if not waitCompleteOrders():
+                    return
+                time.sleep(0.3)
+            
+    
+    
             if ( not sinside and  not dinside):
                 # Both areas have outer obstacles only - tightest safe corner
                 # Use tight corner at (400, 500) for most efficient path
@@ -163,7 +180,15 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
                 orders.append(Order(x=700, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=261, rotation=rotation))
             if ( not sinside and dinside):
                 # Source outer, destination inner
-                orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=272, rotation=rotation))
+                orders.append(Order(x=400, y=800,speed=speedi,brake=1,type=Order.DESTINATION,num=272, rotation=rotation))
+                orders.append(Order(zielwinkel=-180, speed=speedi*0.75, brake=1, type=Order.WINKEL, rotation=rotation))
+                if not waitCompleteOrders():
+                    return
+                time.sleep(0.3)
+                orders.append(Order(angleCheckOverwrite=-180,type=Order.REPOSITION, rotation=rotation))
+                if not waitCompleteOrders():
+                    return
+                time.sleep(0.3)
             if ( not sinside and  not dinside):
                 # Both outer
                 orders.append(Order(x=450, y=550,speed=speedi,brake=0,type=Order.DESTINATION,num=283, rotation=rotation))

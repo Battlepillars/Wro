@@ -29,11 +29,21 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
     
     if direction == Order.CW:
         if (checkForColor(Hindernisse.GREEN, scanStart, scanStart+6) and not checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)) and checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
+            # rot nach rot
             orders.append(Order(x=2600, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=33))
         
         if (checkForColor(Hindernisse.GREEN, scanStart, scanStart+6) and not checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)) and not checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
-            orders.append(Order(x=2550, y=2450,speed=speedi,brake=0,type=Order.DESTINATION,num=37))
-        
+            #rot nach grün oder nichts
+            # orders.append(Order(x=2550, y=2450,speed=speedi,brake=0,type=Order.DESTINATION,num=371))
+            orders.append(Order(x=2700, y=2450,speed=speedi,brake=1,type=Order.DESTINATION,num=371))
+            orders.append(Order(zielwinkel=0, speed=0.5, brake=1, type=Order.WINKEL))
+            if not waitCompleteOrders():
+                return
+            time.sleep(0.3)
+            orders.append(Order(angleCheckOverwrite=0,type=Order.REPOSITION))
+            if not waitCompleteOrders():
+                return
+            time.sleep(0.3)
         if (checkForColor(Hindernisse.RED, scanStart, scanStart+6) and not checkForColor(Hindernisse.GREEN, scanStart+4, scanStart+6)):
             if not checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
                 orders.append(Order(x=2300, y=2300,speed=speedi,brake=0,type=Order.DESTINATION,num=34))
@@ -97,7 +107,7 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
         elif slam.xpos > optimalX:
             adjustedX -= 10
             print("adjusting left")
-        orders.append(Order(x=adjustedX, y=2200, speed=0.2, brake=1, type=Order.DESTINATION, num=37))
+        orders.append(Order(x=adjustedX, y=2200, speed=0.2, brake=1, type=Order.DESTINATION, num=372))
         orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
         doReposition2(orders, Order, waitCompleteOrders, direction)
         orders.append(Order(y=optimalY, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
