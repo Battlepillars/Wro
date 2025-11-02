@@ -9,6 +9,7 @@
 <li><a href="#team-photo">Team Photo</a></li>
 </ul>
 </li>
+<li><a href="#the-robot">The Robot</a></li>
 <li><a href="#mobility-management">Mobility Management</a>
 <ul dir="auto">
 <li><a href="#chassis">Chassis</a></li>
@@ -131,6 +132,59 @@
 </li>
 </ul>
 </li>
+<li><a href="#construction-guide---bauanleitung">Construction Guide - Bauanleitung</a>
+<ul dir="auto">
+<li><a href="#übersicht-der-baugruppen">Übersicht der Baugruppen</a></li>
+<li><a href="#schritt-1-vorbereitung-der-3d-gedruckten-teile">Schritt 1: Vorbereitung der 3D-gedruckten Teile</a></li>
+<li><a href="#schritt-2-aufbau-der-bodenplatte">Schritt 2: Aufbau der Bodenplatte</a>
+<ul dir="auto">
+<li><a href="#21-latrax-rally-chassis-vorbereiten">2.1 LaTrax Rally Chassis vorbereiten</a></li>
+<li><a href="#22-motor-und-getriebe-montieren">2.2 Motor und Getriebe montieren</a></li>
+<li><a href="#23-servo-für-lenkung-einbauen">2.3 Servo für Lenkung einbauen</a></li>
+<li><a href="#24-fahrtenregler-montieren">2.4 Fahrtenregler montieren</a></li>
+<li><a href="#25-odometriesensoren-einbauen">2.5 Odometriesensoren einbauen</a></li>
+</ul>
+</li>
+<li><a href="#schritt-3-neue-vorderachse-konstruieren">Schritt 3: Neue Vorderachse konstruieren</a>
+<ul dir="auto">
+<li><a href="#31-ackermann-lenkung-aufbauen">3.1 Ackermann-Lenkung aufbauen</a></li>
+<li><a href="#32-montage-der-vorderachse">3.2 Montage der Vorderachse</a></li>
+</ul>
+</li>
+<li><a href="#schritt-4-mitteldeck-aufbauen">Schritt 4: Mitteldeck aufbauen</a>
+<ul dir="auto">
+<li><a href="#41-raspberry-pi-5-montieren">4.1 Raspberry Pi 5 montieren</a></li>
+<li><a href="#42-kamera-integrieren">4.2 Kamera integrieren</a></li>
+<li><a href="#43-servo-controller-montieren">4.3 Servo-Controller montieren</a></li>
+<li><a href="#44-batterie-und-spannungsversorgung">4.4 Batterie und Spannungsversorgung</a></li>
+</ul>
+</li>
+<li><a href="#schritt-5-oberdeck-mit-lidar">Schritt 5: Oberdeck mit LiDAR</a>
+<ul dir="auto">
+<li><a href="#51-lidar-montieren">5.1 LiDAR montieren</a></li>
+<li><a href="#52-status-display-installieren">5.2 Status-Display installieren</a></li>
+</ul>
+</li>
+<li><a href="#schritt-6-verkabelung-und-inbetriebnahme">Schritt 6: Verkabelung und Inbetriebnahme</a>
+<ul dir="auto">
+<li><a href="#61-i²c-bus-verkabeln">6.1 I²C-Bus verkabeln</a></li>
+<li><a href="#62-stromverkabelung-prüfen">6.2 Stromverkabelung prüfen</a></li>
+<li><a href="#63-erste-tests">6.3 Erste Tests</a></li>
+</ul>
+</li>
+<li><a href="#schritt-7-software-installation">Schritt 7: Software-Installation</a>
+<ul dir="auto">
+<li><a href="#71-raspberry-pi-os-vorbereiten">7.1 Raspberry Pi OS vorbereiten</a></li>
+<li><a href="#72-python-bibliotheken-installieren">7.2 Python-Bibliotheken installieren</a></li>
+<li><a href="#73-kalibrierung">7.3 Kalibrierung</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting---häufige-probleme">Troubleshooting - Häufige Probleme</a></li>
+<li><a href="#wartung-und-pflege">Wartung und Pflege</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
 
@@ -163,13 +217,14 @@ In my free time, I usually occupy myself with writing fanfiction on Archive Of O
 My part of the team effort is the documentation and images you'll see below.
 
 ## Leonard Kolo
+
 <div align="center">
     <a href="img/leonard.jpg" target="_blank">
         <img width="300" src="img/leonard.jpg">
     </a>
 </div>
 
-Hi! I'm Leonard from Germany and I'm 15 years old, currently attending the Max Steenbeck Gymnasium in Cottbus. This is not my first WRO season. Last year I participated in the Robo Mission category and this year me and my team wanted to try something new so we are participating now in the category Future Engineers. My hobby’s are go karting playing games building LEGO and flying drone.
+Hi! I'm Leonard from Germany and I'm 15 years old, currently attending the Max Steenbeck Gymnasium in Cottbus. This is not my first WRO season. Last year I participated in the Robo Mission category and this year me and my team wanted to try something new so we are participating now in the category Future Engineers. My hobby’s are go karting, playing games, building LEGO and flying drone.
 
 Ich bringe meine technische Expertise in den Bereichen Roboterbau, Komponentenrecherche und -auswahl sowie in der Entwicklung und Fertigung von 3D-gedruckten Bauteilen ein, die für die mechanische Realisierung unseres Projekts von entscheidender Bedeutung sind.
 
@@ -181,36 +236,32 @@ Ich bringe meine technische Expertise in den Bereichen Roboterbau, Komponentenre
     </a>
 </div>
 
- 
-s den Regeln: Pictures of the team and robot must be provided. The pictures of the robot must cover all sides of the robot, must be clear, in focus and show aspects of the mobility, power and sense, and obstacle management. Reference in the discussion sections 1, 2 and 3 can be made to these pictures. Team photo is necessary for judges to relate and identify the team during the local and international competitions. 
+## Funny Team photo
 
-Fotos und kurze Beschreibung
-<br><br>
+<div align="center">
+    <a href="img/team.jpg" target="_blank">
+        <img width="500" src="img/team.jpg">
+    </a>
+</div>
+<br><br><br>
 
 # The Robot
 ## Photos of the Robot
-
+The pictures of the robot must cover all sides of the robot, must be clear, in focus and show aspects of the mobility, power and sense, and obstacle management. Reference in the discussion sections 1, 2 and 3 can be made to these pictures.
 <br><br><br>
 
 # Mobility Management
-aus den Regeln: Mobility management discussion should cover how the vehicle movements are managed. What motors are selected, how they are selected and implemented. A brief discussion regarding the vehicle chassis design /selection can be provided as well as the mounting of all components to the vehicle chassis/structure. The discussion may include engineering principles such as speed, torque, power etc. usage. Building or assembly instructions can be provided together with 3D CAD files to 3D print parts. 
-
-Die Diskussion zur Bewegungssteuerung sollte beschreiben, wie die Bewegungen des Fahrzeugs gesteuert werden. Dabei sollte erläutert werden, welche Motoren ausgewählt wurden, nach welchen Kriterien sie ausgewählt wurden und wie sie im System implementiert sind.
-Auch eine kurze Beschreibung des Designs oder der Auswahl des Fahrzeugchassis kann enthalten sein, ebenso wie Informationen zur Befestigung aller Komponenten am Chassis bzw. an der Fahrzeugstruktur.
-Die Diskussion kann ingenieurwissenschaftliche Prinzipien wie Geschwindigkeit, Drehmoment, Leistung usw. einbeziehen.
-Bauanleitungen oder Montagehinweise können zusammen mit 3D-CAD-Dateien bereitgestellt werden, um Bauteile im 3D-Druck herzustellen.
 
 A coordinated system consisting of the chassis, steering mechanism, and powertrain is responsible for the robot's mobility, allowing it to move with both precision and efficiency. In den folgenden Kapiteln werden diese einzelnen Elemente näher erläutert.
-<br><br>
+<br>
 ## Chassis
 Anfangs entstand die Idee, ein Fahrzeug mit einer Gesamtlänge von unter 20 cm zu konstruieren, um am Ende des dreirundigen Hindernisrennens einfach geradeaus in die Parklücke einfahren zu können, was Teil der regionalen Aufgabe war. Diese Strategie war im Rahmen des deutschen Regelwerks zulässig.
 
 Da handelsübliche Modellautos in der Regel nicht den erforderlichen Maßen entsprechen, war schnell klar, dass ein Umbau eines Modellautos notwendig sein würde. Die meisten verfügbaren Modelle weisen eine Länge von etwa 30 cm auf – eine Reduktion auf unter 20 cm erschien in diesen Fällen technisch zu aufwendig. Kleinere Modelle mit einer Länge von rund 10 cm boten hingegen nicht genügend Raum für sämtliche erforderlichen Komponenten.
 
-Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeignet erschien, auf die gewünschte Länge von 20 cm angepasst zu werden. Dieses Modell – der LaTrax Rally – wurde daher als Basis für das selbstfahrende Fahrzeug ausgewählt.
+Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeignet erschien, auf die gewünschte Länge von 20 cm angepasst zu werden. Dieses Modell – der LaTrax Rally – wurde daher als Basis für das selbtfahrende Fahrzeug ausgewählt.
 
-
-
+Where to buy the car: <a href="https://traxxas.com/75054-5-118-latrax-rally">https://traxxas.com/75054-5-118-latrax-rally</a>
 <br>
 
 ## Umbau des Modellautos
@@ -236,6 +287,7 @@ Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 36
   </tr>
 </table>
 
+Bemaßung der Bodenplatte:
 
 
 <div align="center">
@@ -247,24 +299,26 @@ Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 36
 
 Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtenregler und die Odometriesensoren. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden.
 
+<div align="center">
+    <a href="img/Bodenplatte3.jpg" target="_blank">
+        <img width="500" src="img/Bodenplatte3.jpg">
+    </a>
+</div>
+
 Das Servo wird in die Bodenplatte in einer vorhergesehenen Halterung eingesetzt und mittels des Servobrackets befestigt.
 
-Hier die Bemaßung:
+Bemaßung des Servobrackets:
 <div align="center">
     <a href="img/Masse/Servobracket.jpg" target="_blank">
         <img width="400" src="img/Masse/Servobracket.jpg">
     </a>
 </div>
 
-<div align="center">
-    <a href="img/Bodenplatte3.jpg" target="_blank">
-        <img width="400" src="img/Bodenplatte3.jpg">
-    </a>
-</div>
+
 
 Damit der Fahrtenregler nicht von der Bodenplatte fällt, sind zwischen den Distanzbolzen zwei 3D-gedruckte Sidebars eingebaut.
 
-Hier die Bemaßung:
+Bemaßung der Sidebars:
 <div align="center">
     <a href="img/Masse/Sidebar.jpg" target="_blank">
         <img width="400" src="img/Masse/Sidebar.jpg">
@@ -290,17 +344,19 @@ Anschließend wurde noch ein Mitteldeck mit Fusion 360 designt. Die Maße orient
   </tr>
 </table>
 
+Bemaßung der Mittelplatte:
+
 <div align="center">
     <a href="img/Masse/Middledeck.jpg" target="_blank">
         <img width="400" src="img/Masse/Middledeck.jpg">
     </a>
 </div>
 
-Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spannungsregler. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden. Außerdem haben wir hier eine Kamera integriert.
+Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spannungsregler. Außerdem haben wir hier eine Kamera integriert. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden. 
 
 <div align="center">
     <a href="img/Mitteldeck3.jpg" target="_blank">
-        <img width="400" src="img/Mitteldeck3.jpg">
+        <img width="500" src="img/Mitteldeck3.jpg">
     </a>
 </div>
 
@@ -322,6 +378,7 @@ Um den LiDAR zu befestigen, wurde noch ein Oberdeck designt. An diesem wurde der
      </td>
   </tr>
 </table>
+Bemaßung des Oberdecks:
 
 <div align="center">
     <a href="img/Masse/Lidar.jpg" target="_blank">
@@ -341,9 +398,9 @@ Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt w
 - Construct an outer hull to improve the outer appearance of the vehicle and prevent potential dust or debris from reaching the inner works.
 - Furthermore, we could free up some space for a third odometry sensor.
 
-- We could lower the chassis height in order to allow the LiDAR to be mo lower, thus removing the need for support beams, which curently block LiDAR vision.
+- We could lower the chassis height in order to allow the LiDAR to be mounted lower, thus removing the need for support beams, which currently block LiDAR vision.
 
-
+<br>
 
 ## Powertrain
 
@@ -354,7 +411,7 @@ Bei Automobilen lassen sich grundsätzlich drei Antriebsarten unterscheiden:
 - Frontantrieb: Die Antriebskraft wirkt ausschließlich auf die Vorderräder.
 - Heckantrieb: Nur die Hinterräder werden angetrieben.
 
-Das vorhandene Chassis war serienmäßig mit einem Allradantrieb ausgestattet, der den Wettbewerbsanforderungen grundsätzlich genügt hätte. Die vorhandene Lenkung ließ jedoch keinen ausreichenden Radeinschlag zu, was beispielsweise ein Ausparken in einem Zug bei der Parkchallenge unmöglich machte. Zur Verbesserung des Lenkeinschlags wurde daher eine alternative Lösung erarbeitet. Diese bestand in der Konstruktion einer vollständig neuen Vorderachse. Im Zuge des Umbaus konnte der Antrieb der Vorderräder nicht beibehalten werden, da die vorhandenen Kardangelenke den erhöhten Lenkeinschlag mechanisch nicht zuließen. Aus diesem Grund wurde auf einen reinen Hinterradantrieb umgestellt.
+Das vorhandene Chassis war serienmäßig mit einem Allradantrieb ausgestattet, der den Wettbewerbsanforderungen grundsätzlich genügt hätte. Die vorhandene Lenkung ließ jedoch keinen ausreichenden Radeinschlag zu, was beispielsweise ein Ausparken in einem Zug bei der Parkchallenge unmöglich machte. Zur Verbesserung des Lenkeinschlags wurde daher eine alternative Lösung erarbeitet. Diese bestand in der Konstruktion einer vollständig neuen Vorderachse (<a href="#steering">vgl. Kapitel "Steering"</a>). Im Zuge des Umbaus konnte der Antrieb der Vorderräder nicht beibehalten werden, da die vorhandenen Kardangelenke den erhöhten Lenkeinschlag mechanisch nicht zuließen. Aus diesem Grund wurde auf einen reinen Hinterradantrieb umgestellt.
 
 So?
 Aus diesem Grund wurde der ursprüngliche Allradantrieb deaktiviert und stattdessen auf Heckantrieb umgestellt. Diese Konfiguration bietet im Kontext niedriger Geschwindigkeit und präziser Steuerung eine ausreichende Kraftübertragung, wobei gleichzeitig die Lenkung von Antriebseinflüssen entkoppelt wird – ein Vorteil, insbesondere bei feinfühligem Navigieren durch den Hindernisparcours.
@@ -386,10 +443,10 @@ Auf Grundlage dieser Analyse wurde entschieden, den bereits im Modellauto integr
     <td bgcolor=#c8f0fd>23-turn brushed 370-size LaTrax® motor with bullet connectors
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor: https://traxxas.com/7575r-23-turn-brushed-370-size-motor</TD></tr>
+    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor: <a href="https://traxxas.com/7575r-23-turn-brushed-370-size-motor">https://traxxas.com/7575r-23-turn-brushed-370-size-motor</a></TD></tr>
 </table>
-<tr> 
-<tr> Potential improvements: 
+
+
 
 ### Motor Driver (= Fahrtenregler)
 Der Fahrtenregler ist zwischen der Energiequelle und dem Antriebsmotor positioniert und übernimmt die Regelung der Motordrehzahl. Im Rahmen experimenteller Untersuchungen konnte festgestellt werden, dass der ursprünglich verbaute Fahrtenregler primär auf den Hochgeschwindigkeitsbetrieb ausgelegt ist. Im unteren Drehzahlbereich ließ sich keine ausreichende Feinsteuerung realisieren.
@@ -418,7 +475,7 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
 <li>Programming device: LED program box</li>
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor driver: https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</TD></tr>
+    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor driver: <a href="https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a">https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</a></TD></tr>
 </table>
 <tr> 
 
@@ -439,7 +496,7 @@ Durch die gewählte Übersetzung von 61:14 ergibt sich eine signifikante Verstä
 ## Potential improvements - Powertrain:
 - Use the same wheels for the back wheels as the front axis, as the front wheels have better traction and are easier to clean and maintain.
 
-- Encoders on rear wheels or the motor for precise wheel slip detection, better traction control, more accurate speed control and for the detection of the wheels spinning on uneven surfaces, e.g. bumps.
+- Encoders on rear wheels or on the motor for precise wheel slip detection, better traction control, more accurate speed control and for detecting the wheels spinning on uneven surfaces, e.g. bumps.
 
 - Maintain high steering angles while providing front wheel drive. That would prevent the front weels from sliding at high steering angles.
 
@@ -447,11 +504,17 @@ Durch die gewählte Übersetzung von 61:14 ergibt sich eine signifikante Verstä
 
 ## Steering
 
-After testing different steering concepts, including parallelogram and bell-crank mechanisms, we carefully evaluated their pros and cons. In the end, we decided to implement an Ackermann steering system. This choice was made because Ackermann geometry optimizes wheel angles during turns, reducing tire slip and improving maneuverability—especially important for precise movements in our small, lightweight robot. Compared to simpler systems, Ackermann steering provides more accurate cornering and better control, which was crucial for our performance goals.
+Wie bereits erläutert, ließ die vorhandene Lenkung des gekauften Chassis keinen ausreichenden Radeinschlag zu, was beispielsweise ein Ausparken in einem Zug bei der Parkchallenge unmöglich machte. Zur Verbesserung des Lenkeinschlags wurde daher eine alternative Lösung erarbeitet. Diese bestand in der Konstruktion einer vollständig neuen Vorderachse. 
+
+In diesem Zug testeten wir auch different steering concepts, including parallelogram and bell-crank mechanisms, we carefully evaluated their pros and cons. In the end, we decided to implement an Ackermann steering system. This choice was made because Ackermann geometry optimizes wheel angles during turns, reducing tire slip and improving maneuverability—especially important for precise movements in our small, lightweight robot. Compared to simpler systems, Ackermann steering provides more accurate cornering and better control, which was crucial for our performance goals.
 
 The steering assembly consists of two symmetrical wheel mounts connected by a steering linkage, which is actuated by a servo motor. Steel rods form the joints between the wheel mounts and the steering linkage, ensuring precise and reliable movement.
 
-Ein Teil der Vorderachse wurde mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt. 
+
+
+### Die neue Vorderachse
+
+Ein Teil der neuen Vorderachse wurde mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt. 
 
 <div align="center">
     <a href="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" target="_blank">
@@ -459,13 +522,13 @@ Ein Teil der Vorderachse wurde mit dem Programm Fusion 360 selbst erstellt und m
     </a>
 </div>
 
-Hier die Bemaßung:
+Bemaßung of the front axle:
 <div align="center">
     <a href="img/Masse/Frontaxle.jpg" target="_blank">
         <img width="400" src="img/Masse/Frontaxle.jpg">
     </a>
 </div>
-<br><br>
+<br>
 Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel benötigt:
 <br><br>
 <table align="center">
@@ -482,14 +545,14 @@ Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel ben�
     <td bgcolor=#c8f0fd>RC Metall Vorderachse Hinterachse Für WPL HengLong 1/16 Militär LKW RC LKW DE-
 </td>
    </tr>
-  <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the set: https://www.ebay.de/itm/176692013502</TD></tr>
+  <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the set: <a href="https://www.ebay.de/itm/176692013502">https://www.ebay.de/itm/176692013502</a></TD></tr>
 </table>
 <tr> 
 <tr> 
 
 <br>
 Die Räder der neuen Vorderachse sind von Lego:
-
+<br><br>
 <table align="center">
   <tr>
     <th bgcolor=#CCFFCC width=300>Wheels</th>
@@ -504,8 +567,14 @@ Die Räder der neuen Vorderachse sind von Lego:
     <td bgcolor=#c8f0fd>Size: 5,6cm x 1,5cm x 5,6cm
 </td>
    </tr>
-  <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the wheels: https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</TD></tr>
+  <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the wheels: <a href="https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367">https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</a></TD></tr>
 </table>
+Die neue Vorderachse in einer Detailaufnahme:
+<div align="center">
+    <a href="https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be" target="_blank">
+        <img width="500" src="https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be">
+    </a>
+</div>
 <br>
  
 ## Servo Saver
@@ -517,17 +586,15 @@ The Servo Saver is installed on the Servo and connects to the steering linkage. 
 
 - Furthermore, the wheels could be better grip-wise to prevent slipping.
 
-Die neue Vorderachse in einer Detailaufnahme:
-<br><br>
-<div align="center">
-    <a href="https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be" target="_blank">
-        <img width="500" src="https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be">
-    </a>
-</div>
+
 <br>
 
+<br>
+ 
+### Servo Saver
+The Servo Saver is installed on the Servo and connects to the steering linkage. The Servo Saver, when the front wheels collide against an obstacle, uses a spring to prevent an overload on the Servo.
 
-### Servo Motor ANDERS einsortieren - ungünstig als eigener Unterpunkt
+### Servo Motor ANDERS einsortieren - ungünstig als eigener Unterpunkt - ist neu einsortiert, gut hier?
 Der Servo ist für die Lenkung der Vorderräder verantwortlich. Die Stellgeschwindigkeit sowie das Drehmoment dieses Servos wurden im Rahmen einer technischen Bewertung als vollumfänglich ausreichend für die Wettbewerbsanforderungen eingestuft.
 
 Konkret handelt es sich um den Traxxas Waterproof Sub-Micro Servo (Modellnummer 2065A). Dieser erzeugt bei einer Betriebsspannung von 6,0 V ein Drehmoment von 2,3 kg·cm (≈ 32 oz-in) und erreicht eine Stellzeit von 0,20 s pro 60°.
@@ -553,12 +620,15 @@ Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wur
 <li>Dimensions: 22.6×12.6×22.5 mm</li>
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor: https://traxxas.com/2065a-waterproof-sub-micro-servo</TD></tr>
+    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor: <a href="https://traxxas.com/2065a-waterproof-sub-micro-servo">https://traxxas.com/2065a-waterproof-sub-micro-servo</a></TD></tr>
 </table>
 <tr> 
 
 
+## Potential improvements - Steering:
+- The servo saver occasionally fails and triggers a false alarm during sharp or high-speed turns. A potential improvement would be to tighten the servo saver to prevent this issue.
 
+- Additionally, the wheels could be improved in terms of grip to reduce slipping.
 
 <br><br><br>
 
@@ -597,9 +667,9 @@ In mehreren Iterationen wurde der Sensor schrittweise tiefer im Gehäuse des Rob
 Daraufhin wurde beim Hersteller angefragt, ob eine Montage des LiDARs in umgekehrter (invertierter) Ausrichtung technisch zulässig sei. Die Rückmeldung fiel positiv aus, sodass der Sensor nun in umgekehrter Position im Roboter verbaut ist. Durch diese Anordnung wird erreicht, dass die Scanebene die Spielfeldbegrenzung zuverlässig detektiert.
 
 ## Potential improvements - LiDAR:
-- Ein LiDAR finden, der parallel / nach unten scannt, statt nach oben
+- Ein LiDAR finden, der parallel / nach unten scannt, statt nach oben.
 
-- Recherche nach einem LiDAR mit einer höheren Aktualisiergeschwindigkeit, genaueren Abstandsmessung und eine höhere Winkelauflösung
+- Recherche nach einem LiDAR mit einer höheren Aktualisiergeschwindigkeit, genaueren Abstandsmessung und eine höhere Winkelauflösung.
 
 
 ### Kamera
@@ -608,7 +678,7 @@ Während zur Positionsbestimmung eines Hindernisses der LiDar verwendet wird, wi
 Infolgedessen wurde auf eine kompaktere Alternative zurückgegriffen: das Raspberry Pi Camera Module 3 Wide (12 MP). Obwohl ursprünglich eine Global-Shutter-Kamera angedacht war, wurde festgestellt, dass die im System auftretenden Geschwindigkeiten keine kritischen Rolling-Shutter-Artefakte verursachen. Die gewählte Kamera erfüllt die Anforderungen in Bezug auf Sichtfeld, Auflösung (12 MP), Integration und Rechenkompatibilität und stellt somit eine praktikable Lösung für die Bildverarbeitung im gegebenen Kontext dar.
 
 ## Potential improvements - Kamera:
-- Eine bessere Kamera mit einem höheren Blickwinkel
+- Eine bessere Kamera mit einem höheren Blickwinkel finden und einbauen.
 
 ### Odometrie Sensor
 In den letzten zwei Jahren wurde im Rahmen der Teilnahme an der Kategorie RoboMission die Bedeutung einer kontinuierlichen Positionsbestimmung deutlich. Dort wurde die Position durch Auswertung der Radumdrehungen und ergänzend durch ein Gyroskop bestimmt. Das aktuelle Modellbau-Chassis bietet jedoch keine Möglichkeit, die Radbewegung direkt zu messen.
@@ -622,7 +692,7 @@ Die Bewegungserkennung erfolgt durch eine nach unten gerichtete Kamera, die mit 
 
 ## Potential improvements - Odometriesensor:
 
-- Einen dritten Sensor einbauen, damit echte Mehrheitsentscheidung, was der richtige Messwert ist
+- Einen dritten Sensor einbauen, um eine echte Mehrheitsentscheidung bei der Bestimmung des korrekten Messwerts zu ermöglichen. Mit drei Sensoren könnte das System bei widersprüchlichen Messungen automatisch den einen abweichenden Sensor als fehlerhaft identifizieren und die beiden übereinstimmenden Sensoren verwenden. Dies würde die Robustheit des Systems erheblich verbessern, da aktuell bei einem Ausfall eines der beiden Sensoren nur noch ein einzelner Sensor zur Verfügung steht, dessen Genauigkeit nicht mehr durch Vergleich verifiziert werden kann.
 
 ### Status-Display
 Zusätzlich wurde ein Status-Display integriert, über das verschiedene Systemparameter visualisiert werden. Die aktuelle Geschwindigkeit sowie die Zielgeschwindigkeit werden dabei durch Balkenanzeigen in Metern pro Sekunde dargestellt.
@@ -635,8 +705,8 @@ Der Betriebszustand der beiden Odometrie-Sensoren wird durch ein Farbsystem sign
 
 Dieses Display ist eine optionale Komponente und für die Funktionalität des Roboters nicht unbedingt erforderlich.
 
-## Potential improvements - Odometriesensor:
-- Mehr Informationen während der Fahrt anzeigen, z.B. welche Farben die Hindernisse haben
+## Potential improvements - Status-Display:
+- Mehr Informationen während der Fahrt anzeigen, z.B. welche Farben die Hindernisse haben.
 <br>
 
 ## Energieversorgung des Fahrzeugs
@@ -686,7 +756,7 @@ Die Spannungsversorgung der einzelnen Komponenten wird wie folgt realisiert:
 
 
 ## Potential improvements - Energieversorgung:
-- Akkuspannung messen, um den Akku rechtzeitig zu tauschen
+- Akkuspannung messen, um den Akku rechtzeitig zu tauschen.
 - Ein Baseboard(PCB) designen, welches alle Komponenten verbindet und den Verkabelungsaufwand reduziert.
 
 
@@ -1322,6 +1392,43 @@ right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
 
 # Obstacle Management
 
+
+## Coordinate System
+To understand our overall strategy, it is important to understand the basics our system is build on.
+Our robot uses a Cartesian coordinate system to navigate the WRO Future Engineers field:
+
+### Coordinate Dimensions and Origin
+- **Field Size**: 3000mm × 3000mm square
+- **Origin (0, 0)**: Located at the **top-left corner** of the field 
+- **X-axis**: Increases from left to right (0mm to 3000mm)
+- **Y-axis**: Increases from top to botton (0mm to 3000mm)
+- **Units**: All coordinates are specified in millimeters (mm)
+
+### Coordinate System Properties
+1. **Absolute Positioning**: The coordinate system is field-absolute, not robot-relative
+2. **Origin Alignment**: The origin remains fixed at the top-left corner regardless of robot orientation
+
+### Heading Angle Convention
+- **0°**: Robot facing in the negative X direction (to the left)
+- **90°**: Robot facing in the positive Y direction (downward)
+- **+-180°**: Robot facing in the positive X direction (to the right)
+- **-90°**: Robot facing in the negative Y direction (upward)
+
+## Waypoint Navigation System
+
+Waypoints are target coordinates that the robot navigates to sequentially. Each waypoint specifies (x, y) coordinates in millimeters. We have defined a structure that stores waypoints together with a command. These are added to a queue and are executed in order. Several commands are available. 
+
+### Command Example : Drive to coordinate 450/2500 
+```python
+orders.append(Order(x=450, y=2500, speed=0.75, brake=0, type=Order.DESTINATION, num=100, rotation=0))
+```
+
+### Command Example : Turn robot ccw to a heading of -90°
+```python
+orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CCW, type=Order.WINKEL)))
+```
+<br>
+
 <br><br>
 ## Initial Location Acquisition 
 The inital position is aquired by mneasuring the distance to the borders with the lidar.
@@ -1357,7 +1464,7 @@ When both sensors are healthy, we take the average of the readings of both senso
 ## Position corrections 
 Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases even more. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
 
-- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This can not be done while driving, because the lidar measurement is delayed by about 100 to 200ms, so we would already have moved on.  This type of repositioning has to be manually set up in the programm, after stopping the robot. This is donbe when we need a hight accuracy, for example before scanning the obstacles.
+- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This can not be done while driving, because the lidar measurement is delayed by about 100 to 200ms, so we would already have moved on. This type of repositioning has to be manually set up in the programm, after stopping the robot. This is done when we need a hight accuracy, for example before scanning the obstacles.
 
 
 - While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. For this, we do not use the complete 360° scan from the lidar, but we trigger the reposition automatically exactly when the front distance is measured by the lidar. On this way we reduce the delay of the lidar measurement. This kind of repositioning is automatically triggered when certain conditions are met:
@@ -1485,7 +1592,6 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
     return found
 ```
 
-
  ## Navigation strategy open challenge 
 
 For the open challenge, we navigate using simple fixed waypoints. They are chosen in a way that they work independent of the inner wall configuration.
@@ -1528,32 +1634,32 @@ For the open challenge, we navigate using simple fixed waypoints. They are chose
 
 The obstacle challenge is seperated in different phases:
 
-#### Unparking
+### Unparking
 First we leave the parking spot. Before completing the unparking, we have to do our first scan to check for an obstacle in the middle postition.
 ´
-#### First round : Scanning
+### First round : Scanning
 We drive one complete round and scan for obstacles on the way. For scanning the obstacles, we drive to fixed positions where we can scan all 6 positions on one part of the track. To scan all obstacles at one, we made sure the car is positioned exactly in the middle between tho two front obstacle positions.
 
-TODO: BILD
+TODO: BILD - wie das Auto alle Punkte scannt
 
-After that, we generate the waypoints to drive to the next scan point.
+After that, we choose the correct waypoints to drive to the next scan point. 
 
-#### Second and third round
+### Second and third round
 
 On the second and third round, we do not scan for obstacles anymore. The positions are remembered from the first round.
 
-#### Parking
+### Parking
 
 To get all points possible we chosed to implement the paralel parking challenge. We tried many different strategys. What worked best was driving backwards perpendicular to the wall and then swing in with maximum steering angle. The position must be very accurate, so we do several repositions and drive front and back several times if needed until the measured position is accurate enough.
 The neccesary position accuracy for the starting point of this manuver is about +-5 cm in the x-direction and +- 3 cm in the y-direction. 
 
 
-### Obstacle avoidance Waypoint generation
+### Obstacle avoidance waypoint generation
 
 Based on the scanned obstacles, we generate waypoints to drive around them on the right side.
 To make the programm less complex, we do not differentiate if the obstacle is on the inner or the outer side. We always drive in a way so we avoid both. This resolves to 4 different patterns to drive around one set of obstacles: 
 
-TODO : 4 Bilder wie man um die obstacles fahren can.
+TODO : 4 Bilder wie man um die obstacles fahren kann.
 
 Additiional logic is needed to transition from one pattern to another pattern on the next segment.
 
@@ -1712,8 +1818,8 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
 
 ### Possible improvements:
 
-#### Crash recovery
-We have experimented with detecting a collision with a wall. After the we would drive backwards, reinitialize the position and continue the course. But we have not completed a reliable function yet.
+
+
 
 #### Angle measurement
 Currently we do not measure the heading during the course, but rely on the gyroscope. However, the gyroscope drifts noticable during the course.
@@ -1733,3 +1839,289 @@ Driving speed on uncritical parts could be increased even more.
 
 
 <br><br><br>
+
+# Construction Guide - Bauanleitung
+
+Dieses Kapitel führt Schritt für Schritt durch den Aufbau unseres autonomen Roboters. Die Anleitung ist so strukturiert, dass der Roboter von unten nach oben aufgebaut wird, beginnend mit der Bodenplatte bis hin zum oberen LiDAR-Deck.
+
+## Übersicht der Baugruppen
+
+Der Roboter besteht aus drei Hauptebenen:
+1. **Bodenplatte (Lower Deck)**: Motor, Getriebe, Servo, Fahrtenregler, Odometriesensoren
+2. **Mitteldeck (Middle Deck)**: Raspberry Pi, Batterie, Servo-Controller, Kamera
+3. **Oberdeck (Upper Deck)**: LiDAR, Status-Display
+
+<div align="center">
+    <a href="img/Bodenplatte3.jpg" target="_blank">
+        <img width="400" src="img/Bodenplatte3.jpg">
+    </a>
+    <a href="img/Mitteldeck3.jpg" target="_blank">
+        <img width="400" src="img/Mitteldeck3.jpg">
+    </a>
+    <a href="img/Oberdeck3.jpg" target="_blank">
+        <img width="400" src="img/Oberdeck3.jpg">
+    </a>
+</div>
+
+## Schritt 1: Vorbereitung der 3D-gedruckten Teile
+
+**Benötigte 3D-gedruckte Komponenten:**
+- Bodenplatte (PPA-CF Material für höchste Steifigkeit)
+- Mitteldeck
+- Oberdeck mit LiDAR-Halterung
+- Servobracket für Servo-Befestigung
+- 2x Sidebars für Fahrtenregler-Halterung
+- Vorderachsen-Komponenten
+
+**Material-Empfehlung:**
+- **Bodenplatte**: PPA-CF (verhindert Durchbiegen und Kamera-Winkel-Veränderungen)
+- **Andere Teile**: PLA oder PETG ausreichend
+
+<div align="center">
+    <a href="img/Masse/Lowerdeck.jpg" target="_blank">
+        <img width="300" src="img/Masse/Lowerdeck.jpg">
+    </a>
+    <a href="img/Masse/Middledeck.jpg" target="_blank">
+        <img width="300" src="img/Masse/Middledeck.jpg">
+    </a>
+    <a href="img/Masse/Lidar.jpg" target="_blank">
+        <img width="300" src="img/Masse/Lidar.jpg">
+    </a>
+</div>
+
+## Schritt 2: Aufbau der Bodenplatte
+
+### 2.1 LaTrax Rally Chassis vorbereiten
+1. **Chassis kürzen**: Das originale LaTrax Rally Chassis von 22 cm auf 19 cm kürzen
+2. **Allradantrieb deaktivieren**: Vorderrad-Antrieb entfernen, um Platz für größeren Lenkeinschlag zu schaffen
+3. **Getriebe-Übersetzung prüfen**: 61:14 Zähne für maximales Drehmoment bei niedrigen Geschwindigkeiten
+
+### 2.2 Motor und Getriebe montieren
+**Komponenten:**
+- LaTrax 370 brushed DC-Motor (23-turn)
+- Motorritzel (14 Zähne)
+- Hauptzahnrad (61 Zähne)
+- Differential für Hinterräder
+
+**Montage:**
+1. Motor in vorgesehene Halterung der Bodenplatte einsetzen
+2. Motorritzel auf Motorwelle montieren
+3. Getriebe mit korrekter Übersetzung (61:14) einstellen
+4. Differential für Hinterrad-Antrieb anschließen
+
+<div align="center">
+    <a href="img/motor.jpg" target="_blank">
+        <img width="400" src="img/motor.jpg">
+    </a>
+</div>
+
+### 2.3 Servo für Lenkung einbauen
+**Komponente:** Traxxas Waterproof Sub-Micro Servo (2065A)
+
+**Montage:**
+1. Servo in vorgesehene Halterung der Bodenplatte einsetzen
+2. Mit Servobracket fixieren (siehe Bemaßung unten)
+3. Servo-Arm für Lenkgestänge vorbereiten
+
+<div align="center">
+    <a href="img/Masse/Servobracket.jpg" target="_blank">
+        <img width="400" src="img/Masse/Servobracket.jpg">
+    </a>
+</div>
+
+### 2.4 Fahrtenregler montieren
+**Komponente:** Quicrun WP 1080–G2 (speziell für Niedriggeschwindigkeits-Kontrolle)
+
+**Montage:**
+1. Fahrtenregler zwischen Distanzbolzen platzieren
+2. Mit zwei 3D-gedruckten Sidebars sichern (verhindert Herunterfallen)
+3. Stromkabel zum Motor und Batterie verlegen
+
+<div align="center">
+    <a href="img/fahrtenregler.jpg" target="_blank">
+        <img width="300" src="img/fahrtenregler.jpg">
+    </a>
+    <a href="img/Masse/Sidebar.jpg" target="_blank">
+        <img width="300" src="img/Masse/Sidebar.jpg">
+    </a>
+</div>
+
+### 2.5 Odometriesensoren einbauen
+**Komponenten:** 2x SparkFun Qwiic Optical Tracking Odometry Sensors (OTOS)
+- **I²C-Adressen**: 0x17 und 0x19
+
+**Montage:**
+1. Sensoren in die beiden Öffnungen der Bodenplatte einsetzen
+2. Nach unten gerichtet für Boden-Scanning positionieren
+3. I²C-Kabel zum Mitteldeck führen
+
+## Schritt 3: Neue Vorderachse konstruieren
+
+### 3.1 Ackermann-Lenkung aufbauen
+
+**Komponenten:**
+- 2x 3D-gedruckte Radaufhängungen
+- RC Metall Lenkgestänge und Achsschenkel
+- Stahlstangen für Gelenke
+- LEGO-Räder (5,6cm x 1,5cm x 5,6cm)
+
+### 3.2 Montage der Vorderachse
+1. **Radaufhängungen montieren**: 3D-gedruckte Teile an Chassis befestigen
+2. **Lenkgestänge installieren**: Stahlstangen als Gelenke verwenden
+3. **LEGO-Räder montieren**: Bessere Traktion als Original-Räder
+4. **Servo-Saver installieren**: Federschutz gegen Überladung bei Kollisionen
+
+<div align="center">
+    <a href="img/Masse/Frontaxle.jpg" target="_blank">
+        <img width="400" src="img/Masse/Frontaxle.jpg">
+    </a>
+</div>
+
+<div align="center">
+    <a href="img/lenkstange.jpg" target="_blank">
+        <img width="300" src="img/lenkstange.jpg">
+    </a>
+    <a href="img/legorad.jpg" target="_blank">
+        <img width="300" src="img/legorad.jpg">
+    </a>
+</div>
+
+## Schritt 4: Mitteldeck aufbauen
+
+### 4.1 Raspberry Pi 5 montieren
+**Hauptsteuerungseinheit des Roboters**
+- **Leistung**: 3-8 W
+- **Anschlüsse**: I²C, CSI (Kamera), USB, Ethernet
+
+**Montage:**
+1. Raspberry Pi auf Mitteldeck-Befestigungspunkten montieren
+2. Kühlkörper/Lüfter für Wärmeableitung installieren
+3. Alle Sensor-Kabel anschließen
+
+### 4.2 Kamera integrieren
+**Komponente:** Raspberry Pi Camera Module 3 Wide (12 MP)
+- **Zweck**: Hindernisfarben-Erkennung (rot/grün)
+- **Anschluss**: CSI-Port des Raspberry Pi
+
+**Montage:**
+1. Kamera in vorgesehene Halterung des Mitteldecks einsetzen
+2. Nach vorne gerichtet positionieren
+3. CSI-Kabel zum Raspberry Pi führen
+
+### 4.3 Servo-Controller montieren
+**Komponente:** Adafruit 16 Channel Servo Driver
+- **Kommunikation**: I²C zum Raspberry Pi
+
+**Verkabelung:**
+1. I²C-Verbindung zum Raspberry Pi
+2. PWM-Ausgänge zu Servo (Kanal 0) und Motor-Driver (Kanal 3)
+3. Stromversorgung von BEC des Fahrtenreglers
+
+### 4.4 Batterie und Spannungsversorgung
+**Komponente:** 7,4 V LiPo-Akku (2S, 2200 mAh)
+- **Kapazität**: 16,28 Wh für 90+ Minuten Betrieb
+
+**Spannungsverteilung:**
+- **7,4 V direkt**: Motor über Fahrtenregler
+- **5 V (Step-Down)**: Raspberry Pi, LiDAR, Kamera
+- **3,3 V (Pi-intern)**: Odometrie-Sensoren, Status-Display
+
+## Schritt 5: Oberdeck mit LiDAR
+
+### 5.1 LiDAR montieren
+**Komponente:** RpLidar S2L
+- **Reichweite**: 32.000 Samples/Sekunde, 360°-Scanning
+- **Besonderheit**: Kopfüber montiert (invertiert)
+
+**Montage:**
+1. LiDAR kopfüber auf Oberdeck befestigen
+2. USB-Verbindung zum Raspberry Pi (1 Mbps)
+3. 5V-Stromversorgung anschließen
+
+### 5.2 Status-Display installieren
+**Komponente:** LED-Matrix für System-Feedback
+- **Anzeige**: Geschwindigkeit, Sensor-Status
+- **Farbcodes**: Grün (OK), Rot (Fehler), Blau (Überlast)
+
+**Montage:**
+1. Display auf Oberdeck montieren
+2. I²C-Anschluss zum Raspberry Pi
+3. 3,3V-Stromversorgung
+
+## Schritt 6: Verkabelung und Inbetriebnahme
+
+### 6.1 I²C-Bus verkabeln
+**Angeschlossene Geräte:**
+- Servo-Controller (Adafruit ServoKit)
+- 2x Odometrie-Sensoren (Adressen 0x17, 0x19)
+- Status-Display
+
+### 6.2 Stromverkabelung prüfen
+**Sicherheitscheck:**
+1. Alle Verbindungen auf Polarität prüfen
+2. Hauptschalter funktionsfähig
+3. Spannungsregler-Ausgänge messen
+
+### 6.3 Erste Tests
+1. **Sensor-Test**: Alle I²C-Geräte erkennbar
+2. **Motor-Test**: Vorwärts/Rückwärts/Stop
+3. **Servo-Test**: Lenkung links/rechts/mittig
+4. **LiDAR-Test**: 360°-Scan funktionsfähig
+5. **Kamera-Test**: Bildaufnahme und Farberkennung
+
+## Schritt 7: Software-Installation
+
+### 7.1 Raspberry Pi OS vorbereiten
+1. **Betriebssystem**: Raspberry Pi OS (64-bit)
+2. **I²C aktivieren**: `sudo raspi-config`
+3. **Kamera aktivieren**: CSI-Interface einschalten
+
+### 7.2 Python-Bibliotheken installieren
+```bash
+# Adafruit ServoKit für Servo/Motor-Kontrolle
+pip install adafruit-circuitpython-servokit
+
+# LiDAR-Bibliothek von Slamtec
+pip install rplidar
+
+# OpenCV für Kamera-Bildverarbeitung
+pip install opencv-python
+
+# SparkFun OTOS für Odometrie
+pip install sparkfun-qwiic-otos
+```
+
+### 7.3 Kalibrierung
+1. **Servo-Mittelstellung**: Wert 80° für geradeaus fahren
+2. **Motor-Neutralstellung**: 90° für Stopp
+3. **Odometrie-Sensoren**: Koordinatensystem-Transformation
+4. **LiDAR-Ausrichtung**: Winkel-Offset konfigurieren
+
+## Troubleshooting - Häufige Probleme
+
+### Problem: Bodenplatte biegt durch
+**Lösung**: PPA-CF Material verwenden statt PLA
+
+### Problem: LiDAR erkennt Wände nicht
+**Lösung**: LiDAR invertiert montieren
+
+### Problem: Odometrie-Sensoren ungenau
+**Lösung**: Linsen reinigen (evtl. Staub auf Linse)
+
+### Problem: Servo-Saver löst bei Kurven aus
+**Lösung**: Servo-Saver fester einstellen
+
+## Wartung und Pflege
+
+### Regelmäßige Checks:
+- **Akku-Spannung überwachen** (alle 90 Minuten wechseln)
+- **Odometrie-Linsen reinigen** (Staub entfernen)
+- **Getriebe-Schmierung prüfen**
+- **Kabel-Verbindungen kontrollieren**
+
+### Ersatzteile bereithalten:
+- Zusatz-Akkus für längere Wettkämpfe
+- Ersatz-LEGO-Räder (besserer Grip)
+- Servo-Saver Federn
+
+Diese Bauanleitung führt zu einem vollständig funktionsfähigen autonomen Roboter, der sowohl die Open Challenge als auch die Obstacle Challenge des WRO Future Engineers Wettbewerbs bewältigen kann.
