@@ -31,6 +31,9 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
         if (checkForColor(Hindernisse.GREEN, scanStart, scanStart+6) and not checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)) and checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
             orders.append(Order(x=2600, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=33))
         
+        if (checkForColor(Hindernisse.GREEN, scanStart, scanStart+6) and not checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)) and not checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
+            orders.append(Order(x=2550, y=2450,speed=speedi,brake=0,type=Order.DESTINATION,num=37))
+        
         if (checkForColor(Hindernisse.RED, scanStart, scanStart+6) and not checkForColor(Hindernisse.GREEN, scanStart+4, scanStart+6)):
             if not checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
                 orders.append(Order(x=2300, y=2300,speed=speedi,brake=0,type=Order.DESTINATION,num=34))

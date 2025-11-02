@@ -157,14 +157,13 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
                 # Use tight corner at (400, 500) for most efficient path
                 orders.append(Order(x=400, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=28, rotation=rotation))
         else:
-            # Special corner positions for 180-degree rotations
-            # These rotations approach from opposite direction, need adjusted clearances
+            # Special corner positions due to parking space being in the way
             if ( sinside and not  dinside):
-                # Source inner, destination outer - wider corner needed
+                # Source inner, destination outer
                 orders.append(Order(x=700, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=261, rotation=rotation))
             if ( not sinside and dinside):
-                # Source outer, destination inner - similar to standard
+                # Source outer, destination inner
                 orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=272, rotation=rotation))
             if ( not sinside and  not dinside):
-                # Both outer - slightly modified tight corner for 180° approach
+                # Both outer
                 orders.append(Order(x=450, y=550,speed=speedi,brake=0,type=Order.DESTINATION,num=283, rotation=rotation))

@@ -474,7 +474,9 @@ class Slam:
                     
                     # Calculate average angle to obstacle for camera alignment
                     angle = 0
+                    angleDebugOut=""
                     for c in angles:
+                        angleDebugOut+=" "+str(c)
                         # Normalize angle to [-180, 180] range
                         while c > 180:
                             c -= 360
@@ -482,7 +484,7 @@ class Slam:
                     # Average angle points to the center of detected obstacle
                     angle = angle / len(angles)
                     angle = -angle  # Coordinate system correction
-
+                    logging.warning("LiDAR angles: %s",  angleDebugOut)
                     logging.warning("Obstacle %i detected, angle: %.2f", i, angle)
                     
                     # Step 5: Match LiDAR detection with camera color detection
