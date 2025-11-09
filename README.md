@@ -252,7 +252,7 @@ The pictures of the robot must cover all sides of the robot, must be clear, in f
 
 # Mobility Management
 
-A coordinated system consisting of the chassis, steering mechanism, and powertrain is responsible for the robot's mobility, allowing it to move with both precision and efficiency. In den folgenden Kapiteln werden diese einzelnen Elemente näher erläutert.
+Das Mobility Management System umfasst das Chassis, die Lenkung sowie den Antriebsstrang des Roboters, die für eine präzise und effiziente Fortbewegung erforderlich sind. In den folgenden Kapiteln werden diese einzelnen Elemente näher erläutert.
 <br>
 ## Chassis
 Anfangs entstand die Idee, ein Fahrzeug mit einer Gesamtlänge von unter 20 cm zu konstruieren, um am Ende des dreirundigen Hindernisrennens einfach geradeaus in die Parklücke einfahren zu können, was Teil der regionalen Aufgabe war. Diese Strategie war im Rahmen des deutschen Regelwerks zulässig.
@@ -297,7 +297,7 @@ Bemaßung der Bodenplatte:
 </div>
 
 
-Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtenregler und die Odometriesensoren. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden.
+Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtenregler und die Odometriesensoren. Wie diese Komponenten genau befestigt werden, kann im <a href="#construction-guide---bauanleitung">Construction Guide</a> nachgelesen werden.
 
 <div align="center">
     <a href="img/Bodenplatte3.jpg" target="_blank">
@@ -322,6 +322,15 @@ Bemaßung der Sidebars:
 <div align="center">
     <a href="img/Masse/Sidebar.jpg" target="_blank">
         <img width="400" src="img/Masse/Sidebar.jpg">
+    </a>
+</div>
+
+Um die Vorderräden vor Kollision zu schützen und damit auch indirekt das Lenkgestänge und den Servo, haben wir einen "Bumper" designt und mit dem 3D-Drucker gedruckt.
+
+Bemaßung des Bumpers:
+<div align="center">
+    <a href="img/Masse/Bumper.jpg" target="_blank">
+        <img width="400" src="img/Masse/Bumper.jpg">
     </a>
 </div>
 
@@ -352,11 +361,21 @@ Bemaßung der Mittelplatte:
     </a>
 </div>
 
-Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spannungsregler. Außerdem haben wir hier eine Kamera integriert. Wie diese Komponenten genau befestigt werden, kann im Construction Guide nachgelesen werden. 
+Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spannungsregler. Außerdem haben wir hier eine Kamera integriert. Wie diese Komponenten genau befestigt werden, kann im <a href="#construction-guide---bauanleitung">Construction Guide</a> nachgelesen werden. 
+
 
 <div align="center">
     <a href="img/Mitteldeck3.jpg" target="_blank">
         <img width="500" src="img/Mitteldeck3.jpg">
+    </a>
+</div>
+
+Um die Kamera am Roboter befestigen zu könne, haben wir eine Halterung entworfen und mit dem 3d-Drucker gedruckt.
+
+Bemaßung der Halterung:
+<div align="center">
+    <a href="img/Masse/Cameraholder.jpg" target="_blank">
+        <img width="400" src="img/Masse/Cameraholder.jpg">
     </a>
 </div>
 
@@ -386,7 +405,7 @@ Bemaßung des Oberdecks:
     </a>
 </div>
 
-Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt werden, kann im Construction Guide nachgelesen werden.
+Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt werden, kann im <a href="#construction-guide---bauanleitung">Construction Guide</a> nachgelesen werden.
 
 <div align="center">
     <a href="img/Oberdeck3.jpg" target="_blank">
@@ -569,28 +588,16 @@ Die Räder der neuen Vorderachse sind von Lego:
    </tr>
   <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the wheels: <a href="https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367">https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</a></TD></tr>
 </table>
+<br>
 Die neue Vorderachse in einer Detailaufnahme:
+<br><br>
 <div align="center">
     <a href="https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be" target="_blank">
         <img width="500" src="https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be">
     </a>
 </div>
-<br>
- 
-## Servo Saver
-The Servo Saver is installed on the Servo and connects to the steering linkage. The Servo Saver, when the front wheels collide against an obstacle, uses a spring to prevent an overload on the Servo.
 
 
-## Potential improvements - Steering:
-- The Servo Saver occasionally gives out and gives a false alarm during tight and fast turns. An improvement would be to tighten said Servo Saver in order to prevent that.
-
-- Furthermore, the wheels could be better grip-wise to prevent slipping.
-
-
-<br>
-
-<br>
- 
 ### Servo Saver
 The Servo Saver is installed on the Servo and connects to the steering linkage. The Servo Saver, when the front wheels collide against an obstacle, uses a spring to prevent an overload on the Servo.
 
@@ -624,23 +631,15 @@ Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wur
 </table>
 <tr> 
 
-
 ## Potential improvements - Steering:
 - The servo saver occasionally fails and triggers a false alarm during sharp or high-speed turns. A potential improvement would be to tighten the servo saver to prevent this issue.
 
 - Additionally, the wheels could be improved in terms of grip to reduce slipping.
-
 <br><br><br>
 
 # Power and Sense Management
-aus den Regeln: Power and Sense management discussion should cover the power source for the vehicle as well as the sensors required to provide the vehicle with information to negotiate the different challenges. The discussion can include the reasons for selecting various sensors and how they are being used on the vehicle together with power consumption. The discussion could include a wiring diagram with BOM for the vehicle that includes all aspects of professional wiring diagrams. 
-<br><br>
-Die Diskussion zum Energie- und Sensorsystem sollte sowohl die Stromquelle des Fahrzeugs als auch die Sensoren abdecken, die benötigt werden, um dem Fahrzeug Informationen zur Bewältigung der verschiedenen Herausforderungen bereitzustellen. Die Diskussion kann die Gründe für die Auswahl verschiedener Sensoren sowie deren Einsatz am Fahrzeug und den damit verbundenen Energieverbrauch beinhalten. Es kann zudem ein Schaltplan mit Stückliste (BOM) für das Fahrzeug enthalten sein, der alle Aspekte professioneller Verdrahtungspläne berücksichtigt.
-
-Kurzer Satz was in dem Kapitel alles benannt werden wird.
-
-<br><br>
-
+Das Power and Sense Management System umfasst die Sensorik zur Umgebungswahrnehmung sowie die Energieversorgung des Roboters, die für eine zuverlässige und autonome Navigation erforderlich sind. In den folgenden Kapiteln werden die einzelnen Sensoren, die Energieversorgung und die elektrische Schaltung detailliert erläutert.
+<br>
 ## Sensoren
 
 ### LiDAR
@@ -653,11 +652,71 @@ Eine erhöhte Umgebungswahrnehmung wird erzielt, wenn die LiDAR-Daten mit weiter
 
 In der nachfolgenden Tabelle wurden die für die Auswahl relevanten technischen Kriterien verschiedener LiDAR-Systeme zusammengestellt und entsprechend unserer Anforderungen farblich bewertet. Im Ergebnis stellte sich heraus, dass der RpLidar S2 die geeignetste Option für unsere Anwendung darstellt.
 
-<div align="center">
-    <a href="https://github.com/user-attachments/assets/9beae8fb-1bd3-4d9e-9e44-baab9635c230" target="_blank">
-        <img width="600" alt="tabelle" src="https://github.com/user-attachments/assets/9beae8fb-1bd3-4d9e-9e44-baab9635c230">
-    </a>
-</div>
+<table align="center" border="1" style="border-collapse: collapse; border: 2px solid black;">
+  <tr>
+    <th bgcolor=#E8E8E8 width=200 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Kriterium</th>
+    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar-S2</th>
+    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar A2</th>
+    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar A1</th>
+    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">YDLidar TG30</th>
+  </tr>
+  <tr>
+    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Reichweite</b></td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">0,05-18 m</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">0,2-16 m</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">0,15-12 m</td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">0,05-30 m</td>
+  </tr>
+  <tr>
+    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Genauigkeit der Abstandmessung</b></td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">+/- 50 mm</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">< 1%</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">< 1%</td>
+    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">+/- 60mm</td>
+  </tr>
+  <tr>
+    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Auflösung der Abstandsmessung</b></td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">13 mm</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">1 %</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">1 %</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">-</td>
+  </tr>
+  <tr>
+    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Geschlossenes Gehäuse</b></td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">yes</td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">yes</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">no</td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">yes</td>
+  </tr>
+  <tr>
+    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Winkelauflösung</b></td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">0,1125°</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">0,225°</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">1°</td>
+    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">0,13°</td>
+  </tr>
+    <tr>
+    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Aktualisierungsgeschwindigkeit</b></td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">2-10 Hz</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">5-15 Hz</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">5,5 Hz</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">5-12 hz</td>
+  </tr>
+  <tr>
+    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Preis</b></td>
+    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">~ 220€</td>
+    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">~ 260€</td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">~ 90€</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">~ 450€</td>
+  </tr>
+  <tr>
+    <td bgcolor=#F0F0F0 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;"><b>Bewertung</b></td>
+    <td bgcolor=#90EE90 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Sehr gut</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Mäßig</td>
+    <td bgcolor=#FFB6C1 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Mäßig</td>
+    <td bgcolor=#FFD700 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Gut</td>
+  </tr>
+</table>
 
 
 Nach der Integration des LiDAR-Systems in den Roboter wurde festgestellt, dass die Spielfeldbegrenzung nicht zuverlässig erkannt wurde. Ursache hierfür war, dass die vom Sensor ausgesendeten Laserstrahlen über die Begrenzung hinweg projiziert wurden.
@@ -666,7 +725,7 @@ In mehreren Iterationen wurde der Sensor schrittweise tiefer im Gehäuse des Rob
 
 Daraufhin wurde beim Hersteller angefragt, ob eine Montage des LiDARs in umgekehrter (invertierter) Ausrichtung technisch zulässig sei. Die Rückmeldung fiel positiv aus, sodass der Sensor nun in umgekehrter Position im Roboter verbaut ist. Durch diese Anordnung wird erreicht, dass die Scanebene die Spielfeldbegrenzung zuverlässig detektiert.
 
-## Potential improvements - LiDAR:
+### Potential improvements - LiDAR:
 - Ein LiDAR finden, der parallel / nach unten scannt, statt nach oben.
 
 - Recherche nach einem LiDAR mit einer höheren Aktualisiergeschwindigkeit, genaueren Abstandsmessung und eine höhere Winkelauflösung.
@@ -677,7 +736,7 @@ Während zur Positionsbestimmung eines Hindernisses der LiDar verwendet wird, wi
 
 Infolgedessen wurde auf eine kompaktere Alternative zurückgegriffen: das Raspberry Pi Camera Module 3 Wide (12 MP). Obwohl ursprünglich eine Global-Shutter-Kamera angedacht war, wurde festgestellt, dass die im System auftretenden Geschwindigkeiten keine kritischen Rolling-Shutter-Artefakte verursachen. Die gewählte Kamera erfüllt die Anforderungen in Bezug auf Sichtfeld, Auflösung (12 MP), Integration und Rechenkompatibilität und stellt somit eine praktikable Lösung für die Bildverarbeitung im gegebenen Kontext dar.
 
-## Potential improvements - Kamera:
+### Potential improvements - Kamera:
 - Eine bessere Kamera mit einem höheren Blickwinkel finden und einbauen.
 
 ### Odometrie Sensor
@@ -690,7 +749,7 @@ Zur Erhöhung der Genauigkeit und Redundanz wurden zwei dieser Sensoren verbaut.
 Funktionsweise
 Die Bewegungserkennung erfolgt durch eine nach unten gerichtete Kamera, die mit bis zu 20.000 Bildern pro Sekunde Veränderungen der Bodenstruktur analysiert. Aus den Bilddifferenzen wird die Verschiebung des Fahrzeugs über den Untergrund ermittelt. Diese Methode ist unempfindlich gegenüber Rutsch- oder Schlupfeffekten, wie sie bei Encoder-basierten Verfahren auftreten können.
 
-## Potential improvements - Odometriesensor:
+### Potential improvements - Odometriesensor:
 
 - Einen dritten Sensor einbauen, um eine echte Mehrheitsentscheidung bei der Bestimmung des korrekten Messwerts zu ermöglichen. Mit drei Sensoren könnte das System bei widersprüchlichen Messungen automatisch den einen abweichenden Sensor als fehlerhaft identifizieren und die beiden übereinstimmenden Sensoren verwenden. Dies würde die Robustheit des Systems erheblich verbessern, da aktuell bei einem Ausfall eines der beiden Sensoren nur noch ein einzelner Sensor zur Verfügung steht, dessen Genauigkeit nicht mehr durch Vergleich verifiziert werden kann.
 
@@ -705,7 +764,7 @@ Der Betriebszustand der beiden Odometrie-Sensoren wird durch ein Farbsystem sign
 
 Dieses Display ist eine optionale Komponente und für die Funktionalität des Roboters nicht unbedingt erforderlich.
 
-## Potential improvements - Status-Display:
+### Potential improvements - Status-Display:
 - Mehr Informationen während der Fahrt anzeigen, z.B. welche Farben die Hindernisse haben.
 <br>
 
@@ -720,17 +779,69 @@ Die Energieversorgung des autonomen Fahrzeugs wurde so ausgelegt, dass sie sämt
 
 Im Folgenden sind die wesentlichen verbauten Komponenten sowie deren typischer Energieverbrauch aufgeführt:
 
-| Komponente  | Betriebsspannung | Leistungsaufnahme (typisch)  | Bemerkung |
-| ------------- | ------------- | ------------- | ------------- |
-| Raspberry Pi 5  | 5 V  | 3–8 W  | Hauptsteuerung, hohe CPU-Leistung  | 
-| Raspberry Pi Camera Module 3 Wide (12 MP)  | 5 V  | 1–2 W  | Direkt am CSI-Port des RPi angeschlossen  |
-| 2× SparkFun Optical Tracking Odometry Sensor  | 3,3 V  | je ca. 0,1 W  | Geringer Stromverbrauch, über I²C kommunizierend  |
-| RpLidar S2  | 5 V  | 2 W  | Kontinuierlicher Betrieb zur Umfelderfassung  |
-| LaTrax 370 brushed DC-Motor (23-turn)  | 7,4 V  | 1-10 W (je nach Last)  | Hauptantrieb, stark lastabhängig  |
-| Quicrun WP 1080–G2 Motor Driver  | 7,4 V  | geringer Eigenverbrauch  | Steuerung des Antriebsmotors  |
-| Traxxas Sub-Micro Servo 2065A (Lenkung)  | 6 V  | 1–2 W kurzzeitig  | Stromspitzen bei Bewegung, Versorgung über BEC  |
-| Led Anzeigefeld (Status-Display) | 3,3 V  | 0-0,5 W  | Der Stromverbrauch ist abhängig davon, wie viele Pixel leuchten  |
-| Servo-Controller  | 5 V  | 0,1 W  | Geringer Stromverbrauch, über I²C kommunizierend  |
+<table align="center" border="1" style="border-collapse: collapse; border: 2px solid black;">
+  <tr>
+    <th bgcolor=#E8E8E8 width=300 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Komponente</th>
+    <th bgcolor=#E8E8E8 width=200 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Betriebsspannung</th>
+    <th bgcolor=#E8E8E8 width=200 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Leistungsaufnahme (typisch)</th>
+    <th bgcolor=#E8E8E8 width=400 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Bemerkung</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">Raspberry Pi 5</td>
+    <td style="border: 1px solid black; padding: 8px;">5 V</td>
+    <td style="border: 1px solid black; padding: 8px;">3–8 W</td>
+    <td style="border: 1px solid black; padding: 8px;">Hauptsteuerung, hohe CPU-Leistung</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">Raspberry Pi Camera Module 3 Wide (12 MP)</td>
+    <td style="border: 1px solid black; padding: 8px;">5 V</td>
+    <td style="border: 1px solid black; padding: 8px;">1–2 W</td>
+    <td style="border: 1px solid black; padding: 8px;">Direkt am CSI-Port des RPi angeschlossen</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">2× SparkFun Optical Tracking Odometry Sensor</td>
+    <td style="border: 1px solid black; padding: 8px;">3,3 V</td>
+    <td style="border: 1px solid black; padding: 8px;">je ca. 0,1 W</td>
+    <td style="border: 1px solid black; padding: 8px;">Geringer Stromverbrauch, über I²C kommunizierend</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">RpLidar S2</td>
+    <td style="border: 1px solid black; padding: 8px;">5 V</td>
+    <td style="border: 1px solid black; padding: 8px;">2 W</td>
+    <td style="border: 1px solid black; padding: 8px;">Kontinuierlicher Betrieb zur Umfelderfassung</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">LaTrax 370 brushed DC-Motor (23-turn)</td>
+    <td style="border: 1px solid black; padding: 8px;">7,4 V</td>
+    <td style="border: 1px solid black; padding: 8px;">1-10 W (je nach Last)</td>
+    <td style="border: 1px solid black; padding: 8px;">Hauptantrieb, stark lastabhängig</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">Quicrun WP 1080–G2 Motor Driver</td>
+    <td style="border: 1px solid black; padding: 8px;">7,4 V</td>
+    <td style="border: 1px solid black; padding: 8px;">geringer Eigenverbrauch</td>
+    <td style="border: 1px solid black; padding: 8px;">Steuerung des Antriebsmotors</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">Traxxas Sub-Micro Servo 2065A (Lenkung)</td>
+    <td style="border: 1px solid black; padding: 8px;">6 V</td>
+    <td style="border: 1px solid black; padding: 8px;">1–2 W kurzzeitig</td>
+    <td style="border: 1px solid black; padding: 8px;">Stromspitzen bei Bewegung, Versorgung über BEC</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">Led Anzeigefeld (Status-Display)</td>
+    <td style="border: 1px solid black; padding: 8px;">3,3 V</td>
+    <td style="border: 1px solid black; padding: 8px;">0-0,5 W</td>
+    <td style="border: 1px solid black; padding: 8px;">Der Stromverbrauch ist abhängig davon, wie viele Pixel leuchten</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">Servo-Controller</td>
+    <td style="border: 1px solid black; padding: 8px;">5 V</td>
+    <td style="border: 1px solid black; padding: 8px;">0,1 W</td>
+    <td style="border: 1px solid black; padding: 8px;">Geringer Stromverbrauch, über I²C kommunizierend</td>
+  </tr>
+</table>
+
 
 ### Gesamtleistungsbedarf
 
@@ -766,7 +877,6 @@ Die Spannungsversorgung der einzelnen Komponenten wird wie folgt realisiert:
 
 [![Schematic_Battlecar_2025-05-21](https://github.com/user-attachments/assets/e5cade62-716a-46cd-814c-f3818447c41c)](https://github.com/user-attachments/assets/e5cade62-716a-46cd-814c-f3818447c41c)
 
-
 <br><br><br>
 
 # Code für alle Komponenten
@@ -774,7 +884,7 @@ Die Spannungsversorgung der einzelnen Komponenten wird wie folgt realisiert:
 
 ## Servo 
 
-The steering is controlled through an Adafruit 16 Channel Servo Driver connected to the Raspberry Pi via I²C communication. The servo driver board manages the PWM signal generation required for the servo positioning. For the communication with the board we use the Adafruit servokit library
+The steering is controlled through an Adafruit 16 Channel Servo Driver connected to the Raspberry Pi via I²C communication. The servo driver board manages the PWM signal generation required for the servo positioning. For the communication with the board we use the Adafruit servokit library.
 
 ### Software Implementation
 
@@ -800,7 +910,7 @@ def setServoAngle(kit, angle, slam=None):
 
 ### Steering Range and Calibration
 
-- **Center Position**: 80° (servo angle) = straight ahead. This value needs to be set up by hand accoring to the exact servo arm mounting
+- **Center Position**: 80° (servo angle) = straight ahead. This value needs to be set up by hand according to the exact servo arm mounting
 - **Maximum Left**: 0° (servo angle) = full left lock
 - **Maximum Right**: 180° (servo angle) = full right lock
 - **Steering Input Range**: The function accepts angles where 90° represents straight ahead, with deviations from 90° controlling the steering direction
@@ -828,7 +938,7 @@ The motor is controlled via PWM signals sent to the motor driver through the Ada
 
 ### Software Implementation
 
-The motor control is implemented in the `DriveBase` class within `motorController.py`. Here is a sample code that implements driving to a specifix x/y coordinate. We have other functions that do different maneuvers in this class.
+The motor control is implemented in the `DriveBase` class within `motorController.py`. Here is a sample code that implements driving to a specific x/y coordinate. We have other functions that do different maneuvers in this class.
 
 ```python
 class DriveBase:
@@ -1206,7 +1316,7 @@ def setPosition(self, x, y, angle=-5000):
 4. **Coordinate System Integration**: Seamless integration with robot's navigation coordinate system
 5. **LiDAR Fusion**: Position corrections using LiDAR wall measurements when sensors drift
 
-This odometry system provides continuous position tracking with 2-5cm accuracy per meter of travel, enabling  autonomous navigation throughout the competition course.
+This odometry system provides continuous position tracking with 2-5cm accuracy per meter of travel, enabling autonomous navigation throughout the competition course.
 
 
 
@@ -1214,7 +1324,7 @@ This odometry system provides continuous position tracking with 2-5cm accuracy p
 
 ## LiDAR 
 
-Our LiDAR system uses the **RpLidar S2L** which provides 360-degree scanning with up to 32000 samples per second. The raspberry communicates with the lidar via a serial uart port at 1 Mbps. The communication is handled by a library supplied by Slamtec.
+Our LiDAR system uses the **RpLidar S2** which provides 360-degree scanning with up to 32000 samples per second. The Raspberry Pi communicates with the LiDAR via a serial UART port at 1 Mbps. The communication is handled by a library supplied by Slamtec.
 
 ### Real-time Scanning and Data Acquisition
 
@@ -1401,7 +1511,7 @@ Our robot uses a Cartesian coordinate system to navigate the WRO Future Engineer
 - **Field Size**: 3000mm × 3000mm square
 - **Origin (0, 0)**: Located at the **top-left corner** of the field 
 - **X-axis**: Increases from left to right (0mm to 3000mm)
-- **Y-axis**: Increases from top to botton (0mm to 3000mm)
+- **Y-axis**: Increases from top to bottom (0mm to 3000mm)
 - **Units**: All coordinates are specified in millimeters (mm)
 
 ### Coordinate System Properties
@@ -1427,8 +1537,6 @@ orders.append(Order(x=450, y=2500, speed=0.75, brake=0, type=Order.DESTINATION, 
 ```python
 orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CCW, type=Order.WINKEL)))
 ```
-<br>
-
 <br><br>
 ## Initial Location Acquisition 
 The inital position is aquired by mneasuring the distance to the borders with the lidar.
@@ -1834,10 +1942,6 @@ The wall position on the open challenge could be detected and different waypoint
 #### Speed optimization
 General driving speed can be increased until the course gets unreliable.
 Driving speed on uncritical parts could be increased even more.
-
-
-
-
 <br><br><br>
 
 # Construction Guide - Bauanleitung
