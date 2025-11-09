@@ -31,6 +31,8 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
         if (checkForColor(Hindernisse.GREEN, scanStart, scanStart+6) and not checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)) and checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
             # rot nach rot
             orders.append(Order(x=2600, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=33))
+            orders.append(Order(zielwinkel=0, speed=0.5, brake=1, type=Order.WINKEL))
+            doReposition(orders, Order, waitCompleteOrders, 0)
         
         if (checkForColor(Hindernisse.GREEN, scanStart, scanStart+6) and not checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)) and not checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
             #rot nach grün oder nichts

@@ -393,7 +393,7 @@ class Slam:
             self.angle = myPosition2.h
             self.speed = self.speed2
 
-        print(f"{myPosition1.h:.2f}, {myPosition2.h:.2f}")
+        # print(f"{myPosition1.h:.2f}, {myPosition2.h:.2f}")
 
         if self.loopCounter >= 9:
             self.lidar.getScan(self.scan)
@@ -472,20 +472,30 @@ class Slam:
                 if dots > dotsNeeded:
                     found += dots  # Add to total detection count
                     
-                    # Calculate average angle to obstacle for camera alignment
-                    angle = 0
-                    angleDebugOut=""
-                    for c in angles:
-                        angleDebugOut+=" "+str(c)
-                        # Normalize angle to [-180, 180] range
-                        while c > 180:
-                            c -= 360
-                        angle += c
-                    # Average angle points to the center of detected obstacle
-                    angle = angle / len(angles)
-                    angle = -angle  # Coordinate system correction
-                    logging.warning("LiDAR angles: %s",  angleDebugOut)
-                    logging.warning("Obstacle %i detected, angle: %.2f", i, angle)
+                    # Calculate relative angle from current position to obstacle
+                    # Current position: (self.xpos, self.ypos)
+                    # Target position: (self.hindernisse[i].x, self.hindernisse[i].y)
+                    # Current heading: self.angle
+                    
+                    # Calculate vector from current position to obstacle
+                    dx = self.hindernisse[i].x - self.xpos
+                    dy = self.hindernisse[i].y - self.ypos
+                    
+                    # Calculate absolute angle to target (in degrees)
+                    angle_to_target = -math.degrees(math.atan2(dy, dx))-180
+                    
+                    # Calculate relative angle (difference between target angle and current heading)
+                    angle = -(angle_to_target - self.angle)
+                    
+                    # Normalize angle to [-180, 180] range
+                    while angle > 180:
+                        angle -= 360
+                    while angle < -180:
+                        angle += 360
+                    
+                    logging.warning("Obstacle %i: pos=(%.0f,%.0f) target=(%.0f,%.0f) heading=%.2f angle_to_target=%.2f relative_angle=%.2f", 
+                                    i, self.xpos, self.ypos, self.hindernisse[i].x, self.hindernisse[i].y, 
+                                    self.angle, angle_to_target, angle)
                     
                     # Step 5: Match LiDAR detection with camera color detection
                     # Find camera-detected block closest to calculated LiDAR angle
@@ -494,7 +504,7 @@ class Slam:
                     for d in range(len(camera.blocksAngle)):    # richtige Farbe auswählen
 
                         logging.warning("Camera block angle: %.2f vs LiDAR angle: %.2f diff: %.2f", camera.blocksAngle[d], angle, abs(camera.blocksAngle[d] - angle))
-                        if (abs(camera.blocksAngle[d] - angle) < angularWidth / 2):
+                        if (abs(camera.blocksAngle[d] - angle) < angularWidth):
                             logging.warning("-> within angular width of obstacle")
                             objectDetected = True
                             if (abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle)):

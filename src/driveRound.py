@@ -50,6 +50,12 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
     
     """
     
+    # Print all hindernisse values
+    print("=== All Hindernisse ===")
+    for idx, h in enumerate(slam.hindernisse):
+        print(f"Hinderniss {idx}: x={h.x}, y={h.y}, farbe={h.farbe}")
+    print("======================")
+    
     # Step 1: Determine direction and configure obstacle colors
     if (rotation >= 1000):
         # Counter-clockwise direction (rotation IDs 1000-1999)
@@ -129,7 +135,10 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         if rotation != 90 and rotation != 1500:
             # Standard tight path continues at x=200mm
             # y=1100mm provides clearance when approaching destination area
-            orders.append(Order(x=200, y=1100,speed=speedi,brake=0,type=Order.DESTINATION,num=20, rotation=rotation))
+            if (checkForColor(inner, scan3[0], scan3[1])) and (checkForColor(outer, scan4[0], scan4[1])):
+                orders.append(Order(x=400, y=1700,speed=speedi,brake=1,type=Order.DESTINATION,num=201, rotation=rotation))
+                orders.append(Order(zielwinkel=-90, speed=speedi*0.75, brake=0, type=Order.WINKEL, rotation=rotation))
+            orders.append(Order(x=200, y=1100,speed=speedi,brake=0,type=Order.DESTINATION,num=202, rotation=rotation))
         else:
             # Special 90-degree rotations continue at x=400mm
             orders.append(Order(x=400, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=24, rotation=rotation))
