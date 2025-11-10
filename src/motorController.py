@@ -345,6 +345,7 @@ class DriveBase:
     def driveTime(self, timeDrive, speed):
         self.pidController.setpoint = speed
         speedTotal = self.slam.speed
+        startTime = 0 ###
 
         if self.startTimeDrive == 5000:
             self.startTimeDrive = time.time()-startTime

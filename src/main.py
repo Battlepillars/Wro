@@ -153,7 +153,39 @@ def main():
             # if event.type == pygame.MOUSEBUTTONUP:
             #     placing = 0
             # if event.type == pygame.MOUSEBUTTONDOWN:
-            #     placing = 1            
+            #     placing = 1
+            
+            """
+            Keyboard Commands Overview:
+            
+            PROGRAM CONTROL:
+            - c: Exit program (restart possible)
+            - x: Exit program (no restart)
+            - SPACE: Stop command execution, clear orders
+            - v: Start signal (at program startup)
+            
+            DEBUG/POSITIONING:
+            - u: Execute manual repositioning
+            - i: Recalculate angle
+            - e: Set position to mouse position
+            - r: Rotate robot by 90°
+            - f: Print mouse position
+            - o: Enter X/Y coordinates for virtual cursor
+            
+            COMMANDS/SCAN:
+            - k: Add drive command to mouse position
+            - g: Print order command to mouse position in console
+            - t: Perform complete scan of all 24 obstacles
+            - z: Perform scan with "checkHeightNear" (close range)
+            
+            MANUAL DRIVE MODE:
+            - m: Activate manual drive mode
+            - w: Drive forward (manual mode only)
+            - s: Drive backward (manual) / Show info (normal mode)
+            - a: Steer left (manual mode only)
+            - d: Steer right (manual mode only)
+            """
+            
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_o:
                     virtual_cursor_x = (float(input("x"))*playmat.matScale) + (50 * playmat.matScale)
@@ -184,6 +216,8 @@ def main():
                     print(math.floor(pygame.mouse.get_pos()[0] / playmat.matScale), math.floor(pygame.mouse.get_pos()[1] / playmat.matScale))
                 if event.key == pygame.K_u:
                     slam.reposition()
+                if event.key == pygame.K_i:
+                    slam.resetAngle()
                 if event.key == pygame.K_g:
                     print("orders.append(Order(x="+str(math.floor(pygame.mouse.get_pos()[0] / playmat.matScale)-50)+", y="+str(math.floor(pygame.mouse.get_pos()[1] / playmat.matScale)-50)+",speed=0.5,brake=1,type=Order.DESTINATION))")
                 if event.key == pygame.K_k:
@@ -330,29 +364,29 @@ class Order:
             if (angleCheckOverwrite != 1000):
                 angleCheckOverwrite += rotation
             zielwinkel += rotation
-        elif (rotation == 1500):          # SÜd in CCW
+        elif (rotation == 1500):          # South in CCW
             self.x = 1500-(y-1500)
-            self.y = x                  #drehen um 90 grad
-            self.y=  3000-self.y        #spiegeln an y=1500
+            self.y = x                  # rotate 90 degrees
+            self.y=  3000-self.y        # mirror at y=1500
             zielwinkel = 180-(zielwinkel+90)
             if (angleCheckOverwrite != 1000):
                 angleCheckOverwrite = 180-(angleCheckOverwrite+90)
         elif (rotation == 1180):          # West in CCW
             self.x = 3000-x
-            self.y = 3000-y             #drehen um 180 grad
-            self.x= 3000-self.x         #spiegeln an x=1500
+            self.y = 3000-y             # rotate 180 degrees
+            self.x= 3000-self.x         # mirror at x=1500
             zielwinkel = -(zielwinkel)
             if (angleCheckOverwrite != 1000):
                 angleCheckOverwrite = -(angleCheckOverwrite)
-        elif (rotation == 1090):          # Nord in CCW
+        elif (rotation == 1090):          # North in CCW
             self.x = y
-            self.y = -x+3000            #drehen um 90 grad
-            self.y=  3000-self.y        #spiegeln an y=1500
+            self.y = -x+3000            # rotate 90 degrees
+            self.y=  3000-self.y        # mirror at y=1500
             zielwinkel = 180-(zielwinkel-90)
             if (angleCheckOverwrite != 1000):
                 angleCheckOverwrite = 180-(angleCheckOverwrite-90)
-        elif (rotation == 1000):          # Nord in CCW
-            self.x = 3000-x             #spiegeln an x
+        elif (rotation == 1000):          # North in CCW
+            self.x = 3000-x             # mirror at x
             self.y = y
             zielwinkel = 180-(zielwinkel)
             if (angleCheckOverwrite != 1000):

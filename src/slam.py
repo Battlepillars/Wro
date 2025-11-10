@@ -10,6 +10,7 @@ import adafruit_bno055 # type: ignore
 import threading
 import logging
 import math
+import numpy as np
 
 from future.moves import pickle # type: ignore
 from drawBoard import *
@@ -44,6 +45,40 @@ def calculateAngularWidth(diameter_mm, distance_mm):
     
     return angular_width_deg
 
+def meanAngle(angle1, angle2):
+    """
+    Calculate the mean of two angles    
+
+    Args:
+        angle1 (float): First angle in degrees
+        angle2 (float): Second angle in degrees
+        
+    Returns:
+        float: Mean angle in degrees, normalized to [-180, 180]
+    """
+    # Convert angles to radians
+    rad1 = math.radians(angle1)
+    rad2 = math.radians(angle2)
+    
+    # Convert to unit vectors
+    x1, y1 = math.cos(rad1), math.sin(rad1)
+    x2, y2 = math.cos(rad2), math.sin(rad2)
+    
+    # Calculate mean vector
+    mean_x = (x1 + x2) / 2
+    mean_y = (y1 + y2) / 2
+    
+    # Convert back to angle
+    mean_angle = math.degrees(math.atan2(mean_y, mean_x))
+    
+    # Normalize to [-180, 180]
+    while mean_angle > 180:
+        mean_angle -= 360
+    while mean_angle < -180:
+        mean_angle += 360
+        
+    return mean_angle
+
 
 
 class Hindernisse:
@@ -60,6 +95,10 @@ class Hindernisse:
         # noinspection PyListCreation
     
 class Slam:
+    resetAngleStart=170
+    resetAngleEnd=190
+    slope=1
+    intercept=500
     c1=0
     playmat = Playmat
     loopCounter = 10
@@ -467,6 +506,9 @@ class Slam:
                         math.pow((yposes[b] - self.hindernisse[i].y), 2) < math.pow(120, 2)) and (self.scan[b] > 200):
                         dots += 1           # Count detected point
                         angles.append(b)    # Store angle index for camera matching
+                        logging.warning("LiDAR point at (%.0f, %.0f) detected for obstacle %i", xposes[b], yposes[b], i)
+                
+                logging.warning("Obstacle %i dots found:",dots)
                 
                 # Step 4: If sufficient LiDAR points detected, process obstacle
                 if dots > dotsNeeded:
@@ -492,11 +534,11 @@ class Slam:
                         angle -= 360
                     while angle < -180:
                         angle += 360
-                    
-                    logging.warning("Obstacle %i: pos=(%.0f,%.0f) target=(%.0f,%.0f) heading=%.2f angle_to_target=%.2f relative_angle=%.2f", 
-                                    i, self.xpos, self.ypos, self.hindernisse[i].x, self.hindernisse[i].y, 
-                                    self.angle, angle_to_target, angle)
-                    
+
+                    logging.warning("Obstacle %i: pos=(%.0f,%.0f) target=(%.0f,%.0f) heading=%.2f angle_to_target=%.2f relative_angle=%.2f dots: %i",
+                                    i, self.xpos, self.ypos, self.hindernisse[i].x, self.hindernisse[i].y,
+                                    self.angle, angle_to_target, angle, dots)
+
                     # Step 5: Match LiDAR detection with camera color detection
                     # Find camera-detected block closest to calculated LiDAR angle
                     closestAngle = 0
@@ -599,7 +641,6 @@ class Slam:
             self.setPostion(self.xpos, 3000 - average)
             self.logger.warning('v4 y-> %i ',3000-average)
 
-    
 
     def reposition(self, angleCheckOverwrite = 1000):
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
@@ -807,36 +848,85 @@ class Slam:
 
 
 
-def meanAngle(angle1, angle2):
-    """
-    Calculate the mean of two angles    
 
-    Args:
-        angle1 (float): First angle in degrees
-        angle2 (float): Second angle in degrees
+
+    def resetAngle(self):
+        angleStart=int(self.angle)+140
+        angleEnd=int(self.angle)+160
+        self.resetAngleStart=angleStart
+        self.resetAngleEnd=angleEnd
+    
+        # Create 2D array for coordinates: [[x0, y0], [x1, y1], ...]
+        linex=np.array([])
+        liney=np.array([])
         
-    Returns:
-        float: Mean angle in degrees, normalized to [-180, 180]
-    """
-    # Convert angles to radians
-    rad1 = math.radians(angle1)
-    rad2 = math.radians(angle2)
-    
-    # Convert to unit vectors
-    x1, y1 = math.cos(rad1), math.sin(rad1)
-    x2, y2 = math.cos(rad2), math.sin(rad2)
-    
-    # Calculate mean vector
-    mean_x = (x1 + x2) / 2
-    mean_y = (y1 + y2) / 2
-    
-    # Convert back to angle
-    mean_angle = math.degrees(math.atan2(mean_y, mean_x))
-    
-    # Normalize to [-180, 180]
-    while mean_angle > 180:
-        mean_angle -= 360
-    while mean_angle < -180:
-        mean_angle += 360
+        for i in range(angleStart,angleEnd):
+            if self.scan[i] > 0:
+                rad = (i + self.angle) / 180 * math.pi
+                x = math.cos(rad) * -self.scan[i] + self.xpos
+                y = math.sin(rad) * self.scan[i] + self.ypos
+                linex = np.append(linex, x)
+                liney = np.append(liney, y)
+                logging.warning("Point added to line: %.1f, %.1f", x, y)
+
+
+
+
+
+        # linex=np.array([1000.2,1000.7,1000.8,1000.5])
+        # liney=np.array([2636.9,2625.2,2615.1,2605.7])
         
-    return mean_angle
+        # Calculate line using Least Absolute Deviations (LAD) - L1 norm minimization
+        from scipy.optimize import minimize
+        
+        # Objective function: sum of absolute deviations
+        def lad_objective(params):
+            slope, intercept = params
+            predicted_y = slope * linex + intercept
+            return np.sum(np.abs(liney - predicted_y))
+        
+        # Initial guess using simple median-based method
+        initial_slope = (np.median(liney[-10:]) - np.median(liney[:10])) / (np.median(linex[-10:]) - np.median(linex[:10]))
+        initial_intercept = np.median(liney) - initial_slope * np.median(linex)
+        
+        # Minimize LAD objective
+        result = minimize(lad_objective, [initial_slope, initial_intercept], method='Nelder-Mead')
+        slope, intercept = result.x
+        
+        self.slope = slope
+        self.intercept = intercept
+        logging.warning("LAD regression result: slope=%.2f, intercept=%.2f", slope, intercept)
+        line_angle = math.degrees(math.atan(slope))
+        logging.warning("Line angle calculated from LAD regression: %.2f degrees", line_angle)
+
+        while (line_angle<0):
+            line_angle=line_angle+180
+        while (line_angle>180):
+            line_angle=line_angle-180
+            
+        myAngle = self.angle+90
+        while (myAngle<0):
+            myAngle=myAngle+180
+        while (myAngle>180):
+            myAngle=myAngle-180    
+            
+        angleDiff = line_angle - myAngle
+        logging.warning("Robot angle +90 adjusted: current=%.2f, line=%.2f, diff=%.2f", myAngle, line_angle, angleDiff)
+        if abs(angleDiff) < 80:
+            self.logger.warning("Reset angle from %.2f to %.2f (diff %.2f)", self.angle, self.angle + angleDiff, angleDiff)
+            self.setPostion(self.xpos, self.ypos, self.angle + angleDiff/2)
+        else:
+            self.logger.warning("Angle difference too large (%.2f), not resetting angle", angleDiff)
+        # sys.exit()
+
+    def parkWallScan(self):
+        # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
+        self.logger.warn('-----------------------------------------------------------------------------------------')
+        self.logger.warning('Park Wall Repostion x: %i y: %i angle: %i',self.xpos,self.ypos,self.angle)
+        
+        averageL = 1625 - self.calcualteScanAngel(0)
+        averageR = 2000 - self.calcualteScanAngel(180)
+        average = (averageL + averageR) / 2
+        
+        self.setPostion(average, self.ypos)
+        self.logger.warning('x-> %i ',average)

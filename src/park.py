@@ -24,6 +24,19 @@ def doReposition2(orders, Order, waitCompleteOrders, direction):
         return
     time.sleep(0.3)
 
+def wallScan(slam):
+    # print("X:", slam.xpos, "Y:", slam.ypos, "Angle:", slam.angle, "average:", average, "average3:", 3000 - average)
+    slam.logger.warn('-----------------------------------------------------------------------------------------')
+    slam.logger.warning('Park Wall Repostion x: %i y: %i angle: %i',slam.xpos,slam.ypos,slam.angle)
+    
+    averageL = 1625 + slam.scan(90)
+    averageR = 2000 - slam.scan(-90)
+    average = (averageL + averageR) / 2
+    print(f"Wall Scan - Left: {averageL}, Right: {averageR}, Average: {average}")
+    
+    slam.setPostion(average, slam.ypos)
+    slam.logger.warning('x-> %i ',average)
+
 def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, slam):
     speedi = 0.5
     
@@ -98,9 +111,10 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
     
     orders.append(Order(y=optimalY, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
     orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
-    doReposition2(orders, Order, waitCompleteOrders, direction)
+    wallScan(slam)
     loops = 0
-    while (slam.xpos < (optimalX - 10) or slam.xpos > (optimalX + 10)) and (loops < 3):
+    
+    while ((slam.xpos < (optimalX - 10) or slam.xpos > (optimalX + 10)) and (loops < 3)) or (loops == 0):
         loops += 1
         adjustedX = optimalX            # move waypoint left or right to account for movement caused by turning
         if slam.xpos < optimalX:
@@ -109,9 +123,12 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
         elif slam.xpos > optimalX:
             adjustedX -= 10
             print("adjusting left")
-        orders.append(Order(x=adjustedX, y=2200, speed=0.2, brake=1, type=Order.DESTINATION, num=372))
+        orders.append(Order(x=adjustedX, y=2550, speed=0.2, brake=1, type=Order.DESTINATION, num=372))
         orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
-        doReposition2(orders, Order, waitCompleteOrders, direction)
-        orders.append(Order(y=optimalY, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
-        doReposition2(orders, Order, waitCompleteOrders, direction)
+        # doReposition2(orders, Order, waitCompleteOrders, direction)
+        orders.append(Order(y=2800, zielwinkel=-90, speed=0.2, brake=1, type=Order.DRIVETOY))
+        wallScan(slam)
+        if not waitCompleteOrders():
+            return
+    orders.append(Order(y=optimalY, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
     orders.append(Order(zielwinkel=0, speed=-0.2, brake=1, type=Order.WINKEL))
