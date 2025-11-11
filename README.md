@@ -601,6 +601,25 @@ Die neue Vorderachse in einer Detailaufnahme:
 ### Servo Saver
 The Servo Saver is installed on the Servo and connects to the steering linkage. The Servo Saver, when the front wheels collide against an obstacle, uses a spring to prevent an overload on the Servo.
 
+<table align="center">
+  <tr>
+    <th bgcolor=#CCFFCC width=300>Dilwe RC Servo Saver</th>
+    <th bgcolor=#9ae4fd width=600>Specifications</th>
+  </tr>
+  <tr>
+    <td>
+      <a href="img/servosaver.jpg" target="_blank">
+        <img src="img/servosaver.jpg">
+      </a>
+    </td>
+    <td bgcolor=#c8f0fd><li>Größe: 10 x 7 x 2 cm</li>
+    <li>Gewicht: 12 g</li>
+    <li>Material: Aluminium</li>
+</td>
+   </tr>
+    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the Servo Saver: <a href="https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1">https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1</a></TD></tr>
+</table>
+
 ### Servo Motor ANDERS einsortieren - ungünstig als eigener Unterpunkt - ist neu einsortiert, gut hier?
 Der Servo ist für die Lenkung der Vorderräder verantwortlich. Die Stellgeschwindigkeit sowie das Drehmoment dieses Servos wurden im Rahmen einer technischen Bewertung als vollumfänglich ausreichend für die Wettbewerbsanforderungen eingestuft.
 
@@ -773,7 +792,28 @@ Dieses Display ist eine optionale Komponente und für die Funktionalität des Ro
 Die Energieversorgung des autonomen Fahrzeugs wurde so ausgelegt, dass sie sämtliche Sensoren, Steuerungseinheiten und Aktuatoren zuverlässig mit Energie versorgen kann. Als zentrale Stromquelle kommt ein 7,4 V Lithium-Polymer-Akku (LiPo, 2S, 2200 mAh) zum Einsatz, der direkt mit dem Fahrtenregler verbunden ist und über einen 5V Spannungswandler auch den Raspberry mit Strom versorgt.
 
 ### Li-Po Battery
-- Bild + Spezifikationen
+<table align="center">
+  <tr>
+    <th bgcolor=#CCFFCC width=300>Zeee 2S Lipo Akku</th>
+    <th bgcolor=#9ae4fd width=600>Specifications</th>
+  </tr>
+  <tr>
+    <td>
+      <a href="img/lipo.jpg" target="_blank">
+        <img src="img/lipo.jpg">
+      </a>
+    </td>
+    <td bgcolor=#c8f0fd><li>Batteriespannung: 7,4V</li>
+    <li>Konfiguration: 2S1P</li>
+    <li>Kapazität: 2200mAh</li>
+    <li>Entladung: 50C</li>
+    <li>Steckertyp: XT60-Stecker</li>
+    <li>Abmessungen: 73 x 34 x 18,5 mm (L x B x H)</li>
+    <li>Ungefähres Gewicht: 98 g</li>
+</td>
+   </tr>
+    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the Battery: <a href="https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK">https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK</a></TD></tr>
+</table>
 
 ### Energieverbrauch der Komponenten
 
@@ -1574,6 +1614,8 @@ Position tracking using the optical tracking sensor leads to inaccuracies of 2�
 
 - When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This can not be done while driving, because the lidar measurement is delayed by about 100 to 200ms, so we would already have moved on. This type of repositioning has to be manually set up in the programm, after stopping the robot. This is done when we need a hight accuracy, for example before scanning the obstacles.
 
+BILD
+
 
 - While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. For this, we do not use the complete 360° scan from the lidar, but we trigger the reposition automatically exactly when the front distance is measured by the lidar. On this way we reduce the delay of the lidar measurement. This kind of repositioning is automatically triggered when certain conditions are met:
   - The lidar has just transmitted the distance to the front
@@ -1588,6 +1630,12 @@ This function detects and stores obstacles within each section of the course usi
 ### Determining the position of an obstacle within a course section
 
 The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course, after leaving the parking area and at 4 additional points.
+
+<div align="center">
+    <a href="img/scanpunkte.png" target="_blank">
+        <img width="400" src="img/scanpunkte.png">
+    </a>
+</div>
 
 At these points the LiDAR determines at which of the six possible positions within the section in front of the robot the obstacles are located. 
 
