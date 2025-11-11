@@ -29,8 +29,8 @@ def wallScan(slam):
     slam.logger.warn('-----------------------------------------------------------------------------------------')
     slam.logger.warning('Park Wall Repostion x: %i y: %i angle: %i',slam.xpos,slam.ypos,slam.angle)
     
-    averageL = 1625 + slam.scan(90)
-    averageR = 2000 - slam.scan(-90)
+    averageL = 1625 + slam.scan[90]
+    averageR = 2000 - slam.scan[-90]
     average = (averageL + averageR) / 2
     print(f"Wall Scan - Left: {averageL}, Right: {averageR}, Average: {average}")
     
@@ -109,7 +109,7 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
     elif slam.xpos > optimalX + 10:
         adjustedX -= 10
     
-    orders.append(Order(y=optimalY, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
+    orders.append(Order(y=2800, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
     orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
     wallScan(slam)
     loops = 0

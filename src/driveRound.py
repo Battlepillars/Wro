@@ -166,7 +166,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
             if ( not sinside and dinside):
                 # Source is outer-only, destination has inner obstacles
                 # Use higher corner at (400, 800) - extra y clearance for destination
-                orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=27, rotation=rotation))
+                orders.append(Order(x=300, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=27, rotation=rotation))
                 orders.append(Order(zielwinkel=-180, speed=speedi*0.75, brake=1, type=Order.WINKEL, rotation=rotation))
                 if not waitCompleteOrders():
                     return
@@ -189,7 +189,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
                 orders.append(Order(x=700, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=261, rotation=rotation))
             if ( not sinside and dinside):
                 # Source outer, destination inner
-                orders.append(Order(x=400, y=800,speed=speedi,brake=1,type=Order.DESTINATION,num=272, rotation=rotation))
+                orders.append(Order(x=300, y=700,speed=speedi,brake=1,type=Order.DESTINATION,num=272, rotation=rotation))
                 orders.append(Order(zielwinkel=-180, speed=speedi*0.75, brake=1, type=Order.WINKEL, rotation=rotation))
                 if not waitCompleteOrders():
                     return
