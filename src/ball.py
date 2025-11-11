@@ -59,9 +59,10 @@ def main():
     dist = 0
     start_time = pygame.time.get_ticks()
     elapsed = 0
-    loop = 140
+    loop = 0
     cubes = makeCubes()
     balls = []
+    shootingSpeed = 150
     
     
     pygame.init()
@@ -76,12 +77,11 @@ def main():
     while running:
         elapsed = (pygame.time.get_ticks() - start_time) / 1000  # Convert milliseconds to seconds
         loop += 1
-        if loop >= 150:
-            loop = 0
+        if loop % shootingSpeed == 0:
             makeBall(balls, myPosition)
         
         screen.fill((30, 30, 30))
-        text = font.render("ball", True, (255, 255, 255))
+        text = font.render(str(shootingSpeed), True, (255, 255, 255))
         rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
         screen.blit(text, rect)
         
@@ -94,6 +94,10 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.MOUSEBUTTONUP:
+                pass
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                shootingSpeed -= 10
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_c:
                     running = False
@@ -160,8 +164,8 @@ def makeCubes():
         for u in range (8, -1, -1): #]9;12[
             if random.randrange(0, 2) == 0:
                 cubes.append(Cube(x=i, y=u))
-    for cube in cubes:
-        print("Cube at:", cube.x, cube.y)
+    # for cube in cubes:
+    #     print("Cube at:", cube.x, cube.y)
     return cubes
 
 if __name__ == "__main__":

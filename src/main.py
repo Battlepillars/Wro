@@ -217,7 +217,12 @@ def main():
                 if event.key == pygame.K_u:
                     slam.reposition()
                 if event.key == pygame.K_i:
-                    slam.resetAngle()
+                    def test_park():
+                        slam.hindernisse[23].farbe = Hindernisse.GREEN
+                        park(orders, Order, waitCompleteOrders, checkForColor, Order.CW, 18, slam)
+                    parkThread = threading.Thread(target=test_park, daemon=True)
+                    parkThread.start()
+                    #slam.resetAngle()
                 if event.key == pygame.K_g:
                     print("orders.append(Order(x="+str(math.floor(pygame.mouse.get_pos()[0] / playmat.matScale)-50)+", y="+str(math.floor(pygame.mouse.get_pos()[1] / playmat.matScale)-50)+",speed=0.5,brake=1,type=Order.DESTINATION))")
                 if event.key == pygame.K_k:
@@ -480,6 +485,8 @@ def commandLoop(slam):
     runTestCode = False
     
     if runTestCode:
+        park(orders, Order, waitCompleteOrders, checkForColor, Order.CW, 18, slam)
+        return
         orders.append(Order(zielwinkel=-45, speed=0.2, brake=1, dir=Order.CW, type=Order.WINKEL))
         orders.append(Order(y=2800, zielwinkel=-90, speed=-0.2, brake=1, type=Order.DRIVETOY))
     

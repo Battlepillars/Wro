@@ -85,17 +85,17 @@ class Robot:
                 pygame.draw.circle(screen, (255, 0, 0), (x * matScale + xoff, y * matScale + yoff), 10 * matScale)
                 # pygame.draw.circle(screen, (255, 0, 0), (500 * matScale, 500 * matScale), 500 * matScale)
 
-        for x in range(-200, 3200, 1):
-            y=x*slam.slope + slam.intercept
-            pygame.draw.circle(screen, (0, 255,0), (x * matScale + xoff, y * matScale + yoff), 2)
+        # for x in range(-200, 3200, 1):    # reset angle
+        #     y=x*slam.slope + slam.intercept
+        #     pygame.draw.circle(screen, (0, 255,0), (x * matScale + xoff, y * matScale + yoff), 2)
         
         x = math.cos((180-slam.resetAngleStart) / 180 * math.pi) * 800 + self.xpos
         y = math.sin((180-slam.resetAngleStart) / 180 * math.pi) * 800 + self.ypos
-        pygame.draw.line(screen, (255,0,255), (self.xpos * matScale + xoff, self.ypos * matScale + yoff), (x * matScale + xoff , y * matScale + yoff), 2)
+        # pygame.draw.line(screen, (255,0,255), (self.xpos * matScale + xoff, self.ypos * matScale + yoff), (x * matScale + xoff , y * matScale + yoff), 2)     #reset angle
 
         x = math.cos((180-slam.resetAngleEnd) / 180 * math.pi) * 800 + self.xpos
         y = math.sin((180-slam.resetAngleEnd) / 180 * math.pi) * 800 + self.ypos
-        pygame.draw.line(screen, (255,0,255), (self.xpos * matScale + xoff, self.ypos * matScale + yoff), (x * matScale + xoff , y * matScale + yoff), 2)
+        # pygame.draw.line(screen, (255,0,255), (self.xpos * matScale + xoff, self.ypos * matScale + yoff), (x * matScale + xoff , y * matScale + yoff), 2)
 
         # pygame.draw.line(screen, (0,255,0), (0 * matScale + xoff, 0 * matScale + yoff), (3000 * matScale + xoff , 0 * matScale + yoff), int(50 * matScale))
         
