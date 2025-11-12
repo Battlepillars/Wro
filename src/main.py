@@ -150,10 +150,22 @@ def main():
 
         for event in pygame.event.get():
 
-            # if event.type == pygame.MOUSEBUTTONUP:
-            #     placing = 0
-            # if event.type == pygame.MOUSEBUTTONDOWN:
-            #     placing = 1
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                closest = 0
+                closestDist = 30000
+                mousex = pygame.mouse.get_pos()[0] / playmat.matScale
+                mousey = pygame.mouse.get_pos()[1] / playmat.matScale
+                for i in slam.hindernisse:
+                    if (abs(mousex - i.x) + abs(mousey - i.y)) < closestDist:
+                        closest = i
+                        closestDist = abs(mousex - i.x) + abs(mousey - i.y)
+                        
+                if event.button == 1:
+                    closest.farbe = Hindernisse.GREEN
+                elif event.button == 3:
+                    closest.farbe = Hindernisse.RED
+                else:
+                    closest.farbe = Hindernisse.NICHTS
             
             """
             Keyboard Commands Overview:
@@ -218,7 +230,7 @@ def main():
                     slam.reposition()
                 if event.key == pygame.K_i:
                     def test_park():
-                        slam.hindernisse[23].farbe = Hindernisse.GREEN
+                        slam.hindernisse[0].farbe = Hindernisse.RED
                         park(orders, Order, waitCompleteOrders, checkForColor, Order.CW, 18, slam)
                     parkThread = threading.Thread(target=test_park, daemon=True)
                     parkThread.start()
@@ -550,7 +562,7 @@ def commandLoop(slam):
 
 
     elif slam.eventType == slam.ER:
-        speedi = 0.75
+        speedi = 0.6
         slam.repostionEnable = 1
         
         if slam.direction == slam.CW:                #                                                         Eröffnungsrennen  CW

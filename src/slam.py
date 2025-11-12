@@ -240,6 +240,19 @@ class Slam:
         # self.myOtos2.setAngularScalar(0.9915)
         self.myOtos2.setAngularScalar(0.9890)
 
+        # Set offset for myOtos1
+        offset = self.myOtos1.getOffset()
+        print("Offset: ",offset)
+        offset.x = -0.015  # 20mm in meters
+        offset.y = -0.060  # 30mm in meters
+        offset.h = 0      # no heading offset
+        self.myOtos1.setOffset(offset)
+
+        # Set offset for myOtos2
+        offset.x = -0.045  # 20mm in meters
+        offset.y = -0.060  # 30mm in meters
+        offset.h = 0      # no heading offset
+        self.myOtos1.setOffset(offset)
 
         self.myOtos1.resetTracking()
         self.myOtos2.resetTracking()

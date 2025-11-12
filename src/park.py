@@ -50,7 +50,7 @@ def wallScan(slam,waitCompleteOrders):
     average = (averageL + averageR) / 2
     print(f"Wall Scan - Left: {averageL}, Right: {averageR}, Average: {average} Old: {slam.xpos}")
     
-    slam.setPostion(average, slam.ypos)
+    slam.setPostion(average, 3000 - slam.scan[180])
     slam.logger.warning('x-> %i ',average)
 
 def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, slam):
@@ -58,15 +58,14 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
     
     if direction == Order.CW:
         if (checkForColor(Hindernisse.GREEN, scanStart, scanStart+6) and not checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)) and checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
-            # rot nach rot
-            print("CW Rot nach Rot")
+            print("CW (Von Rot-Grün oder Grün)  Grün nach Rot ")
             orders.append(Order(x=2600, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=33))
             orders.append(Order(zielwinkel=0, speed=0.5, brake=1, type=Order.WINKEL))
             doReposition(orders, Order, waitCompleteOrders, 0)
         
         if (checkForColor(Hindernisse.GREEN, scanStart, scanStart+6) and not checkForColor(Hindernisse.RED, scanStart+2, scanStart+6)) and not checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
-            print("CW Rot nach Grün oder nichts ")
-            #rot nach grün oder nichts
+            print("CW (Von Rot-Grün oder Grün)  Grün nach Grün oder nichts ")
+            
             # orders.append(Order(x=2550, y=2450,speed=speedi,brake=0,type=Order.DESTINATION,num=371))
             orders.append(Order(x=2700, y=2450,speed=speedi,brake=1,type=Order.DESTINATION,num=371))
             orders.append(Order(zielwinkel=0, speed=0.5, brake=1, type=Order.WINKEL))
@@ -77,30 +76,33 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
             if not waitCompleteOrders():
                 return
             time.sleep(0.3)
-        if (checkForColor(Hindernisse.RED, scanStart, scanStart+6) and not checkForColor(Hindernisse.GREEN, scanStart+4, scanStart+6)):
-            print("CW Variante 3")
-            if not checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
-                orders.append(Order(x=2300, y=2300,speed=speedi,brake=0,type=Order.DESTINATION,num=34))
+        
+        if (checkForColor(Hindernisse.RED, scanStart, scanStart+6) and not checkForColor(Hindernisse.GREEN, scanStart+4, scanStart+6) and checkForColor(Hindernisse.RED, scanStart+6, scanStart+7)):
+            print("Von Rot nach Rot")
+            orders.append(Order(x=2000, y=2200,speed=0.2,brake=1,type=Order.DESTINATION,num=44))
+            orders.append(Order(zielwinkel=0, speed=0.2, brake=1, type=Order.WINKEL))
+            orders.append(Order(x=2200, y=2200,speed=-0.2,brake=1,type=Order.DESTINATION,num=45))
+            doReposition(orders, Order, waitCompleteOrders, 0)
+        
+        if (checkForColor(Hindernisse.RED, scanStart, scanStart+6) and not checkForColor(Hindernisse.GREEN, scanStart+4, scanStart+6) and not checkForColor(Hindernisse.RED, scanStart+6, scanStart+7)):
+            print("Von Rot nach Grün oder nach nichts")
+            orders.append(Order(x=2300, y=2300,speed=speedi,brake=0,type=Order.DESTINATION,num=34))
         
         if checkForColor(Hindernisse.RED, scanStart+6, scanStart+7):
-            print("CW Variante 4")
+            print("Ziel Rot")
             orders.append(Order(x=2000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=35))
             orders.append(Order(x=1600, y=2200,speed=speedi,brake=1,type=Order.DESTINATION,num=36))
             time.sleep(3)
             orders.append(Order(zielwinkel=-90, speed=-0.2, brake=1, type=Order.WINKEL))
             doReposition(orders, Order, waitCompleteOrders, 0)
         else:
-            print("CW Variante 5")
-            #waitForKeyPress()
+            print("Ziel Grün oder nichts")
             doReposition(orders, Order, waitCompleteOrders, 0)
             orders.append(Order(x=2000, y=2600,speed=speedi,brake=0,type=Order.DESTINATION,num=30))
             orders.append(Order(x=1880, y=2600,speed=speedi,brake=1,type=Order.DESTINATION,num=31))
             orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
-            # orders.append(Order(x=1745, y=2275,speed=0.2,brake=1,type=Order.DESTINATION,num=32))
-            # orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
-            # doReposition(orders, Order, waitCompleteOrders, 0)
-            #waitForKeyPress()
-    
+
+
     else:           # CCW
         if (checkForColor(Hindernisse.RED, scanStart, scanStart-6) and not checkForColor(Hindernisse.GREEN, scanStart-2, scanStart-6)) and checkForColor(Hindernisse.GREEN, scanStart-6, scanStart-7):
             orders.append(Order(x=400, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=38))
@@ -125,7 +127,7 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
             doReposition(orders, Order, waitCompleteOrders, -90)
 
 
-    optimalX = 2000-220#1745 # (1795|2685) - Optimale Position zum Einparken
+    optimalX = 2000-220 #1745 # (1795|2685) - Optimale Position zum Einparken
     optimalY = 2655
     # adjustedX = optimalX
     # if slam.xpos < optimalX - 10:
@@ -148,6 +150,7 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
     #waitForKeyPress()
     
     while ((slam.xpos < (optimalX - 10) or slam.xpos > (optimalX + 10)) and (loops < 3)) or (loops == 0):
+
         loops += 1
         print("loop ", loops)
         adjustedX = optimalX            # move waypoint left or right to account for movement caused by turning
