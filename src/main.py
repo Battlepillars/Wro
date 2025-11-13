@@ -151,21 +151,22 @@ def main():
         for event in pygame.event.get():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                closest = 0
-                closestDist = 30000
-                mousex = pygame.mouse.get_pos()[0] / playmat.matScale
-                mousey = pygame.mouse.get_pos()[1] / playmat.matScale
-                for i in slam.hindernisse:
-                    if (abs(mousex - i.x) + abs(mousey - i.y)) < closestDist:
-                        closest = i
-                        closestDist = abs(mousex - i.x) + abs(mousey - i.y)
-                        
-                if event.button == 1:
-                    closest.farbe = Hindernisse.GREEN
-                elif event.button == 3:
-                    closest.farbe = Hindernisse.RED
-                else:
-                    closest.farbe = Hindernisse.NICHTS
+                if (pygame.mouse.get_pos()[0] + 50) / playmat.matScale < 3000:
+                    closest = 0
+                    closestDist = 30000
+                    mousex = pygame.mouse.get_pos()[0] / playmat.matScale
+                    mousey = pygame.mouse.get_pos()[1] / playmat.matScale
+                    for i in slam.hindernisse:
+                        if (abs(mousex - i.x) + abs(mousey - i.y)) < closestDist:
+                            closest = i
+                            closestDist = abs(mousex - i.x) + abs(mousey - i.y)
+                            
+                    if event.button == 1:
+                        closest.farbe = Hindernisse.GREEN
+                    elif event.button == 3:
+                        closest.farbe = Hindernisse.RED
+                    else:
+                        closest.farbe = Hindernisse.NICHTS
             
             """
             Keyboard Commands Overview:

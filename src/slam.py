@@ -173,7 +173,6 @@ class Slam:
         self.hindernisse.append(Hindernisse(x=2400, y=2000))
         self.hindernisse.append(Hindernisse(x=2600, y=2000))
 
-
         self.xpos = 0
         self.ypos = 0
         self.speed = 0
@@ -243,14 +242,14 @@ class Slam:
         # Set offset for myOtos1
         offset = self.myOtos1.getOffset()
         print("Offset: ",offset)
-        offset.x = -0.015  # 20mm in meters
-        offset.y = -0.060  # 30mm in meters
+        offset.x = -0.011  
+#        offset.y = -0.060 
+        offset.y = +0.005  
         offset.h = 0      # no heading offset
         self.myOtos1.setOffset(offset)
 
         # Set offset for myOtos2
         offset.x = -0.045  # 20mm in meters
-        offset.y = -0.060  # 30mm in meters
         offset.h = 0      # no heading offset
         self.myOtos1.setOffset(offset)
 
