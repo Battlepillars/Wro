@@ -72,6 +72,52 @@
 <li><a href="#circuit-diagram-of-components">Circuit diagram of components</a></li>
 </ul>
 </li>
+<li><a href="#obstacle-management">Obstacle management</a>
+<ul dir="auto">
+<li><a href="#coordinate-system">Coordinate system</a></li>
+<ul dir="auto">
+<li><a href="#coordinate-dimensions-and-origin">Coordinate dimensions and origin</a></li>
+<li><a href="#coordinate-system-properties">Coordinate system properties</a></li>
+<li><a href="#heading-angle-convention">Heading angle convention</a></li>
+</ul>
+<li><a href="#waypoint-navigation-system">Waypoint navigation system</a></li>
+<ul dir="auto">
+<li><a href="#command-example-drive-to-coordinate-4502500">Command Example: Drive to Coordinate 450/2500</a></li>
+<li><a href="#command-example-turn-robot-ccw-to-a-heading-of--90">Command Example: Turn Robot CCW to a Heading of -90°</a></li>
+</ul>
+<li><a href="#initial-location-acquisition">Initial location acquisition</a></li>
+<li><a href="#position-updates-during-driving">Position updates during driving</a></li>
+<ul dir="auto">
+<li><a href="#optical-tracking-sensor-function">Optical Tracking Sensor Function</a></li>
+<li><a href="#sensor-failure-detection--health-status">Sensor Failure Detection / Health Status</a></li>
+</ul>
+<li><a href="#position-corrections">Position corrections</a></li>
+<li><a href="#obstacle-recognition">Obstacle recognition</a></li>
+<ul dir="auto">
+<li><a href="#determining-the-position-of-an-obstacle-within-a-course-section">Determining the Position of an Obstacle Within a Course Section</a></li>
+<li><a href="#determining-the-color-of-the-obstacle">Determining the Color of the Obstacle</a></li>
+<li><a href="#complete-obstacle-detection-function">Complete Obstacle Detection Function</a></li>
+<li><a href="#complete-code-for-waypoint-generation">Complete Code for Waypoint Generation</a></li>
+</ul>
+<li><a href="#navigation-strategy-obstacle-challenge">Navigation strategy obstacle challenge</a></li>
+<ul dir="auto">
+<li><a href="#unparking">Unparking</a></li>
+<li><a href="#first-round-scanning">First Round: Scanning</a></li>
+<li><a href="#second-and-third-round">Second and Third Round</a></li>
+<li><a href="#parking">Parking</a></li>
+<li><a href="#obstacle-avoidance-waypoint-generation">Obstacle avoidance waypoint generation</a></li>
+<li><a href="#source-code-driveroundpy">Source Code: driveRound.py</a></li>
+<li><a href="#possible-improvements">Possible improvements</a></li>
+<ul dir="auto">
+<li><a href="#angle-measurement">Angle measurement</a></li>
+<li><a href="#waypoint-optimizations">Waypoint optimizations</a></li>
+<li><a href="#wall-position-open-challenge">Wall position (open challenge)</a></li>
+<li><a href="#speed-optimization">Speed optimization</a></li>
+</ul>
+</ul>
+<li><a href="#software-structure">Software structure</a></li>
+</ul>
+</li>
 <li><a href="#code-for-all-components">Code for all components</a>
 <ul dir="auto">
 <li><a href="#servo">Servo</a>
@@ -109,18 +155,6 @@
 </ul>
 </li>
 <li><a href="#potential-improvements---code-for-all-components">Potential improvements - code for all components</a></li>
-</ul>
-</li>
-<li><a href="#obstacle-management">Obstacle management</a>
-<ul dir="auto">
-<li><a href="#coordinate-system">Coordinate system</a></li>
-<li><a href="#waypoint-navigation-system">Waypoint navigation system</a></li>
-<li><a href="#initial-location-acquisition">Initial location acquisition</a></li>
-<li><a href="#position-updates-during-driving">Position updates during driving</a></li>
-<li><a href="#position-corrections">Position corrections</a></li>
-<li><a href="#obstacle-recognition">Obstacle recognition</a></li>
-<li><a href="#navigation-strategy-obstacle-challenge">Navigation strategy obstacle challenge</a></li>
-<li><a href="#software-structure">Software structure</a></li>
 </ul>
 </li>
 <li><a href="#construction-guide---bauanleitung">Construction guide</a></li>
@@ -492,6 +526,7 @@ During test runs, we observed that the competition field often features small ir
 
 Thus, the torque-oriented gear ratio makes a significant contribution to the vehicle’s reliability in real-world operation.
 
+
 ## Potential improvements - powertrain:
 - Use the same wheels for the back wheels as the front axis, as the front wheels have better traction and are easier to clean and maintain.
 
@@ -506,8 +541,6 @@ Thus, the torque-oriented gear ratio makes a significant contribution to the veh
 As already mentioned, the existing steering mechanism of the purchased chassis did not allow for a sufficient steering angle, making maneuvers such as exiting a parking space in a single move during the parking challenge impossible. To improve the steering angle, an alternative solution was developed, which consisted of designing an entirely new front axle (<a href="#drivetrain">cf. Chapter Drivetrain</a>).
 
 In this context, we also tested different steering concepts, including parallelogram and bell-crank mechanisms, and carefully evaluated their pros and cons. In the end, we decided to implement an Ackermann steering system. This choice was made because Ackermann geometry optimizes wheel angles during turns, reducing tire slip and improving maneuverability—especially important for precise movements in our small, lightweight robot. Compared to simpler systems, Ackermann steering provides more accurate cornering and better control, which was crucial for achieving our performance goals.
-
-The steering assembly consists of two symmetrical wheel mounts connected by a steering linkage, which is actuated by a servo motor. Steel rods form the joints between the wheel mounts and the steering linkage, ensuring precise and reliable movement.
 
 
 
@@ -661,60 +694,60 @@ Due to its compelling performance characteristics, we decided to integrate a LiD
         <th bgcolor="#E8E8E8" width="150" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">YDLidar TG30</th>
   </tr>
   <tr>
-        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Range</b></td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">0,05-18 m</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">0,2-16 m</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">0,15-12 m</td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">0,05-30 m</td>
+      <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Range</b></td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 0,05-18 m</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 0,2-16 m</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 0,15-12 m</td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 0,05-30 m</td>
   </tr>
   <tr>
-        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Accuracy</b></td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">+/- 50 mm</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">< 1%</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">< 1%</td>
-        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">+/- 60mm</td>
+      <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Accuracy</b></td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 +/- 50 mm</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 < 1%</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 < 1%</td>
+      <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">🟨 +/- 60mm</td>
   </tr>
   <tr>
-        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Resolution</b></td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">13 mm</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">1 %</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">1 %</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">-</td>
+      <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Resolution</b></td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 13 mm</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 1 %</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 1 %</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 -</td>
   </tr>
   <tr>
-        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Enclosed Housing</b></td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">yes</td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">yes</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">no</td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">yes</td>
+      <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Enclosed Housing</b></td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 yes</td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 yes</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 no</td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 yes</td>
   </tr>
   <tr>
-        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Angular Resolution</b></td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">0,1125°</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">0,225°</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">1°</td>
-        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">0,13°</td>
+      <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Angular Resolution</b></td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 0,1125°</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 0,225°</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 1°</td>
+      <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">🟨 0,13°</td>
   </tr>
     <tr>
-        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Update Rate</b></td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">2-10 Hz</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">5-15 Hz</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">5,5 Hz</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">5-12 hz</td>
+      <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Update Rate</b></td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 2-10 Hz</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 5-15 Hz</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 5,5 Hz</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 5-12 hz</td>
   </tr>
   <tr>
-        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Price</b></td>
-        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">~ 220€</td>
-        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">~ 260€</td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">~ 90€</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">~ 450€</td>
+      <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Price</b></td>
+      <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">🟨 ~ 220€</td>
+      <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">🟨 ~ 260€</td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 ~ 90€</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 ~ 450€</td>
   </tr>
   <tr>
-        <td bgcolor="#F0F0F0" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;"><b>Evaluation</b></td>
-        <td bgcolor="#90EE90" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Very good</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Moderate</td>
-        <td bgcolor="#FFB6C1" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Moderate</td>
-        <td bgcolor="#FFD700" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Good</td>
+      <td bgcolor="#F0F0F0" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;"><b>Evaluation</b></td>
+      <td bgcolor="#90EE90" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">🟩 Very good</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">🟥 Moderate</td>
+      <td bgcolor="#FFB6C1" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">🟥 Moderate</td>
+      <td bgcolor="#FFD700" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">🟨 Good</td>
   </tr>
 </table>
 
@@ -906,6 +939,576 @@ The power supply for individual components is implemented as follows:
     </a>
 </div>
 
+<br><br><br>
+
+
+# Obstacle management
+
+
+## Coordinate system
+To understand our overall strategy, it is important to understand the basics our system is build on.
+Our robot uses a Cartesian coordinate system to navigate the WRO Future Engineers field:
+
+### Coordinate dimensions and origin
+- **Field Size**: 3000mm × 3000mm square
+- **Origin (0, 0)**: Located at the **top-left corner** of the field 
+- **X-axis**: Increases from left to right (0mm to 3000mm)
+- **Y-axis**: Increases from top to bottom (0mm to 3000mm)
+- **Units**: All coordinates are specified in millimeters (mm)
+
+### Coordinate system properties
+1. **Absolute Positioning**: The coordinate system is field-absolute, not robot-relative
+2. **Origin Alignment**: The origin remains fixed at the top-left corner regardless of robot orientation
+
+### Heading angle convention
+- **0°**: Robot facing in the negative X direction (to the left)
+- **90°**: Robot facing in the positive Y direction (downward)
+- **+-180°**: Robot facing in the positive X direction (to the right)
+- **-90°**: Robot facing in the negative Y direction (upward)
+
+## Waypoint Navigation System
+
+Waypoints are target coordinates that the robot navigates to sequentially. Each waypoint specifies (x, y) coordinates in millimeters. We have defined a structure that stores waypoints together with a command. These are added to a queue and are executed in order. Several commands are available. 
+
+### Command Example: Drive to Coordinate 450/2500 
+```python
+orders.append(Order(x=450, y=2500, speed=0.75, brake=0, type=Order.DESTINATION, num=100, rotation=0))
+```
+
+### Command Example: Turn Robot CCW to a Heading of -90°
+```python
+orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CCW, type=Order.WINKEL)))
+```
+<br><br>
+## Initial Location Acquisition 
+The inital position is aquired by mneasuring the distance to the borders with the lidar.
+
+The starting direction is determinded based on its position on the mat. 
+
+For the Open Challenge, there are four different positions where we can place the robot, which allow it to recognize how it must drive. These four options result from the fact that there are two possible starting sections and two directions of travel.
+
+In the Obstacle Challenge, two different positions are possible. Here as well, the robot uses the LiDAR to detect its position and then knows which direction it needs to drive.
+
+<div align="center">
+    <a href="img/flowdiagrammstart.jpeg" target="_blank">
+        <img width="500" src="img/flowdiagrammstart.jpeg">
+    </a>
+</div>
+
+
+ <br><br>
+## Position Updates During Driving 
+
+### Optical Tracking Sensor Function 
+For continuous position tracking, we use two optical tracking sensors. A downward-facing camera inside the sensor captures 20,000 images per second. Based on changes in the images, the sensor detects movement across the surface. Additionally, the sensor has a built-in gyroscope. Using data from the gyroscope and the movement across the ground, the sensor automatically calculates the current coordinates.
+
+### Sensor Failure Detection / Health Status 
+Two optical tracking sensors were installed to increase redundancy. If one sensor fails, for example due to dust on the lens, the robot can still accurately determine its position. A sensor is recognized by the program as “not healthy” under the following conditions:
+
+- One of the two sensors is at least 0.15 m/s slower than the other. Dust on the lens can prevent the sensor from accurately detecting changes in the ground, causing its reported speed to decrease. The slower sensor is then deactivated as “not healthy”.
+
+- If one sensor reports a speed greater than 2 m/s, it is also deactivated as “not healthy”.
+
+- If the sensor reports a position outside the playing field, it is likewise deactivated as “not healthy”.
+<div align="center">
+    <a href="img/flowdiagramm2.jpeg" target="_blank">
+        <img width="500" src="img/flowdiagramm2.jpeg">
+    </a>
+</div>
+
+When both sensors are healthy, we take the average of the readings of both sensors. Otherwise, we just take the data from the healthy sensor.
+
+## Position Corrections 
+Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases even more. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
+
+- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This can not be done while driving, because the lidar measurement is delayed by about 100 to 200ms, so we would already have moved on. 
+
+<div align="center">
+    <a href="img/lidarDelay.png" target="_blank">
+        <img width="500" src="img/lidarDelay.png" alt="LiDAR Messverzögerung">
+    </a>
+    <p><em>Abbildung: LiDAR-Messverzögerung von 100-200ms in der Kurve</em></p>
+</div>
+
+
+
+
+This type of repositioning has to be manually set up in the programm, after stopping the robot. This is done when we need a hight accuracy, for example before scanning the obstacles.
+
+
+- While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. For this, we do not use the complete 360° scan from the lidar, but we trigger the reposition automatically exactly when the front distance is measured by the lidar. On this way we reduce the delay of the lidar measurement. This kind of repositioning is automatically triggered when certain conditions are met:
+  - The lidar has just transmitted the distance to the front
+  - The robot has crossed the line to one of the corner squares and has a good visibility to the wall in front.
+
+
+
+### Reposition while driving (pseudocode)
+```
+if not in a curve reposition block and speed is safe:
+    bucketize heading to ~{0, ±90, 180}
+    choose wall direction accordingly and average nearby LiDAR samples
+    ensure wall visibility by quadrant gating
+    if measurement valid and quadrant changed since last:
+        correct x or y toward measured wall distance (with margin)
+        store lastQuadrant/currentReposition to avoid repetition
+```
+
+
+## Obstacle Recognition 
+This function detects and stores obstacles within each section of the course using the LiDAR and the camera. The process is divided into two parts:
+
+### Determining the Position of an Obstacle Within a Course Section
+
+The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course :The first two ones are directly after leaving the parking area,  after that at 4 additional points.
+
+<div align="center">
+    <a href="img/scanpunkte.png" target="_blank">
+        <img width="400" src="img/scanpunkte.png" alt="Scanpunkte auf dem Parcours">
+    </a>
+    <p><em>Figure: Strategic scanning points for obstacle detection on the course</em></p>
+</div>
+
+At these points the LiDAR determines at which of the six possible positions within the section in front of the robot the obstacles are located. 
+
+A list of coordinates was created for all possible obstacle positions. The LiDAR checks whether something is detected near (within a radius of 100 mm) any of these coordinates. If an obstacle is detected, the position is stored in a list.
+
+
+### Determining the Color of the Obstacle
+
+The camera is then used to identify the color of the obstacle. The object recognition is strongly based on the [WRO support document](https://world-robot-olympiad-association.github.io/future-engineers-gs/p04-cv/#objects-recognition) (WRO Future Engineers Getting Started). Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the horizontal distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map:
+
+<div align="center">
+    <a href="img/programmausgabe.jpg" target="_blank">
+        <img width="400" src="img/programmausgabe.jpg" alt="Programmausgabe Hinderniserkennung">
+    </a>
+    <p><em>Figure: Visualization of angle measurement for obstacle determination using camera and LiDAR</em></p>
+</div>
+
+### Complete Obstacle Detection Function
+
+The following function implements the complete obstacle detection and color recognition algorithm combining LiDAR and camera data:
+
+```python
+def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
+    """ :The first two ones are directly a   Detect obstacles using LiD, Aafter that d determine their colors using the camera.
+    
+    This function combines LiDAR distance measurements with camera color detection
+    to identify and classify obstacles at predefined positions on the competition field.
+    
+    Args:
+        scan: Array of LiDAR distance measurements (360 degrees)
+        toScan: List of obstacle indices to check (limits scanning to relevant positions)
+        camera: Camera object for capturing images and detecting colored obstacles
+        checkHeightNear: Boolean flag for near-distance obstacle detection mode
+        
+    Returns:
+        found: Total number of LiDAR points detected near obstacles
+    """
+    found = 0
+    
+    # Set detection threshold based on distance
+    # Near obstacles require fewer LiDAR points for reliable detection
+    if checkHeightNear:
+        dotsNeeded = 1  # Lower threshold for near obstacles
+    else:
+        dotsNeeded = 0  # Standard threshold for distant obstacles
+    
+    # Capture camera image for color detection
+    camera.captureImage(checkHeightNear)
+    
+    # Step 1: Convert LiDAR polar coordinates to Cartesian world coordinates
+    xposes = []
+    yposes = []
+    for i in range(len(scan)):
+        # Convert degree angle to radians and account for robot's current heading
+        rad = (i + self.angle) / 180 * math.pi
+        # Calculate world coordinates from LiDAR angle scan
+        xposes.append(math.cos(rad) * -scan[i] + self.xpos) 
+        yposes.append(math.sin(rad) * scan[i] + self.ypos)  
+
+    # Step 2: Check each predefined obstacle position against LiDAR data
+    # hindernisse = the predefined possible obstacle positions
+    for i in range(len(self.hindernisse)):
+        # toScan = which obstacles should currently be checked (performance optimization)
+        if i in toScan:
+            # Reset obstacle status to "nothing detected"
+            self.hindernisse[i].farbe = Hindernisse.NICHTS
+            dots = 0        # Counter for LiDAR points near this obstacle position
+            angles = []     # List to store angles of detected points
+            
+            # Step 3: Check if obstacle is near any LiDAR points
+            for b in range(len(xposes)):
+                # Calculate if LiDAR point is within 120mm radius of expected obstacle position
+                # and has valid distance reading (> 200mm filters out noise)
+                if (math.pow((xposes[b] - self.hindernisse[i].x), 2) + 
+                    math.pow((yposes[b] - self.hindernisse[i].y), 2) < math.pow(120, 2)) and (self.scan[b] > 200):
+                    dots += 1           # Count detected point
+                    angles.append(b)    # Store angle index for camera matching
+            
+            # Step 4: If sufficient LiDAR points detected, process obstacle
+            if dots > dotsNeeded:
+                found += dots  # Add to total detection count
+                
+                # Calculate average angle to obstacle for camera alignment
+                angle = 0
+                for c in angles:
+                    # Normalize angle to [-180, 180] range
+                    while c > 180:
+                        c -= 360
+                    angle += c
+                # Average angle points to the center of detected obstacle
+                angle = angle / len(angles)
+                angle = -angle  # Coordinate system correction
+                
+                # Step 5: Match LiDAR detection with camera color detection
+                # Find camera-detected block closest to calculated LiDAR angle
+                closestAngle = 0
+                for d in range(len(camera.blocksAngle)):
+                    # Find the camera block with angle closest to LiDAR angle
+                    if abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle):
+                        closestAngle = d
+                
+                # Step 6: Assign color to detected obstacle based on camera detection
+                if len(camera.blocksAngle) > 0:
+                    # Color detected by camera - assign it to obstacle
+                    if camera.blocksColor[closestAngle] == camera.RED:
+                        self.hindernisse[i].farbe = Hindernisse.RED
+                    if camera.blocksColor[closestAngle] == camera.GREEN:
+                        self.hindernisse[i].farbe = Hindernisse.GREEN
+                else:
+                    # Fallback: if no camera detection, assume RED
+                    # This ensures we still avoid obstacles even if color detection fails
+                    self.hindernisse[i].farbe = Hindernisse.RED
+    
+    return found
+```
+
+#### Angle width and color assignment (implementation note)
+- An obstacle’s acceptable camera angle window is distance‑dependent: angular_width = 2·atan(diameter/(2·distance)).
+- A camera detection is accepted only if `|angle_cam − angle_lidar| < angular_width`. If no camera block falls within this window, the obstacle color remains “nothing”.
+- SCAN robustness: each SCAN is retried once if it found nothing, forcing a fresh LiDAR update to reduce false negatives.
+
+ ## Navigation strategy open challenge 
+
+For the open challenge, we navigate using simple fixed waypoints. They are chosen in a way that they work independent of the inner wall configuration.
+
+### Complete Code for Waypoint Generation
+
+
+```python
+        if slam.direction == slam.CW:  #  open challenge CW                                               
+            
+            
+            orders.append(Order(x=450, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=100))
+            
+            for i in range(0,3):
+                if i >= 1:
+                    orders.append(Order(x=450, y=2700,speed=speedi,brake=0,type=Order.DESTINATION,num=101))
+                orders.append(Order(x=300, y=450,speed=speedi,brake=0,type=Order.DESTINATION,num=102))
+                orders.append(Order(x=2550, y=300,speed=speedi,brake=0,type=Order.DESTINATION,num=103))
+                orders.append(Order(x=2700, y=2550,speed=speedi,brake=0,type=Order.DESTINATION,num=104))
+            
+            orders.append(Order(x=1500, y=2700,speed=speedi,brake=1,type=Order.DESTINATION,num=105))
+        else:  #  open challenge CCW                                                                                               
+            orders.append(Order(x=2550, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=105))
+            
+            for i in range(0,3):
+                if i >= 1:
+                    orders.append(Order(x=2550, y=2700,speed=speedi,brake=0,type=Order.DESTINATION,num=106))
+                orders.append(Order(x=2700, y=450,speed=speedi,brake=0,type=Order.DESTINATION,num=107))
+                orders.append(Order(x=450, y=300,speed=speedi,brake=0,type=Order.DESTINATION,num=108))
+                orders.append(Order(x=300, y=2550,speed=speedi,brake=0,type=Order.DESTINATION,num=109))
+            
+            orders.append(Order(x=1500, y=2700,speed=speedi,brake=1,type=Order.DESTINATION,num=110))
+```
+
+
+
+
+
+## Navigation Strategy Obstacle Challenge
+
+The obstacle challenge is seperated in different phases:
+
+### Overall flow (Obstacle Challenge)
+
+```mermaid
+flowchart TD
+    S[Start / 'v' pressed] --> Init[Reset OTOS, set start pose via LiDAR]
+    Init --> Dir{CW or CCW}
+    Dir -->|CW| UnparkCW[unparkCW: turn + immediate scan]
+    Dir -->|CCW| UnparkCCW[unparkCCW: turn + immediate scan]
+    UnparkCW --> ScanLap[scanRound x4 (each quadrant)]
+    UnparkCCW --> ScanLap
+    ScanLap --> Repos[Face -90° and reposition]
+    Repos --> Drive1[driveRound x4 (lap 2)]
+    Drive1 --> Drive2[driveRound x4 (lap 3)]
+    Drive2 --> Park[park(): wall scan + iterative alignment]
+    Park --> End[Finish]
+```
+
+### Unparking
+First we leave the parking spot. Before completing the unparking, we have to do our first scan to check for an obstacle in the middle position.
+
+#### Unparking (pseudocode)
+```
+if CW:
+    turn right (~-90°)
+    SCAN middle slot (index 2)
+    if RED in middle: drive via safe waypoints A
+    elif GREEN in middle: drive via safe waypoints B
+    else:
+        drive to second scan region; SCAN; branch by color
+else:  # CCW
+    turn left (~+90°)
+    SCAN middle slot (index 0)
+    if GREEN in middle: drive via safe waypoints C
+    else: drive via safe waypoints D
+```
+
+### First Round: Scanning
+We drive one complete round and scan for obstacles on the way. For scanning the obstacles, we drive to fixed positions where we can scan all 6 positions on one part of the track. To scan all obstacles at one, we made sure the car is positioned exactly in the middle between the two front obstacle positions.
+
+<div align="center">
+    <a href="img/allobstacles.png" target="_blank">
+        <img width="600" src="img/allobstacles.png" alt="Alle Hindernispositionen im Überblick">
+    </a>
+    <p><em>Figure: The robot can detect all 6 possible traffic signs’ seats from its current location</em></p>
+</div>
+
+After that, we choose the correct waypoints to drive to the next scan point. 
+
+#### Scan lap (pseudocode)
+```
+face -90°; WINKEL(-90)
+REPOSITION(-90)
+short reverse curve to align
+go to scan pose A; SCAN near pair (toScan=scan1)
+SCAN remaining pair(s) (toScan=scan2)
+choose lane x (200/400/800 mm) for next segment based on inner/outer presence
+move to middle y (~1000–1200 mm) with safe x
+```
+
+### Second and Third Round
+
+On the second and third round, we do not scan for obstacles anymore. The positions are remembered from the first round.
+
+### Parking
+
+To get all points possible we chosed to implement the paralel parking challenge. We tried many different strategys. What worked best was driving backwards perpendicular to the wall and then swing in with maximum steering angle. The position must be very accurate, so we do several repositions and drive front and back several times if needed until the measured position is accurate enough.
+The neccesary position accuracy for the starting point of this manuver is about +-5 cm in the x-direction and +- 3 cm in the y-direction. 
+
+
+### Obstacle avoidance waypoint generation
+
+Based on the scanned obstacles, we generate waypoints to drive around them on the right side.
+To make the programm less complex, we do not differentiate if the obstacle is on the inner or the outer side. We always drive in a way so we avoid both. This resolves to 4 different patterns to drive around one set of obstacles: 
+
+<div align="center">
+    <a href="img/route1.jpg" target="_blank">
+        <img width="600" src="img/route1.jpg" alt="die möglichen Routen">
+    </a>
+    <p><em>Figure: If the robot scans red–green, it follows this route.</em></p>
+</div>
+<br>
+<div align="center">
+    <a href="img/route2.jpg" target="_blank">
+        <img width="600" src="img/route2.jpg" alt="die möglichen Routen">
+    </a>
+    <p><em>Figure: If the robot scans green-red, it follows this route.</em></p>
+</div>
+<BR>
+<div align="center">
+    <a href="img/route3.jpg" target="_blank">
+        <img width="600" src="img/route3.jpg" alt="die möglichen Routen">
+    </a>
+    <p><em>Figure: If the robot scans red once or twice, it follows this route, regardless of the obstacle positions.</em></p>
+</div>
+<BR>
+<div align="center">
+    <a href="img/route4.jpg" target="_blank">
+        <img width="600" src="img/route4.jpg" alt="die möglichen Routen">
+    </a>
+    <p><em>Figure: If the robot scans green once or twice, it follows this route, regardless of the obstacle positions.</em></p>
+</div>
+
+Additiional logic is needed to transition from one pattern to another pattern on the next segment.
+
+#### Rotation mapping
+Waypoints are defined once for a reference corner/segment and reused by rotation/mirroring via `Order(rotation=…)`.
+- Clockwise: `0, 90, 180, 270`
+- Counter‑clockwise: `1000, 1090, 1180, 1500`
+Target angles and `angleCheckOverwrite` are transformed in `Order.__init__`.
+
+#### Source Code: driveRound.py
+
+The `driveRound()` function generates the waypoints for the second and third round. 
+
+```python
+    
+def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart, last = False):
+    """
+    Generate adaptive waypoints for navigating one section of the obstacle challenge course.
+    This function analyzes detected obstacles and generates appropriate waypoints to navigate around them
+    while staying on the correct side of the field based on obstacle colors (red/green).
+   
+    Args:
+        orders: Command queue for robot navigation (list of Order objects)
+        Order: Order class for creating navigation commands
+        waitCompleteOrders: Function to wait for command queue completion
+        checkForColor: Function to check if specific color obstacle exists in range
+                      checkForColor(color, startIdx, endIdx) -> bool
+        rotation: Direction identifier (0-999=CW, 1000+=CCW)
+                 Specific values: 0=CW-0°, 90=CW-90°, 180=CW-180°, 270=CW-270°
+                                 1000=CCW-0°, 1090=CCW-90°, 
+        scanStart: Starting index for obstacle scanning 
+                  Identifies which of 3 sections we're currently navigating
+        last: Boolean flag indicating if this is the last section before parking
+    
+    """
+    
+    # Step 1: Determine direction and configure obstacle colors
+    if (rotation >= 1000):
+        # Counter-clockwise direction (rotation IDs 1000-1999)
+        direction = Order.CCW
+        # Adjust scan indices for CCW (wrap around with -12 offset for negative indices)
+        scan1=(scanStart+8-12, scanStart+12-12)  # Destination area obstacles (far pair)
+        scan2=(scanStart+6-12, scanStart+10-12)  # Destination area obstacles (near pair)
+        scan3=(scanStart+4, scanStart+6)         # Source area obstacles (near pair)
+        scan4=(scanStart, scanStart+4)           # Source area obstacles (close pair)
+        outer=Hindernisse.RED    # Outer obstacles (toward walls) are RED in CCW
+        inner=Hindernisse.GREEN  # Inner obstacles (toward center) are GREEN in CCW
+    else:
+        # Clockwise direction (rotation IDs 0-999)
+        direction = Order.CW
+        scan1=(scanStart+6, scanStart+10)   # Destination area obstacles (near pair)
+        scan2=(scanStart+8, scanStart+12)   # Destination area obstacles (far pair)
+        scan3=(scanStart, scanStart+4)      # Source area obstacles (close pair)
+        scan4=(scanStart+4, scanStart+6)    # Source area obstacles (near pair)
+        outer=Hindernisse.GREEN  # Outer obstacles (toward walls) are GREEN in CW
+        inner=Hindernisse.RED    # Inner obstacles (toward center) are RED in CW
+    
+    speedi = 0.5  # Target speed in m/s (constant throughout section)
+
+    # Step 2: Analyze obstacle configuration in source and destination areas
+    # Determine if inner obstacles are present in source area (where robot currently is)
+    # Logic: Inner obstacles present if:
+    #   - scan4 (close pair) has inner color, OR
+    #   - scan4 has no outer color AND scan3 (near pair) has inner color
+    # This handles cases where only one obstacle is present in the area
+    sinside= checkForColor(inner, scan4[0], scan4[1])  or ((not checkForColor(outer, scan4[0], scan4[1])) and checkForColor(inner, scan3[0], scan3[1]))
+    
+    # Determine if inner obstacles are present in destination area (where robot is heading)
+    # Same logic applied to destination scan ranges (scan1 and scan2)
+    dinside= checkForColor(inner, scan1[0], scan1[1])  or ((not checkForColor(outer, scan1[0], scan1[1])) and checkForColor(inner, scan2[0], scan2[1]))
+    
+    # Step 3: Generate waypoints for first part of section (vertical movement, upper area)
+    # Decision based on source area obstacle configuration in scan3 (near pair)
+    # This determines the x-coordinate: 200mm (tight), 400mm (medium), or 800mm (wide)
+    if checkForColor(inner, scan3[0], scan3[1]) or (not checkForColor(outer, scan3[0], scan3[1]) and checkForColor(inner, scan4[0], scan4[1])):
+        # Inner obstacles detected in source area - must take wide path to avoid them
+        # Use x=800mm to stay safely away from center obstacles
+        orders.append(Order(x=800, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=14, rotation=rotation))
+        orders.append(Order(x=800, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=15, rotation=rotation))
+    else:
+        # No inner obstacles in immediate area - can take tighter path closer to inner wall
+        if rotation != 90 and rotation != 1500:
+            # Standard tight path at x=200mm (most sections)
+            orders.append(Order(x=200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=16, rotation=rotation))
+            orders.append(Order(x=200, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=17, rotation=rotation))
+        else:
+            # Special case for 90-degree rotations - slightly wider at x=400mm
+            # These rotations need more clearance due to approach angle
+            orders.append(Order(x=400, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=22, rotation=rotation))
+            orders.append(Order(x=400, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=23, rotation=rotation))
+
+    # Step 4: Generate waypoints for middle part of section (transition area)
+    # This waypoint (y≈1000-1200mm) is critical as it's in the zone where both
+    # source and destination obstacles can affect the path
+    # Must consider both obstacle configurations to choose safe x-coordinate
+    if checkForColor(inner, scan4[0], scan4[1]) or (not checkForColor(outer, scan4[0], scan4[1]) and checkForColor(inner, scan3[0], scan3[1])):
+        # Source area has inner obstacles - already on wide path (x=800)
+        if dinside:
+            # Destination also has inner obstacles - stay wide and slightly higher
+            # y=1050mm gives more clearance when transitioning between obstacle zones
+            orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
+        else:
+            # Destination is clear - can move to lower y-coordinate
+            # y=1000mm for tighter transition
+            orders.append(Order(x=800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=19, rotation=rotation))
+    
+    else:
+        # Source area clear of inner obstacles - on tight path (x=200 or x=400)
+        if rotation != 90 and rotation != 1500:
+            # Standard tight path continues at x=200mm
+            # y=1100mm provides clearance when approaching destination area
+            orders.append(Order(x=200, y=1100,speed=speedi,brake=0,type=Order.DESTINATION,num=20, rotation=rotation))
+        else:
+            # Special 90-degree rotations continue at x=400mm
+            orders.append(Order(x=400, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=24, rotation=rotation))
+
+    # Step 5: Generate corner waypoint for section transition (if not last section)
+    # The corner waypoint positions the robot for the next section
+    # Skip if this is the last section - robot will proceed to parking instead
+    if not last:
+        # Re-evaluate obstacle configuration for more precise corner placement
+        # This is necessary as we need final source/destination assessment
+        sinside= checkForColor(inner, scan4[0], scan4[1])  or ((not checkForColor(outer, scan4[0], scan4[1])) and checkForColor(inner, scan3[0], scan3[1]))
+        dinside= checkForColor(inner, scan1[0], scan1[1])  or ((not checkForColor(outer, scan1[0], scan1[1])) and checkForColor(inner, scan2[0], scan2[1]))
+        
+        # Debug output to verify obstacle detection logic
+        print("Rotation: ",rotation, "  sinside: " ,sinside, "   dinside: ",dinside)
+        
+        # Choose corner waypoint based on combined source/destination obstacle configuration
+        # Different corners needed for different rotation angles (standard vs 180-degree)
+        if rotation != 180 and rotation != 1180:
+            # Standard corner positions (most rotations: 0°, 90°, 270°)
+            if ( sinside and not  dinside):
+                # Source has inner obstacles, destination is outer-only
+                # Use moderate corner at (600, 550) - wider x to clear source obstacles
+                orders.append(Order(x=600, y=550,speed=speedi,brake=0,type=Order.DESTINATION,num=26, rotation=rotation))
+            if ( not sinside and dinside):
+                # Source is outer-only, destination has inner obstacles
+                # Use higher corner at (400, 800) - extra y clearance for destination
+                orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=27, rotation=rotation))
+            if ( not sinside and  not dinside):
+                # Both areas have outer obstacles only - tightest safe corner
+                # Use tight corner at (400, 500) for most efficient path
+                orders.append(Order(x=400, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=28, rotation=rotation))
+        else:
+            # Special corner positions for 180-degree rotations
+            # These rotations approach from opposite direction, need adjusted clearances
+            if ( sinside and not  dinside):
+                # Source inner, destination outer - wider corner needed
+                orders.append(Order(x=700, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=261, rotation=rotation))
+            if ( not sinside and dinside):
+                # Source outer, destination inner - similar to standard
+                orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=272, rotation=rotation))
+            if ( not sinside and  not dinside):
+                # Both outer - slightly modified tight corner for 180° approach
+                orders.append(Order(x=450, y=550,speed=speedi,brake=0,type=Order.DESTINATION,num=283, rotation=rotation))
+```
+
+
+
+### Possible improvements:
+
+
+
+
+#### Angle measurement
+Currently we do not measure the heading during the course, but rely on the gyroscope. However, the gyroscope drifts noticable during the course.
+The heading could be updated by measuring the angle of the walls with the lidar.
+
+#### Waypoint optimizations
+The waypoint generation could be expanded to take inner and outer waypoints and some other details into account. This would allow shorter (and therefore fatster) courses and more obstacle clearence.
+
+#### Wall position (open challenge)
+The wall position on the open challenge could be detected and different waypoints generated. On this way a shorter (faster) course could be driven,
+
+#### Speed optimization
+General driving speed can be increased until the course gets unreliable.
+Driving speed on uncritical parts could be increased even more.
 <br><br><br>
 
 # Code for all components
@@ -1526,513 +2129,6 @@ right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
 
 - **Backup navigation modes**: Implement fallback navigation strategies when primary sensors fail, such as wall-following or simple waypoint navigation.
 
-
-<br><br><br>
-
-# Obstacle management
-
-
-## Coordinate system
-To understand our overall strategy, it is important to understand the basics our system is build on.
-Our robot uses a Cartesian coordinate system to navigate the WRO Future Engineers field:
-
-### Coordinate dimensions and origin
-- **Field Size**: 3000mm × 3000mm square
-- **Origin (0, 0)**: Located at the **top-left corner** of the field 
-- **X-axis**: Increases from left to right (0mm to 3000mm)
-- **Y-axis**: Increases from top to bottom (0mm to 3000mm)
-- **Units**: All coordinates are specified in millimeters (mm)
-
-### Coordinate system properties
-1. **Absolute Positioning**: The coordinate system is field-absolute, not robot-relative
-2. **Origin Alignment**: The origin remains fixed at the top-left corner regardless of robot orientation
-
-### Heading angle convention
-- **0°**: Robot facing in the negative X direction (to the left)
-- **90°**: Robot facing in the positive Y direction (downward)
-- **+-180°**: Robot facing in the positive X direction (to the right)
-- **-90°**: Robot facing in the negative Y direction (upward)
-
-## Waypoint Navigation System
-
-Waypoints are target coordinates that the robot navigates to sequentially. Each waypoint specifies (x, y) coordinates in millimeters. We have defined a structure that stores waypoints together with a command. These are added to a queue and are executed in order. Several commands are available. 
-
-### Command Example: Drive to Coordinate 450/2500 
-```python
-orders.append(Order(x=450, y=2500, speed=0.75, brake=0, type=Order.DESTINATION, num=100, rotation=0))
-```
-
-### Command Example: Turn Robot CCW to a Heading of -90°
-```python
-orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CCW, type=Order.WINKEL)))
-```
-<br><br>
-## Initial Location Acquisition 
-The inital position is aquired by mneasuring the distance to the borders with the lidar.
-
-The starting direction is determinded based on its position on the mat. 
-
-For the Open Challenge, there are four different positions where we can place the robot, which allow it to recognize how it must drive. These four options result from the fact that there are two possible starting sections and two directions of travel.
-
-In the Obstacle Challenge, two different positions are possible. Here as well, the robot uses the LiDAR to detect its position and then knows which direction it needs to drive.
-
-<div align="center">
-    <a href="img/flowdiagrammstart.jpeg" target="_blank">
-        <img width="500" src="img/flowdiagrammstart.jpeg">
-    </a>
-</div>
-
-
- <br><br>
-## Position Updates During Driving 
-
-### Optical Tracking Sensor Function 
-For continuous position tracking, we use two optical tracking sensors. A downward-facing camera inside the sensor captures 20,000 images per second. Based on changes in the images, the sensor detects movement across the surface. Additionally, the sensor has a built-in gyroscope. Using data from the gyroscope and the movement across the ground, the sensor automatically calculates the current coordinates.
-
-### Sensor Failure Detection / Health Status 
-Two optical tracking sensors were installed to increase redundancy. If one sensor fails, for example due to dust on the lens, the robot can still accurately determine its position. A sensor is recognized by the program as “not healthy” under the following conditions:
-
-- One of the two sensors is at least 0.15 m/s slower than the other. Dust on the lens can prevent the sensor from accurately detecting changes in the ground, causing its reported speed to decrease. The slower sensor is then deactivated as “not healthy”.
-
-- If one sensor reports a speed greater than 2 m/s, it is also deactivated as “not healthy”.
-
-- If the sensor reports a position outside the playing field, it is likewise deactivated as “not healthy”.
-<div align="center">
-    <a href="img/flowdiagramm2.jpeg" target="_blank">
-        <img width="500" src="img/flowdiagramm2.jpeg">
-    </a>
-</div>
-
-When both sensors are healthy, we take the average of the readings of both sensors. Otherwise, we just take the data from the healthy sensor.
-
-## Position Corrections 
-Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases even more. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
-
-- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This can not be done while driving, because the lidar measurement is delayed by about 100 to 200ms, so we would already have moved on. 
-
-<div align="center">
-    <a href="img/lidarDelay.png" target="_blank">
-        <img width="500" src="img/lidarDelay.png" alt="LiDAR Messverzögerung">
-    </a>
-    <p><em>Abbildung: LiDAR-Messverzögerung von 100-200ms in der Kurve</em></p>
-</div>
-
-
-
-
-This type of repositioning has to be manually set up in the programm, after stopping the robot. This is done when we need a hight accuracy, for example before scanning the obstacles.
-
-
-- While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. For this, we do not use the complete 360° scan from the lidar, but we trigger the reposition automatically exactly when the front distance is measured by the lidar. On this way we reduce the delay of the lidar measurement. This kind of repositioning is automatically triggered when certain conditions are met:
-  - The lidar has just transmitted the distance to the front
-  - The robot has crossed the line to one of the corner squares and has a good visibility to the wall in front.
-
-
-
-
-## Obstacle Recognition 
-This function detects and stores obstacles within each section of the course using the LiDAR and the camera. The process is divided into two parts:
-
-### Determining the Position of an Obstacle Within a Course Section
-
-The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course :The first two ones are directly after leaving the parking area,  after that at 4 additional points.
-
-<div align="center">
-    <a href="img/scanpunkte.png" target="_blank">
-        <img width="400" src="img/scanpunkte.png" alt="Scanpunkte auf dem Parcours">
-    </a>
-    <p><em>Figure: Strategic scanning points for obstacle detection on the course</em></p>
-</div>
-
-At these points the LiDAR determines at which of the six possible positions within the section in front of the robot the obstacles are located. 
-
-A list of coordinates was created for all possible obstacle positions. The LiDAR checks whether something is detected near (within a radius of 100 mm) any of these coordinates. If an obstacle is detected, the position is stored in a list.
-
-
-### Determining the Color of the Obstacle
-
-The camera is then used to identify the color of the obstacle. The object recognition is strongly based on the [WRO support document](https://world-robot-olympiad-association.github.io/future-engineers-gs/p04-cv/#objects-recognition) (WRO Future Engineers Getting Started). Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the horizontal distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map:
-
-<div align="center">
-    <a href="img/programmausgabe.jpg" target="_blank">
-        <img width="400" src="img/programmausgabe.jpg" alt="Programmausgabe Hinderniserkennung">
-    </a>
-    <p><em>Figure: Visualization of angle measurement for obstacle determination using camera and LiDAR</em></p>
-</div>
-
-### Complete Obstacle Detection Function
-
-The following function implements the complete obstacle detection and color recognition algorithm combining LiDAR and camera data:
-
-```python
-def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
-    """ :The first two ones are directly a   Detect obstacles using LiD, Aafter that d determine their colors using the camera.
-    
-    This function combines LiDAR distance measurements with camera color detection
-    to identify and classify obstacles at predefined positions on the competition field.
-    
-    Args:
-        scan: Array of LiDAR distance measurements (360 degrees)
-        toScan: List of obstacle indices to check (limits scanning to relevant positions)
-        camera: Camera object for capturing images and detecting colored obstacles
-        checkHeightNear: Boolean flag for near-distance obstacle detection mode
-        
-    Returns:
-        found: Total number of LiDAR points detected near obstacles
-    """
-    found = 0
-    
-    # Set detection threshold based on distance
-    # Near obstacles require fewer LiDAR points for reliable detection
-    if checkHeightNear:
-        dotsNeeded = 1  # Lower threshold for near obstacles
-    else:
-        dotsNeeded = 0  # Standard threshold for distant obstacles
-    
-    # Capture camera image for color detection
-    camera.captureImage(checkHeightNear)
-    
-    # Step 1: Convert LiDAR polar coordinates to Cartesian world coordinates
-    xposes = []
-    yposes = []
-    for i in range(len(scan)):
-        # Convert degree angle to radians and account for robot's current heading
-        rad = (i + self.angle) / 180 * math.pi
-        # Calculate world coordinates from LiDAR angle scan
-        xposes.append(math.cos(rad) * -scan[i] + self.xpos) 
-        yposes.append(math.sin(rad) * scan[i] + self.ypos)  
-
-    # Step 2: Check each predefined obstacle position against LiDAR data
-    # hindernisse = the predefined possible obstacle positions
-    for i in range(len(self.hindernisse)):
-        # toScan = which obstacles should currently be checked (performance optimization)
-        if i in toScan:
-            # Reset obstacle status to "nothing detected"
-            self.hindernisse[i].farbe = Hindernisse.NICHTS
-            dots = 0        # Counter for LiDAR points near this obstacle position
-            angles = []     # List to store angles of detected points
-            
-            # Step 3: Check if obstacle is near any LiDAR points
-            for b in range(len(xposes)):
-                # Calculate if LiDAR point is within 120mm radius of expected obstacle position
-                # and has valid distance reading (> 200mm filters out noise)
-                if (math.pow((xposes[b] - self.hindernisse[i].x), 2) + 
-                    math.pow((yposes[b] - self.hindernisse[i].y), 2) < math.pow(120, 2)) and (self.scan[b] > 200):
-                    dots += 1           # Count detected point
-                    angles.append(b)    # Store angle index for camera matching
-            
-            # Step 4: If sufficient LiDAR points detected, process obstacle
-            if dots > dotsNeeded:
-                found += dots  # Add to total detection count
-                
-                # Calculate average angle to obstacle for camera alignment
-                angle = 0
-                for c in angles:
-                    # Normalize angle to [-180, 180] range
-                    while c > 180:
-                        c -= 360
-                    angle += c
-                # Average angle points to the center of detected obstacle
-                angle = angle / len(angles)
-                angle = -angle  # Coordinate system correction
-                
-                # Step 5: Match LiDAR detection with camera color detection
-                # Find camera-detected block closest to calculated LiDAR angle
-                closestAngle = 0
-                for d in range(len(camera.blocksAngle)):
-                    # Find the camera block with angle closest to LiDAR angle
-                    if abs(camera.blocksAngle[d] - angle) < abs(camera.blocksAngle[closestAngle] - angle):
-                        closestAngle = d
-                
-                # Step 6: Assign color to detected obstacle based on camera detection
-                if len(camera.blocksAngle) > 0:
-                    # Color detected by camera - assign it to obstacle
-                    if camera.blocksColor[closestAngle] == camera.RED:
-                        self.hindernisse[i].farbe = Hindernisse.RED
-                    if camera.blocksColor[closestAngle] == camera.GREEN:
-                        self.hindernisse[i].farbe = Hindernisse.GREEN
-                else:
-                    # Fallback: if no camera detection, assume RED
-                    # This ensures we still avoid obstacles even if color detection fails
-                    self.hindernisse[i].farbe = Hindernisse.RED
-    
-    return found
-```
-
- ## Navigation strategy open challenge 
-
-For the open challenge, we navigate using simple fixed waypoints. They are chosen in a way that they work independent of the inner wall configuration.
-
-### Complete Code for Waypoint Generation
-
-
-```python
-        if slam.direction == slam.CW:  #  open challenge CW                                               
-            
-            
-            orders.append(Order(x=450, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=100))
-            
-            for i in range(0,3):
-                if i >= 1:
-                    orders.append(Order(x=450, y=2700,speed=speedi,brake=0,type=Order.DESTINATION,num=101))
-                orders.append(Order(x=300, y=450,speed=speedi,brake=0,type=Order.DESTINATION,num=102))
-                orders.append(Order(x=2550, y=300,speed=speedi,brake=0,type=Order.DESTINATION,num=103))
-                orders.append(Order(x=2700, y=2550,speed=speedi,brake=0,type=Order.DESTINATION,num=104))
-            
-            orders.append(Order(x=1500, y=2700,speed=speedi,brake=1,type=Order.DESTINATION,num=105))
-        else:  #  open challenge CCW                                                                                               
-            orders.append(Order(x=2550, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=105))
-            
-            for i in range(0,3):
-                if i >= 1:
-                    orders.append(Order(x=2550, y=2700,speed=speedi,brake=0,type=Order.DESTINATION,num=106))
-                orders.append(Order(x=2700, y=450,speed=speedi,brake=0,type=Order.DESTINATION,num=107))
-                orders.append(Order(x=450, y=300,speed=speedi,brake=0,type=Order.DESTINATION,num=108))
-                orders.append(Order(x=300, y=2550,speed=speedi,brake=0,type=Order.DESTINATION,num=109))
-            
-            orders.append(Order(x=1500, y=2700,speed=speedi,brake=1,type=Order.DESTINATION,num=110))
-```
-
-
-
-
-
-## Navigation Strategy Obstacle Challenge
-
-The obstacle challenge is seperated in different phases:
-
-### Unparking
-First we leave the parking spot. Before completing the unparking, we have to do our first scan to check for an obstacle in the middle position.
-
-### First Round: Scanning
-We drive one complete round and scan for obstacles on the way. For scanning the obstacles, we drive to fixed positions where we can scan all 6 positions on one part of the track. To scan all obstacles at one, we made sure the car is positioned exactly in the middle between the two front obstacle positions.
-
-<div align="center">
-    <a href="img/allobstacles.png" target="_blank">
-        <img width="600" src="img/allobstacles.png" alt="Alle Hindernispositionen im Überblick">
-    </a>
-    <p><em>Figure: The robot can detect all 6 possible traffic signs’ seats from its current location</em></p>
-</div>
-
-After that, we choose the correct waypoints to drive to the next scan point. 
-
-### Second and Third Round
-
-On the second and third round, we do not scan for obstacles anymore. The positions are remembered from the first round.
-
-### Parking
-
-To get all points possible we chosed to implement the paralel parking challenge. We tried many different strategys. What worked best was driving backwards perpendicular to the wall and then swing in with maximum steering angle. The position must be very accurate, so we do several repositions and drive front and back several times if needed until the measured position is accurate enough.
-The neccesary position accuracy for the starting point of this manuver is about +-5 cm in the x-direction and +- 3 cm in the y-direction. 
-
-
-### Obstacle avoidance waypoint generation
-
-Based on the scanned obstacles, we generate waypoints to drive around them on the right side.
-To make the programm less complex, we do not differentiate if the obstacle is on the inner or the outer side. We always drive in a way so we avoid both. This resolves to 4 different patterns to drive around one set of obstacles: 
-
-<div align="center">
-    <a href="img/route1.jpg" target="_blank">
-        <img width="600" src="img/route1.jpg" alt="die möglichen Routen">
-    </a>
-    <p><em>Figure: If the robot scans red–green, it follows this route.</em></p>
-</div>
-<br>
-<div align="center">
-    <a href="img/route2.jpg" target="_blank">
-        <img width="600" src="img/route2.jpg" alt="die möglichen Routen">
-    </a>
-    <p><em>Figure: If the robot scans green-red, it follows this route.</em></p>
-</div>
-<BR>
-<div align="center">
-    <a href="img/route3.jpg" target="_blank">
-        <img width="600" src="img/route3.jpg" alt="die möglichen Routen">
-    </a>
-    <p><em>Figure: If the robot scans red once or twice, it follows this route, regardless of the obstacle positions.</em></p>
-</div>
-<BR>
-<div align="center">
-    <a href="img/route4.jpg" target="_blank">
-        <img width="600" src="img/route4.jpg" alt="die möglichen Routen">
-    </a>
-    <p><em>Figure: If the robot scans green once or twice, it follows this route, regardless of the obstacle positions.</em></p>
-</div>
-
-Additiional logic is needed to transition from one pattern to another pattern on the next segment.
-
-To make the code as compact as possible, the waypoint generation code is only done for one corner and one straight segement. It is then rotated for the other segments.
-
-#### Source Code: driveRound.py
-
-The `driveRound()` function generates the waypoints for the second and third round. 
-
-```python
-    
-def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart, last = False):
-    """
-    Generate adaptive waypoints for navigating one section of the obstacle challenge course.
-    This function analyzes detected obstacles and generates appropriate waypoints to navigate around them
-    while staying on the correct side of the field based on obstacle colors (red/green).
-   
-    Args:
-        orders: Command queue for robot navigation (list of Order objects)
-        Order: Order class for creating navigation commands
-        waitCompleteOrders: Function to wait for command queue completion
-        checkForColor: Function to check if specific color obstacle exists in range
-                      checkForColor(color, startIdx, endIdx) -> bool
-        rotation: Direction identifier (0-999=CW, 1000+=CCW)
-                 Specific values: 0=CW-0°, 90=CW-90°, 180=CW-180°, 270=CW-270°
-                                 1000=CCW-0°, 1090=CCW-90°, 
-        scanStart: Starting index for obstacle scanning 
-                  Identifies which of 3 sections we're currently navigating
-        last: Boolean flag indicating if this is the last section before parking
-    
-    """
-    
-    # Step 1: Determine direction and configure obstacle colors
-    if (rotation >= 1000):
-        # Counter-clockwise direction (rotation IDs 1000-1999)
-        direction = Order.CCW
-        # Adjust scan indices for CCW (wrap around with -12 offset for negative indices)
-        scan1=(scanStart+8-12, scanStart+12-12)  # Destination area obstacles (far pair)
-        scan2=(scanStart+6-12, scanStart+10-12)  # Destination area obstacles (near pair)
-        scan3=(scanStart+4, scanStart+6)         # Source area obstacles (near pair)
-        scan4=(scanStart, scanStart+4)           # Source area obstacles (close pair)
-        outer=Hindernisse.RED    # Outer obstacles (toward walls) are RED in CCW
-        inner=Hindernisse.GREEN  # Inner obstacles (toward center) are GREEN in CCW
-    else:
-        # Clockwise direction (rotation IDs 0-999)
-        direction = Order.CW
-        scan1=(scanStart+6, scanStart+10)   # Destination area obstacles (near pair)
-        scan2=(scanStart+8, scanStart+12)   # Destination area obstacles (far pair)
-        scan3=(scanStart, scanStart+4)      # Source area obstacles (close pair)
-        scan4=(scanStart+4, scanStart+6)    # Source area obstacles (near pair)
-        outer=Hindernisse.GREEN  # Outer obstacles (toward walls) are GREEN in CW
-        inner=Hindernisse.RED    # Inner obstacles (toward center) are RED in CW
-    
-    speedi = 0.5  # Target speed in m/s (constant throughout section)
-
-    # Step 2: Analyze obstacle configuration in source and destination areas
-    # Determine if inner obstacles are present in source area (where robot currently is)
-    # Logic: Inner obstacles present if:
-    #   - scan4 (close pair) has inner color, OR
-    #   - scan4 has no outer color AND scan3 (near pair) has inner color
-    # This handles cases where only one obstacle is present in the area
-    sinside= checkForColor(inner, scan4[0], scan4[1])  or ((not checkForColor(outer, scan4[0], scan4[1])) and checkForColor(inner, scan3[0], scan3[1]))
-    
-    # Determine if inner obstacles are present in destination area (where robot is heading)
-    # Same logic applied to destination scan ranges (scan1 and scan2)
-    dinside= checkForColor(inner, scan1[0], scan1[1])  or ((not checkForColor(outer, scan1[0], scan1[1])) and checkForColor(inner, scan2[0], scan2[1]))
-    
-    # Step 3: Generate waypoints for first part of section (vertical movement, upper area)
-    # Decision based on source area obstacle configuration in scan3 (near pair)
-    # This determines the x-coordinate: 200mm (tight), 400mm (medium), or 800mm (wide)
-    if checkForColor(inner, scan3[0], scan3[1]) or (not checkForColor(outer, scan3[0], scan3[1]) and checkForColor(inner, scan4[0], scan4[1])):
-        # Inner obstacles detected in source area - must take wide path to avoid them
-        # Use x=800mm to stay safely away from center obstacles
-        orders.append(Order(x=800, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=14, rotation=rotation))
-        orders.append(Order(x=800, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=15, rotation=rotation))
-    else:
-        # No inner obstacles in immediate area - can take tighter path closer to inner wall
-        if rotation != 90 and rotation != 1500:
-            # Standard tight path at x=200mm (most sections)
-            orders.append(Order(x=200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=16, rotation=rotation))
-            orders.append(Order(x=200, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=17, rotation=rotation))
-        else:
-            # Special case for 90-degree rotations - slightly wider at x=400mm
-            # These rotations need more clearance due to approach angle
-            orders.append(Order(x=400, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=22, rotation=rotation))
-            orders.append(Order(x=400, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=23, rotation=rotation))
-
-    # Step 4: Generate waypoints for middle part of section (transition area)
-    # This waypoint (y≈1000-1200mm) is critical as it's in the zone where both
-    # source and destination obstacles can affect the path
-    # Must consider both obstacle configurations to choose safe x-coordinate
-    if checkForColor(inner, scan4[0], scan4[1]) or (not checkForColor(outer, scan4[0], scan4[1]) and checkForColor(inner, scan3[0], scan3[1])):
-        # Source area has inner obstacles - already on wide path (x=800)
-        if dinside:
-            # Destination also has inner obstacles - stay wide and slightly higher
-            # y=1050mm gives more clearance when transitioning between obstacle zones
-            orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
-        else:
-            # Destination is clear - can move to lower y-coordinate
-            # y=1000mm for tighter transition
-            orders.append(Order(x=800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=19, rotation=rotation))
-    
-    else:
-        # Source area clear of inner obstacles - on tight path (x=200 or x=400)
-        if rotation != 90 and rotation != 1500:
-            # Standard tight path continues at x=200mm
-            # y=1100mm provides clearance when approaching destination area
-            orders.append(Order(x=200, y=1100,speed=speedi,brake=0,type=Order.DESTINATION,num=20, rotation=rotation))
-        else:
-            # Special 90-degree rotations continue at x=400mm
-            orders.append(Order(x=400, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=24, rotation=rotation))
-
-    # Step 5: Generate corner waypoint for section transition (if not last section)
-    # The corner waypoint positions the robot for the next section
-    # Skip if this is the last section - robot will proceed to parking instead
-    if not last:
-        # Re-evaluate obstacle configuration for more precise corner placement
-        # This is necessary as we need final source/destination assessment
-        sinside= checkForColor(inner, scan4[0], scan4[1])  or ((not checkForColor(outer, scan4[0], scan4[1])) and checkForColor(inner, scan3[0], scan3[1]))
-        dinside= checkForColor(inner, scan1[0], scan1[1])  or ((not checkForColor(outer, scan1[0], scan1[1])) and checkForColor(inner, scan2[0], scan2[1]))
-        
-        # Debug output to verify obstacle detection logic
-        print("Rotation: ",rotation, "  sinside: " ,sinside, "   dinside: ",dinside)
-        
-        # Choose corner waypoint based on combined source/destination obstacle configuration
-        # Different corners needed for different rotation angles (standard vs 180-degree)
-        if rotation != 180 and rotation != 1180:
-            # Standard corner positions (most rotations: 0°, 90°, 270°)
-            if ( sinside and not  dinside):
-                # Source has inner obstacles, destination is outer-only
-                # Use moderate corner at (600, 550) - wider x to clear source obstacles
-                orders.append(Order(x=600, y=550,speed=speedi,brake=0,type=Order.DESTINATION,num=26, rotation=rotation))
-            if ( not sinside and dinside):
-                # Source is outer-only, destination has inner obstacles
-                # Use higher corner at (400, 800) - extra y clearance for destination
-                orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=27, rotation=rotation))
-            if ( not sinside and  not dinside):
-                # Both areas have outer obstacles only - tightest safe corner
-                # Use tight corner at (400, 500) for most efficient path
-                orders.append(Order(x=400, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=28, rotation=rotation))
-        else:
-            # Special corner positions for 180-degree rotations
-            # These rotations approach from opposite direction, need adjusted clearances
-            if ( sinside and not  dinside):
-                # Source inner, destination outer - wider corner needed
-                orders.append(Order(x=700, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=261, rotation=rotation))
-            if ( not sinside and dinside):
-                # Source outer, destination inner - similar to standard
-                orders.append(Order(x=400, y=800,speed=speedi,brake=0,type=Order.DESTINATION,num=272, rotation=rotation))
-            if ( not sinside and  not dinside):
-                # Both outer - slightly modified tight corner for 180° approach
-                orders.append(Order(x=450, y=550,speed=speedi,brake=0,type=Order.DESTINATION,num=283, rotation=rotation))
-```
-
-
-
-### Possible improvements:
-
-
-
-
-#### Angle measurement
-Currently we do not measure the heading during the course, but rely on the gyroscope. However, the gyroscope drifts noticable during the course.
-The heading could be updated by measuring the angle of the walls with the lidar.
-
-#### Waypoint optimizations
-The waypoint generation could be expanded to take inner and outer waypoints and some other details into account. This would allow shorter (and therefore fatster) courses and more obstacle clearence.
-
-#### Wall position (open challenge)
-The wall position on the open challenge could be detected and different waypoints generated. On this way a shorter (faster) course could be driven,
-
-#### Speed optimization
-General driving speed can be increased until the course gets unreliable.
-Driving speed on uncritical parts could be increased even more.
-<br><br><br>
 
 # Construction Guide - Bauanleitung
 
