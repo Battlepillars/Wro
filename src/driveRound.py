@@ -33,18 +33,18 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
     Generate adaptive waypoints for navigating one section of the obstacle challenge course.
     This function analyzes detected obstacles and generates appropriate waypoints to navigate around them
     while staying on the correct side of the field based on obstacle colors (red/green).
-   
+
     Args:
         orders: Command queue for robot navigation (list of Order objects)
         Order: Order class for creating navigation commands
         waitCompleteOrders: Function to wait for command queue completion
         checkForColor: Function to check if specific color obstacle exists in range
-                      checkForColor(color, startIdx, endIdx) -> bool
+                        checkForColor(color, startIdx, endIdx) -> bool
         rotation: Direction identifier (0-999=CW, 1000+=CCW)
-                 Specific values: 0=CW-0°, 90=CW-90°, 180=CW-180°, 270=CW-270°
-                                 1000=CCW-0°, 1090=CCW-90°, 
+                Specific values: 0=CW-0°, 90=CW-90°, 180=CW-180°, 270=CW-270°
+                                1000=CCW-0°, 1090=CCW-90°, 
         scanStart: Starting index for obstacle scanning 
-                  Identifies which of 3 sections we're currently navigating
+                    Identifies which of 3 sections we're currently navigating
         slam: Slam instance for accessing repostionEnable and other properties
         last: Boolean flag indicating if this is the last section before parking
     
@@ -72,8 +72,8 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         direction = Order.CW
         scan1=(scanStart+6, scanStart+10)   # Destination area obstacles (near pair)
         scan2=(scanStart+8, scanStart+12)   # Destination area obstacles (far pair)
-        scan3=(scanStart, scanStart+4)      # Source area obstacles (close pair)
-        scan4=(scanStart+4, scanStart+6)    # Source area obstacles (near pair)
+        scan3=(scanStart, scanStart+4)      # Source area obstacles (near pair)
+        scan4=(scanStart+4, scanStart+6)    # Source area obstacles (far pair)
         outer=Hindernisse.GREEN  # Outer obstacles (toward walls) are GREEN in CW
         inner=Hindernisse.RED    # Inner obstacles (toward center) are RED in CW
     
@@ -109,6 +109,8 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
             # Standard tight path at x=200mm (most sections)
             orders.append(Order(x=200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=16, rotation=rotation))
             orders.append(Order(x=200, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=17, rotation=rotation))
+            # orders.append(Order(zielwinkel=-90, speed=0.5, brake=1, type=Order.WINKEL, rotation=rotation))
+            # doReposition(orders, Order, waitCompleteOrders, rotation, -90)
         else:
             # Special case for 90-degree rotations - slightly wider at x=400mm
             # These rotations need more clearance due to approach angle
@@ -122,9 +124,16 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
     if checkForColor(inner, scan4[0], scan4[1]) or (not checkForColor(outer, scan4[0], scan4[1]) and checkForColor(inner, scan3[0], scan3[1])):
         # Source area has inner obstacles - already on wide path (x=800)
         if dinside:
-            # Destination also has inner obstacles - stay wide and slightly higher
-            # y=1050mm gives more clearance when transitioning between obstacle zones
-            orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
+            if rotation != 90 and rotation != 1500:
+                if (checkForColor(outer, scan3[0], scan3[1])) and (checkForColor(inner, scan4[0], scan4[1])):
+                    orders.append(Order(x=670, y=1600,speed=speedi,brake=1,type=Order.DESTINATION,num=203, rotation=rotation))
+                    orders.append(Order(zielwinkel=-90, speed=speedi*0.75, brake=0, type=Order.WINKEL, rotation=rotation))
+                    if not waitCompleteOrders:
+                        return
+                    time.sleep(0.3)
+                orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=204, rotation=rotation))
+            else:
+                orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
         else:
             # Destination is clear - can move to lower y-coordinate
             # y=1000mm for tighter transition
@@ -136,8 +145,11 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
             # Standard tight path continues at x=200mm
             # y=1100mm provides clearance when approaching destination area
             if (checkForColor(inner, scan3[0], scan3[1])) and (checkForColor(outer, scan4[0], scan4[1])):
-                orders.append(Order(x=400, y=1700,speed=speedi,brake=1,type=Order.DESTINATION,num=201, rotation=rotation))
+                orders.append(Order(x=280, y=1600,speed=speedi,brake=1,type=Order.DESTINATION,num=201, rotation=rotation))
                 orders.append(Order(zielwinkel=-90, speed=speedi*0.75, brake=0, type=Order.WINKEL, rotation=rotation))
+                if not waitCompleteOrders:
+                    return
+                time.sleep(0.3)
             orders.append(Order(x=200, y=1100,speed=speedi,brake=0,type=Order.DESTINATION,num=202, rotation=rotation))
         else:
             # Special 90-degree rotations continue at x=400mm
