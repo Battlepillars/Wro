@@ -1,190 +1,129 @@
-# Inhaltsverzeichnis
+# Table of contents
 
 <ul dir="auto">
-<li><a href="#the-team">The Team</a>
+<li><a href="#the-team">The team</a>
 <ul dir="auto">
 <li><a href="#nils-stauff">Nils Stauff</a></li>
 <li><a href="#olivia-greilich">Olivia Greilich</a></li>
 <li><a href="#leonard-kolo">Leonard Kolo</a></li>
-<li><a href="#team-photo">Team Photo</a></li>
+<li><a href="#team-photo">Team photo</a></li>
+<li><a href="#funny-team-photo">Funny team photo</a></li>
 </ul>
 </li>
-<li><a href="#the-robot">The Robot</a></li>
-<li><a href="#mobility-management">Mobility Management</a>
+<li><a href="#the-robot">The robot</a>
+<ul dir="auto">
+<li><a href="#photos-of-the-robot">Photos of the robot</a></li>
+</ul>
+</li>
+<li><a href="#mobility-management">Mobility management</a>
 <ul dir="auto">
 <li><a href="#chassis">Chassis</a></li>
-<li><a href="#umbau-des-modellautos">Umbau des Modellautos</a>
+<li><a href="#modification-of-the-model-car">Modification of the model car</a>
 <ul dir="auto">
-<li><a href="#bodenplatte">Bodenplatte</a></li>
-<li><a href="#mitteldeck">Mitteldeck</a></li>
-<li><a href="#oberdeck">Oberdeck</a></li>
+<li><a href="#chassis-plate">Chassis plate</a></li>
+<li><a href="#middle-deck">Middle deck</a></li>
+<li><a href="#upper-deck">Upper deck</a></li>
 </ul>
 </li>
-<li><a href="#potential-improvements---chassis">Potential improvements - Chassis</a></li>
+<li><a href="#potential-improvements---chassis">Potential improvements - chassis</a></li>
 <li><a href="#powertrain">Powertrain</a>
 <ul dir="auto">
 <li><a href="#drivetrain">Drivetrain</a></li>
 <li><a href="#motor">Motor</a></li>
-<li><a href="#motor-driver--fahrtenregler">Motor Driver (= Fahrtenregler)</a></li>
-<li><a href="#funktionsweise-antrieb">Funktionsweise Antrieb</a></li>
+<li><a href="#electronic-speed-controller">Electronic speed controller</a></li>
+<li><a href="#functioning-of-the-drive-system">Functioning of the drive system</a></li>
 </ul>
 </li>
-<li><a href="#potential-improvements---powertrain">Potential improvements - Powertrain</a></li>
+<li><a href="#potential-improvements---powertrain">Potential improvements - powertrain</a></li>
 <li><a href="#steering">Steering</a>
 <ul dir="auto">
-<li><a href="#servo-saver">Servo Saver</a></li>
-<li><a href="#servo-motor-anders-einsortieren---ungünstig-als-eigener-unterpunkt">Servo Motor</a></li>
+<li><a href="#new-front-axle">New front axle</a></li>
+<li><a href="#servo-saver">Servo saver</a></li>
+<li><a href="#servo-motor">Servo motor</a></li>
 </ul>
 </li>
-<li><a href="#potential-improvements---steering">Potential improvements - Steering</a></li>
+<li><a href="#potential-improvements---steering">Potential improvements - steering</a></li>
 </ul>
 </li>
-<li><a href="#power-and-sense-management">Power and Sense Management</a>
+<li><a href="#power-and-sense-management">Power and sense management</a>
 <ul dir="auto">
-<li><a href="#sensoren">Sensoren</a>
+<li><a href="#sensors">Sensors</a>
 <ul dir="auto">
 <li><a href="#lidar">LiDAR</a></li>
 <li><a href="#potential-improvements---lidar">Potential improvements - LiDAR</a></li>
-<li><a href="#kamera">Kamera</a></li>
-<li><a href="#potential-improvements---kamera">Potential improvements - Kamera</a></li>
-<li><a href="#odometrie-sensor">Odometrie Sensor</a></li>
-<li><a href="#potential-improvements---odometriesensor">Potential improvements - Odometriesensor</a></li>
-<li><a href="#status-display">Status-Display</a></li>
+<li><a href="#camera">Camera</a></li>
+<li><a href="#potential-improvements---camera">Potential improvements - camera</a></li>
+<li><a href="#odometry-sensor">Odometry sensor</a></li>
+<li><a href="#potential-improvements---odometry-sensor">Potential improvements - odometry sensor</a></li>
+<li><a href="#status-display">Status display</a></li>
+<li><a href="#potential-improvements---status-display">Potential improvements - status display</a></li>
 </ul>
 </li>
-<li><a href="#energieversorgung-des-fahrzeugs">Energieversorgung des Fahrzeugs</a>
+<li><a href="#vehicle-power-supply">Vehicle power supply</a>
 <ul dir="auto">
-<li><a href="#li-po-battery">Li-Po Battery</a></li>
-<li><a href="#energieverbrauch-der-komponenten">Energieverbrauch der Komponenten</a></li>
-<li><a href="#gesamtleistungsbedarf">Gesamtleistungsbedarf</a></li>
-<li><a href="#spannungsversorgung">Spannungsversorgung</a></li>
-<li><a href="#sicherheit-und-verdrahtung">Sicherheit und Verdrahtung</a></li>
+<li><a href="#lipo-battery">LiPo battery</a></li>
+<li><a href="#component-power-consumption">Component power consumption</a></li>
+<li><a href="#total-power-requirements">Total power requirements</a></li>
+<li><a href="#power-supply">Power supply</a></li>
+<li><a href="#safety-and-wiring">Safety and wiring</a></li>
+<li><a href="#potential-improvements---power-supply">Potential improvements - power supply</a></li>
 </ul>
 </li>
-<li><a href="#potential-improvements---energieversorgung">Potential improvements - Energieversorgung</a></li>
-<li><a href="#schaltplan-der-bauteile">Schaltplan der Bauteile</a></li>
+<li><a href="#circuit-diagram-of-components">Circuit diagram of components</a></li>
 </ul>
 </li>
-<li><a href="#code-für-alle-komponenten">Code für alle Komponenten</a>
+<li><a href="#code-for-all-components">Code for all components</a>
 <ul dir="auto">
 <li><a href="#servo">Servo</a>
 <ul dir="auto">
-<li><a href="#software-implementation">Software Implementation</a></li>
-<li><a href="#steering-range-and-calibration">Steering Range and Calibration</a></li>
+<li><a href="#software-implementation">Software implementation</a></li>
+<li><a href="#steering-range-and-calibration">Steering range and calibration</a></li>
 </ul>
 </li>
-<li><a href="#drive-motor">Drive Motor</a>
+<li><a href="#drive-motor">Drive motor</a>
 <ul dir="auto">
 <li><a href="#components">Components</a></li>
-<li><a href="#hardware-interface">Hardware Interface</a></li>
-<li><a href="#software-implementation-1">Software Implementation</a></li>
-<li><a href="#pid-controller-implementation">PID Controller Implementation</a></li>
-<li><a href="#advanced-control-features">Advanced Control Features</a></li>
+<li><a href="#hardware-interface">Hardware interface</a></li>
+<li><a href="#software-implementation-1">Software implementation</a></li>
+<li><a href="#pid-controller-implementation">PID controller implementation</a></li>
+<li><a href="#advanced-control-features">Advanced control features</a></li>
 </ul>
 </li>
-<li><a href="#optical-tracking-odometry-sensors">Optical Tracking Odometry Sensors</a>
+<li><a href="#optical-tracking-odometry-sensors">Optical tracking odometry sensors</a>
 <ul dir="auto">
-<li><a href="#position-and-speed-tracking">Position and Speed Tracking</a></li>
-<li><a href="#sensor-health-monitoring-and-redundancy">Sensor Health Monitoring and Redundancy</a></li>
-<li><a href="#data-fusion-and-final-position-calculation">Data Fusion and Final Position Calculation</a></li>
-<li><a href="#position-reset-and-calibration">Position Reset and Calibration</a></li>
-<li><a href="#key-features-of-our-implementation">Key Features of Our Implementation</a></li>
+<li><a href="#position-and-speed-tracking">Position and speed tracking</a></li>
+<li><a href="#sensor-health-monitoring-and-redundancy">Sensor health monitoring and redundancy</a></li>
+<li><a href="#data-fusion-and-final-position-calculation">Data fusion and final position calculation</a></li>
+<li><a href="#position-reset-and-calibration">Position reset and calibration</a></li>
+<li><a href="#key-features-of-our-implementation">Key features of our implementation</a></li>
 </ul>
 </li>
 <li><a href="#lidar-1">LiDAR</a>
 <ul dir="auto">
-<li><a href="#real-time-scanning-and-data-acquisition">Real-time Scanning and Data Acquisition</a></li>
-<li><a href="#position-detection-and-localization">Position Detection and Localization</a></li>
-<li><a href="#dynamic-position-correction-during-driving">Dynamic Position Correction During Driving</a></li>
-<li><a href="#obstacle-detection-and-recognition">Obstacle Detection and Recognition</a></li>
-<li><a href="#key-features-of-our-lidar-implementation">Key Features of Our LiDAR Implementation</a></li>
-<li><a href="#data-structure-and-access-patterns">Data Structure and Access Patterns</a></li>
+<li><a href="#real-time-scanning-and-data-acquisition">Real-time scanning and data acquisition</a></li>
+<li><a href="#position-detection-and-localization">Position detection and localization</a></li>
+<li><a href="#dynamic-position-correction-during-driving">Dynamic position correction during driving</a></li>
+<li><a href="#obstacle-detection-and-recognition">Obstacle detection and recognition</a></li>
+<li><a href="#key-features-of-our-lidar-implementation">Key features of our LiDAR implementation</a></li>
+<li><a href="#data-structure-and-access-patterns">Data structure and access patterns</a></li>
 </ul>
 </li>
-<li><a href="#potential-improvements---code-for-all-components">Potential improvements - Code for all components</a></li>
+<li><a href="#potential-improvements---code-for-all-components">Potential improvements - code for all components</a></li>
 </ul>
 </li>
-<li><a href="#obstacle-management">Obstacle Management</a>
+<li><a href="#obstacle-management">Obstacle management</a>
 <ul dir="auto">
-<li><a href="#initial-location-acquisition">Initial Location Acquisition</a></li>
-<li><a href="#position-updates-during-driving">Position updates during driving</a>
-<ul dir="auto">
-<li><a href="#optical-tracking-sensor-function">Optical tracking sensor function</a></li>
-<li><a href="#sensor-failure-detection--health-status">Sensor failure detection / health status</a></li>
-</ul>
-</li>
+<li><a href="#coordinate-system">Coordinate system</a></li>
+<li><a href="#waypoint-navigation-system">Waypoint navigation system</a></li>
+<li><a href="#initial-location-acquisition">Initial location acquisition</a></li>
+<li><a href="#position-updates-during-driving">Position updates during driving</a></li>
 <li><a href="#position-corrections">Position corrections</a></li>
-<li><a href="#obstacle-recognition">Obstacle Recognition</a>
-<ul dir="auto">
-<li><a href="#determining-the-position-of-an-obstacle-within-a-course-section">Determining the position of an obstacle within a course section</a></li>
-<li><a href="#determining-the-color-of-the-obstacle">Determining the color of the obstacle</a></li>
+<li><a href="#obstacle-recognition">Obstacle recognition</a></li>
+<li><a href="#navigation-strategy-obstacle-challenge">Navigation strategy obstacle challenge</a></li>
+<li><a href="#software-structure">Software structure</a></li>
 </ul>
 </li>
-<li><a href="#software-structure">Software Structure</a>
-<ul dir="auto">
-<li><a href="#multi-threading-architecture">Multi-Threading Architecture</a></li>
-<li><a href="#why-three-threads">Why Three Threads?</a></li>
-<li><a href="#thread-1-control-loop">Thread 1: Control Loop</a></li>
-<li><a href="#thread-2-command-loop-high-level-navigation-thread">Thread 2: Command Loop (High-Level Navigation Thread)</a></li>
-<li><a href="#thread-3-display-loop-user-interface-thread">Thread 3: Display Loop (User Interface Thread)</a></li>
-<li><a href="#thread-synchronization-and-communication">Thread Synchronization and Communication</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#construction-guide---bauanleitung">Construction Guide - Bauanleitung</a>
-<ul dir="auto">
-<li><a href="#übersicht-der-baugruppen">Übersicht der Baugruppen</a></li>
-<li><a href="#schritt-1-vorbereitung-der-3d-gedruckten-teile">Schritt 1: Vorbereitung der 3D-gedruckten Teile</a></li>
-<li><a href="#schritt-2-aufbau-der-bodenplatte">Schritt 2: Aufbau der Bodenplatte</a>
-<ul dir="auto">
-<li><a href="#21-latrax-rally-chassis-vorbereiten">2.1 LaTrax Rally Chassis vorbereiten</a></li>
-<li><a href="#22-motor-und-getriebe-montieren">2.2 Motor und Getriebe montieren</a></li>
-<li><a href="#23-servo-für-lenkung-einbauen">2.3 Servo für Lenkung einbauen</a></li>
-<li><a href="#24-fahrtenregler-montieren">2.4 Fahrtenregler montieren</a></li>
-<li><a href="#25-odometriesensoren-einbauen">2.5 Odometriesensoren einbauen</a></li>
-</ul>
-</li>
-<li><a href="#schritt-3-neue-vorderachse-konstruieren">Schritt 3: Neue Vorderachse konstruieren</a>
-<ul dir="auto">
-<li><a href="#31-ackermann-lenkung-aufbauen">3.1 Ackermann-Lenkung aufbauen</a></li>
-<li><a href="#32-montage-der-vorderachse">3.2 Montage der Vorderachse</a></li>
-</ul>
-</li>
-<li><a href="#schritt-4-mitteldeck-aufbauen">Schritt 4: Mitteldeck aufbauen</a>
-<ul dir="auto">
-<li><a href="#41-raspberry-pi-5-montieren">4.1 Raspberry Pi 5 montieren</a></li>
-<li><a href="#42-kamera-integrieren">4.2 Kamera integrieren</a></li>
-<li><a href="#43-servo-controller-montieren">4.3 Servo-Controller montieren</a></li>
-<li><a href="#44-batterie-und-spannungsversorgung">4.4 Batterie und Spannungsversorgung</a></li>
-</ul>
-</li>
-<li><a href="#schritt-5-oberdeck-mit-lidar">Schritt 5: Oberdeck mit LiDAR</a>
-<ul dir="auto">
-<li><a href="#51-lidar-montieren">5.1 LiDAR montieren</a></li>
-<li><a href="#52-status-display-installieren">5.2 Status-Display installieren</a></li>
-</ul>
-</li>
-<li><a href="#schritt-6-verkabelung-und-inbetriebnahme">Schritt 6: Verkabelung und Inbetriebnahme</a>
-<ul dir="auto">
-<li><a href="#61-i²c-bus-verkabeln">6.1 I²C-Bus verkabeln</a></li>
-<li><a href="#62-stromverkabelung-prüfen">6.2 Stromverkabelung prüfen</a></li>
-<li><a href="#63-erste-tests">6.3 Erste Tests</a></li>
-</ul>
-</li>
-<li><a href="#schritt-7-software-installation">Schritt 7: Software-Installation</a>
-<ul dir="auto">
-<li><a href="#71-raspberry-pi-os-vorbereiten">7.1 Raspberry Pi OS vorbereiten</a></li>
-<li><a href="#72-python-bibliotheken-installieren">7.2 Python-Bibliotheken installieren</a></li>
-<li><a href="#73-kalibrierung">7.3 Kalibrierung</a></li>
-</ul>
-</li>
-<li><a href="#troubleshooting---häufige-probleme">Troubleshooting - Häufige Probleme</a></li>
-<li><a href="#wartung-und-pflege">Wartung und Pflege</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#construction-guide---bauanleitung">Construction guide</a></li>
 </ul>
 
 
@@ -204,11 +143,17 @@ In this repository, you’ll find the documentation for the robot created by the
     </a>
 </div>
 
-Hi! Ich bin Nils und bin 16 Jahre alt. Ich bin der Programmierer in unserem Team und beschäftige mich gerne mit Code und dem Lösen technischer Probleme. In meiner Freizeit gehe ich tauchen und genieße die Unterwasserwelt. Im Winter fahre ich regelmäßig Ski und mag auch Katzen sehr gerne.
+Hi! I’m Nils, and I’m 16 years old. I enjoy coding and solving technical problems. In my free time, I like scuba diving and exploring the underwater world. During winter, I often go skiing, and I’m also a big fan of cats.
 
-Bei unserem WRO-Projekt bin ich für die Programmierung des Roboters zuständig und entwickle die Software, die ihn steuert. Das kann manchmal herausfordernd sein, aber es ist sehr befriedigend wenn alles wie geplant funktioniert!
+For our WRO project, I’m responsible for developing the robot’s software and making sure it runs as intended. It can be challenging at times, but it’s very rewarding when everything works as planned!
 
 ## Olivia Greilich
+
+<div align="center">
+    <a href="img/olivia.jpg" target="_blank">
+        <img width="300" src="img/olivia.jpg">
+    </a>
+</div>
 
 Hello everyone! My name is Olivia Greilich and I'm 16, currently attending the Lise-Meitner Gymnasium in Anrath. Languages, communicating and connecting with people is my passion, same with painting, sculpting and crocheting!
 One interesting fact about me is that I am simply enamored with jellyfish of all types, colours, shapes and sizes. I have two jellyfish lamps, tons of stickers, books and of course a phone charm.
@@ -226,7 +171,7 @@ My part of the team effort is the documentation and images you'll see below.
 
 Hi! I'm Leonard from Germany and I'm 15 years old, currently attending the Max Steenbeck Gymnasium in Cottbus. This is not my first WRO season. Last year I participated in the Robo Mission category and this year me and my team wanted to try something new so we are participating now in the category Future Engineers. My hobby’s are go karting, playing games, building LEGO and flying drone.
 
-Ich bringe meine technische Expertise in den Bereichen Roboterbau, Komponentenrecherche und -auswahl sowie in der Entwicklung und Fertigung von 3D-gedruckten Bauteilen ein, die für die mechanische Realisierung unseres Projekts von entscheidender Bedeutung sind.
+I contribute my technical expertise in the areas of robot construction, component research and selection, as well as in the development and manufacturing of 3D-printed parts, which are crucial for the mechanical implementation of our project.
 
 ## Team photo
 
@@ -236,7 +181,7 @@ Ich bringe meine technische Expertise in den Bereichen Roboterbau, Komponentenre
     </a>
 </div>
 
-## Funny Team photo
+## Funny team photo
 
 <div align="center">
     <a href="img/team.jpg" target="_blank">
@@ -245,34 +190,70 @@ Ich bringe meine technische Expertise in den Bereichen Roboterbau, Komponentenre
 </div>
 <br><br><br>
 
-# The Robot
-## Photos of the Robot
-The pictures of the robot must cover all sides of the robot, must be clear, in focus and show aspects of the mobility, power and sense, and obstacle management. Reference in the discussion sections 1, 2 and 3 can be made to these pictures.
+# The robot
+## Photos of the robot
+<div align="center">
+    <a href="img/vorne.jpg" target="_blank">
+        <img width="500" src="img/vorne.jpg">
+    </a>
+</div>
+<br>
+<div align="center">
+    <a href="img/links.jpg" target="_blank">
+        <img width="500" src="img/links.jpg">
+    </a>
+</div>
+<br>
+<div align="center">
+    <a href="img/rechts.jpg" target="_blank">
+        <img width="500" src="img/rechts.jpg">
+    </a>
+</div>
+<br>
+<div align="center">
+    <a href="img/hinten.jpg" target="_blank">
+        <img width="500" src="img/hinten.jpg">
+    </a>
+</div>
+<br>
+<div align="center">
+    <a href="img/oben.jpg" target="_blank">
+        <img width="500" src="img/oben.jpg">
+    </a>
+</div>
+<br>
+<div align="center">
+    <a href="img/unten.jpg" target="_blank">
+        <img width="500" src="img/unten.jpg">
+    </a>
+</div>
 <br><br><br>
 
-# Mobility Management
+# Mobility management
 
-Das Mobility Management System umfasst das Chassis, die Lenkung sowie den Antriebsstrang des Roboters, die für eine präzise und effiziente Fortbewegung erforderlich sind. In den folgenden Kapiteln werden diese einzelnen Elemente näher erläutert.
+The Mobility Management System comprises the chassis, steering, and drivetrain of the robot, which are essential for precise and efficient locomotion. The following chapters will explain these individual elements in detail.
 <br>
 ## Chassis
-Anfangs entstand die Idee, ein Fahrzeug mit einer Gesamtlänge von unter 20 cm zu konstruieren, um am Ende des dreirundigen Hindernisrennens einfach geradeaus in die Parklücke einfahren zu können, was Teil der regionalen Aufgabe war. Diese Strategie war im Rahmen des deutschen Regelwerks zulässig.
+At first, the idea was to design a vehicle with a total length of less than 20 cm so that it could drive straight into the parking space at the end of the three-lap obstacle course, which was part of the regional challenge. This strategy was permitted under the German rule set.
 
-Da handelsübliche Modellautos in der Regel nicht den erforderlichen Maßen entsprechen, war schnell klar, dass ein Umbau eines Modellautos notwendig sein würde. Die meisten verfügbaren Modelle weisen eine Länge von etwa 30 cm auf – eine Reduktion auf unter 20 cm erschien in diesen Fällen technisch zu aufwendig. Kleinere Modelle mit einer Länge von rund 10 cm boten hingegen nicht genügend Raum für sämtliche erforderlichen Komponenten.
+Since commercially available model cars usually do not meet the required dimensions, we quickly realized that modifying an existing model car would be necessary. Most available models are around 30 cm long — reducing them to under 20 cm would have been too technically complex. Smaller models, around 10 cm in length, on the other hand, did not provide enough space for all the required components.
 
-Schließlich wurde ein Modell mit einer Länge von 22 cm gefunden, das als geeignet erschien, auf die gewünschte Länge von 20 cm angepasst zu werden. Dieses Modell – der LaTrax Rally – wurde daher als Basis für das selbtfahrende Fahrzeug ausgewählt.
+Eventually, we found a model with a length of 22 cm that seemed suitable for adaptation to the desired 20 cm. This model — the LaTrax Rally — was therefore chosen as the basis for the self-driving vehicle.
 
 Where to buy the car: <a href="https://traxxas.com/75054-5-118-latrax-rally">https://traxxas.com/75054-5-118-latrax-rally</a>
 <br>
 
-## Umbau des Modellautos
+## Modification of the model car
 
-### Bodenplatte
+### Chassis plate
 
-Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 360 konstruiert, wodurch die Gesamtlänge des Fahrzeugs auf etwa 19 cm reduziert wurde. Die Konstruktion erfolgte unter Berücksichtigung einer kompakten Bauweise zur Verbesserung der Manövrierfähigkeit. Zur Positionsbestimmung mittels Odometrie-Sensoren wurden zwei Öffnungen in der Bodenplatte integriert, um eine direkte optische Erfassung der Bodenstruktur zu ermöglichen. Die Fertigung der Platte erfolgte mittels 3D-Druck. Die Bodenplatte wurde zunächst in einfachem PLA gedruckt. Allerdings hat sich ergeben, dass schon ein leichtes Durchbiegen der Bodenplatte zu einer kritischen Veränderung des Kamerawinkels geführt hat. Deswegen wurde nach Wegen gesucht, die Bodenplatte steifer zu machen. Neben Verstärkungen der Geometrie wurde zusätzlich entschieden, ein anderes Material beim Druck zu verwenden. Im Vergleich aller Materialien, die das Team selber drucken kann, hat PPA-CF sich als das Material mit der höchsten Steifigkeit herausgestellt. Dieses Filament hat das Problem des Durchbiegens der Bodenplatte komplett eliminiert.
+To optimize the vehicle architecture, a new chassis plate was designed in Fusion 360, reducing the total length of the vehicle to about 19 cm. The design focused on a compact structure to improve maneuverability. For position detection using odometry sensors, two openings were integrated into the chassis plate to enable direct optical measurement of the ground surface. The plate was manufactured using 3D printing.
+
+Initially, the chassis plate was printed in standard PLA. However, we found that even slight bending of the plate caused a critical change in the camera angle. Therefore, ways to increase the stiffness of the chassis plate were explored. In addition to reinforcing the geometry, the team decided to use a different material for printing. Among all the materials we could print ourselves, PPA-CF proved to have the highest rigidity. This filament completely eliminated the problem of the chassis plate bending.
 
 
 
-<table align="center">
+<table align="center" cellpadding="6" cellspacing="0">
   <tr>
      <td width=320>
        <a href="img/Bodenplatte1.jpeg" target="_blank">
@@ -287,7 +268,7 @@ Zur Optimierung der Fahrzeugarchitektur wurde eine neue Bodenplatte in Fusion 36
   </tr>
 </table>
 
-Bemaßung der Bodenplatte:
+Dimensioning of the base plate:
 
 
 <div align="center">
@@ -297,7 +278,7 @@ Bemaßung der Bodenplatte:
 </div>
 
 
-Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das Servo, der Fahrtenregler und die Odometriesensoren. Wie diese Komponenten genau befestigt werden, kann im <a href="#construction-guide---bauanleitung">Construction Guide</a> nachgelesen werden.
+The chassis plate houses the differential, gearbox, motor, servo, electronic speed controller, and odometry sensors. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>.
 
 <div align="center">
     <a href="img/Bodenplatte3.jpg" target="_blank">
@@ -305,9 +286,9 @@ Auf der Bodeplatte befinden sich das Differential, das Getriebe, der Motor, das 
     </a>
 </div>
 
-Das Servo wird in die Bodenplatte in einer vorhergesehenen Halterung eingesetzt und mittels des Servobrackets befestigt.
+The servo is installed in a designated mount on the chassis plate and secured with the servo bracket.
 
-Bemaßung des Servobrackets:
+Dimensioning of the servo bracket:
 <div align="center">
     <a href="img/Masse/Servobracket.jpg" target="_blank">
         <img width="400" src="img/Masse/Servobracket.jpg">
@@ -316,27 +297,27 @@ Bemaßung des Servobrackets:
 
 
 
-Damit der Fahrtenregler nicht von der Bodenplatte fällt, sind zwischen den Distanzbolzen zwei 3D-gedruckte Sidebars eingebaut.
+To prevent the electronic speed controller from coming loose, two 3D-printed sidebars were installed between the spacer bolts on the chassis plate.
 
-Bemaßung der Sidebars:
+Dimensioning of the sidebars:
 <div align="center">
     <a href="img/Masse/Sidebar.jpg" target="_blank">
         <img width="400" src="img/Masse/Sidebar.jpg">
     </a>
 </div>
 
-Um die Vorderräden vor Kollision zu schützen und damit auch indirekt das Lenkgestänge und den Servo, haben wir einen "Bumper" designt und mit dem 3D-Drucker gedruckt.
+In order to protect the front wheels from collisions—and indirectly also the steering linkage and the servo—we designed a "bumper" and printed it using a 3D printer.
 
-Bemaßung des Bumpers:
+Dimensioning of the bumper:
 <div align="center">
     <a href="img/Masse/Bumper.jpg" target="_blank">
         <img width="400" src="img/Masse/Bumper.jpg">
     </a>
 </div>
 
-### Mitteldeck
+### Middle deck
 
-Anschließend wurde noch ein Mitteldeck mit Fusion 360 designt. Die Maße orientieren sich an der Bodenplatte.
+Next, a middle deck was designed in Fusion 360, with dimensions based on the chassis plate.
 
 <table align="center">
   <tr>
@@ -353,7 +334,7 @@ Anschließend wurde noch ein Mitteldeck mit Fusion 360 designt. Die Maße orient
   </tr>
 </table>
 
-Bemaßung der Mittelplatte:
+Dimensioning of the middle deck:
 
 <div align="center">
     <a href="img/Masse/Middledeck.jpg" target="_blank">
@@ -361,7 +342,8 @@ Bemaßung der Mittelplatte:
     </a>
 </div>
 
-Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spannungsregler. Außerdem haben wir hier eine Kamera integriert. Wie diese Komponenten genau befestigt werden, kann im <a href="#construction-guide---bauanleitung">Construction Guide</a> nachgelesen werden. 
+The servo controller, battery, Raspberry Pi, and voltage regulator are mounted on this deck. A camera was also integrated in this section. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>. 
+
 
 
 <div align="center">
@@ -370,18 +352,18 @@ Dort verbaut wurde der Servo-Controller, die Batterie, der Raspberry und der Spa
     </a>
 </div>
 
-Um die Kamera am Roboter befestigen zu könne, haben wir eine Halterung entworfen und mit dem 3d-Drucker gedruckt.
+To mount the camera on the robot, we designed a bracket and printed it using a 3D printer.
 
-Bemaßung der Halterung:
+Dimensioning of the camera bracket:
 <div align="center">
     <a href="img/Masse/Cameraholder.jpg" target="_blank">
         <img width="400" src="img/Masse/Cameraholder.jpg">
     </a>
 </div>
 
-### Oberdeck
+### Upper deck
 
-Um den LiDAR zu befestigen, wurde noch ein Oberdeck designt. An diesem wurde der LiDAR auf dem Kopf stehend befestigt.
+To mount the LiDAR, a top deck was also designed, and the LiDAR was attached to it in an upside-down position.
 
 <table align="center">
   <tr>
@@ -397,7 +379,7 @@ Um den LiDAR zu befestigen, wurde noch ein Oberdeck designt. An diesem wurde der
      </td>
   </tr>
 </table>
-Bemaßung des Oberdecks:
+Dimensioning of the top deck:
 
 <div align="center">
     <a href="img/Masse/Lidar.jpg" target="_blank">
@@ -405,7 +387,7 @@ Bemaßung des Oberdecks:
     </a>
 </div>
 
-Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt werden, kann im <a href="#construction-guide---bauanleitung">Construction Guide</a> nachgelesen werden.
+The LiDAR and the status display are installed on this deck. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>.
 
 <div align="center">
     <a href="img/Oberdeck3.jpg" target="_blank">
@@ -413,7 +395,7 @@ Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt w
     </a>
 </div>
 
-## Potential improvements - Chassis
+## Potential improvements - chassis
 - Construct an outer hull to improve the outer appearance of the vehicle and prevent potential dust or debris from reaching the inner works.
 - Furthermore, we could free up some space for a third odometry sensor.
 
@@ -424,68 +406,68 @@ Dort verbaut wurde der LiDar und das Status-Display. Wie diese genau befestigt w
 ## Powertrain
 
 ### Drivetrain
-Bei Automobilen lassen sich grundsätzlich drei Antriebsarten unterscheiden:
 
-- Allradantrieb: Sämtliche Räder werden mit Antriebskraft versorgt.
-- Frontantrieb: Die Antriebskraft wirkt ausschließlich auf die Vorderräder.
-- Heckantrieb: Nur die Hinterräder werden angetrieben.
+In automobiles, three basic types of drive systems can be distinguished:
 
-Das vorhandene Chassis war serienmäßig mit einem Allradantrieb ausgestattet, der den Wettbewerbsanforderungen grundsätzlich genügt hätte. Die vorhandene Lenkung ließ jedoch keinen ausreichenden Radeinschlag zu, was beispielsweise ein Ausparken in einem Zug bei der Parkchallenge unmöglich machte. Zur Verbesserung des Lenkeinschlags wurde daher eine alternative Lösung erarbeitet. Diese bestand in der Konstruktion einer vollständig neuen Vorderachse (<a href="#steering">vgl. Kapitel "Steering"</a>). Im Zuge des Umbaus konnte der Antrieb der Vorderräder nicht beibehalten werden, da die vorhandenen Kardangelenke den erhöhten Lenkeinschlag mechanisch nicht zuließen. Aus diesem Grund wurde auf einen reinen Hinterradantrieb umgestellt.
+- All-wheel drive (AWD): All wheels receive driving power.
+- Front-wheel drive (FWD): Driving power is applied only to the front wheels.
+- Rear-wheel drive (RWD): Only the rear wheels are driven.
 
-So?
-Aus diesem Grund wurde der ursprüngliche Allradantrieb deaktiviert und stattdessen auf Heckantrieb umgestellt. Diese Konfiguration bietet im Kontext niedriger Geschwindigkeit und präziser Steuerung eine ausreichende Kraftübertragung, wobei gleichzeitig die Lenkung von Antriebseinflüssen entkoppelt wird – ein Vorteil, insbesondere bei feinfühligem Navigieren durch den Hindernisparcours.
+The existing chassis was originally equipped with an all-wheel drive system, which would have generally met the competition requirements. However, the existing steering mechanism did not allow a sufficient steering angle, making maneuvers such as exiting a parking space in a single move during the parking challenge impossible. To improve the steering angle, an alternative solution was developed: the design of an entirely new front axle (<a href="#steering">cf. Chapter “Steering”</a>).
 
+During the conversion, retaining the front-wheel drive was not possible, as the existing universal joints mechanically limited the increased steering angle. Therefore, the original all-wheel drive was deactivated and replaced with a rear-wheel drive system. This configuration provides sufficient power transmission for low-speed, precise control, while also decoupling the steering from drive influences — a particular advantage when navigating the obstacle course with precision.
 
 
 ### Motor
-Der bereits vorhandene Brushed-Motor wurde im Rahmen einer vergleichenden Analyse verschiedenen Motorarten gegenübergestellt. Zur Bewertung der jeweiligen Vor- und Nachteile wurde eine internetgestützte Recherche durchgeführt. Dabei konnten neben dem Brushed-Motor insbesondere der Brushless-Motor sowie der Schrittmotor als relevante Alternativen identifiziert werden.
+The existing brushed motor was compared to various other motor types as part of a comparative analysis. To evaluate their respective advantages and disadvantages, an online literature review was conducted. In addition to the brushed motor, the brushless motor and the stepper motor were identified as relevant alternatives.
 
-- Brushless-Motor:<br>
-Diese Bauart bietet grundsätzlich eine höhere Leistungsabgabe im Vergleich zum im Modellfahrzeug verbauten Brushed-Motor. Da im Rahmen des Wettbewerbs jedoch keine hohe Endgeschwindigkeit erforderlich ist, wurde dieser Vorteil als nicht entscheidungsrelevant eingestuft. Zudem weisen Brushless-Motoren insbesondere bei niedrigen Drehzahlen eine eingeschränkte Steuerbarkeit auf, was eine präzise Navigation im Hindernisparcours erschwert.
+Brushless motor:
+This type generally offers higher power output compared to the brushed motor installed in the model vehicle. However, since high top speed is not required for the competition, this advantage was deemed non-essential. Furthermore, brushless motors exhibit limited controllability at low rotational speeds, which complicates precise navigation through the obstacle course.
 
-- Schrittmotor:<br>
-Schrittmotoren zeichnen sich durch eine hohe Steuerpräzision aus. Allerdings ist ihre Ansteuerung vergleichsweise komplex. Zusätzlich gehen ein hoher Stromverbrauch, größere Bauformen und eine geringe maximale Drehzahl mit dieser Motorart einher, was sie für den vorgesehenen Einsatzbereich als ungeeignet erscheinen lässt.
+Stepper motor:
+Stepper motors are known for their high control precision, but their operation is comparatively complex. In addition, they are associated with high power consumption, larger physical size, and low maximum speed, making them unsuitable for the intended application.
 
-Auf Grundlage dieser Analyse wurde entschieden, den bereits im Modellauto integrierten Brushed-Motor weiterzuverwenden, da dieser unter den gegebenen Rahmenbedingungen die funktional und technisch sinnvollste Lösung darstellt.
+Based on this analysis, it was decided to continue using the brushed motor already integrated into the model car, as it represents the most functional and technically appropriate solution under the given conditions.
 
 <table align="center">
-  <tr>
-    <th bgcolor=#CCFFCC width=300>Motor</th>
-    <th bgcolor=#9ae4fd width=600>Specifications</th>
+    <tr>
+        <th bgcolor="#CCFFCC" width="300">Motor</th>
+        <th bgcolor="#9ae4fd" width="600">Specifications</th>
   </tr>
   <tr>
-    <td>
+        <td>
       <a href="img/motor.jpg" target="_blank">
         <img src="img/motor.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd>23-turn brushed 370-size LaTrax® motor with bullet connectors
+        <td bgcolor="#c8f0fd">23-turn brushed 370-size LaTrax® motor with bullet connectors
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor: <a href="https://traxxas.com/7575r-23-turn-brushed-370-size-motor">https://traxxas.com/7575r-23-turn-brushed-370-size-motor</a></TD></tr>
+        <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the motor: <a href="https://traxxas.com/7575r-23-turn-brushed-370-size-motor">https://traxxas.com/7575r-23-turn-brushed-370-size-motor</a></td></tr>
 </table>
 
 
 
-### Motor Driver (= Fahrtenregler)
-Der Fahrtenregler ist zwischen der Energiequelle und dem Antriebsmotor positioniert und übernimmt die Regelung der Motordrehzahl. Im Rahmen experimenteller Untersuchungen konnte festgestellt werden, dass der ursprünglich verbaute Fahrtenregler primär auf den Hochgeschwindigkeitsbetrieb ausgelegt ist. Im unteren Drehzahlbereich ließ sich keine ausreichende Feinsteuerung realisieren.
+### Electronic speed controller
 
-Im Zuge weiterführender Recherchen wurde festgestellt, dass bestimmte Modellfahrzeuge, sogenannte Crawler, speziell für den Einsatz auf unebenem und steilem Gelände konzipiert sind. Die in diesen Fahrzeugen eingesetzten Fahrtenregler zeichnen sich durch eine besonders feinfühlige Steuerbarkeit im Niedriggeschwindigkeitsbereich aus und erfüllen somit die für das Projekt relevanten Anforderungen an präzises Fahrverhalten bei geringer Geschwindigkeit.
+The electronic speed controller (ESC) is positioned between the power source and the drive motor and controls the motor speed. Experimental investigations revealed that the originally installed ESC was primarily designed for high-speed operation. At low speeds, it did not allow for sufficient fine control.
 
-Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprünglich verbauten Regler durch ein geeigneteres Modell zu ersetzen. Die Wahl fiel auf den Quicrun WP 1080–G2, dessen technische Eigenschaften den spezifizierten Anforderungen in vollem Umfang entsprechen.
+Further research showed that certain model vehicles, known as crawlers, are specifically designed for use on rough and steep terrain. The ESCs used in these vehicles offer particularly sensitive control at low speeds, thereby meeting the project’s requirements for precise low-speed driving behavior.
 
-<table align="center">
-  <tr>
-    <th bgcolor=#CCFFCC width=300>Motor Driver Quicrun WP 1080–G2</th>
-    <th bgcolor=#9ae4fd width=600>Specifications</th>
+Based on these findings, the decision was made to replace the original controller with a more suitable model. The selected ESC, the Quicrun WP 1080–G2, fully meets the specified technical requirements.
+
+<table align="center" cellpadding="6" cellspacing="0">
+    <tr>
+        <th bgcolor="#CCFFCC" width="300">Motor Driver Quicrun WP 1080–G2</th>
+        <th bgcolor="#9ae4fd" width="600">Specifications</th>
   </tr>
   <tr>
-    <td width=300>
+        <td width="300">
       <a href="img/fahrtenregler.jpg" target="_blank">
         <img src="img/fahrtenregler.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd ><li>Application: 1/10th Rock Crawler</li>
+        <td bgcolor="#c8f0fd"><li>Application: 1/10th Rock Crawler</li>
 <li>Motor Type: Brushed Motor (540 / 555 size motors)</li>
 <li>Cont./Peak Current: 80A/400A</li>
 <li>Input Voltage: 2-3S LiPo/5-9S Cell NiMH</li>
@@ -494,25 +476,23 @@ Auf Grundlage dieser Erkenntnisse wurde die Entscheidung getroffen, den ursprün
 <li>Programming device: LED program box</li>
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor driver: <a href="https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a">https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</a></TD></tr>
+        <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the motor driver: <a href="https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a">https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</a></td></tr>
 </table>
 <tr> 
 
+### Functioning of the drive system
 
+The gearbox consists of a motor pinion with 14 teeth and a larger main gear with 61 teeth. The motor drives the pinion, which in turn rotates the larger main gear. The main gear is connected to the differential, which distributes power to the two rear wheels.
 
-### Funktionsweise Antrieb
-
-Das Getriebe besteht aus einem Motorritzel mit 14 Zähnen und einem größeren Hauptzahnrad
-mit 61 Zähnen. Das Motorritzel wird vom Motor gedreht. Das Ritzel wiederum dreht das größere
-Hauptzahnrad. Das Hauptzahnrad ist mit dem Differential verbunden, welches die Kraft auf die
-beiden Hinterräder verteilt. Um feinfühlig steuern zu können und weil wir keine hohe Endge-
-schwindigkeit brauchen, haben wir die größtmögliche Übersetzung gewählt, die sich in unser
-Chassis einbauen ließ. Die Übersetzung wird vom Hauptzahnrad und dem Motorritzel bestimmt
-und ist bei uns 61:14 = 1:4,35.
+To allow for precise control and because high top speed is not required, we chose the largest possible gear ratio that could be installed in our chassis. The gear ratio is determined by the main gear and the motor pinion, and in our case, it is 61:14 = 1:4.35
 <br><br>
-Durch die gewählte Übersetzung von 61:14 ergibt sich eine signifikante Verstärkung des Drehmoments am Antriebsstrang. Diese Konfiguration wurde gezielt gewählt, um eine zuverlässige Kraftübertragung auch bei niedrigen Geschwindigkeiten sicherzustellen. Während der Testläufe zeigte sich, dass die Wettbewerbsfläche oft kleinere Unebenheiten und Wellen aufweist. Diese können dazu führen, dass Fahrzeuge mit unzureichendem Drehmoment hängen bleiben oder an Traktion verlieren. In unseren Versuchen bewährte sich die getroffene Antriebswahl: Der Roboter konnte auch über wellige Mattenbereiche hinweg gleichmäßig beschleunigen und blieb dabei jederzeit kontrollierbar. Somit trägt die kraftbetonte Getriebeübersetzung wesentlich zur Zuverlässigkeit des Fahrzeugs im realen Einsatz bei.
+The chosen gear ratio of 61:14 results in a significant increase in torque within the drivetrain. This configuration was deliberately selected to ensure reliable power transmission even at low speeds.
 
-## Potential improvements - Powertrain:
+During test runs, we observed that the competition field often features small irregularities and bumps. These can cause vehicles with insufficient torque to get stuck or lose traction. In our tests, the selected drivetrain configuration proved highly effective: the robot was able to accelerate smoothly across uneven mat surfaces while remaining fully controllable at all times.
+
+Thus, the torque-oriented gear ratio makes a significant contribution to the vehicle’s reliability in real-world operation.
+
+## Potential improvements - powertrain:
 - Use the same wheels for the back wheels as the front axis, as the front wheels have better traction and are easier to clean and maintain.
 
 - Encoders on rear wheels or on the motor for precise wheel slip detection, better traction control, more accurate speed control and for detecting the wheels spinning on uneven surfaces, e.g. bumps.
@@ -523,114 +503,114 @@ Durch die gewählte Übersetzung von 61:14 ergibt sich eine signifikante Verstä
 
 ## Steering
 
-Wie bereits erläutert, ließ die vorhandene Lenkung des gekauften Chassis keinen ausreichenden Radeinschlag zu, was beispielsweise ein Ausparken in einem Zug bei der Parkchallenge unmöglich machte. Zur Verbesserung des Lenkeinschlags wurde daher eine alternative Lösung erarbeitet. Diese bestand in der Konstruktion einer vollständig neuen Vorderachse. 
+As already mentioned, the existing steering mechanism of the purchased chassis did not allow for a sufficient steering angle, making maneuvers such as exiting a parking space in a single move during the parking challenge impossible. To improve the steering angle, an alternative solution was developed, which consisted of designing an entirely new front axle (<a href="#drivetrain">cf. Chapter Drivetrain</a>).
 
-In diesem Zug testeten wir auch different steering concepts, including parallelogram and bell-crank mechanisms, we carefully evaluated their pros and cons. In the end, we decided to implement an Ackermann steering system. This choice was made because Ackermann geometry optimizes wheel angles during turns, reducing tire slip and improving maneuverability—especially important for precise movements in our small, lightweight robot. Compared to simpler systems, Ackermann steering provides more accurate cornering and better control, which was crucial for our performance goals.
+In this context, we also tested different steering concepts, including parallelogram and bell-crank mechanisms, and carefully evaluated their pros and cons. In the end, we decided to implement an Ackermann steering system. This choice was made because Ackermann geometry optimizes wheel angles during turns, reducing tire slip and improving maneuverability—especially important for precise movements in our small, lightweight robot. Compared to simpler systems, Ackermann steering provides more accurate cornering and better control, which was crucial for achieving our performance goals.
 
 The steering assembly consists of two symmetrical wheel mounts connected by a steering linkage, which is actuated by a servo motor. Steel rods form the joints between the wheel mounts and the steering linkage, ensuring precise and reliable movement.
 
 
 
-### Die neue Vorderachse
+### New front axle
 
-Ein Teil der neuen Vorderachse wurde mit dem Programm Fusion 360 selbst erstellt und mit dem 3D-Drucker gedruckt. 
+Part of the front axle was designed in Fusion 360 and 3D-printed.
 
 <div align="center">
-    <a href="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06" target="_blank">
-        <img width="500" src="https://github.com/user-attachments/assets/82217cac-1acd-4b5e-9e69-d0e1849cdb06">
+    <a href="img/vorderachse_design.png" target="_blank">
+        <img width="500" src="img/vorderachse_design.png">
     </a>
 </div>
 
-Bemaßung of the front axle:
+Dimensioning of the front axle:
 <div align="center">
     <a href="img/Masse/Frontaxle.jpg" target="_blank">
         <img width="400" src="img/Masse/Frontaxle.jpg">
     </a>
 </div>
 <br>
-Für den Bau der neuen Vorderachse wurde ein Lenkgestänge und Achsschenkel benötigt:
+For the construction of the new front axle, a steering linkage and steering knuckles were required:
 <br><br>
-<table align="center">
-  <tr>
-    <th bgcolor=#CCFFCC width=300>Lenkgestänge und Achsschenkel</th>
-    <th bgcolor=#9ae4fd width=500>Specifications</th>
+<table align="center" cellpadding="6" cellspacing="0">
+    <tr>
+        <th bgcolor="#CCFFCC" width="300">steering linkage and steering knuckles</th>
+        <th bgcolor="#9ae4fd" width="500">Specifications</th>
   </tr>
   <tr>
-    <td>
-      <a href="img/lenkstange.jpg" target="_blank">
-        <img src="img/lenkstange.jpg">
+        <td>
+      <a href="img/Lenkstange.jpg" target="_blank">
+        <img src="img/Lenkstange.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd>RC Metall Vorderachse Hinterachse Für WPL HengLong 1/16 Militär LKW RC LKW DE-
+        <td bgcolor="#c8f0fd">RC Metal Front and Rear Axle
 </td>
    </tr>
-  <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the set: <a href="https://www.ebay.de/itm/176692013502">https://www.ebay.de/itm/176692013502</a></TD></tr>
+    <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the set: <a href="https://www.ebay.de/itm/176692013502">https://www.ebay.de/itm/176692013502</a></td></tr>
 </table>
 <tr> 
 <tr> 
 
 <br>
-Die Räder der neuen Vorderachse sind von Lego:
+The wheels of the new front axle are from Lego:
 <br><br>
-<table align="center">
-  <tr>
-    <th bgcolor=#CCFFCC width=300>Wheels</th>
-    <th bgcolor=#9ae4fd width=500>Specifications</th>
+<table align="center" cellpadding="6" cellspacing="0">
+    <tr>
+        <th bgcolor="#CCFFCC" width="300">Wheels</th>
+        <th bgcolor="#9ae4fd" width="500">Specifications</th>
   </tr>
   <tr>
-    <td>
+        <td>
       <a href="img/legorad.jpg" target="_blank">
         <img src="img/legorad.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd>Size: 5,6cm x 1,5cm x 5,6cm
+        <td bgcolor="#c8f0fd">Size: 5,6cm x 1,5cm x 5,6cm
 </td>
    </tr>
-  <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the wheels: <a href="https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367">https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</a></TD></tr>
+    <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the wheels: <a href="https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367">https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</a></td></tr>
 </table>
 <br>
-Die neue Vorderachse in einer Detailaufnahme:
+The new front axle in a close-up view:
 <br><br>
 <div align="center">
-    <a href="https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be" target="_blank">
-        <img width="500" src="https://github.com/user-attachments/assets/29e9e002-67d4-4cfb-aa75-9a4d085aa4be">
+    <a href="img/vorderachse_detail.jpg" target="_blank">
+        <img width="500" src="img/vorderachse_detail.jpg">
     </a>
 </div>
 
 
-### Servo Saver
+### Servo saver
 The Servo Saver is installed on the Servo and connects to the steering linkage. The Servo Saver, when the front wheels collide against an obstacle, uses a spring to prevent an overload on the Servo.
 
-<table align="center">
-  <tr>
-    <th bgcolor=#CCFFCC width=300>Dilwe RC Servo Saver</th>
-    <th bgcolor=#9ae4fd width=600>Specifications</th>
+<table align="center" cellpadding="6" cellspacing="0">
+    <tr>
+        <th bgcolor="#CCFFCC" width="300">Dilwe RC Servo Saver</th>
+        <th bgcolor="#9ae4fd" width="600">Specifications</th>
   </tr>
   <tr>
-    <td>
+        <td>
       <a href="img/servosaver.jpg" target="_blank">
         <img src="img/servosaver.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd><li>Größe: 10 x 7 x 2 cm</li>
-    <li>Gewicht: 12 g</li>
+        <td bgcolor="#c8f0fd"><li>Size: 10 × 7 × 2 cm</li>
+    <li>Weight: 12 g</li>
     <li>Material: Aluminium</li>
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the Servo Saver: <a href="https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1">https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1</a></TD></tr>
+        <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the Servo Saver: <a href="https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1">https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1</a></td></tr>
 </table>
 
-### Servo Motor ANDERS einsortieren - ungünstig als eigener Unterpunkt - ist neu einsortiert, gut hier?
-Der Servo ist für die Lenkung der Vorderräder verantwortlich. Die Stellgeschwindigkeit sowie das Drehmoment dieses Servos wurden im Rahmen einer technischen Bewertung als vollumfänglich ausreichend für die Wettbewerbsanforderungen eingestuft.
+### Servo motor
+The servo is responsible for steering the front wheels. The servo’s actuation speed and torque were evaluated as fully sufficient to meet the competition requirements.
 
-Konkret handelt es sich um den Traxxas Waterproof Sub-Micro Servo (Modellnummer 2065A). Dieser erzeugt bei einer Betriebsspannung von 6,0 V ein Drehmoment von 2,3 kg·cm (≈ 32 oz-in) und erreicht eine Stellzeit von 0,20 s pro 60°.
+Specifically, it is the Traxxas Waterproof Sub-Micro Servo (model number 2065A). At an operating voltage of 6.0 V, it delivers a torque of 2.3 kg·cm (≈ 32 oz-in) and achieves a response time of 0.20 s per 60°.
 
-Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wurde beschlossen, den bereits im Modell vorhandenen Servo weiterhin zu verwenden.
+Since these specifications ensure precise and effective steering, it was decided to continue using the servo already installed in the model.
 
-<table align="center">
+<table align="center" cellpadding="6" cellspacing="0">
   <tr>
-    <th bgcolor=#CCFFCC width=300>Waterproof Sub-Micro Servo</th>
-    <th bgcolor=#9ae4fd width=600>Specifications</th>
+        <th bgcolor="#CCFFCC" width="300">Waterproof Sub-Micro Servo</th>
+        <th bgcolor="#9ae4fd" width="600">Specifications</th>
   </tr>
   <tr>
     <td>
@@ -638,7 +618,7 @@ Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wur
         <img src="img/motordriver.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd><li>Fully waterproof</li>
+    <td bgcolor="#c8f0fd"><li>Fully waterproof</li>
 <li>Fits steering in LaTrax models</li>
 <li>Power: 2.3kg/cm</li>
 <li>Operating voltage: 6.0V</li>
@@ -646,156 +626,161 @@ Da diese Kenndaten eine präzise sowie wirkungsvolle Lenkung gewährleisten, wur
 <li>Dimensions: 22.6×12.6×22.5 mm</li>
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor: <a href="https://traxxas.com/2065a-waterproof-sub-micro-servo">https://traxxas.com/2065a-waterproof-sub-micro-servo</a></TD></tr>
+    <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the motor: <a href="https://traxxas.com/2065a-waterproof-sub-micro-servo">https://traxxas.com/2065a-waterproof-sub-micro-servo</a></td></tr>
 </table>
 <tr> 
 
-## Potential improvements - Steering:
+## Potential improvements - steering:
 - The servo saver occasionally fails and triggers a false alarm during sharp or high-speed turns. A potential improvement would be to tighten the servo saver to prevent this issue.
 
 - Additionally, the wheels could be improved in terms of grip to reduce slipping.
 <br><br><br>
 
-# Power and Sense Management
-Das Power and Sense Management System umfasst die Sensorik zur Umgebungswahrnehmung sowie die Energieversorgung des Roboters, die für eine zuverlässige und autonome Navigation erforderlich sind. In den folgenden Kapiteln werden die einzelnen Sensoren, die Energieversorgung und die elektrische Schaltung detailliert erläutert.
+# Power and sense management
+The Power and Sense Management System includes the sensors for environmental perception as well as the robot’s power supply, both of which are essential for reliable and autonomous navigation. The following chapters provide a detailed explanation of the individual sensors, the power supply, and the electrical circuitry.
 <br>
-## Sensoren
+
+## Sensors
 
 ### LiDAR
 
-Im Rahmen unserer Untersuchungen zum Thema autonomes Fahren wurde festgestellt, dass in der Regel LiDAR-Systeme (Light Detection and Ranging) zur Umgebungserfassung eingesetzt werden. Dabei handelt es sich um ein zentrales Sensorsystem in autonomen Fahrzeugen, das mithilfe von Laserstrahlen die Umgebung präzise erfasst und ein zweidimensionales Abbild generiert.
+During our research on autonomous driving, we found that LiDAR systems (Light Detection and Ranging) are commonly used for environmental perception. LiDAR is a core sensor system in autonomous vehicles that uses laser beams to precisely capture the surroundings and generate a two-dimensional map.
 
-Durch die Messung der Laufzeit der reflektierten Laserstrahlen kann die Entfernung zu Objekten bestimmt werden. Diese Informationen ermöglichen eine zuverlässige Erkennung von Hindernissen sowie anderen Verkehrsteilnehmern und tragen wesentlich zur sicheren Navigation des Fahrzeugs bei.
+By measuring the time of flight of the reflected laser beams, the distance to surrounding objects can be determined. This information enables reliable detection of obstacles and other entities in the environment, significantly contributing to safe vehicle navigation.
 
-Eine erhöhte Umgebungswahrnehmung wird erzielt, wenn die LiDAR-Daten mit weiteren Sensordaten, beispielsweise von Kameras oder Radarsystemen, kombiniert werden. Dies erlaubt eine fundierte Entscheidungsfindung zur sicheren Fahrzeugsteuerung. Aufgrund der überzeugenden Leistungsmerkmale wurde entschieden, ein LiDAR-System in das eigene autonome Fahrzeug zu integrieren.
+Environmental awareness can be further enhanced by combining LiDAR data with additional sensor inputs, such as cameras or radar systems. This sensor fusion allows for more informed and reliable decision-making in vehicle control.
 
-In der nachfolgenden Tabelle wurden die für die Auswahl relevanten technischen Kriterien verschiedener LiDAR-Systeme zusammengestellt und entsprechend unserer Anforderungen farblich bewertet. Im Ergebnis stellte sich heraus, dass der RpLidar S2 die geeignetste Option für unsere Anwendung darstellt.
+Due to its compelling performance characteristics, we decided to integrate a LiDAR system into our autonomous vehicle. The table below summarizes the key technical criteria of various LiDAR systems relevant to the selection process, with a color-coded evaluation based on our requirements: green indicates that the criterion meets our requirements, yellow indicates a moderate level, and red indicates insufficient performance. As a result, the RpLidar S2 proved to be the most suitable option for our application.
 
 <table align="center" border="1" style="border-collapse: collapse; border: 2px solid black;">
   <tr>
-    <th bgcolor=#E8E8E8 width=200 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Kriterium</th>
-    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar-S2</th>
-    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar A2</th>
-    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar A1</th>
-    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">YDLidar TG30</th>
+        <th bgcolor="#E8E8E8" width="200" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Criterion</th>
+        <th bgcolor="#E8E8E8" width="150" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar-S2</th>
+        <th bgcolor="#E8E8E8" width="150" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar A2</th>
+        <th bgcolor="#E8E8E8" width="150" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar A1</th>
+        <th bgcolor="#E8E8E8" width="150" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">YDLidar TG30</th>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Reichweite</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">0,05-18 m</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">0,2-16 m</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">0,15-12 m</td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">0,05-30 m</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Range</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">0,05-18 m</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">0,2-16 m</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">0,15-12 m</td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">0,05-30 m</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Genauigkeit der Abstandmessung</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">+/- 50 mm</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">< 1%</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">< 1%</td>
-    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">+/- 60mm</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Accuracy</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">+/- 50 mm</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">< 1%</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">< 1%</td>
+        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">+/- 60mm</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Auflösung der Abstandsmessung</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">13 mm</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">1 %</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">1 %</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">-</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Resolution</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">13 mm</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">1 %</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">1 %</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">-</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Geschlossenes Gehäuse</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">yes</td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">yes</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">no</td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">yes</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Enclosed Housing</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">yes</td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">yes</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">no</td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">yes</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Winkelauflösung</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">0,1125°</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">0,225°</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">1°</td>
-    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">0,13°</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Angular Resolution</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">0,1125°</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">0,225°</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">1°</td>
+        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">0,13°</td>
   </tr>
     <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Aktualisierungsgeschwindigkeit</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">2-10 Hz</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">5-15 Hz</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">5,5 Hz</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">5-12 hz</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Update Rate</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">2-10 Hz</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">5-15 Hz</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">5,5 Hz</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">5-12 hz</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Preis</b></td>
-    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">~ 220€</td>
-    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">~ 260€</td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">~ 90€</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">~ 450€</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Price</b></td>
+        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">~ 220€</td>
+        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">~ 260€</td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">~ 90€</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">~ 450€</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;"><b>Bewertung</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Sehr gut</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Mäßig</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Mäßig</td>
-    <td bgcolor=#FFD700 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Gut</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;"><b>Evaluation</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Very good</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Moderate</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Moderate</td>
+        <td bgcolor="#FFD700" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Good</td>
   </tr>
 </table>
 
 
-Nach der Integration des LiDAR-Systems in den Roboter wurde festgestellt, dass die Spielfeldbegrenzung nicht zuverlässig erkannt wurde. Ursache hierfür war, dass die vom Sensor ausgesendeten Laserstrahlen über die Begrenzung hinweg projiziert wurden.
+After integrating the LiDAR system into the robot, we found that the field boundaries were not being reliably detected. The cause was that the laser beams emitted by the sensor were projected over the boundary lines.
 
-In mehreren Iterationen wurde der Sensor schrittweise tiefer im Gehäuse des Roboters verbaut, jedoch konnte auch dadurch keine zufriedenstellende Erfassung der Begrenzungslinien erreicht werden. Eine anschließende Analyse des Datenblatts ergab, dass die Laserstrahlen des verwendeten LiDARs in einem leicht nach oben gerichteten Winkel emittiert werden. Dies erklärte, weshalb auch bei einer tieferliegenden Positionierung die relevanten Objekte nicht im Scanbereich erfasst wurden.
+Through several iterations, the sensor was gradually mounted lower within the robot’s housing; however, this adjustment still did not result in satisfactory detection of the boundary lines. A subsequent analysis of the datasheet revealed that the LiDAR’s laser beams are emitted at a slightly upward angle, which explained why the relevant objects remained outside the scan range even when the sensor was positioned lower.
 
-Daraufhin wurde beim Hersteller angefragt, ob eine Montage des LiDARs in umgekehrter (invertierter) Ausrichtung technisch zulässig sei. Die Rückmeldung fiel positiv aus, sodass der Sensor nun in umgekehrter Position im Roboter verbaut ist. Durch diese Anordnung wird erreicht, dass die Scanebene die Spielfeldbegrenzung zuverlässig detektiert.
+The manufacturer was then contacted to determine whether mounting the LiDAR in an inverted orientation would be technically permissible. The response was positive, so the sensor is now installed upside down in the robot. This configuration ensures that the scanning plane reliably detects the field boundaries.
 
 ### Potential improvements - LiDAR:
-- Ein LiDAR finden, der parallel / nach unten scannt, statt nach oben.
+- Find a LiDAR that scans parallel to the ground or downward, rather than upward, so that it can be installed in the correct orientation.
 
-- Recherche nach einem LiDAR mit einer höheren Aktualisiergeschwindigkeit, genaueren Abstandsmessung und eine höhere Winkelauflösung.
+- Look for a LiDAR with a higher update rate, greater distance measurement accuracy, and improved angular resolution.
 
 
-### Kamera
-Während zur Positionsbestimmung eines Hindernisses der LiDar verwendet wird, wird zusätzlich eine Kamera benötigt, um die Farbe des Hindernisses zu erkennen. Zunächst wurde die Raspberry Pi Global Shutter Camera bestellt, da deren technische Eigenschaften als besonders geeignet für den Einsatz in einem mobilen Robotersystem eingeschätzt wurden. Die Kamera ermöglicht die verzerrungsfreie Erfassung schneller Bewegungen, da sie – im Gegensatz zu Rolling-Shutter-Systemen – typische Bewegungsartefakte vermeidet. Zudem erlaubt die Unterstützung von Wechselobjektiven eine flexible Anpassung an unterschiedliche Anwendungsszenarien. Nach dem Eintreffen der Kamera stellte sich jedoch heraus, dass deren physische Abmessungen deutlich größer ausfielen als ursprünglich angenommen. Aufgrund der begrenzten Platzverhältnisse im Fahrzeugchassis konnte sie nicht integriert werden.
+### Camera
+While the LiDAR is used to determine the position of an obstacle, an additional camera is required to identify the obstacle’s color. Initially, the Raspberry Pi Global Shutter Camera was ordered, as its technical specifications appeared particularly suitable for use in a mobile robotic system. The camera enables distortion-free capture of fast movements since—unlike rolling-shutter systems—it avoids typical motion artifacts. Moreover, its support for interchangeable lenses allows flexible adaptation to different application scenarios.
 
-Infolgedessen wurde auf eine kompaktere Alternative zurückgegriffen: das Raspberry Pi Camera Module 3 Wide (12 MP). Obwohl ursprünglich eine Global-Shutter-Kamera angedacht war, wurde festgestellt, dass die im System auftretenden Geschwindigkeiten keine kritischen Rolling-Shutter-Artefakte verursachen. Die gewählte Kamera erfüllt die Anforderungen in Bezug auf Sichtfeld, Auflösung (12 MP), Integration und Rechenkompatibilität und stellt somit eine praktikable Lösung für die Bildverarbeitung im gegebenen Kontext dar.
+However, upon arrival, it became apparent that the physical dimensions of the camera were significantly larger than originally anticipated. Due to the limited space within the vehicle chassis, integration was not possible.
 
-### Potential improvements - Kamera:
-- Eine bessere Kamera mit einem höheren Blickwinkel finden und einbauen.
+As a result, a more compact alternative was selected: the Raspberry Pi Camera Module 3 Wide (12 MP). Although a global shutter camera had initially been planned, we found that the operating speeds in the system do not cause critical rolling-shutter artifacts. The chosen camera meets the requirements in terms of field of view, resolution (12 MP), integration, and computational compatibility, making it a practical solution for image processing in this context.
 
-### Odometrie Sensor
-In den letzten zwei Jahren wurde im Rahmen der Teilnahme an der Kategorie RoboMission die Bedeutung einer kontinuierlichen Positionsbestimmung deutlich. Dort wurde die Position durch Auswertung der Radumdrehungen und ergänzend durch ein Gyroskop bestimmt. Das aktuelle Modellbau-Chassis bietet jedoch keine Möglichkeit, die Radbewegung direkt zu messen.
+### Potential improvements - camera:
+- Find and install a better camera with a wider field of view.
 
-Bei der Suche nach Alternativen wurde festgestellt, dass die Bewegung auch optisch – ähnlich wie bei einer Computermaus – erfasst werden kann. Auf dieser Grundlage wurde der „Optical Tracking Odometry Sensor“ von SparkFun ausgewählt. Dieser integriert einen optischen Bewegungssensor, ein Gyroskop sowie einen Mikrocontroller, der die Odometrieberechnungen eigenständig durchführt.
+### Odometry sensor
+Over the past two years of participating in the RoboMission category, the importance of continuous position tracking became evident. In that context, the vehicle’s position was determined by evaluating wheel rotations, complemented by a gyroscope. However, the current model car chassis does not provide a way to directly measure wheel movement.
 
-Zur Erhöhung der Genauigkeit und Redundanz wurden zwei dieser Sensoren verbaut.
+While searching for alternatives, it was discovered that motion can also be detected optically—similar to the operation of a computer mouse. 
 
-Funktionsweise
-Die Bewegungserkennung erfolgt durch eine nach unten gerichtete Kamera, die mit bis zu 20.000 Bildern pro Sekunde Veränderungen der Bodenstruktur analysiert. Aus den Bilddifferenzen wird die Verschiebung des Fahrzeugs über den Untergrund ermittelt. Diese Methode ist unempfindlich gegenüber Rutsch- oder Schlupfeffekten, wie sie bei Encoder-basierten Verfahren auftreten können.
+The functionality of the system is as follows: Motion detection is achieved through a downward-facing camera that analyzes changes in the ground texture at up to 20,000 frames per second. The vehicle’s displacement over the surface is determined from the differences between consecutive images. This method is resistant to slip effects that can occur in encoder-based systems.
 
-### Potential improvements - Odometriesensor:
+Based on this principle, the SparkFun “Optical Tracking Odometry Sensor” was selected. This device integrates an optical motion sensor, a gyroscope, and a microcontroller that independently performs odometry calculations.
 
-- Einen dritten Sensor einbauen, um eine echte Mehrheitsentscheidung bei der Bestimmung des korrekten Messwerts zu ermöglichen. Mit drei Sensoren könnte das System bei widersprüchlichen Messungen automatisch den einen abweichenden Sensor als fehlerhaft identifizieren und die beiden übereinstimmenden Sensoren verwenden. Dies würde die Robustheit des Systems erheblich verbessern, da aktuell bei einem Ausfall eines der beiden Sensoren nur noch ein einzelner Sensor zur Verfügung steht, dessen Genauigkeit nicht mehr durch Vergleich verifiziert werden kann.
+To increase accuracy and redundancy, two of these sensors were installed.
 
-### Status-Display
-Zusätzlich wurde ein Status-Display integriert, über das verschiedene Systemparameter visualisiert werden. Die aktuelle Geschwindigkeit sowie die Zielgeschwindigkeit werden dabei durch Balkenanzeigen in Metern pro Sekunde dargestellt.
 
-Der Betriebszustand der beiden Odometrie-Sensoren wird durch ein Farbsystem signalisiert:
+### Potential improvements - odometry sensor:
 
-- Grünes Licht zeigt an, dass der betreffende Maussensor aktiviert ist und ordnungsgemäß arbeitet.
-- Rotes Licht wird angezeigt, wenn ein Sensor eine mehr als 0,2 m/s geringere Geschwindigkeit im Vergleich zum zweiten Sensor misst; in diesem Fall wird der Sensor als fehlerhaft klassifiziert.
-- Blaues Licht weist darauf hin, dass der Sensor eine Geschwindigkeit über 2 m/s registriert, was physikalisch nicht plausibel ist; der Sensor wird daraufhin automatisch deaktiviert.
+- Install a third sensor to enable a true majority decision when determining the correct measurement. With three sensors, the system could automatically identify the one deviating sensor as faulty in the event of conflicting measurements and rely on the two agreeing sensors. This would significantly improve the robustness of the system, since currently, if one of the two sensors fails, only a single sensor remains available, and its accuracy can no longer be verified through comparison.
 
-Dieses Display ist eine optionale Komponente und für die Funktionalität des Roboters nicht unbedingt erforderlich.
+### Status display
+A status display was additionally integrated to visualize various system parameters. The current speed and target speed are represented using bar indicators in meters per second.
 
-### Potential improvements - Status-Display:
-- Mehr Informationen während der Fahrt anzeigen, z.B. welche Farben die Hindernisse haben.
+The operational status of the two odometry sensors is communicated through a color-coded system:
+
+- Green light: indicates that the corresponding optical sensor is active and functioning correctly.
+- Red light: is displayed when one sensor measures a speed more than 0.2 m/s lower than the other sensor; in this case, the sensor is classified as faulty.
+- Blue light: indicates that the sensor has detected a speed exceeding 2 m/s, which is physically implausible; the sensor is then automatically deactivated.
+
+This display is an optional component and is not strictly necessary for the robot’s core functionality.
+
+### Potential improvements - status display:
+- Display more information during operation, for example, the colors of the obstacles.
 <br>
 
-## Energieversorgung des Fahrzeugs
+## Vehicle power supply
 
-Die Energieversorgung des autonomen Fahrzeugs wurde so ausgelegt, dass sie sämtliche Sensoren, Steuerungseinheiten und Aktuatoren zuverlässig mit Energie versorgen kann. Als zentrale Stromquelle kommt ein 7,4 V Lithium-Polymer-Akku (LiPo, 2S, 2200 mAh) zum Einsatz, der direkt mit dem Fahrtenregler verbunden ist und über einen 5V Spannungswandler auch den Raspberry mit Strom versorgt.
+The power supply of the autonomous vehicle was designed to reliably provide energy to all sensors, control units, and actuators. The central power source is a 7.4 V lithium-polymer battery (LiPo, 2S, 2200 mAh), which is directly connected to the electronic speed controller (ESC) and also powers the Raspberry Pi via a 5 V voltage converter.
 
-### Li-Po Battery
-<table align="center">
+### LiPo Battery
+<table align="center" cellpadding="6" cellspacing="0">
   <tr>
-    <th bgcolor=#CCFFCC width=300>Zeee 2S Lipo Akku</th>
-    <th bgcolor=#9ae4fd width=600>Specifications</th>
+        <th bgcolor="#CCFFCC" width="300">Zeee 2S Lipo Akku</th>
+        <th bgcolor="#9ae4fd" width="600">Specifications</th>
   </tr>
   <tr>
     <td>
@@ -803,130 +788,134 @@ Die Energieversorgung des autonomen Fahrzeugs wurde so ausgelegt, dass sie sämt
         <img src="img/lipo.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd><li>Batteriespannung: 7,4V</li>
-    <li>Konfiguration: 2S1P</li>
-    <li>Kapazität: 2200mAh</li>
-    <li>Entladung: 50C</li>
-    <li>Steckertyp: XT60-Stecker</li>
-    <li>Abmessungen: 73 x 34 x 18,5 mm (L x B x H)</li>
-    <li>Ungefähres Gewicht: 98 g</li>
+    <td bgcolor="#c8f0fd"><li>Battery voltage: 7.4 V</li>
+    <li>Configuration: 2S1P</li>
+    <li>Capacity: 2200mAh</li>
+    <li>Discharge rate: 50C</li>
+    <li>Connector type: XT60 connector</li>
+    <li>Dimensions: 73 x 34 x 18,5 mm (L × W × H)</li>
+    <li>Approximate weight: 98 g</li>
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the Battery: <a href="https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK">https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK</a></TD></tr>
+    <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the Battery: <a href="https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK">https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK</a></td></tr>
 </table>
 
-### Energieverbrauch der Komponenten
+### Component power consumption
 
-Im Folgenden sind die wesentlichen verbauten Komponenten sowie deren typischer Energieverbrauch aufgeführt:
+The following table lists the essential installed components and their typical power consumption:
 
 <table align="center" border="1" style="border-collapse: collapse; border: 2px solid black;">
-  <tr>
-    <th bgcolor=#E8E8E8 width=300 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Komponente</th>
-    <th bgcolor=#E8E8E8 width=200 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Betriebsspannung</th>
-    <th bgcolor=#E8E8E8 width=200 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Leistungsaufnahme (typisch)</th>
-    <th bgcolor=#E8E8E8 width=400 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Bemerkung</th>
+    <tr>
+        <th bgcolor="#E8E8E8" width="300" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Komponente</th>
+        <th bgcolor="#E8E8E8" width="200" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Betriebsspannung</th>
+        <th bgcolor="#E8E8E8" width="200" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Leistungsaufnahme (typisch)</th>
+        <th bgcolor="#E8E8E8" width="400" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Bemerkung</th>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">Raspberry Pi 5</td>
     <td style="border: 1px solid black; padding: 8px;">5 V</td>
     <td style="border: 1px solid black; padding: 8px;">3–8 W</td>
-    <td style="border: 1px solid black; padding: 8px;">Hauptsteuerung, hohe CPU-Leistung</td>
+    <td style="border: 1px solid black; padding: 8px;">Main controller, high CPU performance</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">Raspberry Pi Camera Module 3 Wide (12 MP)</td>
     <td style="border: 1px solid black; padding: 8px;">5 V</td>
     <td style="border: 1px solid black; padding: 8px;">1–2 W</td>
-    <td style="border: 1px solid black; padding: 8px;">Direkt am CSI-Port des RPi angeschlossen</td>
+    <td style="border: 1px solid black; padding: 8px;">Connected directly to RPi CSI port</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">2× SparkFun Optical Tracking Odometry Sensor</td>
-    <td style="border: 1px solid black; padding: 8px;">3,3 V</td>
-    <td style="border: 1px solid black; padding: 8px;">je ca. 0,1 W</td>
-    <td style="border: 1px solid black; padding: 8px;">Geringer Stromverbrauch, über I²C kommunizierend</td>
+    <td style="border: 1px solid black; padding: 8px;">3.3 V</td>
+    <td style="border: 1px solid black; padding: 8px;">approx. 0.1 W each</td>
+    <td style="border: 1px solid black; padding: 8px;">Low power consumption, I²C communication</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">RpLidar S2</td>
     <td style="border: 1px solid black; padding: 8px;">5 V</td>
     <td style="border: 1px solid black; padding: 8px;">2 W</td>
-    <td style="border: 1px solid black; padding: 8px;">Kontinuierlicher Betrieb zur Umfelderfassung</td>
+    <td style="border: 1px solid black; padding: 8px;">Continuous operation for environment scanning</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">LaTrax 370 brushed DC-Motor (23-turn)</td>
-    <td style="border: 1px solid black; padding: 8px;">7,4 V</td>
-    <td style="border: 1px solid black; padding: 8px;">1-10 W (je nach Last)</td>
-    <td style="border: 1px solid black; padding: 8px;">Hauptantrieb, stark lastabhängig</td>
+    <td style="border: 1px solid black; padding: 8px;">7.4 V</td>
+    <td style="border: 1px solid black; padding: 8px;">1-10 W (load dependent)</td>
+    <td style="border: 1px solid black; padding: 8px;">Main drive, highly load dependent</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">Quicrun WP 1080–G2 Motor Driver</td>
-    <td style="border: 1px solid black; padding: 8px;">7,4 V</td>
-    <td style="border: 1px solid black; padding: 8px;">geringer Eigenverbrauch</td>
-    <td style="border: 1px solid black; padding: 8px;">Steuerung des Antriebsmotors</td>
+    <td style="border: 1px solid black; padding: 8px;">7.4 V</td>
+    <td style="border: 1px solid black; padding: 8px;">low self-consumption</td>
+    <td style="border: 1px solid black; padding: 8px;">Drive motor control</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">Traxxas Sub-Micro Servo 2065A (Lenkung)</td>
+    <td style="border: 1px solid black; padding: 8px;">Traxxas Sub-Micro Servo 2065A (Steering)</td>
     <td style="border: 1px solid black; padding: 8px;">6 V</td>
-    <td style="border: 1px solid black; padding: 8px;">1–2 W kurzzeitig</td>
-    <td style="border: 1px solid black; padding: 8px;">Stromspitzen bei Bewegung, Versorgung über BEC</td>
+    <td style="border: 1px solid black; padding: 8px;">1–2 W briefly</td>
+    <td style="border: 1px solid black; padding: 8px;">Current spikes during movement, powered via BEC</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">Led Anzeigefeld (Status-Display)</td>
-    <td style="border: 1px solid black; padding: 8px;">3,3 V</td>
-    <td style="border: 1px solid black; padding: 8px;">0-0,5 W</td>
-    <td style="border: 1px solid black; padding: 8px;">Der Stromverbrauch ist abhängig davon, wie viele Pixel leuchten</td>
+    <td style="border: 1px solid black; padding: 8px;">LED Display Panel (Status Display)</td>
+    <td style="border: 1px solid black; padding: 8px;">3.3 V</td>
+    <td style="border: 1px solid black; padding: 8px;">0-0.5 W</td>
+    <td style="border: 1px solid black; padding: 8px;">Power consumption depends on number of illuminated pixels</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">Servo-Controller</td>
     <td style="border: 1px solid black; padding: 8px;">5 V</td>
     <td style="border: 1px solid black; padding: 8px;">0,1 W</td>
-    <td style="border: 1px solid black; padding: 8px;">Geringer Stromverbrauch, über I²C kommunizierend</td>
+    <td style="border: 1px solid black; padding: 8px;">Low power consumption, I²C communication</td>
   </tr>
 </table>
 
 
-### Gesamtleistungsbedarf
+### Total power requirements
 
-Der gesamte Energiebedarf des Systems liegt abhängig vom bei geschätzten 8–20 W im Betrieb. Dabei entfallen die größten Verbraucher auf:
+The total energy consumption of the system ranges from approximately 8–20 W during operation. The largest power consumers are:
 
-- Den Raspberry Pi 5
-- Den DC-Motor (hoher Strom bei Beschleunigung)
-- Das LiDAR-Modul, das dauerhaft aktiv ist
+- The Raspberry Pi 5
+- The DC motor (high current during acceleration)
+- The LiDAR module, which operates continuously
 
-Bei einer Akkukapazität von 2200 mAh (7,4 V) ergibt sich eine verfügbare Energie von 16,28 Wh. Damit kann eine Betriebsdauer von ca. 45 bis 120 Minuten erreicht werden, abhängig von Fahrverhalten, Streckenprofil und Rechenlast.
-Basierend auf Erfahrungswerten wurde festgestellt, dass eine sichere Betriebszeit von ca. 90 Minuten zuverlässig erreicht wird. Im Anschluss wird der Akku routinemäßig gewechselt, um einer Tiefentladung vorzubeugen, da keine Spannungsüberwachung im System integriert wurde.
+With a battery capacity of 2200 mAh (7,4 V) the available energy is 16,28 Wh. This allows for operating times of approximately 45 to 120 minutes, depending on driving behavior, track profile, and computational load.
+Based on empirical data, it was determined that a safe operating time of approximately 90 minutes is reliably achieved. After this time, the battery is routinely replaced to prevent deep discharge, as no voltage monitoring is integrated into the system.
 
-### Spannungsversorgung
+### Power supply
 
-Die Spannungsversorgung der einzelnen Komponenten wird wie folgt realisiert:
-- 7,4 V direkt: DC-Motor über den Fahrtenregker
-- 5 V über Step-Down-Regler (DC-DC-Wandler): Raspberry Pi 5, LiDAR, Kamera, Servo, Servocontroller
-- 3,3 V über in den Raspberry integrierten Regler : Odometry-Sensoren, Led Anzeigefeld
+The power supply for individual components is implemented as follows:
+- 7,4 V direkt: DC motor via the speed controller
+- 5 V via step-down regulator (DC-DC converter): Raspberry Pi 5, LiDAR, camera, servo, servo controller
+- 3,3 V via Raspberry Pi integrated regulator: Odometry sensors, LED display panel
 
-### Sicherheit und Verdrahtung
-- Der Akkustecker ist verpolungssicher
-- Ein Hauptschalter trennt die Versorgung komplett
-
-
-## Potential improvements - Energieversorgung:
-- Akkuspannung messen, um den Akku rechtzeitig zu tauschen.
-- Ein Baseboard(PCB) designen, welches alle Komponenten verbindet und den Verkabelungsaufwand reduziert.
+### Safety and wiring
+- The battery connector is reverse-polarity protected
+- A main switch completely isolates the power supply
 
 
+## Potential improvements - power supply:
+- Monitor battery voltage to replace the battery in time.
+- Design a baseboard (PCB) that connects all components and reduces wiring complexity.
 
 
-## Schaltplan der Bauteile
 
-[![Schematic_Battlecar_2025-05-21](https://github.com/user-attachments/assets/e5cade62-716a-46cd-814c-f3818447c41c)](https://github.com/user-attachments/assets/e5cade62-716a-46cd-814c-f3818447c41c)
+
+## Circuit diagram of components
+
+<div align="center">
+    <a href="img/schaltplan.jpg" target="_blank">
+        <img width="500" src="img/schaltplan.jpg">
+    </a>
+</div>
 
 <br><br><br>
 
-# Code für alle Komponenten
+# Code for all components
 
 
 ## Servo 
 
 The steering is controlled through an Adafruit 16 Channel Servo Driver connected to the Raspberry Pi via I²C communication. The servo driver board manages the PWM signal generation required for the servo positioning. For the communication with the board we use the Adafruit servokit library.
 
-### Software Implementation
+### Software implementation
 
 The servo control is implemented in the `motorController.py` file through the `setServoAngle()` function:
 
@@ -948,7 +937,7 @@ def setServoAngle(kit, angle, slam=None):
 
 ```
 
-### Steering Range and Calibration
+### Steering range and calibration
 
 - **Center Position**: 80° (servo angle) = straight ahead. This value needs to be set up by hand according to the exact servo arm mounting
 - **Maximum Left**: 0° (servo angle) = full left lock
@@ -957,7 +946,7 @@ def setServoAngle(kit, angle, slam=None):
 
 
 
-## Drive Motor
+## Drive motor
 
 ### Components
 
@@ -967,7 +956,7 @@ The drive motor control system consists of three main components:
 2. **Motor Driver (ESC)**: Converts PWM signals to appropriate power levels for the brushed DC motor  
 3. **PID Control Algorithm**: Provides closed-loop speed control using feedback from odometry sensors
 
-### Hardware Interface
+### Hardware interface
 
 The motor is controlled via PWM signals sent to the motor driver through the Adafruit ServoKit library:
 
@@ -976,7 +965,7 @@ The motor is controlled via PWM signals sent to the motor driver through the Ada
 - **Communication**: I²C between Raspberry Pi and ServoKit
 - **Update Rate**: 70 Hz depending on control loop timing
 
-### Software Implementation
+### Software implementation
 
 The motor control is implemented in the `DriveBase` class within `motorController.py`. Here is a sample code that implements driving to a specific x/y coordinate. We have other functions that do different maneuvers in this class.
 
@@ -1061,7 +1050,7 @@ class DriveBase:
             return False  # Still driving to target
 ```
 
-### PID Controller Implementation
+### PID controller implementation
 
 Our robot uses two separate PID controllers for motion control: one for speed regulation and another for steering control. The PID (Proportional-Integral-Derivative) controllers provide smooth and stable control by continuously adjusting outputs based on error feedback.
 
@@ -1188,7 +1177,7 @@ setServoAngle(self.kit, 90 + outputSteer, self.slam)
 
 
 
-### Advanced Control Features
+### Advanced control features
 
 **Adaptive Braking**: The system implements intelligent braking that adjusts deceleration based on remaining distance:
 
@@ -1220,11 +1209,11 @@ else:  # Reverse
 
 
 
-## Optical Tracking Odometry Sensors
+## Optical tracking odometry sensors
 
 The odometry system uses two **SparkFun Qwiic Optical Tracking Odometry Sensors (OTOS)** connected via I²C at addresses `0x17` and `0x19`. Here's how we implement the odometry system:
 
-### Position and Speed Tracking
+### Position and speed tracking
 
 ```python
 def update(self):
@@ -1254,7 +1243,7 @@ def update(self):
     myPosition2.y = -myPosition2.y * 1000
 ```
 
-### Sensor Health Monitoring and Redundancy
+### Sensor health monitoring and redundancy
 
 ```python
 def update(self):
@@ -1293,7 +1282,7 @@ def update(self):
         print(f"Sensor 1 speed errors: {self.errorsOtosSpeed1}")
 ```
 
-### Data Fusion and Final Position Calculation
+### Data fusion and final position calculation
 
 ```python
 def update(self):
@@ -1320,7 +1309,7 @@ def update(self):
         self.speed = self.speed2
 ```
 
-### Position Reset and Calibration
+### Position reset and calibration
 
 ```python
 def setPosition(self, x, y, angle=-5000):
@@ -1348,7 +1337,7 @@ def setPosition(self, x, y, angle=-5000):
     self.ignoreSpeedUpdate = 1  # Skip next speed calculation
 ```
 
-### Key Features of Our Implementation
+### Key features of our implementation
 
 1. **Dual Sensor Redundancy**: Two sensors provide backup if one fails due to dust or surface issues
 2. **Automatic Health Monitoring**: Continuous error detection and sensor status tracking
@@ -1366,7 +1355,7 @@ This odometry system provides continuous position tracking with 2-5cm accuracy p
 
 Our LiDAR system uses the **RpLidar S2** which provides 360-degree scanning with up to 32000 samples per second. The Raspberry Pi communicates with the LiDAR via a serial UART port at 1 Mbps. The communication is handled by a library supplied by Slamtec.
 
-### Real-time Scanning and Data Acquisition
+### Real-time scanning and data acquisition
 
 ```python
 def update(self):
@@ -1384,7 +1373,7 @@ def update(self):
     # Example: self.scan[0] = distance at 0°, self.scan[90] = distance at 90°
 ```
 
-### Position Detection and Localization
+### Position detection and localization
 
 ```python
 def startpostionsetzen(self):
@@ -1414,7 +1403,7 @@ def startpostionsetzen(self):
     # Additional position detection logic...
 ```
 
-### Dynamic Position Correction During Driving
+### Dynamic position correction during driving
 
 ```python
 def repositionDrive(self):
@@ -1450,7 +1439,7 @@ def repositionDrive(self):
         self.setPosition(self.xpos, corrected_y, self.angle)
 ```
 
-### Obstacle Detection and Recognition
+### Obstacle detection and recognition
 
 ```python
 def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
@@ -1497,7 +1486,7 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
                 # (camera processing code integration here)
 ```
 
-### Key Features of Our LiDAR Implementation
+### Key features of our LiDAR implementation
 
 1. **Real-time 360° Scanning**: Continuous environment monitoring at 10 kHz
 2. **Automatic Position Correction**: Uses wall distances to correct odometry drift
@@ -1506,7 +1495,7 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
 5. **Coordinate Transformation**: Converts polar scan data to robot coordinate system
 6. **Performance Optimization**: Strategic scan timing to maintain control loop performance
 
-### Data Structure and Access Patterns
+### Data structure and access patterns
 
 ```python
 # LiDAR scan data structure
@@ -1523,7 +1512,7 @@ if self.scan[0] > 500:  # More than 500mm clear ahead
 right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
 ```
 
-## Potential improvements - Code for all components:
+## Potential improvements - code for all components:
 
 - **Crash detection and recovery**: Implement automatic detection of collisions (using accelerometer data or sudden motor load changes) and recovery procedures such as backing up, to prevent getting stuck on walls.
 
@@ -1540,25 +1529,25 @@ right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
 
 <br><br><br>
 
-# Obstacle Management
+# Obstacle management
 
 
-## Coordinate System
+## Coordinate system
 To understand our overall strategy, it is important to understand the basics our system is build on.
 Our robot uses a Cartesian coordinate system to navigate the WRO Future Engineers field:
 
-### Coordinate Dimensions and Origin
+### Coordinate dimensions and origin
 - **Field Size**: 3000mm × 3000mm square
 - **Origin (0, 0)**: Located at the **top-left corner** of the field 
 - **X-axis**: Increases from left to right (0mm to 3000mm)
 - **Y-axis**: Increases from top to bottom (0mm to 3000mm)
 - **Units**: All coordinates are specified in millimeters (mm)
 
-### Coordinate System Properties
+### Coordinate system properties
 1. **Absolute Positioning**: The coordinate system is field-absolute, not robot-relative
 2. **Origin Alignment**: The origin remains fixed at the top-left corner regardless of robot orientation
 
-### Heading Angle Convention
+### Heading angle convention
 - **0°**: Robot facing in the negative X direction (to the left)
 - **90°**: Robot facing in the positive Y direction (downward)
 - **+-180°**: Robot facing in the positive X direction (to the right)
@@ -1568,12 +1557,12 @@ Our robot uses a Cartesian coordinate system to navigate the WRO Future Engineer
 
 Waypoints are target coordinates that the robot navigates to sequentially. Each waypoint specifies (x, y) coordinates in millimeters. We have defined a structure that stores waypoints together with a command. These are added to a queue and are executed in order. Several commands are available. 
 
-### Command Example : Drive to coordinate 450/2500 
+### Command Example: Drive to Coordinate 450/2500 
 ```python
 orders.append(Order(x=450, y=2500, speed=0.75, brake=0, type=Order.DESTINATION, num=100, rotation=0))
 ```
 
-### Command Example : Turn robot ccw to a heading of -90°
+### Command Example: Turn Robot CCW to a Heading of -90°
 ```python
 orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CCW, type=Order.WINKEL)))
 ```
@@ -1587,16 +1576,20 @@ For the Open Challenge, there are four different positions where we can place th
 
 In the Obstacle Challenge, two different positions are possible. Here as well, the robot uses the LiDAR to detect its position and then knows which direction it needs to drive.
 
-[![WhatsApp Image 2025-08-30 at 15 24 43](https://github.com/user-attachments/assets/1f603c1c-980e-4192-8997-ed8e1bf1f1e4)](https://github.com/user-attachments/assets/1f603c1c-980e-4192-8997-ed8e1bf1f1e4)
+<div align="center">
+    <a href="img/flowdiagrammstart.jpeg" target="_blank">
+        <img width="500" src="img/flowdiagrammstart.jpeg">
+    </a>
+</div>
 
 
  <br><br>
-## Position updates during driving 
+## Position Updates During Driving 
 
-### Optical tracking sensor function 
+### Optical Tracking Sensor Function 
 For continuous position tracking, we use two optical tracking sensors. A downward-facing camera inside the sensor captures 20,000 images per second. Based on changes in the images, the sensor detects movement across the surface. Additionally, the sensor has a built-in gyroscope. Using data from the gyroscope and the movement across the ground, the sensor automatically calculates the current coordinates.
 
-### sensor failure detection / health status 
+### Sensor Failure Detection / Health Status 
 Two optical tracking sensors were installed to increase redundancy. If one sensor fails, for example due to dust on the lens, the robot can still accurately determine its position. A sensor is recognized by the program as “not healthy” under the following conditions:
 
 - One of the two sensors is at least 0.15 m/s slower than the other. Dust on the lens can prevent the sensor from accurately detecting changes in the ground, causing its reported speed to decrease. The slower sensor is then deactivated as “not healthy”.
@@ -1604,17 +1597,30 @@ Two optical tracking sensors were installed to increase redundancy. If one senso
 - If one sensor reports a speed greater than 2 m/s, it is also deactivated as “not healthy”.
 
 - If the sensor reports a position outside the playing field, it is likewise deactivated as “not healthy”.
-
-[![WhatsApp Image 2025-08-30 at 15 24 42](https://github.com/user-attachments/assets/6de3a1ca-4f9a-47d4-8c87-d71443b53063)](https://github.com/user-attachments/assets/6de3a1ca-4f9a-47d4-8c87-d71443b53063)
+<div align="center">
+    <a href="img/flowdiagramm2.jpeg" target="_blank">
+        <img width="500" src="img/flowdiagramm2.jpeg">
+    </a>
+</div>
 
 When both sensors are healthy, we take the average of the readings of both sensors. Otherwise, we just take the data from the healthy sensor.
 
-## Position corrections 
+## Position Corrections 
 Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases even more. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
 
-- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This can not be done while driving, because the lidar measurement is delayed by about 100 to 200ms, so we would already have moved on. This type of repositioning has to be manually set up in the programm, after stopping the robot. This is done when we need a hight accuracy, for example before scanning the obstacles.
+- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This can not be done while driving, because the lidar measurement is delayed by about 100 to 200ms, so we would already have moved on. 
 
-BILD
+<div align="center">
+    <a href="img/lidarDelay.png" target="_blank">
+        <img width="500" src="img/lidarDelay.png" alt="LiDAR Messverzögerung">
+    </a>
+    <p><em>Abbildung: LiDAR-Messverzögerung von 100-200ms in der Kurve</em></p>
+</div>
+
+
+
+
+This type of repositioning has to be manually set up in the programm, after stopping the robot. This is done when we need a hight accuracy, for example before scanning the obstacles.
 
 
 - While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. For this, we do not use the complete 360° scan from the lidar, but we trigger the reposition automatically exactly when the front distance is measured by the lidar. On this way we reduce the delay of the lidar measurement. This kind of repositioning is automatically triggered when certain conditions are met:
@@ -1627,14 +1633,15 @@ BILD
 ## Obstacle Recognition 
 This function detects and stores obstacles within each section of the course using the LiDAR and the camera. The process is divided into two parts:
 
-### Determining the position of an obstacle within a course section
+### Determining the Position of an Obstacle Within a Course Section
 
-The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course, after leaving the parking area and at 4 additional points.
+The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course :The first two ones are directly after leaving the parking area,  after that at 4 additional points.
 
 <div align="center">
     <a href="img/scanpunkte.png" target="_blank">
-        <img width="400" src="img/scanpunkte.png">
+        <img width="400" src="img/scanpunkte.png" alt="Scanpunkte auf dem Parcours">
     </a>
+    <p><em>Figure: Strategic scanning points for obstacle detection on the course</em></p>
 </div>
 
 At these points the LiDAR determines at which of the six possible positions within the section in front of the robot the obstacles are located. 
@@ -1642,11 +1649,16 @@ At these points the LiDAR determines at which of the six possible positions with
 A list of coordinates was created for all possible obstacle positions. The LiDAR checks whether something is detected near (within a radius of 100 mm) any of these coordinates. If an obstacle is detected, the position is stored in a list.
 
 
-### Determining the color of the obstacle
+### Determining the Color of the Obstacle
 
-The camera is then used to identify the color of the obstacle. The object recognition is strongly based on the [WRO support document](https://world-robot-olympiad-association.github.io/future-engineers-gs/p04-cv/#objects-recognition) (WRO Future Engineers Getting Started). Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map:
+The camera is then used to identify the color of the obstacle. The object recognition is strongly based on the [WRO support document](https://world-robot-olympiad-association.github.io/future-engineers-gs/p04-cv/#objects-recognition) (WRO Future Engineers Getting Started). Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the horizontal distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map:
 
-[![Programmausgabe Kopie](https://github.com/user-attachments/assets/9f9b5f2e-5cb8-4573-8a63-38dcde1bda16)](https://github.com/user-attachments/assets/9f9b5f2e-5cb8-4573-8a63-38dcde1bda16)
+<div align="center">
+    <a href="img/programmausgabe.jpg" target="_blank">
+        <img width="400" src="img/programmausgabe.jpg" alt="Programmausgabe Hinderniserkennung">
+    </a>
+    <p><em>Figure: Visualization of angle measurement for obstacle determination using camera and LiDAR</em></p>
+</div>
 
 ### Complete Obstacle Detection Function
 
@@ -1654,8 +1666,7 @@ The following function implements the complete obstacle detection and color reco
 
 ```python
 def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
-    """
-    Detect obstacles using LiDAR and determine their colors using the camera.
+    """ :The first two ones are directly a   Detect obstacles using LiD, Aafter that d determine their colors using the camera.
     
     This function combines LiDAR distance measurements with camera color detection
     to identify and classify obstacles at predefined positions on the competition field.
@@ -1752,7 +1763,7 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
 
 For the open challenge, we navigate using simple fixed waypoints. They are chosen in a way that they work independent of the inner wall configuration.
 
-### Complete code for waypoint generation
+### Complete Code for Waypoint Generation
 
 
 ```python
@@ -1786,21 +1797,26 @@ For the open challenge, we navigate using simple fixed waypoints. They are chose
 
 
 
-## Navigation strategy obstacle challenge
+## Navigation Strategy Obstacle Challenge
 
 The obstacle challenge is seperated in different phases:
 
 ### Unparking
-First we leave the parking spot. Before completing the unparking, we have to do our first scan to check for an obstacle in the middle postition.
-´
-### First round : Scanning
-We drive one complete round and scan for obstacles on the way. For scanning the obstacles, we drive to fixed positions where we can scan all 6 positions on one part of the track. To scan all obstacles at one, we made sure the car is positioned exactly in the middle between tho two front obstacle positions.
+First we leave the parking spot. Before completing the unparking, we have to do our first scan to check for an obstacle in the middle position.
 
-TODO: BILD - wie das Auto alle Punkte scannt
+### First Round: Scanning
+We drive one complete round and scan for obstacles on the way. For scanning the obstacles, we drive to fixed positions where we can scan all 6 positions on one part of the track. To scan all obstacles at one, we made sure the car is positioned exactly in the middle between the two front obstacle positions.
+
+<div align="center">
+    <a href="img/allobstacles.png" target="_blank">
+        <img width="600" src="img/allobstacles.png" alt="Alle Hindernispositionen im Überblick">
+    </a>
+    <p><em>Figure: The robot can detect all 6 possible traffic signs’ seats from its current location</em></p>
+</div>
 
 After that, we choose the correct waypoints to drive to the next scan point. 
 
-### Second and third round
+### Second and Third Round
 
 On the second and third round, we do not scan for obstacles anymore. The positions are remembered from the first round.
 
@@ -1815,7 +1831,33 @@ The neccesary position accuracy for the starting point of this manuver is about 
 Based on the scanned obstacles, we generate waypoints to drive around them on the right side.
 To make the programm less complex, we do not differentiate if the obstacle is on the inner or the outer side. We always drive in a way so we avoid both. This resolves to 4 different patterns to drive around one set of obstacles: 
 
-TODO : 4 Bilder wie man um die obstacles fahren kann.
+<div align="center">
+    <a href="img/route1.jpg" target="_blank">
+        <img width="600" src="img/route1.jpg" alt="die möglichen Routen">
+    </a>
+    <p><em>Figure: If the robot scans red–green, it follows this route.</em></p>
+</div>
+<br>
+<div align="center">
+    <a href="img/route2.jpg" target="_blank">
+        <img width="600" src="img/route2.jpg" alt="die möglichen Routen">
+    </a>
+    <p><em>Figure: If the robot scans green-red, it follows this route.</em></p>
+</div>
+<BR>
+<div align="center">
+    <a href="img/route3.jpg" target="_blank">
+        <img width="600" src="img/route3.jpg" alt="die möglichen Routen">
+    </a>
+    <p><em>Figure: If the robot scans red once or twice, it follows this route, regardless of the obstacle positions.</em></p>
+</div>
+<BR>
+<div align="center">
+    <a href="img/route4.jpg" target="_blank">
+        <img width="600" src="img/route4.jpg" alt="die möglichen Routen">
+    </a>
+    <p><em>Figure: If the robot scans green once or twice, it follows this route, regardless of the obstacle positions.</em></p>
+</div>
 
 Additiional logic is needed to transition from one pattern to another pattern on the next segment.
 
@@ -2171,7 +2213,7 @@ Der Roboter besteht aus drei Hauptebenen:
 
 ### 4.4 Batterie und Spannungsversorgung
 **Komponente:** 7,4 V LiPo-Akku (2S, 2200 mAh)
-- **Kapazität**: 16,28 Wh für 90+ Minuten Betrieb
+- **Kapazität**: 16.28 Wh für 90+ Minuten Betrieb
 
 **Spannungsverteilung:**
 - **7,4 V direkt**: Motor über Fahrtenregler
