@@ -559,7 +559,7 @@ def commandLoop(slam):
                 
                 if not waitCompleteOrders():
                     return
-            park(orders, Order, waitCompleteOrders, checkForColor, Order.CCW, 11, slam)
+            park(orders, Order, waitCompleteOrders, checkForColor, Order.CCW, 12, slam)
 
 
     elif slam.eventType == slam.ER:

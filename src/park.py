@@ -108,18 +108,41 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
             orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
 
 
-    else:           # CCW
-        if (checkForColor(Hindernisse.RED, scanStart, scanStart-6) and not checkForColor(Hindernisse.GREEN, scanStart-2, scanStart-6)) and checkForColor(Hindernisse.GREEN, scanStart-6, scanStart-7):
+    else: # CCW
+        if (checkForColor(Hindernisse.RED, scanStart-6, scanStart) and not checkForColor(Hindernisse.GREEN, scanStart-6, scanStart-2)) and checkForColor(Hindernisse.GREEN, scanStart-10, scanStart-6):
+            print("Von Rot nach Grün")
             orders.append(Order(x=400, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=38))
+            orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL))
+            doReposition(orders, Order, waitCompleteOrders, 180)
         
-        if (checkForColor(Hindernisse.GREEN, scanStart, scanStart-6) and not checkForColor(Hindernisse.RED, scanStart-4, scanStart-6)):
-            if not checkForColor(Hindernisse.RED, scanStart-6, scanStart-7):
-                orders.append(Order(x=700, y=2300,speed=speedi,brake=0,type=Order.DESTINATION,num=34))
+        if (checkForColor(Hindernisse.RED, scanStart-6, scanStart) and not checkForColor(Hindernisse.GREEN, scanStart-6, scanStart-2)) and not checkForColor(Hindernisse.GREEN, scanStart-10, scanStart-6):
+            print("Von Rot nach nicht Grün")
+            orders.append(Order(x=200, y=2100,speed=speedi,brake=0,type=Order.DESTINATION,num=38))
+            orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
+            doReposition(orders, Order, waitCompleteOrders, 180)
         
-        if checkForColor(Hindernisse.GREEN, scanStart-12, scanStart-6):
+        if (checkForColor(Hindernisse.GREEN, scanStart-6, scanStart) and not checkForColor(Hindernisse.RED, scanStart-6, scanStart-2)) and not checkForColor(Hindernisse.GREEN, scanStart-10, scanStart-6):
+            print("Von Grün nacht nicht Grün")
+            orders.append(Order(x=800, y=2050,speed=speedi,brake=0,type=Order.DESTINATION,num=45))
+            orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
+            doReposition(orders, Order, waitCompleteOrders, 180)
+            orders.append(Order(x=700, y=2300,speed=speedi,brake=0,type=Order.DESTINATION,num=46))
+        
+        if (checkForColor(Hindernisse.GREEN, scanStart-6, scanStart) and not checkForColor(Hindernisse.RED, scanStart-6, scanStart-2)) and checkForColor(Hindernisse.GREEN, scanStart-10, scanStart-6):
+            print("Von Grün nach Grün")
+            orders.append(Order(x=1000, y=2200,speed=0.2,brake=1,type=Order.DESTINATION,num=47))
+            orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL))
+            if not waitCompleteOrders():
+                return
+            time.sleep(0.3)
+            orders.append(Order(steer=0, dist=200, speed=-0.2, brake=1, type=Order.KURVE))
+            doReposition(orders, Order, waitCompleteOrders, 180)
+        
+        
+        if checkForColor(Hindernisse.GREEN, scanStart-10, scanStart-6):
             orders.append(Order(x=1000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=39))
-            orders.append(Order(x=1700, y=2200,speed=speedi,brake=1,type=Order.DESTINATION,num=40))
-            orders.append(Order(x=1850, y=2200,speed=0.2,brake=1,type=Order.DESTINATION,num=40))
+            orders.append(Order(x=1800, y=2200,speed=speedi,brake=1,type=Order.DESTINATION,num=40))
+            orders.append(Order(x=2000, y=2200,speed=0.2,brake=1,type=Order.DESTINATION,num=48))
             time.sleep(3)
             orders.append(Order(zielwinkel=-90, speed=-0.2, brake=1, type=Order.WINKEL))
             doReposition(orders, Order, waitCompleteOrders, -90)
