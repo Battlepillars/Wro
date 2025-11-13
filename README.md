@@ -253,7 +253,7 @@ Initially, the chassis plate was printed in standard PLA. However, we found that
 
 
 
-<table align="center">
+<table align="center" cellpadding="6" cellspacing="0">
   <tr>
      <td width=320>
        <a href="img/Bodenplatte1.jpeg" target="_blank">
@@ -430,20 +430,20 @@ Stepper motors are known for their high control precision, but their operation i
 Based on this analysis, it was decided to continue using the brushed motor already integrated into the model car, as it represents the most functional and technically appropriate solution under the given conditions.
 
 <table align="center">
-  <tr>
-    <th bgcolor=#CCFFCC width=300>Motor</th>
-    <th bgcolor=#9ae4fd width=600>Specifications</th>
+    <tr>
+        <th bgcolor="#CCFFCC" width="300">Motor</th>
+        <th bgcolor="#9ae4fd" width="600">Specifications</th>
   </tr>
   <tr>
-    <td>
+        <td>
       <a href="img/motor.jpg" target="_blank">
         <img src="img/motor.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd>23-turn brushed 370-size LaTrax® motor with bullet connectors
+        <td bgcolor="#c8f0fd">23-turn brushed 370-size LaTrax® motor with bullet connectors
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor: <a href="https://traxxas.com/7575r-23-turn-brushed-370-size-motor">https://traxxas.com/7575r-23-turn-brushed-370-size-motor</a></TD></tr>
+        <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the motor: <a href="https://traxxas.com/7575r-23-turn-brushed-370-size-motor">https://traxxas.com/7575r-23-turn-brushed-370-size-motor</a></td></tr>
 </table>
 
 
@@ -456,18 +456,18 @@ Further research showed that certain model vehicles, known as crawlers, are spec
 
 Based on these findings, the decision was made to replace the original controller with a more suitable model. The selected ESC, the Quicrun WP 1080–G2, fully meets the specified technical requirements.
 
-<table align="center">
-  <tr>
-    <th bgcolor=#CCFFCC width=300>Motor Driver Quicrun WP 1080–G2</th>
-    <th bgcolor=#9ae4fd width=600>Specifications</th>
+<table align="center" cellpadding="6" cellspacing="0">
+    <tr>
+        <th bgcolor="#CCFFCC" width="300">Motor Driver Quicrun WP 1080–G2</th>
+        <th bgcolor="#9ae4fd" width="600">Specifications</th>
   </tr>
   <tr>
-    <td width=300>
+        <td width="300">
       <a href="img/fahrtenregler.jpg" target="_blank">
         <img src="img/fahrtenregler.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd ><li>Application: 1/10th Rock Crawler</li>
+        <td bgcolor="#c8f0fd"><li>Application: 1/10th Rock Crawler</li>
 <li>Motor Type: Brushed Motor (540 / 555 size motors)</li>
 <li>Cont./Peak Current: 80A/400A</li>
 <li>Input Voltage: 2-3S LiPo/5-9S Cell NiMH</li>
@@ -476,7 +476,7 @@ Based on these findings, the decision was made to replace the original controlle
 <li>Programming device: LED program box</li>
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor driver: <a href="https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a">https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</a></TD></tr>
+        <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the motor driver: <a href="https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a">https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</a></td></tr>
 </table>
 <tr> 
 
@@ -530,21 +530,21 @@ Dimensioning of the front axle:
 <br>
 For the construction of the new front axle, a steering linkage and steering knuckles were required:
 <br><br>
-<table align="center">
-  <tr>
-    <th bgcolor=#CCFFCC width=300>steering linkage and steering knuckles</th>
-    <th bgcolor=#9ae4fd width=500>Specifications</th>
+<table align="center" cellpadding="6" cellspacing="0">
+    <tr>
+        <th bgcolor="#CCFFCC" width="300">steering linkage and steering knuckles</th>
+        <th bgcolor="#9ae4fd" width="500">Specifications</th>
   </tr>
   <tr>
-    <td>
-      <a href="img/lenkstange.jpg" target="_blank">
-        <img src="img/lenkstange.jpg">
+        <td>
+      <a href="img/Lenkstange.jpg" target="_blank">
+        <img src="img/Lenkstange.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd>RC Metal Front and Rear Axle
+        <td bgcolor="#c8f0fd">RC Metal Front and Rear Axle
 </td>
    </tr>
-  <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the set: <a href="https://www.ebay.de/itm/176692013502">https://www.ebay.de/itm/176692013502</a></TD></tr>
+    <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the set: <a href="https://www.ebay.de/itm/176692013502">https://www.ebay.de/itm/176692013502</a></td></tr>
 </table>
 <tr> 
 <tr> 
@@ -552,21 +552,21 @@ For the construction of the new front axle, a steering linkage and steering knuc
 <br>
 The wheels of the new front axle are from Lego:
 <br><br>
-<table align="center">
-  <tr>
-    <th bgcolor=#CCFFCC width=300>Wheels</th>
-    <th bgcolor=#9ae4fd width=500>Specifications</th>
+<table align="center" cellpadding="6" cellspacing="0">
+    <tr>
+        <th bgcolor="#CCFFCC" width="300">Wheels</th>
+        <th bgcolor="#9ae4fd" width="500">Specifications</th>
   </tr>
   <tr>
-    <td>
+        <td>
       <a href="img/legorad.jpg" target="_blank">
         <img src="img/legorad.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd>Size: 5,6cm x 1,5cm x 5,6cm
+        <td bgcolor="#c8f0fd">Size: 5,6cm x 1,5cm x 5,6cm
 </td>
    </tr>
-  <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the wheels: <a href="https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367">https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</a></TD></tr>
+    <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the wheels: <a href="https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367">https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</a></td></tr>
 </table>
 <br>
 The new front axle in a close-up view:
@@ -581,23 +581,23 @@ The new front axle in a close-up view:
 ### Servo saver
 The Servo Saver is installed on the Servo and connects to the steering linkage. The Servo Saver, when the front wheels collide against an obstacle, uses a spring to prevent an overload on the Servo.
 
-<table align="center">
-  <tr>
-    <th bgcolor=#CCFFCC width=300>Dilwe RC Servo Saver</th>
-    <th bgcolor=#9ae4fd width=600>Specifications</th>
+<table align="center" cellpadding="6" cellspacing="0">
+    <tr>
+        <th bgcolor="#CCFFCC" width="300">Dilwe RC Servo Saver</th>
+        <th bgcolor="#9ae4fd" width="600">Specifications</th>
   </tr>
   <tr>
-    <td>
+        <td>
       <a href="img/servosaver.jpg" target="_blank">
         <img src="img/servosaver.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd><li>Size: 10 × 7 × 2 cm</li>
+        <td bgcolor="#c8f0fd"><li>Size: 10 × 7 × 2 cm</li>
     <li>Weight: 12 g</li>
     <li>Material: Aluminium</li>
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the Servo Saver: <a href="https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1">https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1</a></TD></tr>
+        <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the Servo Saver: <a href="https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1">https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1</a></td></tr>
 </table>
 
 ### Servo motor
@@ -607,10 +607,10 @@ Specifically, it is the Traxxas Waterproof Sub-Micro Servo (model number 2065A).
 
 Since these specifications ensure precise and effective steering, it was decided to continue using the servo already installed in the model.
 
-<table align="center">
+<table align="center" cellpadding="6" cellspacing="0">
   <tr>
-    <th bgcolor=#CCFFCC width=300>Waterproof Sub-Micro Servo</th>
-    <th bgcolor=#9ae4fd width=600>Specifications</th>
+        <th bgcolor="#CCFFCC" width="300">Waterproof Sub-Micro Servo</th>
+        <th bgcolor="#9ae4fd" width="600">Specifications</th>
   </tr>
   <tr>
     <td>
@@ -618,7 +618,7 @@ Since these specifications ensure precise and effective steering, it was decided
         <img src="img/motordriver.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd><li>Fully waterproof</li>
+    <td bgcolor="#c8f0fd"><li>Fully waterproof</li>
 <li>Fits steering in LaTrax models</li>
 <li>Power: 2.3kg/cm</li>
 <li>Operating voltage: 6.0V</li>
@@ -626,7 +626,7 @@ Since these specifications ensure precise and effective steering, it was decided
 <li>Dimensions: 22.6×12.6×22.5 mm</li>
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the motor: <a href="https://traxxas.com/2065a-waterproof-sub-micro-servo">https://traxxas.com/2065a-waterproof-sub-micro-servo</a></TD></tr>
+    <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the motor: <a href="https://traxxas.com/2065a-waterproof-sub-micro-servo">https://traxxas.com/2065a-waterproof-sub-micro-servo</a></td></tr>
 </table>
 <tr> 
 
@@ -654,67 +654,67 @@ Due to its compelling performance characteristics, we decided to integrate a LiD
 
 <table align="center" border="1" style="border-collapse: collapse; border: 2px solid black;">
   <tr>
-    <th bgcolor=#E8E8E8 width=200 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Criterion</th>
-    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar-S2</th>
-    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar A2</th>
-    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar A1</th>
-    <th bgcolor=#E8E8E8 width=150 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">YDLidar TG30</th>
+        <th bgcolor="#E8E8E8" width="200" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Criterion</th>
+        <th bgcolor="#E8E8E8" width="150" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar-S2</th>
+        <th bgcolor="#E8E8E8" width="150" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar A2</th>
+        <th bgcolor="#E8E8E8" width="150" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">RpLidar A1</th>
+        <th bgcolor="#E8E8E8" width="150" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">YDLidar TG30</th>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Range</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">0,05-18 m</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">0,2-16 m</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">0,15-12 m</td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">0,05-30 m</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Range</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">0,05-18 m</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">0,2-16 m</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">0,15-12 m</td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">0,05-30 m</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Accuracy</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">+/- 50 mm</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">< 1%</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">< 1%</td>
-    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">+/- 60mm</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Accuracy</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">+/- 50 mm</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">< 1%</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">< 1%</td>
+        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">+/- 60mm</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Resolution</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">13 mm</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">1 %</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">1 %</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">-</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Resolution</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">13 mm</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">1 %</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">1 %</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">-</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Enclosed Housing</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">yes</td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">yes</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">no</td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">yes</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Enclosed Housing</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">yes</td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">yes</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">no</td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">yes</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Angular Resolution</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">0,1125°</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">0,225°</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">1°</td>
-    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">0,13°</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Angular Resolution</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">0,1125°</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">0,225°</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">1°</td>
+        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">0,13°</td>
   </tr>
     <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Update Rate</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">2-10 Hz</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">5-15 Hz</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">5,5 Hz</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">5-12 hz</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Update Rate</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">2-10 Hz</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">5-15 Hz</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">5,5 Hz</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">5-12 hz</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; padding: 8px;"><b>Price</b></td>
-    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">~ 220€</td>
-    <td bgcolor=#FFD700 style="border: 1px solid black; padding: 8px;">~ 260€</td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; padding: 8px;">~ 90€</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; padding: 8px;">~ 450€</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Price</b></td>
+        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">~ 220€</td>
+        <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">~ 260€</td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">~ 90€</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">~ 450€</td>
   </tr>
   <tr>
-    <td bgcolor=#F0F0F0 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;"><b>Evaluation</b></td>
-    <td bgcolor=#90EE90 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Very good</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Moderate</td>
-    <td bgcolor=#FFB6C1 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Moderate</td>
-    <td bgcolor=#FFD700 style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Good</td>
+        <td bgcolor="#F0F0F0" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;"><b>Evaluation</b></td>
+        <td bgcolor="#90EE90" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Very good</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Moderate</td>
+        <td bgcolor="#FFB6C1" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Moderate</td>
+        <td bgcolor="#FFD700" style="border: 1px solid black; border-top: 3px solid black; padding: 8px;">Good</td>
   </tr>
 </table>
 
@@ -777,10 +777,10 @@ This display is an optional component and is not strictly necessary for the robo
 The power supply of the autonomous vehicle was designed to reliably provide energy to all sensors, control units, and actuators. The central power source is a 7.4 V lithium-polymer battery (LiPo, 2S, 2200 mAh), which is directly connected to the electronic speed controller (ESC) and also powers the Raspberry Pi via a 5 V voltage converter.
 
 ### LiPo Battery
-<table align="center">
+<table align="center" cellpadding="6" cellspacing="0">
   <tr>
-    <th bgcolor=#CCFFCC width=300>Zeee 2S Lipo Akku</th>
-    <th bgcolor=#9ae4fd width=600>Specifications</th>
+        <th bgcolor="#CCFFCC" width="300">Zeee 2S Lipo Akku</th>
+        <th bgcolor="#9ae4fd" width="600">Specifications</th>
   </tr>
   <tr>
     <td>
@@ -788,7 +788,7 @@ The power supply of the autonomous vehicle was designed to reliably provide ener
         <img src="img/lipo.jpg">
       </a>
     </td>
-    <td bgcolor=#c8f0fd><li>Battery voltage: 7.4 V</li>
+    <td bgcolor="#c8f0fd"><li>Battery voltage: 7.4 V</li>
     <li>Configuration: 2S1P</li>
     <li>Capacity: 2200mAh</li>
     <li>Discharge rate: 50C</li>
@@ -797,7 +797,7 @@ The power supply of the autonomous vehicle was designed to reliably provide ener
     <li>Approximate weight: 98 g</li>
 </td>
    </tr>
-    <tr><TD bgcolor=#e9c8fd colspan=2>Where to buy the Battery: <a href="https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK">https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK</a></TD></tr>
+    <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the Battery: <a href="https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK">https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK</a></td></tr>
 </table>
 
 ### Component power consumption
@@ -805,11 +805,11 @@ The power supply of the autonomous vehicle was designed to reliably provide ener
 The following table lists the essential installed components and their typical power consumption:
 
 <table align="center" border="1" style="border-collapse: collapse; border: 2px solid black;">
-  <tr>
-    <th bgcolor=#E8E8E8 width=300 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Komponente</th>
-    <th bgcolor=#E8E8E8 width=200 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Betriebsspannung</th>
-    <th bgcolor=#E8E8E8 width=200 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Leistungsaufnahme (typisch)</th>
-    <th bgcolor=#E8E8E8 width=400 style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Bemerkung</th>
+    <tr>
+        <th bgcolor="#E8E8E8" width="300" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Komponente</th>
+        <th bgcolor="#E8E8E8" width="200" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Betriebsspannung</th>
+        <th bgcolor="#E8E8E8" width="200" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Leistungsaufnahme (typisch)</th>
+        <th bgcolor="#E8E8E8" width="400" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Bemerkung</th>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">Raspberry Pi 5</td>
