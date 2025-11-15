@@ -604,6 +604,7 @@ As already mentioned, the existing **steering mechanism** of the purchased chass
 In this context, we also tested different **steering concepts**, including **parallelogram** and **bell-crank** mechanisms, and carefully evaluated their pros and cons. In the end, we decided to implement an **Ackermann steering system**. This choice was made because Ackermann geometry **optimizes wheel angles during turns**, **reducing tire slip** and **improving maneuverability**—especially important for precise movements in our small, lightweight robot. Compared to simpler systems, Ackermann steering provides more accurate cornering and better control, which was crucial for achieving our performance goals.
 
 
+<br>
 
 ### <ins>**New front axle**</ins>
 
@@ -671,6 +672,7 @@ The new front axle in a <b>close-up view</b>:
     </a>
 </div>
 
+<br>
 
 ### <ins>**Servo saver**</ins>
 The **Servo Saver** is installed on the **Servo** and **connects to the steering linkage**. The Servo Saver, when the front wheels collide against an obstacle, uses a **spring to prevent an overload** on the Servo.
@@ -693,6 +695,8 @@ The **Servo Saver** is installed on the **Servo** and **connects to the steering
    </tr>
         <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the Servo Saver: <a href="https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1">https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1</a></td></tr>
 </table>
+
+<br>
 
 ### <ins>**Servo motor**</ins>
 The **servo** is responsible for **steering** the **front wheels**. The servo’s **actuation speed** and **torque** were evaluated as **fully sufficient** to meet the competition requirements.
@@ -723,6 +727,8 @@ Since these specifications ensure **precise and effective steering**, it was dec
     <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the motor: <a href="https://traxxas.com/2065a-waterproof-sub-micro-servo">https://traxxas.com/2065a-waterproof-sub-micro-servo</a></td></tr>
 </table>
 <tr> 
+
+<br>
 
 ## **Potential improvements - steering:**
 - The **servo saver** occasionally fails and triggers a **false alarm** during **sharp or high-speed turns**. A potential improvement would be to **tighten** the servo saver to prevent this issue.
