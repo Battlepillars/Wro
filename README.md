@@ -738,7 +738,7 @@ Since these specifications ensure **precise and effective steering**, it was dec
 
 # **Power and sense management**
 The **Power and Sense Management System** includes the **sensors** for environmental perception as well as the robot’s **power supply**, both of which are essential for reliable and autonomous navigation. The following chapters provide a detailed explanation of the individual sensors, the power supply, and the electrical circuitry.
-<br>
+<br><br>
 
 ## **Sensors**
 
