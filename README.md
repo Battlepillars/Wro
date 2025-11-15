@@ -2130,42 +2130,49 @@ right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
 - **Backup navigation modes**: Implement fallback navigation strategies when primary sensors fail, such as wall-following or simple waypoint navigation.
 
 
-# Construction Guide - Bauanleitung
+# Construction Guide
 
-Dieses Kapitel führt Schritt für Schritt durch den Aufbau unseres autonomen Roboters. Die Anleitung ist so strukturiert, dass der Roboter von unten nach oben aufgebaut wird, beginnend mit der Bodenplatte bis hin zum oberen LiDAR-Deck.
+This chapter provides a step-by-step guide through the assembly of our autonomous robot. The instructions are structured so that the robot is built from bottom to top, starting with the lower deck and ending with the upper LiDAR deck.
 
-## Übersicht der Baugruppen
+## Assembly Overview
 
-Der Roboter besteht aus drei Hauptebenen:
-1. **Bodenplatte (Lower Deck)**: Motor, Getriebe, Servo, Fahrtenregler, Odometriesensoren
-2. **Mitteldeck (Middle Deck)**: Raspberry Pi, Batterie, Servo-Controller, Kamera
-3. **Oberdeck (Upper Deck)**: LiDAR, Status-Display
+The robot consists of three main levels:
+1. **Lower Deck**: Motor, gearbox, servo, ESC, odometry sensors
+2. **Middle Deck**: Raspberry Pi, battery, servo controller, camera, voltage regulator
+3. **Upper Deck**: LiDAR, status display
 
 <div align="center">
-    <a href="img/Bodenplatte3.jpg" target="_blank">
-        <img width="400" src="img/Bodenplatte3.jpg">
-    </a>
-    <a href="img/Mitteldeck3.jpg" target="_blank">
-        <img width="400" src="img/Mitteldeck3.jpg">
-    </a>
-    <a href="img/Oberdeck3.jpg" target="_blank">
-        <img width="400" src="img/Oberdeck3.jpg">
-    </a>
+    <span style="display:inline-block; text-align:center;">
+        <a href="img/Bodenplatte3.jpg" target="_blank">
+            <img width="200" src="img/Bodenplatte3.jpg" alt="Lower Deck">
+        </a><br>
+        <em>Lower Deck</em>
+    </span>
+    <span style="display:inline-block; text-align:center;">
+        <a href="img/Mitteldeck3.jpg" target="_blank">
+            <img width="200" src="img/Mitteldeck3.jpg" alt="Middle Deck">
+        </a><br>
+        <em>Middle Deck</em>
+    </span>
+    <span style="display:inline-block; text-align:center;">
+        <a href="img/Oberdeck3.jpg" target="_blank">
+            <img width="200" src="img/Oberdeck3.jpg" alt="Upper Deck">
+        </a><br>
+        <em>Upper Deck</em>
+    </span>
 </div>
 
-## Schritt 1: Vorbereitung der 3D-gedruckten Teile
 
-**Benötigte 3D-gedruckte Komponenten:**
-- Bodenplatte (PPA-CF Material für höchste Steifigkeit)
-- Mitteldeck
-- Oberdeck mit LiDAR-Halterung
-- Servobracket für Servo-Befestigung
-- 2x Sidebars für Fahrtenregler-Halterung
-- Vorderachsen-Komponenten
+## Step 1: Preparing the 3D-Printed Parts
 
-**Material-Empfehlung:**
-- **Bodenplatte**: PPA-CF (verhindert Durchbiegen und Kamera-Winkel-Veränderungen)
-- **Andere Teile**: PLA oder PETG ausreichend
+**Required 3D-printed components:**
+- Lower deck (PPA-CF material for maximum rigidity)
+- Middle deck
+- Upper deck with LiDAR mount
+- Servo bracket for servo mounting
+- 2x Side bars for ESC mounting
+- Front axle components
+
 
 <div align="center">
     <a href="img/Masse/Lowerdeck.jpg" target="_blank">
@@ -2177,241 +2184,178 @@ Der Roboter besteht aus drei Hauptebenen:
     <a href="img/Masse/Lidar.jpg" target="_blank">
         <img width="300" src="img/Masse/Lidar.jpg">
     </a>
+    <a href="img/Masse/Lidar.jpg" target="_blank">
+        <img width="300" src="img/Masse/Frontaxle.jpg">
+    </a>    
+    <a href="img/Masse/Lidar.jpg" target="_blank">
+        <img width="300" src="img/Masse/Servo bracket.jpg    ">
+    </a>        
+    <a href="img/Masse/Lidar.jpg" target="_blank">
+        <img width="300" src="img/Masse/Sidebar.jpg    ">
+    </a>        
+
 </div>
 
-## Schritt 2: Aufbau der Bodenplatte
 
-### 2.1 LaTrax Rally Chassis vorbereiten
-1. **Chassis kürzen**: Das originale LaTrax Rally Chassis von 22 cm auf 19 cm kürzen
-2. **Allradantrieb deaktivieren**: Vorderrad-Antrieb entfernen, um Platz für größeren Lenkeinschlag zu schaffen
-3. **Getriebe-Übersetzung prüfen**: 61:14 Zähne für maximales Drehmoment bei niedrigen Geschwindigkeiten
+**Material Recommendations:**
+- **Lower Deck**: PPA-CF (prevents bending and camera angle changes)
+- **Front Bumper**: TPU as shock absorber
+- **Other Parts**: PLA or PETG are sufficient, but can also be printed with PPA-CF
 
-### 2.2 Motor und Getriebe montieren
-**Komponenten:**
-- LaTrax 370 brushed DC-Motor (23-turn)
-- Motorritzel (14 Zähne)
-- Hauptzahnrad (61 Zähne)
-- Differential für Hinterräder
 
-**Montage:**
-1. Motor in vorgesehene Halterung der Bodenplatte einsetzen
-2. Motorritzel auf Motorwelle montieren
-3. Getriebe mit korrekter Übersetzung (61:14) einstellen
-4. Differential für Hinterrad-Antrieb anschließen
 
-<div align="center">
-    <a href="img/motor.jpg" target="_blank">
-        <img width="400" src="img/motor.jpg">
-    </a>
-</div>
 
-### 2.3 Servo für Lenkung einbauen
-**Komponente:** Traxxas Waterproof Sub-Micro Servo (2065A)
+## Step 2: Lower Deck Assembly
 
-**Montage:**
-1. Servo in vorgesehene Halterung der Bodenplatte einsetzen
-2. Mit Servobracket fixieren (siehe Bemaßung unten)
-3. Servo-Arm für Lenkgestänge vorbereiten
+### 2.1 Prepare LaTrax Rally back axle
+We need only the motor, gearbox, and back axle with wheels from the LaTrax Rally car. It is possible to get a used one to save some money.
 
-<div align="center">
-    <a href="img/Masse/Servobracket.jpg" target="_blank">
-        <img width="400" src="img/Masse/Servobracket.jpg">
-    </a>
-</div>
+<img width="800" src="img/chassis-top-screws.webp">
 
-### 2.4 Fahrtenregler montieren
-**Komponente:** Quicrun WP 1080–G2 (speziell für Niedriggeschwindigkeits-Kontrolle)
+Remove all the marked screws from the upper side of the chassis. Then you can remove the blue plate that sits above the rear differential, the rear chassis holder, and the top bridge that holds the receiver and ESC.
 
-**Montage:**
-1. Fahrtenregler zwischen Distanzbolzen platzieren
-2. Mit zwei 3D-gedruckten Sidebars sichern (verhindert Herunterfallen)
-3. Stromkabel zum Motor und Batterie verlegen
+<img width="300" src="img/chassis bottom screws.jpg">
 
-<div align="center">
-    <a href="img/fahrtenregler.jpg" target="_blank">
-        <img width="300" src="img/fahrtenregler.jpg">
-    </a>
-    <a href="img/Masse/Sidebar.jpg" target="_blank">
-        <img width="300" src="img/Masse/Sidebar.jpg">
-    </a>
-</div>
+Now remove the marked screws from the bottom of the chassis. Do not throw away the screws; you will need them later. After that, you can remove the rear axle assembly together with the gearbox and the motor as one part.
 
-### 2.5 Odometriesensoren einbauen
-**Komponenten:** 2x SparkFun Qwiic Optical Tracking Odometry Sensors (OTOS)
-- **I²C-Adressen**: 0x17 und 0x19
+<img width="500" src="img/Bodenplatte2-screws.jpeg">
 
-**Montage:**
-1. Sensoren in die beiden Öffnungen der Bodenplatte einsetzen
-2. Nach unten gerichtet für Boden-Scanning positionieren
-3. I²C-Kabel zum Mitteldeck führen
+The rear axle assembly goes on top of the lower deck. It will fit exactly into the recesses in the plate. Use the screws you saved from the last step to secure it to the lower deck from the bottom. The screw locations are marked in the drawing above. Be careful not to overtighten the screws.
 
-## Schritt 3: Neue Vorderachse konstruieren
+For better control, you can change the main gear and the pinion gear (motor pinion: 14 teeth, main gear: 61 teeth). These gears are available as replacement parts for the LaTrax Rally.
 
-### 3.1 Ackermann-Lenkung aufbauen
 
-**Komponenten:**
-- 2x 3D-gedruckte Radaufhängungen
-- RC Metall Lenkgestänge und Achsschenkel
-- Stahlstangen für Gelenke
-- LEGO-Räder (5,6cm x 1,5cm x 5,6cm)
 
-### 3.2 Montage der Vorderachse
-1. **Radaufhängungen montieren**: 3D-gedruckte Teile an Chassis befestigen
-2. **Lenkgestänge installieren**: Stahlstangen als Gelenke verwenden
-3. **LEGO-Räder montieren**: Bessere Traktion als Original-Räder
-4. **Servo-Saver installieren**: Federschutz gegen Überladung bei Kollisionen
+### 2.3 Install Steering Servo
+**Component:** Traxxas Waterproof Sub-Micro Servo (2065A)
 
-<div align="center">
-    <a href="img/Masse/Frontaxle.jpg" target="_blank">
-        <img width="400" src="img/Masse/Frontaxle.jpg">
-    </a>
-</div>
+Insert the servo into the designated lower-deck mounting bracket and secure it with the servo bracket.
+Make sure the servo is in the center position (by connecting it to a remote or a servo tester), then add the servo saver so that it is in an upright position.
 
-<div align="center">
-    <a href="img/lenkstange.jpg" target="_blank">
-        <img width="300" src="img/lenkstange.jpg">
-    </a>
-    <a href="img/legorad.jpg" target="_blank">
-        <img width="300" src="img/legorad.jpg">
-    </a>
-</div>
 
-## Schritt 4: Mitteldeck aufbauen
 
-### 4.1 Raspberry Pi 5 montieren
-**Hauptsteuerungseinheit des Roboters**
-- **Leistung**: 3-8 W
-- **Anschlüsse**: I²C, CSI (Kamera), USB, Ethernet
+### 2.4 Front axle
+**Component:** Front axle printed part
 
-**Montage:**
-1. Raspberry Pi auf Mitteldeck-Befestigungspunkten montieren
-2. Kühlkörper/Lüfter für Wärmeableitung installieren
-3. Alle Sensor-Kabel anschließen
+<img width="500" src="img/FrontAxleSxrews.jpeg">
 
-### 4.2 Kamera integrieren
-**Komponente:** Raspberry Pi Camera Module 3 Wide (12 MP)
-- **Zweck**: Hindernisfarben-Erkennung (rot/grün)
-- **Anschluss**: CSI-Port des Raspberry Pi
+Screw the front axle holder to the lower deck with two M3 screws and nuts. The screw locations are marked in the picture.
 
-**Montage:**
-1. Kamera in vorgesehene Halterung des Mitteldecks einsetzen
-2. Nach vorne gerichtet positionieren
-3. CSI-Kabel zum Raspberry Pi führen
 
-### 4.3 Servo-Controller montieren
-**Komponente:** Adafruit 16 Channel Servo Driver
-- **Kommunikation**: I²C zum Raspberry Pi
 
-**Verkabelung:**
-1. I²C-Verbindung zum Raspberry Pi
-2. PWM-Ausgänge zu Servo (Kanal 0) und Motor-Driver (Kanal 3)
-3. Stromversorgung von BEC des Fahrtenreglers
+**Component:** RC Metal Front and Rear Axle
 
-### 4.4 Batterie und Spannungsversorgung
-**Komponente:** 7,4 V LiPo-Akku (2S, 2200 mAh)
-- **Kapazität**: 16.28 Wh für 90+ Minuten Betrieb
+<img width="500" src="img/vorderachse_detail.jpg">
 
-**Spannungsverteilung:**
-- **7,4 V direkt**: Motor über Fahrtenregler
-- **5 V (Step-Down)**: Raspberry Pi, LiDAR, Kamera
-- **3,3 V (Pi-intern)**: Odometrie-Sensoren, Status-Display
+Take the parts needed from the "RC Metal Front and Rear Axle" (see link in the parts description).
+In the picture above, you can see how these parts should be mounted and connected to the servo.
 
-## Schritt 5: Oberdeck mit LiDAR
 
-### 5.1 LiDAR montieren
-**Komponente:** RpLidar S2L
-- **Reichweite**: 32.000 Samples/Sekunde, 360°-Scanning
-- **Besonderheit**: Kopfüber montiert (invertiert)
 
-**Montage:**
-1. LiDAR kopfüber auf Oberdeck befestigen
-2. USB-Verbindung zum Raspberry Pi (1 Mbps)
-3. 5V-Stromversorgung anschließen
+### 2.5 Mount ESC (Electronic Speed Controller)
+**Component:** Quicrun WP 1080–G2 (specially designed for low-speed control)
 
-### 5.2 Status-Display installieren
-**Komponente:** LED-Matrix für System-Feedback
-- **Anzeige**: Geschwindigkeit, Sensor-Status
-- **Farbcodes**: Grün (OK), Rot (Fehler), Blau (Überlast)
+<img width="500" src="img/LowerDeckStandoffBolts.jpeg">
 
-**Montage:**
-1. Display auf Oberdeck montieren
-2. I²C-Anschluss zum Raspberry Pi
-3. 3,3V-Stromversorgung
+Add four M3×50 mm standoff bolts to the lower deck at the marked positions.
 
-## Schritt 6: Verkabelung und Inbetriebnahme
 
-### 6.1 I²C-Bus verkabeln
-**Angeschlossene Geräte:**
-- Servo-Controller (Adafruit ServoKit)
-- 2x Odometrie-Sensoren (Adressen 0x17, 0x19)
-- Status-Display
+<img width="500" src="img/Bodenplatte3.jpeg">
 
-### 6.2 Stromverkabelung prüfen
-**Sicherheitscheck:**
-1. Alle Verbindungen auf Polarität prüfen
-2. Hauptschalter funktionsfähig
-3. Spannungsregler-Ausgänge messen
+The ESC sits loosely on the lower deck. Slide two side bars over the standoff bolts to keep it in place.
 
-### 6.3 Erste Tests
-1. **Sensor-Test**: Alle I²C-Geräte erkennbar
-2. **Motor-Test**: Vorwärts/Rückwärts/Stop
-3. **Servo-Test**: Lenkung links/rechts/mittig
-4. **LiDAR-Test**: 360°-Scan funktionsfähig
-5. **Kamera-Test**: Bildaufnahme und Farberkennung
 
-## Schritt 7: Software-Installation
 
-### 7.1 Raspberry Pi OS vorbereiten
-1. **Betriebssystem**: Raspberry Pi OS (64-bit)
-2. **I²C aktivieren**: `sudo raspi-config`
-3. **Kamera aktivieren**: CSI-Interface einschalten
+### 2.7 Install Odometry Sensors
+**Components:** 2x SparkFun Qwiic Optical Tracking Odometry Sensors (OTOS)
 
-### 7.2 Python-Bibliotheken installieren
+Insert eight M3×5 mm standoffs around the openings in the lower deck. Place the two OTOS modules on the standoffs. Make sure the optical sensor faces downward through the holes. Ensure the Y‑arrow on the sensors faces the front of the car.
+
+## Step 4: Middle Deck Assembly
+
+<img width="500" src="img/MitteldeckStandOffs.jpeg">
+
+Place the middle deck on top of the car. Connect it to the lower deck with the standoffs. Use four M3×100 mm standoffs to secure it. The locations are marked in the picture above.
+
+
+### 4.1 Mount Raspberry Pi 5
+**Component:** Raspberry Pi 5
+<img width="500" src="img/Mitteldeck2RaspberryScrews.jpeg">
+
+Add four M2.5×5 mm standoffs at the locations marked above. Place the Raspberry Pi 5 on these standoffs and secure it with M2.5 screws. The Raspberry Pi’s network port should face the outside of the car.
+
+
+### 4.2 Integrate Camera
+
+**Component:** Raspberry Pi Camera Module 3 Wide (12 MP)
+
+<img width="500" src="img/vorne.jpg">
+
+
+Insert the camera into the designated middle‑deck mount as shown in the picture. Secure it with four M2.5 screws. Route the CSI cable to the Raspberry Pi.
+
+### 4.3 Mount Servo Controller and Voltage Regulator
+**Component:** Adafruit 16 Channel Servo Driver, 5 V Pololu step‑down converter
+
+<img width="500" src="img/Mitteldeck3.jpg">
+
+These components slide into the provided slots.
+
+
+### 4.4 Battery and Power Supply
+**Component:** 7.4 V LiPo battery (2S, 2200 mAh)
+
+The battery has no permanent connection to the chassis. It is placed in the slot at the back. The middle deck has holes, so you can use a Velcro strap to temporarily secure the battery and swap it quickly.
+
+
+## Step 5: Upper Deck with LiDAR
+
+### 5.1 Mount LiDAR
+**Component:** RpLidar S2L
+
+<img width="500" src="img/Oberdeck1.jpeg">
+
+**Assembly:**
+Mount the LiDAR upside down beneath the upper deck. Secure it with four M3 screws. The LiDAR cable must point to the back of the car.
+
+
+### 5.2 Install Status Display
+**Component:** LED matrix
+
+<img width="500" src="img/oben.jpg">
+
+Mount the display on the upper deck and secure it with four M3 screws.
+
+
+## Step 6: Wiring
+
+<img width="500" src="img/schaltplan.jpg">
+
+Refer to the circuit diagram to connect all components.
+I²C devices can be connected using off-the-shelf Qwiic cables. For the other connections, 0.75 mm² cable is sufficient because the currents are low. It can be helpful to use silicone- or PTFE‑insulated cables because they bend more easily and are easier to install, though this is optional. Use cable ties to secure the wiring so it does not block the Raspberry Pi’s fan or intrude into the optical path of the LiDAR or the camera. To connect the battery, the easiest option is to use XT60 connectors commonly used in RC models, as most batteries come pre‑equipped with them.
+
+## Step 7: Software Installation
+
+### 7.1 Prepare Raspberry Pi OS
+Use "Raspberry Pi OS Full" and install it on an SD card. 
+
+
+### 7.2 Install Python Libraries
 ```bash
-# Adafruit ServoKit für Servo/Motor-Kontrolle
+# Adafruit ServoKit for servo/motor control
 pip install adafruit-circuitpython-servokit
 
-# LiDAR-Bibliothek von Slamtec
+# LiDAR library from Slamtec
 pip install rplidar
 
-# OpenCV für Kamera-Bildverarbeitung
+# OpenCV for camera image processing
 pip install opencv-python
 
-# SparkFun OTOS für Odometrie
+# SparkFun OTOS for odometry
 pip install sparkfun-qwiic-otos
 ```
 
-### 7.3 Kalibrierung
-1. **Servo-Mittelstellung**: Wert 80° für geradeaus fahren
-2. **Motor-Neutralstellung**: 90° für Stopp
-3. **Odometrie-Sensoren**: Koordinatensystem-Transformation
-4. **LiDAR-Ausrichtung**: Winkel-Offset konfigurieren
-
-## Troubleshooting - Häufige Probleme
-
-### Problem: Bodenplatte biegt durch
-**Lösung**: PPA-CF Material verwenden statt PLA
-
-### Problem: LiDAR erkennt Wände nicht
-**Lösung**: LiDAR invertiert montieren
-
-### Problem: Odometrie-Sensoren ungenau
-**Lösung**: Linsen reinigen (evtl. Staub auf Linse)
-
-### Problem: Servo-Saver löst bei Kurven aus
-**Lösung**: Servo-Saver fester einstellen
-
-## Wartung und Pflege
-
-### Regelmäßige Checks:
-- **Akku-Spannung überwachen** (alle 90 Minuten wechseln)
-- **Odometrie-Linsen reinigen** (Staub entfernen)
-- **Getriebe-Schmierung prüfen**
-- **Kabel-Verbindungen kontrollieren**
-
-### Ersatzteile bereithalten:
-- Zusatz-Akkus für längere Wettkämpfe
-- Ersatz-LEGO-Räder (besserer Grip)
-- Servo-Saver Federn
-
-Diese Bauanleitung führt zu einem vollständig funktionsfähigen autonomen Roboter, der sowohl die Open Challenge als auch die Obstacle Challenge des WRO Future Engineers Wettbewerbs bewältigen kann.
+### 7.3 Install Battlepillars software
+```bash
+git clone https://github.com/Battlepillars/Wro.git
+```
