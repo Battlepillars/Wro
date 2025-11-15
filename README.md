@@ -587,7 +587,6 @@ The chosen gear ratio of 61:14 results in a **significant increase in torque** w
 During test runs, we observed that the competition field often features small irregularities and bumps. These can cause vehicles with insufficient torque to get stuck or lose traction. In our tests, the selected **drivetrain configuration proved highly effective**: the robot was able to accelerate smoothly across uneven mat surfaces while remaining fully controllable at all times.
 
 Thus, the torque-oriented gear ratio makes a significant contribution to the vehicle’s reliability in real-world operation.
-
 <BR><br>
 
 ## **Potential improvements - powertrain:**
@@ -596,7 +595,6 @@ Thus, the torque-oriented gear ratio makes a significant contribution to the veh
 - **Encoders** on rear wheels or on the motor for precise wheel slip detection, better traction control, more accurate speed control and for detecting the wheels spinning on uneven surfaces, e.g. bumps.
 
 - Maintain **high steering angles while providing front wheel drive**. That would prevent the front weels from sliding at high steering angles.
-
 <br><br>
 
 ## **Steering**
