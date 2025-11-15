@@ -588,6 +588,7 @@ During test runs, we observed that the competition field often features small ir
 
 Thus, the torque-oriented gear ratio makes a significant contribution to the vehicle’s reliability in real-world operation.
 
+<BR><br>
 
 ## **Potential improvements - powertrain:**
 - Use the **same wheels** for the back wheels as the front axis, as the front wheels have better traction and are easier to clean and maintain.
@@ -596,7 +597,7 @@ Thus, the torque-oriented gear ratio makes a significant contribution to the veh
 
 - Maintain **high steering angles while providing front wheel drive**. That would prevent the front weels from sliding at high steering angles.
 
-<br>
+<br><br>
 
 ## **Steering**
 
