@@ -1,175 +1,225 @@
 # Table of contents
 
 <ul dir="auto">
-<li><a href="#the-team">The team</a>
-<ul dir="auto">
-<li><a href="#nils-stauff">Nils Stauff</a></li>
-<li><a href="#olivia-greilich">Olivia Greilich</a></li>
-<li><a href="#leonard-kolo">Leonard Kolo</a></li>
-<li><a href="#team-photo">Team photo</a></li>
-<li><a href="#funny-team-photo">Funny team photo</a></li>
+    <li><details><summary><a href="#the-team">The team</a></summary>
+        <ul dir="auto">
+            <li><a href="#nils-stauff">Nils Stauff</a></li>
+            <li><a href="#olivia-greilich">Olivia Greilich</a></li>
+            <li><a href="#leonard-kolo">Leonard Kolo</a></li>
+            <li><a href="#team-photo">Team photo</a></li>
+            <li><a href="#funny-team-photo">Funny team photo</a></li>
+        </ul>
+        </details>
+    </li>
+    <li><details><summary><a href="#the-robot">The robot</a></summary>
+        <ul dir="auto">
+            <li><a href="#photos-of-the-robot">Photos of the robot</a></li>
+        </ul>
+        </details>
+    </li>
+    <li><details><summary><a href="#mobility-management">Mobility management</a></summary>
+        <ul dir="auto">
+            <li><a href="#chassis">Chassis</a></li>
+            <li><a href="#modification-of-the-model-car">Modification of the model car</a>
+                <ul dir="auto">
+                    <li><a href="#chassis-plate">Chassis plate</a></li>
+                    <li><a href="#middle-deck">Middle deck</a></li>
+                    <li><a href="#upper-deck">Upper deck</a></li>
+                </ul>
+            </li>
+            <li><a href="#potential-improvements---chassis">Potential improvements - chassis</a></li>
+            <li><a href="#powertrain">Powertrain</a>
+                <ul dir="auto">
+                    <li><a href="#drivetrain">Drivetrain</a></li>
+                    <li><a href="#motor">Motor</a></li>
+                    <li><a href="#electronic-speed-controller">Electronic speed controller</a></li>
+                    <li><a href="#functioning-of-the-drive-system">Functioning of the drive system</a></li>
+                </ul>
+            </li>
+            <li><a href="#potential-improvements---powertrain">Potential improvements - powertrain</a></li>
+            <li><a href="#steering">Steering</a>
+                <ul dir="auto">
+                    <li><a href="#new-front-axle">New front axle</a></li>
+                    <li><a href="#servo-saver">Servo saver</a></li>
+                    <li><a href="#servo-motor">Servo motor</a></li>
+                </ul>
+            </li>
+            <li><a href="#potential-improvements---steering">Potential improvements - steering</a></li>
+        </ul>
+        </details>
+    </li>
+    <li><details><summary><a href="#power-and-sense-management">Power and sense management</a></summary>
+        <ul dir="auto">
+            <li><a href="#sensors">Sensors</a>
+                <ul dir="auto">
+                    <li><a href="#lidar">LiDAR</a></li>
+                    <li><a href="#potential-improvements---lidar">Potential improvements - LiDAR</a></li>
+                    <li><a href="#camera">Camera</a></li>
+                    <li><a href="#potential-improvements---camera">Potential improvements - camera</a></li>
+                    <li><a href="#odometry-sensor">Odometry sensor</a></li>
+                    <li><a href="#potential-improvements---odometry-sensor">Potential improvements - odometry sensor</a></li>
+                    <li><a href="#status-display">Status display</a></li>
+                    <li><a href="#potential-improvements---status-display">Potential improvements - status display</a></li>
+                </ul>
+            </li>
+            <li><a href="#vehicle-power-supply">Vehicle power supply</a>
+                <ul dir="auto">
+                    <li><a href="#lipo-battery">LiPo battery</a></li>
+                    <li><a href="#component-power-consumption">Component power consumption</a></li>
+                    <li><a href="#total-power-requirements">Total power requirements</a></li>
+                    <li><a href="#power-supply">Power supply</a></li>
+                    <li><a href="#safety-and-wiring">Safety and wiring</a></li>
+                    <li><a href="#potential-improvements---power-supply">Potential improvements - power supply</a></li>
+                </ul>
+            </li>
+            <li><a href="#circuit-diagram-of-components">Circuit diagram of components</a></li>
+        </ul>
+        </details>
+    </li>
+    <li><details><summary><a href="#obstacle-management">Obstacle management</a></summary>
+        <ul dir="auto">
+            <li><a href="#coordinate-system">Coordinate system</a>
+                <ul dir="auto">
+                    <li><a href="#coordinate-dimensions-and-origin">Coordinate dimensions and origin</a></li>
+                    <li><a href="#coordinate-system-properties">Coordinate system properties</a></li>
+                    <li><a href="#heading-angle-convention">Heading angle convention</a></li>
+                </ul>
+            </li>
+            <li><a href="#waypoint-navigation-system">Waypoint navigation system</a>
+                <ul dir="auto">
+                    <li><a href="#command-example-drive-to-coordinate-4502500">Command example: drive to coordinate 450/2500</a></li>
+                    <li><a href="#command-example-turn-robot-ccw-to-a-heading-of--90">Command example: turn robot CCW to a heading of -90°</a></li>
+                </ul>
+            </li>
+            <li><a href="#initial-location-acquisition">Initial location acquisition</a></li>
+            <li><a href="#position-updates-during-the-race">Position updates during the race</a>
+                <ul dir="auto">
+                    <li><a href="#optical-tracking-sensor-function">Optical tracking sensor function</a></li>
+                    <li><a href="#sensor-failure-detection--health-status">Sensor failure detection / health status</a></li>
+                </ul>
+            </li>
+            <li><a href="#position-corrections">Position corrections</a>
+                <ul dir="auto">
+                    <li><a href="#reposition-while-driving-pseudocode">Reposition while driving (pseudocode)</a></li>
+                </ul>
+            </li>
+            <li><a href="#obstacle-recognition">Obstacle recognition</a>
+                <ul dir="auto">
+                    <li><a href="#determining-the-position-of-an-obstacle-within-a-course-section">Determining the position of an obstacle within a course section</a></li>
+                    <li><a href="#determining-the-color-of-the-obstacle">Determining the color of the obstacle</a></li>
+                    <li><a href="#complete-obstacle-detection-function">Complete obstacle detection function</a></li>
+                    <li><a href="#angle-width-and-color-assignment-implementation-note">Angle width and color assignment (implementation note)</a></li>
+                </ul>
+            </li>
+             <li><a href="#navigation-strategy-open-challenge">Navigation strategy open challenge</a>
+                <ul dir="auto">
+                    <li><a href="#complete-code-for-waypoint-generation">Complete code for waypoint generation</a></li>
+                </ul>
+            </li>
+            <li><a href="#navigation-strategy-obstacle-challenge">Navigation strategy obstacle challenge</a>
+                <ul dir="auto">
+                    <li><a href="#unparking">Unparking</a></li>
+                    <li><a href="#first-round-scanning">First round: scanning</a></li>
+                    <li><a href="#second-and-third-round">Second and third round</a></li>
+                    <li><a href="#parking">Parking</a></li>
+                    <li><a href="#obstacle-avoidance-waypoint-generation">Obstacle avoidance waypoint generation</a></li>
+                    <li><a href="#rotation-mapping">Rotation mapping</a></li>
+                    <li><a href="#source-code-driveroundpy">Source code: driveRound.py</a></li>
+                </ul>
+            </li>
+            <li><a href="#possible-improvements">Possible improvements</a></li>
+        </ul>
+        </details>
+    </li>
+    <li><details><summary><a href="#code-for-all-components">Code for all components</a></summary>
+        <ul dir="auto">
+            <li><a href="#servo">Servo</a>
+                <ul dir="auto">
+                    <li><a href="#software-implementation">Software implementation</a></li>
+                    <li><a href="#steering-range-and-calibration">Steering range and calibration</a></li>
+                </ul>
+            </li>
+            <li><a href="#drive-motor">Drive motor</a>
+                <ul dir="auto">
+                    <li><a href="#components">Components</a></li>
+                    <li><a href="#hardware-interface">Hardware interface</a></li>
+                    <li><a href="#software-implementation-1">Software implementation</a></li>
+                    <li><a href="#id-controller-implementation">ID controller implementation</a></li>
+                    <li><a href="#advanced-control-features">Advanced control features</a></li>
+                </ul>
+            </li>
+            <li><a href="#optical-tracking-odometry-sensors">Optical tracking odometry sensors</a>
+                <ul dir="auto">
+                    <li><a href="#position-and-speed-tracking">Position and speed tracking</a></li>
+                    <li><a href="#sensor-health-monitoring-and-redundancy">Sensor health monitoring and redundancy</a></li>
+                    <li><a href="#data-fusion-and-final-position-calculation">Data fusion and final position calculation</a></li>
+                    <li><a href="#position-reset-and-calibration">Position reset and calibration</a></li>
+                    <li><a href="#key-features-of-our-implementation">Key features of our implementation</a></li>
+                </ul>
+            </li>
+            <li><a href="#lidar-1">LiDAR</a>
+                <ul dir="auto">
+                    <li><a href="#real-time-scanning-and-data-acquisition">Real-time scanning and data acquisition</a></li>
+                    <li><a href="#position-detection-and-localization">Position detection and localization</a></li>
+                    <li><a href="#dynamic-position-correction-during-driving">Dynamic position correction during driving</a></li>
+                    <li><a href="#obstacle-detection-and-recognition">Obstacle detection and recognition</a></li>
+                    <li><a href="#key-features-of-our-lidar-implementation">Key features of our LiDAR implementation</a></li>
+                    <li><a href="#data-structure-and-access-patterns">Data structure and access patterns</a></li>
+                </ul>
+            </li>
+            <li><a href="#camera-1">Camera</a>
+                <ul dir="auto">
+                    <li><a href="#image-capture-and-preprocessing">Image capture and preprocessing</a></li>
+                    <li><a href="#color-detection">Color detection</a></li>
+                    <li><a href="#angle-mapping-and-field-alignment">Angle mapping and field alignment</a></li>
+                    <li><a href="#calibration-and-settings">Calibration and settings</a></li>
+                    <li><a href="#key-features-of-our-camera-implementation">Key features of our camera implementation</a></li>
+                </ul>
+            </li>
+            <li><a href="#potential-improvements---code-for-all-components">Potential improvements - code for all components</a></li>
+        </ul>
+        </details>
+    </li>
+    <li><details><summary><a href="#construction-guide">Construction guide</a></summary>
+        <ul dir="auto">
+            <li><a href="#assembly-overview">Assembly overview</a></li>
+            <li><a href="#step-1-preparing-the-3d-printed-parts">Step 1: Preparing the 3D-printed parts</a></li>
+            <li><a href="#step-2-lower-deck-assembly">Step 2: Lower deck assembly</a>
+                <ul dir="auto">
+                    <li><a href="#21-prepare-latrax-rally-back-axle">2.1 Prepare LaTrax Rally back axle</a></li>
+                    <li><a href="#22-install-steering-servo">2.2 Install steering servo</a></li>
+                    <li><a href="#23-front-axle">2.3 Front axle</a></li>
+                    <li><a href="#24-mount-esc-electronic-speed-controller">2.4 Mount ESC (electronic speed controller)</a></li>
+                    <li><a href="#25-install-odometry-sensors">2.5 Install odometry sensors</a></li>
+                </ul>
+            </li>
+            <li><a href="#step-3-middle-deck-assembly">Step 3: Middle deck assembly</a>
+                <ul dir="auto">
+                    <li><a href="#31-place-the-middle-deck">3.1 Place the middle deck</a></li>
+                    <li><a href="#32-mount-raspberry-pi-5">3.2 Mount Raspberry Pi 5</a></li>
+                    <li><a href="#33-integrate-camera">3.3 Integrate camera</a></li>
+                    <li><a href="#34-mount-servo-controller-and-voltage-regulator">3.4 Mount servo controller and voltage regulator</a></li>
+                    <li><a href="#35-battery-and-power-supply">3.5 Battery and power supply</a></li>
+                </ul>
+            </li>
+            <li><a href="#step-4-upper-deck-with-lidar">Step 4: Upper deck with LiDAR</a>
+                <ul dir="auto">
+                    <li><a href="#41-mount-lidar">4.1 Mount LiDAR</a></li>
+                    <li><a href="#42-install-status-display">4.2 Install status display</a></li>
+                </ul>
+            </li>
+            <li><a href="#step-5-wiring">Step 5: Wiring</a></li>
+            <li><a href="#step-6-software-installation">Step 6: Software installation</a>
+                <ul dir="auto">
+                    <li><a href="#61-prepare-raspberry-pi-os">6.1 Prepare Raspberry Pi OS</a></li>
+                    <li><a href="#62-install-python-libraries">6.2 Install Python libraries</a></li>
+                    <li><a href="#63-install-battlepillars-software">6.3 Install Battlepillars software</a></li>
+                </ul>
+            </li>
+        </ul>
+        </details>
+    </li>
 </ul>
-</li>
-<li><a href="#the-robot">The robot</a>
-<ul dir="auto">
-<li><a href="#photos-of-the-robot">Photos of the robot</a></li>
-</ul>
-</li>
-<li><a href="#mobility-management">Mobility management</a>
-<ul dir="auto">
-<li><a href="#chassis">Chassis</a></li>
-<li><a href="#modification-of-the-model-car">Modification of the model car</a>
-<ul dir="auto">
-<li><a href="#chassis-plate">Chassis plate</a></li>
-<li><a href="#middle-deck">Middle deck</a></li>
-<li><a href="#upper-deck">Upper deck</a></li>
-</ul>
-</li>
-<li><a href="#potential-improvements---chassis">Potential improvements - chassis</a></li>
-<li><a href="#powertrain">Powertrain</a>
-<ul dir="auto">
-<li><a href="#drivetrain">Drivetrain</a></li>
-<li><a href="#motor">Motor</a></li>
-<li><a href="#electronic-speed-controller">Electronic speed controller</a></li>
-<li><a href="#functioning-of-the-drive-system">Functioning of the drive system</a></li>
-</ul>
-</li>
-<li><a href="#potential-improvements---powertrain">Potential improvements - powertrain</a></li>
-<li><a href="#steering">Steering</a>
-<ul dir="auto">
-<li><a href="#new-front-axle">New front axle</a></li>
-<li><a href="#servo-saver">Servo saver</a></li>
-<li><a href="#servo-motor">Servo motor</a></li>
-</ul>
-</li>
-<li><a href="#potential-improvements---steering">Potential improvements - steering</a></li>
-</ul>
-</li>
-<li><a href="#power-and-sense-management">Power and sense management</a>
-<ul dir="auto">
-<li><a href="#sensors">Sensors</a>
-<ul dir="auto">
-<li><a href="#lidar">LiDAR</a></li>
-<li><a href="#potential-improvements---lidar">Potential improvements - LiDAR</a></li>
-<li><a href="#camera">Camera</a></li>
-<li><a href="#potential-improvements---camera">Potential improvements - camera</a></li>
-<li><a href="#odometry-sensor">Odometry sensor</a></li>
-<li><a href="#potential-improvements---odometry-sensor">Potential improvements - odometry sensor</a></li>
-<li><a href="#status-display">Status display</a></li>
-<li><a href="#potential-improvements---status-display">Potential improvements - status display</a></li>
-</ul>
-</li>
-<li><a href="#vehicle-power-supply">Vehicle power supply</a>
-<ul dir="auto">
-<li><a href="#lipo-battery">LiPo battery</a></li>
-<li><a href="#component-power-consumption">Component power consumption</a></li>
-<li><a href="#total-power-requirements">Total power requirements</a></li>
-<li><a href="#power-supply">Power supply</a></li>
-<li><a href="#safety-and-wiring">Safety and wiring</a></li>
-<li><a href="#potential-improvements---power-supply">Potential improvements - power supply</a></li>
-</ul>
-</li>
-<li><a href="#circuit-diagram-of-components">Circuit diagram of components</a></li>
-</ul>
-</li>
-<li><a href="#obstacle-management">Obstacle management</a>
-<ul dir="auto">
-<li><a href="#coordinate-system">Coordinate system</a></li>
-<ul dir="auto">
-<li><a href="#coordinate-dimensions-and-origin">Coordinate dimensions and origin</a></li>
-<li><a href="#coordinate-system-properties">Coordinate system properties</a></li>
-<li><a href="#heading-angle-convention">Heading angle convention</a></li>
-</ul>
-<li><a href="#waypoint-navigation-system">Waypoint navigation system</a></li>
-<ul dir="auto">
-<li><a href="#command-example-drive-to-coordinate-4502500">Command example: drive to coordinate 450/2500</a></li>
-<li><a href="#command-example-turn-robot-ccw-to-a-heading-of--90">Command example: turn robot CCW to a heading of -90°</a></li>
-</ul>
-<li><a href="#initial-location-acquisition">Initial location acquisition</a></li>
-<li><a href="#position-updates-during-driving">Position updates during driving</a></li>
-<ul dir="auto">
-<li><a href="#optical-tracking-sensor-function">Optical tracking sensor function</a></li>
-<li><a href="#sensor-failure-detection--health-status">Sensor failure detection / health status</a></li>
-</ul>
-<li><a href="#position-corrections">Position corrections</a></li>
-<li><a href="#obstacle-recognition">Obstacle recognition</a></li>
-<ul dir="auto">
-<li><a href="#determining-the-position-of-an-obstacle-within-a-course-section">Determining the position of an obstacle within a course section</a></li>
-<li><a href="#determining-the-color-of-the-obstacle">Determining the color of the obstacle</a></li>
-<li><a href="#complete-obstacle-detection-function">Complete obstacle detection function</a></li>
-<li><a href="#complete-code-for-waypoint-generation">Complete code for waypoint generation</a></li>
-</ul>
-<li><a href="#navigation-strategy-open-challenge">Navigation strategy open challenge</a></li>
-<li><a href="#navigation-strategy-obstacle-challenge">Navigation strategy obstacle challenge</a></li>
-<ul dir="auto">
-<li><a href="#unparking">Unparking</a></li>
-<li><a href="#first-round-scanning">First round: scanning</a></li>
-<li><a href="#second-and-third-round">Second and third round</a></li>
-<li><a href="#parking">Parking</a></li>
-<li><a href="#obstacle-avoidance-waypoint-generation">Obstacle avoidance waypoint generation</a></li>
-<li><a href="#source-code-driveroundpy">Source code: driveRound.py</a></li>
-<li><a href="#possible-improvements">Possible improvements</a></li>
-<ul dir="auto">
-<li><a href="#angle-measurement">Angle measurement</a></li>
-<li><a href="#waypoint-optimizations">Waypoint optimizations</a></li>
-<li><a href="#wall-position-open-challenge">Wall position (open challenge)</a></li>
-<li><a href="#speed-optimization">Speed optimization</a></li>
-</ul>
-</ul>
-<li><a href="#software-structure">Software structure</a></li>
-</ul>
-</li>
-<li><a href="#code-for-all-components">Code for all components</a>
-<ul dir="auto">
-<li><a href="#servo">Servo</a>
-<ul dir="auto">
-<li><a href="#software-implementation">Software implementation</a></li>
-<li><a href="#steering-range-and-calibration">Steering range and calibration</a></li>
-</ul>
-</li>
-<li><a href="#drive-motor">Drive motor</a>
-<ul dir="auto">
-<li><a href="#components">Components</a></li>
-<li><a href="#hardware-interface">Hardware interface</a></li>
-<li><a href="#software-implementation-1">Software implementation</a></li>
-<li><a href="#pid-controller-implementation">PID controller implementation</a></li>
-<li><a href="#advanced-control-features">Advanced control features</a></li>
-</ul>
-</li>
-<li><a href="#optical-tracking-odometry-sensors">Optical tracking odometry sensors</a>
-<ul dir="auto">
-<li><a href="#position-and-speed-tracking">Position and speed tracking</a></li>
-<li><a href="#sensor-health-monitoring-and-redundancy">Sensor health monitoring and redundancy</a></li>
-<li><a href="#data-fusion-and-final-position-calculation">Data fusion and final position calculation</a></li>
-<li><a href="#position-reset-and-calibration">Position reset and calibration</a></li>
-<li><a href="#key-features-of-our-implementation">Key features of our implementation</a></li>
-</ul>
-</li>
-<li><a href="#lidar-1">LiDAR</a>
-<ul dir="auto">
-<li><a href="#real-time-scanning-and-data-acquisition">Real-time scanning and data acquisition</a></li>
-<li><a href="#position-detection-and-localization">Position detection and localization</a></li>
-<li><a href="#dynamic-position-correction-during-driving">Dynamic position correction during driving</a></li>
-<li><a href="#obstacle-detection-and-recognition">Obstacle detection and recognition</a></li>
-<li><a href="#key-features-of-our-lidar-implementation">Key features of our LiDAR implementation</a></li>
-<li><a href="#data-structure-and-access-patterns">Data structure and access patterns</a></li>
-</ul>
-</li>
-<li><a href="#camera-1">Camera</a>
-<ul dir="auto">
-<li><a href="#image-capture-and-preprocessing">Image capture and preprocessing</a></li>
-<li><a href="#color-detection">Color detection</a></li>
-<li><a href="#angle-mapping-and-field-alignment">Angle mapping and field alignment</a></li>
-<li><a href="#calibration-and-settings">Calibration and settings</a></li>
-<li><a href="#key-features-of-our-camera-implementation">Key features of our camera implementation</a></li>
-</ul>
-</li>
-<li><a href="#potential-improvements---code-for-all-components">Potential improvements - code for all components</a></li>
-</ul>
-</li>
-<li><a href="#construction-guide---bauanleitung">Construction guide</a></li>
-</ul>
-
 
 # **The team** 
 <div align="center">
@@ -285,7 +335,7 @@ Since commercially available model cars usually do not meet the required dimensi
 Eventually, we found a model with a length of **22 cm** that seemed suitable for adaptation to the desired **20 cm**. This model — the **LaTrax Rally** — was therefore chosen as the basis for the self-driving vehicle.
 
 Where to buy the car: <a href="https://traxxas.com/75054-5-118-latrax-rally">https://traxxas.com/75054-5-118-latrax-rally</a>
-<br>
+<br><br>
 
 ## **Modification of the model car**
 
@@ -322,7 +372,7 @@ Dimensioning of the base plate:
 </div>
 
 
-The chassis plate houses the **differential**, **gearbox**, **motor**, **servo**, **electronic speed controller (ESC)**, and **odometry sensors**. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>.
+The chassis plate houses the **differential**, **gearbox**, **motor**, **servo**, **electronic speed controller (ESC)**, and **odometry sensors**. Details on the mounting of these components can be found in the <a href="#construction-guide">Construction guide</a>.
 
 <div align="center">
     <a href="img/Bodenplatte3.jpg" target="_blank">
@@ -386,7 +436,7 @@ Dimensioning of the middle deck:
     </a>
 </div>
 
-The **servo controller**, **battery**, **Raspberry Pi**, and **voltage regulator** are mounted on this deck. A **camera** was also integrated in this section. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>. 
+The **servo controller**, **battery**, **Raspberry Pi**, and **voltage regulator** are mounted on this deck. A **camera** was also integrated in this section. Details on the mounting of these components can be found in the <a href="#construction-guide">Construction guide</a>. 
 
 
 
@@ -431,7 +481,7 @@ Dimensioning of the top deck:
     </a>
 </div>
 
-The **LiDAR** and the **status display** are installed on this deck. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>.
+The **LiDAR** and the **status display** are installed on this deck. Details on the mounting of these components can be found in the <a href="#construction-guide">Construction guide</a>.
 
 <div align="center">
     <a href="img/Oberdeck3.jpg" target="_blank">
@@ -461,6 +511,7 @@ The existing chassis was originally equipped with an **all-wheel drive system**,
 
 During the conversion, **retaining the front-wheel drive** was not possible, as the existing **universal joints** mechanically limited the increased steering angle. Therefore, the original all-wheel drive was deactivated and replaced with a **rear-wheel drive system**. This configuration provides sufficient power transmission for low-speed, precise control, while also decoupling the steering from drive influences — a particular advantage when navigating the obstacle course with precision.
 
+<br>
 
 ### <ins>**Motor**</ins>
 The existing **brushed motor** was compared to various other **motor types** as part of a comparative analysis. To evaluate their respective advantages and disadvantages, an online literature review was conducted. In addition to the brushed motor, the **brushless motor** and the **stepper motor** were identified as relevant alternatives.
@@ -490,7 +541,7 @@ Based on this analysis, it was decided to **continue using the brushed motor** a
         <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the motor: <a href="https://traxxas.com/7575r-23-turn-brushed-370-size-motor">https://traxxas.com/7575r-23-turn-brushed-370-size-motor</a></td></tr>
 </table>
 
-
+<br>
 
 ### <ins>**Electronic speed controller**</ins>
 
@@ -523,6 +574,7 @@ Based on these findings, the decision was made to replace the original controlle
         <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the motor driver: <a href="https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a">https://www.modellbau-berlinski.de/rc-elektronik-und-akkus/regler/auto-brushed/quicrun-wp1080-g2-crawler-brushed-regler-80a-bec-4a</a></td></tr>
 </table>
 <tr> 
+<br>
 
 ### <ins>**Functioning of the drive system**</ins>
 
@@ -2243,7 +2295,7 @@ The robot consists of three main levels:
     </table>
 
 
-## **Step 1: preparing the 3D-printed parts**
+## **Step 1: Preparing the 3D-printed parts**
 
 **Required 3D-printed components:**
 - Lower deck (PPA-CF material for maximum rigidity)
@@ -2289,7 +2341,7 @@ The robot consists of three main levels:
 
 <br>
 
-## **Step 2: lower deck assembly**
+## **Step 2: Lower deck assembly**
 
 ### **2.1 Prepare LaTrax Rally back axle**
 We need only the **motor, gearbox,** and **back axle with wheels** from the **LaTrax Rally car**. It is possible to get a used one to save some money.
@@ -2300,7 +2352,7 @@ We need only the **motor, gearbox,** and **back axle with wheels** from the **La
     </a>
 </div>
 
-**Remove** all the **marked screws** from the upper side of the chassis. Then you can **remove the blue plate** that sits above the rear differential, the **rear chassis holder**, and the **top bridge** that holds the receiver and ESC.
+**Remove** all the **red marked screws** from the upper side of the chassis. Then you can **remove the blue plate** that sits above the rear differential, the **rear chassis holder**, and the **top bridge** that holds the receiver and ESC.
 
 <div align="center">
     <a href="img/chassis bottom screws.jpg" target="_blank">
@@ -2394,7 +2446,7 @@ The **ESC** sits **loosely** on the **lower deck**. **Slide** **two side bars** 
 
 <br>
 
-## **Step 3: middle deck assembly**
+## **Step 3: Middle deck assembly**
 ### **3.1 Place the middle deck**
 
 <div align="center">
@@ -2449,7 +2501,7 @@ The **battery** has **no permanent connection** to the chassis. It is placed in 
 
 <br>
 
-## **Step 4: upper deck with LiDAR**
+## **Step 4: Upper deck with LiDAR**
 
 ### **4.1 Mount LiDAR**
 **Component:** <ins>RpLidar S2L</ins>
@@ -2475,6 +2527,7 @@ The **battery** has **no permanent connection** to the chassis. It is placed in 
 
 **Mount** the **display** on the upper deck and **secure** it with **four M3 screws**.
 
+<br>
 
 ## **Step 5: Wiring**
 
@@ -2488,7 +2541,9 @@ Refer to the **circuit diagram** to **connect all components**.
 
 **I²C devices** can be connected using off-the-shelf **Qwiic cables**. For the other connections, **0.75 mm² cable** is sufficient because the currents are low. It can be helpful to use **silicone- or PTFE‑insulated cables** because they bend more easily and are easier to install, though this is optional. **Use cable ties** to secure the wiring so it does not block the Raspberry Pi’s fan or intrude into the optical path of the LiDAR or the camera. To connect the **battery**, the easiest option is to use **XT60 connectors** commonly used in RC models, as most batteries come pre‑equipped with them.
 
-## **Step 6: software installation**
+<br>
+
+## **Step 6: Software installation**
 
 ### **6.1 Prepare Raspberry Pi OS**
 Use "**Raspberry Pi OS Full**" and install it on an SD card. 
