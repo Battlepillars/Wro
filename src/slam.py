@@ -334,7 +334,7 @@ class Slam:
         
     def otusHealthReset(self):
         self.healthy1 = 1
-        self.healthy2 = 1
+        self.healthy2 = 0
         self.errorsOtos1 = 0
         self.errorsOtos2 = 0
         self.errorsOtosSpeed1 = 0
@@ -408,16 +408,16 @@ class Slam:
                 self.logger.warning('Otos2 out of bounds: %i, %i', myPosition2.x, myPosition2.y)
 
 
-        if self.errorsOtos1 > 20:
+        if self.errorsOtos1 > 20 and self.healthy1>0 :
             self.healthy1 = 0
             self.logger.warning('Otos1 not healthy, errors: %i',self.errorsOtos1)
-        if self.errorsOtos2 > 20:
+        if self.errorsOtos2 > 20 and self.healthy2>0 :
             self.healthy2 = 0
             self.logger.warning('Otos2 not healthy, errors: %i',self.errorsOtos2)
-        if self.errorsOtosSpeed1 > 5:
+        if self.errorsOtosSpeed1 > 5 and self.healthy1>0:
             self.healthy1 = -1
             self.logger.warning('Otos1 speed not healthy, errors: %i',self.errorsOtosSpeed1)
-        if self.errorsOtosSpeed2 > 5:
+        if self.errorsOtosSpeed2 > 5 and self.healthy2>0:
             self.healthy2 = -1
             self.logger.warning('Otos2 speed not healthy, errors: %i',self.errorsOtosSpeed2)
 
@@ -793,10 +793,10 @@ class Slam:
             # print(".", end="")
             return
         
-        self.c1+=1
-        if self.c1 > 3:
-            self.c1 = 0
-            self.logger.warn('x %i y%i  sp %.2f dist %.0f quadrant %i  dir: %i currentReposition: %i',self.xpos,self.ypos,self.speed,average,quadrant,dir,currentRepostion)
+        # self.c1+=1
+        # if self.c1 > 3:
+        #     self.c1 = 0
+        #     self.logger.warn('x %i y%i  sp %.2f dist %.0f quadrant %i  dir: %i currentReposition: %i',self.xpos,self.ypos,self.speed,average,quadrant,dir,currentRepostion)
             
         if quadrant == 1 and not(currentRepostion == 3 or currentRepostion == 4):
             return
