@@ -289,7 +289,7 @@ Where to buy the car: <a href="https://traxxas.com/75054-5-118-latrax-rally">htt
 
 ## **Modification of the model car**
 
-### <u>**Chassis plate**</u>
+### <ins>**Chassis plate**</ins>
 
 To optimize the vehicle architecture, a new **chassis plate** was designed in **Fusion 360**, reducing the total length of the vehicle to about **19 cm**. The design focused on a compact structure to improve maneuverability. For position detection using **odometry sensors**, two openings were integrated into the chassis plate to enable direct optical measurement of the ground surface. The plate was manufactured using **3D printing**.
 
@@ -359,7 +359,7 @@ Dimensioning of the bumper:
     </a>
 </div>
 
-### <u>**Middle deck**</u>
+### <ins>**Middle deck**</ins>
 
 Next, a **middle deck** was designed in **Fusion 360**, with dimensions based on the chassis plate.
 
@@ -405,7 +405,7 @@ Dimensioning of the camera bracket:
     </a>
 </div>
 
-### <u>**Upper deck**</u>
+### <ins>**Upper deck**</ins>
 
 To mount the **LiDAR**, a **top deck** was also designed, and the LiDAR was attached to it in an **upside-down** position (see explanation under Power and sense management → [LiDAR](#lidar)).
 
@@ -449,7 +449,7 @@ The **LiDAR** and the **status display** are installed on this deck. Details on 
 
 ## **Powertrain**
 
-### <u>**Drivetrain**</u>
+### <ins>**Drivetrain**</ins>
 
 In automobiles, three basic types of **drive systems** can be distinguished:
 
@@ -462,7 +462,7 @@ The existing chassis was originally equipped with an **all-wheel drive system**,
 During the conversion, **retaining the front-wheel drive** was not possible, as the existing **universal joints** mechanically limited the increased steering angle. Therefore, the original all-wheel drive was deactivated and replaced with a **rear-wheel drive system**. This configuration provides sufficient power transmission for low-speed, precise control, while also decoupling the steering from drive influences — a particular advantage when navigating the obstacle course with precision.
 
 
-### <u>**Motor**</u>
+### <ins>**Motor**</ins>
 The existing **brushed motor** was compared to various other **motor types** as part of a comparative analysis. To evaluate their respective advantages and disadvantages, an online literature review was conducted. In addition to the brushed motor, the **brushless motor** and the **stepper motor** were identified as relevant alternatives.
 
 - **Brushless motor:**
@@ -492,7 +492,7 @@ Based on this analysis, it was decided to **continue using the brushed motor** a
 
 
 
-### <u>**Electronic speed controller**</u>
+### <ins>**Electronic speed controller**</ins>
 
 The **electronic speed controller (ESC)** is positioned between the **power source** and the **drive motor** and controls the **motor speed**. Experimental investigations revealed that the originally installed ESC was primarily designed for **high-speed** operation. At **low speeds**, it **did not allow** for **sufficient fine control**.
 
@@ -524,7 +524,7 @@ Based on these findings, the decision was made to replace the original controlle
 </table>
 <tr> 
 
-### <u>**Functioning of the drive system**</u>
+### <ins>**Functioning of the drive system**</ins>
 
 The **gearbox** consists of a **motor pinion** with **14 teeth** and a larger **main gear** with **61 teeth**. The **motor** drives the pinion, which in turn rotates the larger **main gear**. The **main gear** is connected to the **differential**, which distributes power to the **two rear wheels**.
 
@@ -554,7 +554,7 @@ In this context, we also tested different **steering concepts**, including **par
 
 
 
-### <u>**New front axle**</u>
+### <ins>**New front axle**</ins>
 
 Part of the **front axle** was designed in **Fusion 360** and **3D-printed**.
 
@@ -621,7 +621,7 @@ The new front axle in a <b>close-up view</b>:
 </div>
 
 
-### <u>**Servo saver**</u>
+### <ins>**Servo saver**</ins>
 The **Servo Saver** is installed on the **Servo** and **connects to the steering linkage**. The Servo Saver, when the front wheels collide against an obstacle, uses a **spring to prevent an overload** on the Servo.
 
 <table align="center" cellpadding="6" cellspacing="0">
@@ -643,7 +643,7 @@ The **Servo Saver** is installed on the **Servo** and **connects to the steering
         <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the Servo Saver: <a href="https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1">https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1</a></td></tr>
 </table>
 
-### <u>**Servo motor**</u>
+### <ins>**Servo motor**</ins>
 The **servo** is responsible for **steering** the **front wheels**. The servo’s **actuation speed** and **torque** were evaluated as **fully sufficient** to meet the competition requirements.
 
 Specifically, it is the **Traxxas Waterproof Sub-Micro Servo (model number 2065A)**. At an operating voltage of 6.0 V, it delivers a torque of 2.3 kg·cm (≈ 32 oz-in) and achieves a response time** of 0.20 s per 60°.
@@ -685,7 +685,7 @@ The **Power and Sense Management System** includes the **sensors** for environme
 
 ## **Sensors**
 
-### <u>**LiDAR**</u>
+### <ins>**LiDAR**</ins>
 
 During our research on autonomous driving, we found that **LiDAR systems** (Light Detection and Ranging) are commonly used for environmental perception. LiDAR is a core sensor system in autonomous vehicles that uses **laser beams** to precisely capture the surroundings and generate a **two-dimensional map**.
 
@@ -770,23 +770,23 @@ The **manufacturer** was then contacted to determine whether mounting the LiDAR 
 
 **Implementation details** of the LiDAR **data flow** and **APIs** are documented under Code for all components → [LiDAR](#lidar-1).
 
-### <u>**Potential improvements - LiDAR:**</u>
+### <ins>**Potential improvements - LiDAR:**</ins>
 - Find a LiDAR that scans **parallel to the ground** or **downward**, rather than upward, so that it can be installed in the correct orientation.
 
 - Look for a LiDAR with a higher **update rate**, greater **distance measurement accuracy**, and improved **angular resolution**.
 <br><br>
 
-### <u>**Camera**</u>
+### <ins>**Camera**</ins>
 While the LiDAR is used to determine the **position of an obstacle**, an additional **camera** is required to identify the obstacle’s **color**. Initially, the **Raspberry Pi Global Shutter Camera** was ordered, as its technical specifications appeared particularly suitable for use in a mobile robotic system. The camera enables distortion-free capture of fast movements since—unlike **rolling-shutter systems**—it avoids typical motion artifacts. Moreover, its support for **interchangeable lenses** allows flexible adaptation to different application scenarios.
 
 However, upon arrival, it became apparent that the physical **dimensions** of the camera were significantly larger than originally anticipated. Due to the **limited space** within the vehicle chassis, **integration was not possible**.
 
 As a result, a more **compact alternative** was selected: the **Raspberry Pi Camera Module 3 Wide (12 MP)**. Although a global shutter camera had initially been planned, we found that the operating speeds in the system do not cause critical rolling-shutter artifacts. The chosen camera meets the requirements in terms of **field of view**, **resolution (12 MP)**, **integration**, and **computational compatibility**, making it a practical solution for **image processing** in this context.
 
-### <u>**Potential improvements - camera:**</u>
+### <ins>**Potential improvements - camera:**</ins>
 - Find and install a better **camera** with a wider **field of view**.
 <br><BR>
-### <u>**Odometry sensor**</u>
+### <ins>**Odometry sensor**</ins>
 Over the past two years of participating in the **RoboMission** category, the importance of **continuous position tracking** became evident. In that context, the vehicle’s position was determined by evaluating **wheel rotations**, complemented by a **gyroscope**. However, the current model car chassis does not provide a way to directly measure wheel movement.
 
 While searching for alternatives, it was discovered that **motion** can also be detected **optically**—similar to the operation of a **computer mouse**. 
@@ -800,11 +800,11 @@ To increase **accuracy** and **redundancy**, **two** of these sensors were insta
 **Software architecture**, **health monitoring**, and **fusion logic** are detailed under Code for all components → [Optical tracking odometry sensors](#optical-tracking-odometry-sensors).
 
 
-### <u>**Potential improvements - odometry sensor:**</u>
+### <ins>**Potential improvements - odometry sensor:**</ins>
 
 - Install a **third sensor** to enable a true **majority decision** when determining the correct measurement. With three sensors, the system could automatically identify the one **deviating sensor** as faulty in the event of conflicting measurements and rely on the two agreeing sensors. This would significantly improve the **robustness** of the system, since currently, if one of the two sensors fails, only a **single sensor** remains available, and its **accuracy** can no longer be verified through comparison.
 <br><br>
-### <u>**Status display**</u>
+### <ins>**Status display**</ins>
 A **status display** was additionally integrated to visualize various **system parameters**. The **current speed** and **target speed** are represented using **bar indicators** in meters per second.
 
 The operational **status** of the two **odometry sensors** is communicated through a **color-coded system**:
@@ -815,7 +815,7 @@ The operational **status** of the two **odometry sensors** is communicated throu
 
 This display is an **optional component** and is not strictly necessary for the robot’s **core functionality**.
 
-### <u>**Potential improvements - status display:**</u>
+### <ins>**Potential improvements - status display:**</ins>
 - Display more **information** during operation, for example, the **colors of the obstacles**.
 <br><br>
 
@@ -823,7 +823,7 @@ This display is an **optional component** and is not strictly necessary for the 
 
 The **power supply** of the autonomous vehicle was designed to reliably provide **energy** to all **sensors**, **control units**, and **actuators**. The central **power source** is a **7.4 V lithium-polymer battery (LiPo, 2S, 2200 mAh)**, which is directly connected to the **electronic speed controller (ESC)** and also powers the **Raspberry Pi** via a **5 V voltage converter**.
 
-### <u>**LiPo battery**</u>
+### <ins>**LiPo battery**</ins>
 <table align="center" cellpadding="6" cellspacing="0">
   <tr>
         <th bgcolor="#CCFFCC" width="300">Zeee 2S Lipo Akku</th>
@@ -847,7 +847,7 @@ The **power supply** of the autonomous vehicle was designed to reliably provide 
     <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the Battery: <a href="https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK">https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK</a></td></tr>
 </table>
 
-### <u>**Component power consumption**</u>
+### <ins>**Component power consumption**</ins>
 
 The following table lists the essential installed **components** and their typical **power consumption**:
 
@@ -915,7 +915,7 @@ The following table lists the essential installed **components** and their typic
 </table>
 
 
-### <u>**Total power requirements**</u>
+### <ins>**Total power requirements**</ins>
 
 The total **energy consumption** of the system ranges from approximately **8–20 W** during operation. The largest **power consumers** are:
 
@@ -926,14 +926,14 @@ The total **energy consumption** of the system ranges from approximately **8–2
 With a **battery capacity** of **2200 mAh (7.4 V)** the **available energy** is **16.28 Wh**. This allows for **operating times** of approximately **45 to 120 minutes**, depending on driving behavior, track profile, and computational load.
 Based on empirical data, it was determined that a **safe operating time** of approximately **90 minutes** is reliably achieved. After this time, the **battery** is **routinely replaced** to prevent **deep discharge**, as no voltage monitoring is integrated into the system.
 
-### <u>**Power supply**</u>
+### <ins>**Power supply**</ins>
 
 The **power supply for individual components** is implemented as follows:
 - **7,4 V** direkt: **DC motor** via the **speed controller**
 - **5 V** via **step-down regulator (DC-DC converter)**: **Raspberry Pi 5**, **LiDAR**, **camera**, **servo**, **servo controller**
 - **3,3 V** via **Raspberry Pi integrated regulator**: **Odometry sensors**, **LED display panel**
 
-### <u>**Safety and wiring**</u>
+### <ins>**Safety and wiring**</ins>
 - The **battery connector** is **reverse-polarity protected**
 - A **main switch** **completely isolates** the **power supply**
 
@@ -963,18 +963,18 @@ The **power supply for individual components** is implemented as follows:
 To understand our overall strategy, it is important to understand the basics our system is build on.
 Our **robot uses a Cartesian coordinate system** to navigate the WRO Future Engineers field:
 
-### <u>**Coordinate dimensions and origin**</u>
+### <ins>**Coordinate dimensions and origin**</ins>
 - **Field Size**: 3000mm × 3000mm square
 - **Origin (0, 0)**: Located at the **top-left corner** of the field 
 - **X-axis**: Increases from left to right (0mm to 3000mm)
 - **Y-axis**: Increases from top to bottom (0mm to 3000mm)
 - **Units**: All coordinates are specified in millimeters (mm)
 
-### <u>**Coordinate system properties**</u>
+### <ins>**Coordinate system properties**</ins>
 1. **Absolute Positioning**: The coordinate system is field-absolute, not robot-relative
 2. **Origin Alignment**: The origin remains fixed at the top-left corner regardless of robot orientation
 
-### <u>**Heading angle convention**</u>
+### <ins>**Heading angle convention**</ins>
 - **0°**: Robot facing in the negative X direction (to the left)
 - **90°**: Robot facing in the positive Y direction (downward)
 - **+-180°**: Robot facing in the positive X direction (to the right)
@@ -988,12 +988,12 @@ Our **robot uses a Cartesian coordinate system** to navigate the WRO Future Engi
 
 For generative waypoint patterns and rotation mapping used in the obstacle challenge, see [Navigation strategy obstacle challenge](#navigation-strategy-obstacle-challenge).
 
-### <u>**Command example: drive to coordinate 450/2500**</u>
+### <ins>**Command example: drive to coordinate 450/2500**</ins>
 ```python
 orders.append(Order(x=450, y=2500, speed=0.75, brake=0, type=Order.DESTINATION, num=100, rotation=0))
 ```
 
-### <u>**Command example: turn robot CCW to a heading of -90°**</u>
+### <ins>**Command example: turn robot CCW to a heading of -90°**</ins>
 ```python
 orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CCW, type=Order.WINKEL)))
 ```
@@ -1019,10 +1019,10 @@ In the **Obstacle Challenge**, **two starting positions** are possible. Here, th
 
 ## **Position updates during the race** 
 
-### <u>**Optical tracking sensor function** </u>
+### <ins>**Optical tracking sensor function** </ins>
 For **continuous position tracking**, we use **two optical tracking sensors**. A downward-facing camera inside the sensor captures 20,000 images per second. Based on changes in the images, the sensor detects movement across the surface. Additionally, the sensor has a built-in gyroscope. Using **data** from the **gyroscope** and the **movement across the ground**, the sensor **automatically calculates the current coordinates**.
 
-### <u>**Sensor failure detection / health status** </u>
+### <ins>**Sensor failure detection / health status** </ins>
 **Two optical tracking sensors** were installed to **increase redundancy**. If one sensor **fails**, for example due to **dust on the lens**, the robot can still accurately determine its position. A sensor is recognized by the program as **“not healthy”** under the following conditions:
 
 - One of the two sensors is at least **0.15 m/s slower** than the other. Dust on the lens can prevent the sensor from accurately detecting changes in the ground, causing its reported speed to decrease. The slower sensor is then deactivated as “not healthy”.
@@ -1061,7 +1061,7 @@ These **deviations** are not acceptable in the **Obstacle Challenge**, as they m
 
 
 
-### <u>**Reposition while driving (pseudocode)**</u>
+### <ins>**Reposition while driving (pseudocode)**</ins>
 ```
 if (lidar has just scanned front):
     choose wall direction accordingly and average nearby LiDAR samples
@@ -1076,7 +1076,7 @@ if (lidar has just scanned front):
 ## **Obstacle recognition**
 This function **detects and stores obstacles** within each section of the course using the **LiDAR** and the **camera**. The process is divided into **two parts**:
 
-### <u>**Determining the position of an obstacle within a course section**</u>
+### <ins>**Determining the position of an obstacle within a course section**</ins>
 
 The environment is **not scanned continuously**, but only at **six specific, predefined points (=Scanpoints)** that the robot passes during the first lap of the obstacle course: The first two ones are directly after leaving the parking area,  after that at 4 additional points.
 
@@ -1092,7 +1092,7 @@ At these **Scanpoints** the **LiDAR** determines at which of the **six possible 
 A **list of coordinates** was created for all possible obstacle positions. The LiDAR checks whether something is detected near (**within a radius of 100 mm**) any of these coordinates. If an obstacle is detected, the position is stored in a list.
 
 
-### <u>**Determining the color of the obstacle**</u>
+### <ins>**Determining the color of the obstacle**</ins>
 
 The **camera** is then used to **identify the color** of the obstacle. The object recognition is strongly based on the [WRO support document](https://world-robot-olympiad-association.github.io/future-engineers-gs/p04-cv/#objects-recognition) (WRO Future Engineers Getting Started). Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the horizontal distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map:
 
@@ -1103,7 +1103,7 @@ The **camera** is then used to **identify the color** of the obstacle. The objec
     <p><em>Figure: Visualization of angle measurement for obstacle determination using camera and LiDAR</em></p>
 </div>
 
-### <u>**Complete obstacle detection function**</u>
+### <ins>**Complete obstacle detection function**</ins>
 
 The following **function** implements the complete **obstacle detection and color recognition algorithm** combining LiDAR and camera data:
 
@@ -1202,7 +1202,7 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
     return found
 ```
 
-### <u>**Angle width and color assignment (implementation note)**</u>
+### <ins>**Angle width and color assignment (implementation note)**</ins>
 - An **obstacle’s acceptable** angle window is distance-dependent: 
 <div align="center">
     <a href="img/angularwidth.jpg" target="_blank">
@@ -1219,7 +1219,7 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
 
 For the Open Challenge, we **navigate using simple fixed waypoints**. They are chosen so that they work independently of the inner wall configuration.
 
-### <u>**Complete code for waypoint generation**</u>
+### <ins>**Complete code for waypoint generation**</ins>
 
 
 ```python
@@ -1259,7 +1259,7 @@ For the Open Challenge, we **navigate using simple fixed waypoints**. They are c
 The obstacle challenge is seperated in **different phases**:
 
 
-### <u>**Unparking**</u>
+### <ins>**Unparking**</ins>
 First we leave the parking spot. Before completing the unparking, we have to do our **first scan** to check for an obstacle in the middle position.
 
 #### **Unparking (pseudocode)**
@@ -1278,7 +1278,7 @@ else:  # CCW
     else: drive via safe waypoints D
 ```
 
-### <u>**First round: scanning**</u>
+### <ins>**First round: scanning**</ins>
 We drive **one complete lap while scanning for obstacles** along the way. To scan the obstacles, we stop at **fixed positions** from which **all six obstacle locations** on a section of the track can be observed. To capture all obstacles at once, we ensure that the car is positioned **exactly midway** between the two front obstacle positions.
 
 <div align="center">
@@ -1293,11 +1293,11 @@ After that, we **choose the correct waypoints** to drive to the next scan point.
 For a short walkthrough of this step, see our **Obstacle Challenge video**: https://www.youtube.com/watch?v=g57Lu4CANCM
 
 
-### <u>**Second and third round**</u>
+### <ins>**Second and third round**</ins>
 
 On the second and third round, we **do not scan for obstacles anymore**. The positions are remembered from the first round, and waypoints are generated to navigate around all obstacles.
 
-### <u>**Parking**</u>
+### <ins>**Parking**</ins>
 
 To achieve all possible points, we chose to implement the parallel parking challenge. We tried many different strategies. The approach that worked best was **driving backwards perpendicular to the wall** and then **swinging in with the maximum steering angle**. 
 
@@ -1306,7 +1306,7 @@ The position must be **very accurate**, so we perform **several repositioning** 
 The **required position accuracy** for the starting point of this maneuver is about ±5 cm in the x-direction and ±3 cm in the y-direction. In practice, our process usually ensures a position error below 1 cm in all directions.
 
 
-### <u>**Obstacle avoidance waypoint generation**</u>
+### <ins>**Obstacle avoidance waypoint generation**</ins>
 
 Based on the scanned obstacles, we generate waypoints to drive around them on the right side.
 To make the **programm less complex**, we do **not differentiate** if the obstacle is on the inner or the outer side. We always drive in a way so we avoid both. This resolves to **four different patterns** to drive around one set of obstacles: 
@@ -1341,7 +1341,7 @@ To make the **programm less complex**, we do **not differentiate** if the obstac
 
 **Additional logic** is required to **switch** between avoidance patterns at the next segment boundary, aligning the robot’s exit pose with the entry pose expected by the next pattern.
 
-### <u>**Rotation mapping**</u>
+### <ins>**Rotation mapping**</ins>
 
 
 In our first program (for the German finals), we programmed the complete 360° course with individual code. Since the waypoints for the international finals are different, we had to **rewrite much of the waypoint generation**. This time, we programmed only one **90° segment** of the course. The waypoints for the other segments are generated by **rotating/mirroring** the original waypoints. This is done via the option `Order(rotation=…)` in the order command :
@@ -1352,7 +1352,7 @@ Target angles are transformed in `Order.__init__` function.
 
 At the final segment, replace the normal corner handover with a dedicated **parking waypoint sequence**; see [Parking](#parking) for the maneuver and precision requirements.
 
-### <u>**Source code: driveRound.py**</u>
+### <ins>**Source code: driveRound.py**</ins>
 
 The `driveRound()` function **generates the waypoints** for the **second and third round**. 
 
@@ -1530,7 +1530,7 @@ The **steering** is controlled through an **Adafruit 16 Channel Servo Driver** c
 
 Hardware selection, geometry, and mechanical integration are covered in [Steering](#steering).
 
-### <u>**Software implementation**</u>
+### <ins>**Software implementation**</ins>
 
 The servo control is implemented in the `motorController.py` file through the `setServoAngle()` function:
 
@@ -1552,7 +1552,7 @@ def setServoAngle(kit, angle, slam=None):
 
 ```
 
-### <u>**Steering range and calibration**</u>
+### <ins>**Steering range and calibration**</ins>
 
 - **Center Position**: 80° (servo angle) = straight ahead. This value needs to be set up by hand according to the exact servo arm mounting
 - **Maximum Left**: 0° (servo angle) = full left lock
@@ -1563,7 +1563,7 @@ def setServoAngle(kit, angle, slam=None):
 
 ## **Drive motor**
 
-### <u>**Components**</u>
+### <ins>**Components**</ins>
 
 The drive motor control system consists of **three main components**:
 
@@ -1571,7 +1571,7 @@ The drive motor control system consists of **three main components**:
 2. **Motor Driver (ESC)**: Converts PWM signals to appropriate power levels for the brushed DC motor  
 3. **PID Control Algorithm**: Provides closed-loop speed control using feedback from odometry sensors
 
-### <u>**Hardware interface**</u>
+### <ins>**Hardware interface**</ins>
 
 The motor is controlled via **PWM** signals sent to the **motor driver** through the **Adafruit ServoKit** library:
 
@@ -1580,7 +1580,7 @@ The motor is controlled via **PWM** signals sent to the **motor driver** through
 - **Communication**: I²C between Raspberry Pi and ServoKit
 - **Update Rate**: 70 Hz depending on control loop timing
 
-### <u>**Software implementation**</u>
+### <ins>**Software implementation**</ins>
 
 The motor control is implemented in the `DriveBase` class within `motorController.py`. Here is a sample code that implements driving to a specific x/y coordinate. We have other functions that do different maneuvers in this class.
 
@@ -1665,7 +1665,7 @@ class DriveBase:
             return False  # Still driving to target
 ```
 
-### <u>**ID controller implementation**</u>
+### <ins>**ID controller implementation**</ins>
 
 Our robot uses two separate **PID controllers** for **motion control**: one for **speed regulation** and another for **steering control**. The PID (Proportional-Integral-Derivative) controllers provide smooth and stable control by continuously adjusting outputs based on error feedback.
 
@@ -1792,7 +1792,7 @@ setServoAngle(self.kit, 90 + outputSteer, self.slam)
 
 
 
-### <u>**Advanced control features**</u>
+### <ins>**Advanced control features**</ins>
 
 **Adaptive Braking**: The system implements intelligent braking that adjusts deceleration based on remaining distance:
 
@@ -1828,7 +1828,7 @@ else:  # Reverse
 
 The odometry system uses two **SparkFun Qwiic Optical Tracking Odometry Sensors (OTOS)** connected via **I²C** at addresses `0x17` and `0x19`. Here's how we implement the odometry system:
 
-### <u>**Position and speed tracking**</u>
+### <ins>**Position and speed tracking**</ins>
 
 ```python
 def update(self):
@@ -1858,7 +1858,7 @@ def update(self):
     myPosition2.y = -myPosition2.y * 1000
 ```
 
-### <u>**Sensor health monitoring and redundancy**</u>
+### <ins>**Sensor health monitoring and redundancy**</ins>
 
 ```python
 def update(self):
@@ -1897,7 +1897,7 @@ def update(self):
         print(f"Sensor 1 speed errors: {self.errorsOtosSpeed1}")
 ```
 
-### <u>**Data fusion and final position calculation**</u>
+### <ins>**Data fusion and final position calculation**</ins>
 
 ```python
 def update(self):
@@ -1924,7 +1924,7 @@ def update(self):
         self.speed = self.speed2
 ```
 
-### <u>**Position reset and calibration**</u>
+### <ins>**Position reset and calibration**</ins>
 
 ```python
 def setPosition(self, x, y, angle=-5000):
@@ -1952,7 +1952,7 @@ def setPosition(self, x, y, angle=-5000):
     self.ignoreSpeedUpdate = 1  # Skip next speed calculation
 ```
 
-### <u>**Key features of our implementation**</u>
+### <ins>**Key features of our implementation**</ins>
 
 - **Dual Sensor Redundancy**: Two sensors provide backup; rationale and hardware context in Sensors → [Odometry sensor](#odometry-sensor)
 - **Automatic Health Monitoring**: Continuous error detection and sensor status tracking
@@ -1970,7 +1970,7 @@ This odometry system provides continuous position tracking with 2-5cm accuracy p
 
 Our LiDAR system uses the **RpLidar S2** which provides 360-degree scanning with up to 32000 samples per second. The **Raspberry Pi** communicates with the LiDAR via a **serial UART** port at **1 Mbps**. The communication is handled by a library supplied by **Slamtec**.
 
-### <u>**Real-time scanning and data acquisition**</u>
+### <ins>**Real-time scanning and data acquisition**</ins>
 
 ```python
 def update(self):
@@ -1988,7 +1988,7 @@ def update(self):
     # Example: self.scan[0] = distance at 0°, self.scan[90] = distance at 90°
 ```
 
-### <u>**Position detection and localization**</u>
+### <ins>**Position detection and localization**</ins>
 
 ```python
 def startpostionsetzen(self):
@@ -2018,7 +2018,7 @@ def startpostionsetzen(self):
     # Additional position detection logic...
 ```
 
-### <u>**Dynamic position correction during driving**</u>
+### <ins>**Dynamic position correction during driving**</ins>
 
 Runtime strategy and gating for LiDAR-based correction while driving are explained under Obstacle management → [Position Corrections](#position-corrections).
 
@@ -2027,7 +2027,7 @@ Relevant APIs:
 - `slam.repositionOneDirFront(angleCheck)` – snap X/Y to walls using front/side scans when stationary
 - `slam.setPostion(x, y, angle)` – applies fused position update
 
-### <u>**Obstacle detection and recognition**</u>
+### <ins>**Obstacle detection and recognition**</ins>
 
 ```python
 def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
@@ -2074,7 +2074,7 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
                 # (camera processing code integration here)
 ```
 
-### <u>**Key features of our LiDAR implementation**</u>
+### <ins>**Key features of our LiDAR implementation**</ins>
 
 - **Real-time 360° Scanning**: Continuous environment monitoring at 10 kHz
 - **Automatic Position Correction**: Uses wall distances to correct odometry drift
@@ -2083,7 +2083,7 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
 - **Coordinate Transformation**: Converts polar scan data to robot coordinate system
 - **Performance Optimization**: Strategic scan timing to maintain control loop performance
 
-### <u>**Data structure and access patterns**</u>
+### <ins>**Data structure and access patterns**</ins>
 
 ```python
 # LiDAR scan data structure
@@ -2108,7 +2108,7 @@ The **camera** provides **color recognition** for obstacles and outputs detected
 
 Hardware selection and mechanical integration are documented under Sensors → [Camera](#camera). The fusion of camera colors with LiDAR positions is explained in Obstacle management → [Determining the color of the obstacle](#determining-the-color-of-the-obstacle) and the combined routine in [Complete obstacle detection function](#complete-obstacle-detection-function).
 
-### <u>**Image capture and preprocessing**</u>
+### <ins>**Image capture and preprocessing**</ins>
 
 We use **Picamera2**/**libcamera** on the **Raspberry Pi** with a resolution of `1536×846`. The capture pipeline applies a light blur and processes a thin horizontal scan band to reduce noise and latency. The scan band can be shifted for near/far checks.
 
@@ -2139,7 +2139,7 @@ class Camera:
         band = img[checkStart:checkEnd, 0:1535]
 ```
 
-### <u>**Color detection**</u>
+### <ins>**Color detection**</ins>
 
 We convert the scan band to **HSV** and threshold for **RED** and **GREEN**. RED uses two hue ranges (wrap-around at 0°/360°). Contours are found and their centers are used as detection points.
 
@@ -2159,7 +2159,7 @@ cntsred   = imutils.grab_contours(cv.findContours(maskred.copy(),  cv.RETR_EXTER
 cntsgreen = imutils.grab_contours(cv.findContours(maskgreen.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE))
 ```
 
-### <u>**Angle mapping and field alignment**</u>
+### <ins>**Angle mapping and field alignment**</ins>
 
 Each detected contour center `cX` is mapped to an angle using a calibrated midpoint and scaling:
 
@@ -2174,7 +2174,7 @@ self.blocksColor.append(self.RED or self.GREEN)
 
 This angle list is fused with LiDAR detections in the obstacle pipeline; see [Determining the color of the obstacle](#determining-the-color-of-the-obstacle).
 
-### <u>**Calibration and settings**</u>
+### <ins>**Calibration and settings**</ins>
 
 - **Hardware**: **Raspberry Pi Camera Module 3 Wide (12 MP)**; hardware rationale under Sensors → [Camera](#camera)
 - **Exposure/HDR**: `SingleExposure` via libcamera controls
@@ -2183,7 +2183,7 @@ This angle list is fused with LiDAR detections in the obstacle pipeline; see [De
 - **Geometry**: Tune `mid` and `split` if lens/FOV changes
 - **Artifacts**: Light blur reduces noise; using a narrow band minimizes processing latency
 
-### <u>**Key features of our camera implementation**</u>
+### <ins>**Key features of our camera implementation**</ins>
 
 - **Low-latency scan band**: Fast detection by limiting processing to a horizontal band
 - **Robust HSV detection**: Dual-range RED and tuned GREEN thresholds
@@ -2325,7 +2325,7 @@ Where to buy the gears: <a href="https://traxxas.com/parts-finder" target="_blan
 
 
 ### **2.2 Install steering servo**
-**Component:** <u>Traxxas Waterproof Sub-Micro Servo (2065A)</u>
+**Component:** <ins>Traxxas Waterproof Sub-Micro Servo (2065A)</ins>
 
 **Insert** the **servo** into the designated **lower-deck mounting bracket** and **secure** it with the **servo bracket**.
 Make sure the **servo** is in the **center position** (by connecting it to a remote or a servo tester), then **add** the **servo saver** so that it is in an **upright position**.
@@ -2333,7 +2333,7 @@ Make sure the **servo** is in the **center position** (by connecting it to a rem
 
 
 ### **2.3 Front axle**
-**Component:** <u>Front axle printed part</u>
+**Component:** <ins>Front axle printed part</ins>
 
 <div align="center">
     <a href="img/FrontAxleSxrews.jpeg" target="_blank">
@@ -2345,7 +2345,7 @@ Make sure the **servo** is in the **center position** (by connecting it to a rem
 
 
 
-**Component:** <u>RC Metal Front and Rear Axle</u>
+**Component:** <ins>RC Metal Front and Rear Axle</ins>
 
 Take the parts needed from the "**RC Metal Front and Rear Axle**".
 
@@ -2366,7 +2366,7 @@ In the picture you can see how these parts should be **mounted** and **connected
 
 
 ### **2.4 Mount ESC (electronic speed controller)**
-**Component:** <u>Quicrun WP 1080–G2</u> (specially designed for low-speed control)
+**Component:** <ins>Quicrun WP 1080–G2</ins> (specially designed for low-speed control)
 
 <div align="center">
     <a href="img/LowerDeckStandoffBolts.jpeg" target="_blank">
@@ -2388,7 +2388,7 @@ The **ESC** sits **loosely** on the **lower deck**. **Slide** **two side bars** 
 
 
 ### **2.5 Install odometry sensors**
-**Components:** <u>2x SparkFun Qwiic Optical Tracking Odometry Sensors (OTOS)</u>
+**Components:** <ins>2x SparkFun Qwiic Optical Tracking Odometry Sensors (OTOS)</ins>
 
 **Insert** **eight M3×5 mm standoffs** around the **openings** in the **lower deck**. **Place** the **two OTOS modules** on the **standoffs**. Make sure the **optical sensor** **faces downward** through the holes. Ensure the **Y‑arrow** on the sensors **faces the front** of the car.
 
@@ -2407,7 +2407,7 @@ The **ESC** sits **loosely** on the **lower deck**. **Slide** **two side bars** 
 
 
 ### **3.2 Mount Raspberry Pi 5**
-**Component:** <u>Raspberry Pi 5</u>
+**Component:** <ins>Raspberry Pi 5</ins>
 <div align="center">
     <a href="img/Mitteldeck2RaspberryScrews.jpeg" target="_blank">
         <img width="350" src="img/Mitteldeck2RaspberryScrews.jpeg">
@@ -2419,7 +2419,7 @@ The **ESC** sits **loosely** on the **lower deck**. **Slide** **two side bars** 
 
 ### **3.3 Integrate camera**
 
-**Component:** <u>Raspberry Pi Camera Module 3 Wide (12 MP)</u>
+**Component:** <ins>Raspberry Pi Camera Module 3 Wide (12 MP)</ins>
 
 <div align="center">
     <a href="img/vorne.jpg" target="_blank">
@@ -2431,7 +2431,7 @@ The **ESC** sits **loosely** on the **lower deck**. **Slide** **two side bars** 
 **Insert** the **camera** into the designated **middle‑deck mount** as shown in the picture. **Secure** it with **four M2.5 screws**. **Route** the **CSI cable** to the **Raspberry Pi**.
 
 ### **3.4 Mount servo controller and voltage regulator**
-**Component:** <u>Adafruit 16 Channel Servo Driver, 5 V Pololu step‑down converter</u>
+**Component:** <ins>Adafruit 16 Channel Servo Driver, 5 V Pololu step‑down converter</ins>
 
 <div align="center">
     <a href="img/Mitteldeck3.jpg" target="_blank">
@@ -2443,7 +2443,7 @@ These **components** **slide** into the **provided slots**.
 
 
 ### **3.5 Battery and power supply**
-**Component:** <u>7.4 V LiPo battery (2S, 2200 mAh)</u>
+**Component:** <ins>7.4 V LiPo battery (2S, 2200 mAh)</ins>
 
 The **battery** has **no permanent connection** to the chassis. It is placed in the **slot at the back**. The middle deck has holes, so you can use a **Velcro strap** to temporarily **secure** the battery and **swap** it **quickly**.
 
@@ -2452,7 +2452,7 @@ The **battery** has **no permanent connection** to the chassis. It is placed in 
 ## **Step 4: upper deck with LiDAR**
 
 ### **4.1 Mount LiDAR**
-**Component:** <u>RpLidar S2L</u>
+**Component:** <ins>RpLidar S2L</ins>
 
 <div align="center">
     <a href="img/Oberdeck1.jpeg" target="_blank">
@@ -2465,7 +2465,7 @@ The **battery** has **no permanent connection** to the chassis. It is placed in 
 
 
 ### **4.2 Install status display**
-**Component:** <u>LED matrix</u>
+**Component:** <ins>LED matrix</ins>
 
 <div align="center">
     <a href="img/oben.jpg" target="_blank">
