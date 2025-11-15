@@ -33,7 +33,7 @@ def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSta
         return
     time.sleep(0.3)
     
-    orders.append(Order(steer=0, dist=100, speed=-speedi, brake=1, type=Order.KURVE, rotation=rotation))
+    orders.append(Order(steer=0, dist=200, speed=-speedi, brake=1, type=Order.KURVE, rotation=rotation))
     if not waitCompleteOrders():
         return
     time.sleep(0.3)
