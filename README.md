@@ -1,4 +1,4 @@
-# Table of contents
+# Table of Contents
 
 <ul dir="auto">
 <li><a href="#the-team">The team</a>
@@ -82,31 +82,32 @@
 </ul>
 <li><a href="#waypoint-navigation-system">Waypoint navigation system</a></li>
 <ul dir="auto">
-<li><a href="#command-example-drive-to-coordinate-4502500">Command Example: Drive to Coordinate 450/2500</a></li>
-<li><a href="#command-example-turn-robot-ccw-to-a-heading-of--90">Command Example: Turn Robot CCW to a Heading of -90°</a></li>
+<li><a href="#command-example-drive-to-coordinate-4502500">Command example: drive to coordinate 450/2500</a></li>
+<li><a href="#command-example-turn-robot-ccw-to-a-heading-of--90">Command example: turn robot CCW to a heading of -90°</a></li>
 </ul>
 <li><a href="#initial-location-acquisition">Initial location acquisition</a></li>
 <li><a href="#position-updates-during-driving">Position updates during driving</a></li>
 <ul dir="auto">
-<li><a href="#optical-tracking-sensor-function">Optical Tracking Sensor Function</a></li>
-<li><a href="#sensor-failure-detection--health-status">Sensor Failure Detection / Health Status</a></li>
+<li><a href="#optical-tracking-sensor-function">Optical tracking sensor function</a></li>
+<li><a href="#sensor-failure-detection--health-status">Sensor failure detection / health status</a></li>
 </ul>
 <li><a href="#position-corrections">Position corrections</a></li>
 <li><a href="#obstacle-recognition">Obstacle recognition</a></li>
 <ul dir="auto">
-<li><a href="#determining-the-position-of-an-obstacle-within-a-course-section">Determining the Position of an Obstacle Within a Course Section</a></li>
-<li><a href="#determining-the-color-of-the-obstacle">Determining the Color of the Obstacle</a></li>
-<li><a href="#complete-obstacle-detection-function">Complete Obstacle Detection Function</a></li>
-<li><a href="#complete-code-for-waypoint-generation">Complete Code for Waypoint Generation</a></li>
+<li><a href="#determining-the-position-of-an-obstacle-within-a-course-section">Determining the position of an obstacle within a course section</a></li>
+<li><a href="#determining-the-color-of-the-obstacle">Determining the color of the obstacle</a></li>
+<li><a href="#complete-obstacle-detection-function">Complete obstacle detection function</a></li>
+<li><a href="#complete-code-for-waypoint-generation">Complete code for waypoint generation</a></li>
 </ul>
+<li><a href="#navigation-strategy-open-challenge">Navigation strategy open challenge</a></li>
 <li><a href="#navigation-strategy-obstacle-challenge">Navigation strategy obstacle challenge</a></li>
 <ul dir="auto">
 <li><a href="#unparking">Unparking</a></li>
-<li><a href="#first-round-scanning">First Round: Scanning</a></li>
-<li><a href="#second-and-third-round">Second and Third Round</a></li>
+<li><a href="#first-round-scanning">First round: scanning</a></li>
+<li><a href="#second-and-third-round">Second and third round</a></li>
 <li><a href="#parking">Parking</a></li>
 <li><a href="#obstacle-avoidance-waypoint-generation">Obstacle avoidance waypoint generation</a></li>
-<li><a href="#source-code-driveroundpy">Source Code: driveRound.py</a></li>
+<li><a href="#source-code-driveroundpy">Source code: driveRound.py</a></li>
 <li><a href="#possible-improvements">Possible improvements</a></li>
 <ul dir="auto">
 <li><a href="#angle-measurement">Angle measurement</a></li>
@@ -161,7 +162,7 @@
 </ul>
 
 
-# THE TEAM 
+# The team 
 <div align="center">
     <a href="img/teamname.jpg" target="_blank">
         <img width="800" src="img/teamname.jpg">
@@ -265,25 +266,25 @@ I contribute my technical expertise in the areas of robot construction, componen
 
 # Mobility management
 
-The Mobility Management System comprises the chassis, steering, and drivetrain of the robot, which are essential for precise and efficient locomotion. The following chapters will explain these individual elements in detail.
+The **Mobility Management System** comprises the **chassis**, **steering**, and **drivetrain** of the robot, which are essential for precise and efficient locomotion. The following chapters will explain these individual elements in detail.
 <br>
-## Chassis
+## **Chassis**
 At first, the idea was to design a vehicle with a total length of less than 20 cm so that it could drive straight into the parking space at the end of the three-lap obstacle course, which was part of the regional challenge. This strategy was permitted under the German rule set.
 
 Since commercially available model cars usually do not meet the required dimensions, we quickly realized that modifying an existing model car would be necessary. Most available models are around 30 cm long — reducing them to under 20 cm would have been too technically complex. Smaller models, around 10 cm in length, on the other hand, did not provide enough space for all the required components.
 
-Eventually, we found a model with a length of 22 cm that seemed suitable for adaptation to the desired 20 cm. This model — the LaTrax Rally — was therefore chosen as the basis for the self-driving vehicle.
+Eventually, we found a model with a length of **22 cm** that seemed suitable for adaptation to the desired **20 cm**. This model — the **LaTrax Rally** — was therefore chosen as the basis for the self-driving vehicle.
 
 Where to buy the car: <a href="https://traxxas.com/75054-5-118-latrax-rally">https://traxxas.com/75054-5-118-latrax-rally</a>
 <br>
 
 ## Modification of the model car
 
-### Chassis plate
+### **Chassis plate**
 
-To optimize the vehicle architecture, a new chassis plate was designed in Fusion 360, reducing the total length of the vehicle to about 19 cm. The design focused on a compact structure to improve maneuverability. For position detection using odometry sensors, two openings were integrated into the chassis plate to enable direct optical measurement of the ground surface. The plate was manufactured using 3D printing.
+To optimize the vehicle architecture, a new **chassis plate** was designed in **Fusion 360**, reducing the total length of the vehicle to about **19 cm**. The design focused on a compact structure to improve maneuverability. For position detection using **odometry sensors**, two openings were integrated into the chassis plate to enable direct optical measurement of the ground surface. The plate was manufactured using **3D printing**.
 
-Initially, the chassis plate was printed in standard PLA. However, we found that even slight bending of the plate caused a critical change in the camera angle. Therefore, ways to increase the stiffness of the chassis plate were explored. In addition to reinforcing the geometry, the team decided to use a different material for printing. Among all the materials we could print ourselves, PPA-CF proved to have the highest rigidity. This filament completely eliminated the problem of the chassis plate bending.
+Initially, the chassis plate was printed in standard **PLA**. However, we found that even slight bending of the plate caused a critical change in the **camera angle**. Therefore, ways to increase the **stiffness** of the chassis plate were explored. In addition to reinforcing the geometry, the team decided to use a different **material** for printing. Among all the materials we could print ourselves, **PPA-CF** proved to have the highest rigidity. This filament completely eliminated the problem of the chassis plate bending.
 
 
 
@@ -312,7 +313,7 @@ Dimensioning of the base plate:
 </div>
 
 
-The chassis plate houses the differential, gearbox, motor, servo, electronic speed controller, and odometry sensors. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>.
+The chassis plate houses the **differential**, **gearbox**, **motor**, **servo**, **electronic speed controller (ESC)**, and **odometry sensors**. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>.
 
 <div align="center">
     <a href="img/Bodenplatte3.jpg" target="_blank">
@@ -320,7 +321,7 @@ The chassis plate houses the differential, gearbox, motor, servo, electronic spe
     </a>
 </div>
 
-The servo is installed in a designated mount on the chassis plate and secured with the servo bracket.
+The **servo** is installed in a designated mount on the chassis plate and secured with the **servo bracket**.
 
 Dimensioning of the servo bracket:
 <div align="center">
@@ -331,7 +332,7 @@ Dimensioning of the servo bracket:
 
 
 
-To prevent the electronic speed controller from coming loose, two 3D-printed sidebars were installed between the spacer bolts on the chassis plate.
+To prevent the **electronic speed controller (ESC)** from coming loose, two **3D-printed sidebars** were installed between the spacer bolts on the chassis plate.
 
 Dimensioning of the sidebars:
 <div align="center">
@@ -340,7 +341,7 @@ Dimensioning of the sidebars:
     </a>
 </div>
 
-In order to protect the front wheels from collisions—and indirectly also the steering linkage and the servo—we designed a "bumper" and printed it using a 3D printer.
+In order to protect the **front wheels** from collisions—and indirectly also the **steering linkage** and the **servo**—we designed a **bumper** and printed it using a **3D printer**.
 
 Dimensioning of the bumper:
 <div align="center">
@@ -349,9 +350,9 @@ Dimensioning of the bumper:
     </a>
 </div>
 
-### Middle deck
+### **Middle deck**
 
-Next, a middle deck was designed in Fusion 360, with dimensions based on the chassis plate.
+Next, a **middle deck** was designed in **Fusion 360**, with dimensions based on the chassis plate.
 
 <table align="center">
   <tr>
@@ -376,7 +377,7 @@ Dimensioning of the middle deck:
     </a>
 </div>
 
-The servo controller, battery, Raspberry Pi, and voltage regulator are mounted on this deck. A camera was also integrated in this section. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>. 
+The **servo controller**, **battery**, **Raspberry Pi**, and **voltage regulator** are mounted on this deck. A **camera** was also integrated in this section. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>. 
 
 
 
@@ -386,7 +387,7 @@ The servo controller, battery, Raspberry Pi, and voltage regulator are mounted o
     </a>
 </div>
 
-To mount the camera on the robot, we designed a bracket and printed it using a 3D printer.
+To mount the **camera** on the robot, we designed a **bracket** and printed it using a **3D printer**.
 
 Dimensioning of the camera bracket:
 <div align="center">
@@ -395,9 +396,9 @@ Dimensioning of the camera bracket:
     </a>
 </div>
 
-### Upper deck
+### **Upper deck**
 
-To mount the LiDAR, a top deck was also designed, and the LiDAR was attached to it in an upside-down position.
+To mount the **LiDAR**, a **top deck** was also designed, and the LiDAR was attached to it in an **upside-down** position.
 
 <table align="center">
   <tr>
@@ -421,7 +422,7 @@ Dimensioning of the top deck:
     </a>
 </div>
 
-The LiDAR and the status display are installed on this deck. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>.
+The **LiDAR** and the **status display** are installed on this deck. Details on the mounting of these components can be found in the <a href="#construction-guide---bauanleitung">Construction Guide</a>.
 
 <div align="center">
     <a href="img/Oberdeck3.jpg" target="_blank">
@@ -430,38 +431,38 @@ The LiDAR and the status display are installed on this deck. Details on the moun
 </div>
 
 ## Potential improvements - chassis
-- Construct an outer hull to improve the outer appearance of the vehicle and prevent potential dust or debris from reaching the inner works.
-- Furthermore, we could free up some space for a third odometry sensor.
+- Construct an **outer hull** to improve the outer appearance of the vehicle and prevent potential **dust** or **debris** from reaching the inner works.
+- Furthermore, we could free up some space for a **third odometry sensor**.
 
-- We could lower the chassis height in order to allow the LiDAR to be mounted lower, thus removing the need for support beams, which currently block LiDAR vision.
+- We could lower the **chassis height** in order to allow the **LiDAR** to be mounted lower, thus removing the need for **support beams**, which currently block LiDAR vision.
 
 <br>
 
-## Powertrain
+## **Powertrain**
 
-### Drivetrain
+### **Drivetrain**
 
-In automobiles, three basic types of drive systems can be distinguished:
+In automobiles, three basic types of **drive systems** can be distinguished:
 
-- All-wheel drive (AWD): All wheels receive driving power.
-- Front-wheel drive (FWD): Driving power is applied only to the front wheels.
-- Rear-wheel drive (RWD): Only the rear wheels are driven.
+- **All-wheel drive (AWD)**: All wheels receive driving power.
+- **Front-wheel drive (FWD)**: Driving power is applied only to the front wheels.
+- **Rear-wheel drive (RWD)**: Only the rear wheels are driven.
 
-The existing chassis was originally equipped with an all-wheel drive system, which would have generally met the competition requirements. However, the existing steering mechanism did not allow a sufficient steering angle, making maneuvers such as exiting a parking space in a single move during the parking challenge impossible. To improve the steering angle, an alternative solution was developed: the design of an entirely new front axle (<a href="#steering">cf. Chapter “Steering”</a>).
+The existing chassis was originally equipped with an **all-wheel drive system**, which would have generally met the competition requirements. However, the existing **steering mechanism** did not allow a sufficient **steering angle**, making maneuvers such as exiting a parking space in a single move during the parking challenge impossible. To improve the steering angle, an alternative solution was developed: the design of an entirely **new front axle** (<a href="#steering">cf. Chapter “Steering”</a>).
 
-During the conversion, retaining the front-wheel drive was not possible, as the existing universal joints mechanically limited the increased steering angle. Therefore, the original all-wheel drive was deactivated and replaced with a rear-wheel drive system. This configuration provides sufficient power transmission for low-speed, precise control, while also decoupling the steering from drive influences — a particular advantage when navigating the obstacle course with precision.
+During the conversion, retaining the **front-wheel drive** was not possible, as the existing **universal joints** mechanically limited the increased steering angle. Therefore, the original all-wheel drive was deactivated and replaced with a **rear-wheel drive system**. This configuration provides sufficient **power transmission** for **low-speed**, precise control, while also decoupling the steering from drive influences — a particular advantage when navigating the obstacle course with precision.
 
 
-### Motor
-The existing brushed motor was compared to various other motor types as part of a comparative analysis. To evaluate their respective advantages and disadvantages, an online literature review was conducted. In addition to the brushed motor, the brushless motor and the stepper motor were identified as relevant alternatives.
+### **Motor**
+The existing **brushed motor** was compared to various other **motor types** as part of a comparative analysis. To evaluate their respective advantages and disadvantages, an online literature review was conducted. In addition to the brushed motor, the **brushless motor** and the **stepper motor** were identified as relevant alternatives.
 
-Brushless motor:
+**Brushless motor:**
 This type generally offers higher power output compared to the brushed motor installed in the model vehicle. However, since high top speed is not required for the competition, this advantage was deemed non-essential. Furthermore, brushless motors exhibit limited controllability at low rotational speeds, which complicates precise navigation through the obstacle course.
 
-Stepper motor:
+**Stepper motor:**
 Stepper motors are known for their high control precision, but their operation is comparatively complex. In addition, they are associated with high power consumption, larger physical size, and low maximum speed, making them unsuitable for the intended application.
 
-Based on this analysis, it was decided to continue using the brushed motor already integrated into the model car, as it represents the most functional and technically appropriate solution under the given conditions.
+Based on this analysis, it was decided to continue using the **brushed motor** already integrated into the model car, as it represents the most functional and technically appropriate solution under the given conditions.
 
 <table align="center">
     <tr>
@@ -482,13 +483,13 @@ Based on this analysis, it was decided to continue using the brushed motor alrea
 
 
 
-### Electronic speed controller
+### **Electronic speed controller**
 
-The electronic speed controller (ESC) is positioned between the power source and the drive motor and controls the motor speed. Experimental investigations revealed that the originally installed ESC was primarily designed for high-speed operation. At low speeds, it did not allow for sufficient fine control.
+The **electronic speed controller (ESC)** is positioned between the **power source** and the **drive motor** and controls the **motor speed**. Experimental investigations revealed that the originally installed ESC was primarily designed for **high-speed** operation. At **low speeds**, it did not allow for sufficient fine control.
 
-Further research showed that certain model vehicles, known as crawlers, are specifically designed for use on rough and steep terrain. The ESCs used in these vehicles offer particularly sensitive control at low speeds, thereby meeting the project’s requirements for precise low-speed driving behavior.
+Further research showed that certain model vehicles, known as **crawlers**, are specifically designed for use on rough and steep terrain. The ESCs used in these vehicles offer particularly sensitive control at low speeds, thereby meeting the project’s requirements for precise low-speed driving behavior.
 
-Based on these findings, the decision was made to replace the original controller with a more suitable model. The selected ESC, the Quicrun WP 1080–G2, fully meets the specified technical requirements.
+Based on these findings, the decision was made to replace the original controller with a more suitable model. The selected ESC, the **Quicrun WP 1080–G2**, fully meets the specified technical requirements.
 
 <table align="center" cellpadding="6" cellspacing="0">
     <tr>
@@ -670,20 +671,20 @@ Since these specifications ensure precise and effective steering, it was decided
 <br><br><br>
 
 # Power and sense management
-The Power and Sense Management System includes the sensors for environmental perception as well as the robot’s power supply, both of which are essential for reliable and autonomous navigation. The following chapters provide a detailed explanation of the individual sensors, the power supply, and the electrical circuitry.
+The **Power and Sense Management System** includes the **sensors** for environmental perception as well as the robot’s **power supply**, both of which are essential for reliable and autonomous navigation. The following chapters provide a detailed explanation of the individual sensors, the power supply, and the electrical circuitry.
 <br>
 
 ## Sensors
 
 ### LiDAR
 
-During our research on autonomous driving, we found that LiDAR systems (Light Detection and Ranging) are commonly used for environmental perception. LiDAR is a core sensor system in autonomous vehicles that uses laser beams to precisely capture the surroundings and generate a two-dimensional map.
+During our research on autonomous driving, we found that **LiDAR systems** (Light Detection and Ranging) are commonly used for environmental perception. **LiDAR** is a core sensor system in autonomous vehicles that uses **laser beams** to precisely capture the surroundings and generate a **two-dimensional map**.
 
-By measuring the time of flight of the reflected laser beams, the distance to surrounding objects can be determined. This information enables reliable detection of obstacles and other entities in the environment, significantly contributing to safe vehicle navigation.
+By measuring the **time of flight** of the reflected laser beams, the **distance** to surrounding objects can be determined. This information enables reliable **detection of obstacles** and other entities in the environment, significantly contributing to safe vehicle navigation.
 
-Environmental awareness can be further enhanced by combining LiDAR data with additional sensor inputs, such as cameras or radar systems. This sensor fusion allows for more informed and reliable decision-making in vehicle control.
+Environmental awareness can be further enhanced by combining LiDAR data with additional sensor inputs, such as **cameras** or **radar systems**. This **sensor fusion** allows for more informed and reliable decision-making in vehicle control.
 
-Due to its compelling performance characteristics, we decided to integrate a LiDAR system into our autonomous vehicle. The table below summarizes the key technical criteria of various LiDAR systems relevant to the selection process, with a color-coded evaluation based on our requirements: green indicates that the criterion meets our requirements, yellow indicates a moderate level, and red indicates insufficient performance. As a result, the RpLidar S2 proved to be the most suitable option for our application.
+Due to its compelling performance characteristics, we decided to integrate a **LiDAR system** into our autonomous vehicle. The table below summarizes the **key technical criteria** of various LiDAR systems relevant to the selection process, with a color-coded evaluation based on our requirements: green indicates that the criterion meets our requirements, yellow indicates a moderate level, and red indicates insufficient performance. As a result, the **RpLidar S2** proved to be the most suitable option for our application.
 
 <table align="center" border="1" style="border-collapse: collapse; border: 2px solid black;">
   <tr>
@@ -752,64 +753,68 @@ Due to its compelling performance characteristics, we decided to integrate a LiD
 </table>
 
 
-After integrating the LiDAR system into the robot, we found that the field boundaries were not being reliably detected. The cause was that the laser beams emitted by the sensor were projected over the boundary lines.
+After integrating the **LiDAR system** into the robot, we found that the **field boundaries** were not being reliably detected. The cause was that the **laser beams** emitted by the sensor were projected over the boundary lines.
 
-Through several iterations, the sensor was gradually mounted lower within the robot’s housing; however, this adjustment still did not result in satisfactory detection of the boundary lines. A subsequent analysis of the datasheet revealed that the LiDAR’s laser beams are emitted at a slightly upward angle, which explained why the relevant objects remained outside the scan range even when the sensor was positioned lower.
+Through several iterations, the sensor was gradually mounted **lower** within the robot’s housing; however, this adjustment still did not result in satisfactory detection of the boundary lines. A subsequent **analysis of the datasheet** revealed that the LiDAR’s laser beams are emitted at a slightly upward angle, which explained why the relevant objects remained outside the **scan range** even when the sensor was positioned lower.
 
-The manufacturer was then contacted to determine whether mounting the LiDAR in an inverted orientation would be technically permissible. The response was positive, so the sensor is now installed upside down in the robot. This configuration ensures that the scanning plane reliably detects the field boundaries.
+The **manufacturer** was then contacted to determine whether mounting the LiDAR in an **inverted orientation** would be technically permissible. The response was positive, so the sensor is now installed **upside down** in the robot. This configuration ensures that the **scanning plane** reliably detects the field boundaries.
+
+Implementation details of the LiDAR **data flow** and **APIs** are documented under Code for all components → [LiDAR](#lidar-1).
 
 ### Potential improvements - LiDAR:
-- Find a LiDAR that scans parallel to the ground or downward, rather than upward, so that it can be installed in the correct orientation.
+-- Find a LiDAR that scans **parallel to the ground** or **downward**, rather than upward, so that it can be installed in the correct orientation.
 
-- Look for a LiDAR with a higher update rate, greater distance measurement accuracy, and improved angular resolution.
+-- Look for a LiDAR with a higher **update rate**, greater **distance measurement accuracy**, and improved **angular resolution**.
 
 
 ### Camera
-While the LiDAR is used to determine the position of an obstacle, an additional camera is required to identify the obstacle’s color. Initially, the Raspberry Pi Global Shutter Camera was ordered, as its technical specifications appeared particularly suitable for use in a mobile robotic system. The camera enables distortion-free capture of fast movements since—unlike rolling-shutter systems—it avoids typical motion artifacts. Moreover, its support for interchangeable lenses allows flexible adaptation to different application scenarios.
+While the LiDAR is used to determine the **position of an obstacle**, an additional **camera** is required to identify the obstacle’s **color**. Initially, the **Raspberry Pi Global Shutter Camera** was ordered, as its technical specifications appeared particularly suitable for use in a mobile robotic system. The camera enables distortion-free capture of fast movements since—unlike **rolling-shutter systems**—it avoids typical motion artifacts. Moreover, its support for **interchangeable lenses** allows flexible adaptation to different application scenarios.
 
-However, upon arrival, it became apparent that the physical dimensions of the camera were significantly larger than originally anticipated. Due to the limited space within the vehicle chassis, integration was not possible.
+However, upon arrival, it became apparent that the physical **dimensions** of the camera were significantly larger than originally anticipated. Due to the **limited space** within the vehicle chassis, integration was not possible.
 
-As a result, a more compact alternative was selected: the Raspberry Pi Camera Module 3 Wide (12 MP). Although a global shutter camera had initially been planned, we found that the operating speeds in the system do not cause critical rolling-shutter artifacts. The chosen camera meets the requirements in terms of field of view, resolution (12 MP), integration, and computational compatibility, making it a practical solution for image processing in this context.
+As a result, a more **compact alternative** was selected: the **Raspberry Pi Camera Module 3 Wide (12 MP)**. Although a global shutter camera had initially been planned, we found that the operating speeds in the system do not cause critical rolling-shutter artifacts. The chosen camera meets the requirements in terms of **field of view**, **resolution (12 MP)**, **integration**, and **computational compatibility**, making it a practical solution for **image processing** in this context.
 
 ### Potential improvements - camera:
-- Find and install a better camera with a wider field of view.
+-- Find and install a better **camera** with a wider **field of view**.
 
 ### Odometry sensor
-Over the past two years of participating in the RoboMission category, the importance of continuous position tracking became evident. In that context, the vehicle’s position was determined by evaluating wheel rotations, complemented by a gyroscope. However, the current model car chassis does not provide a way to directly measure wheel movement.
+Over the past two years of participating in the **RoboMission** category, the importance of **continuous position tracking** became evident. In that context, the vehicle’s position was determined by evaluating **wheel rotations**, complemented by a **gyroscope**. However, the current model car chassis does not provide a way to directly measure wheel movement.
 
-While searching for alternatives, it was discovered that motion can also be detected optically—similar to the operation of a computer mouse. 
+While searching for alternatives, it was discovered that **motion** can also be detected **optically**—similar to the operation of a **computer mouse**. 
 
-The functionality of the system is as follows: Motion detection is achieved through a downward-facing camera that analyzes changes in the ground texture at up to 20,000 frames per second. The vehicle’s displacement over the surface is determined from the differences between consecutive images. This method is resistant to slip effects that can occur in encoder-based systems.
+The functionality of the system is as follows: **Motion detection** is achieved through a **downward-facing camera** that analyzes changes in the **ground texture** at up to **20,000 frames per second**. The vehicle’s **displacement** over the surface is determined from the differences between consecutive images. This method is resistant to **slip effects** that can occur in **encoder-based systems**.
 
-Based on this principle, the SparkFun “Optical Tracking Odometry Sensor” was selected. This device integrates an optical motion sensor, a gyroscope, and a microcontroller that independently performs odometry calculations.
+Based on this principle, the **SparkFun Optical Tracking Odometry Sensor** was selected. This device integrates an **optical motion sensor**, a **gyroscope**, and a **microcontroller** that independently performs **odometry calculations**.
 
-To increase accuracy and redundancy, two of these sensors were installed.
+To increase **accuracy** and **redundancy**, **two** of these sensors were installed.
+
+**Software architecture**, **health monitoring**, and **fusion logic** are detailed under Code for all components → [Optical tracking odometry sensors](#optical-tracking-odometry-sensors).
 
 
 ### Potential improvements - odometry sensor:
 
-- Install a third sensor to enable a true majority decision when determining the correct measurement. With three sensors, the system could automatically identify the one deviating sensor as faulty in the event of conflicting measurements and rely on the two agreeing sensors. This would significantly improve the robustness of the system, since currently, if one of the two sensors fails, only a single sensor remains available, and its accuracy can no longer be verified through comparison.
+-- Install a **third sensor** to enable a true **majority decision** when determining the correct measurement. With three sensors, the system could automatically identify the one **deviating sensor** as faulty in the event of conflicting measurements and rely on the two agreeing sensors. This would significantly improve the **robustness** of the system, since currently, if one of the two sensors fails, only a **single sensor** remains available, and its **accuracy** can no longer be verified through comparison.
 
 ### Status display
-A status display was additionally integrated to visualize various system parameters. The current speed and target speed are represented using bar indicators in meters per second.
+A **status display** was additionally integrated to visualize various **system parameters**. The **current speed** and **target speed** are represented using **bar indicators** in meters per second.
 
-The operational status of the two odometry sensors is communicated through a color-coded system:
+The operational **status** of the two **odometry sensors** is communicated through a **color-coded system**:
 
-- Green light: indicates that the corresponding optical sensor is active and functioning correctly.
-- Red light: is displayed when one sensor measures a speed more than 0.2 m/s lower than the other sensor; in this case, the sensor is classified as faulty.
-- Blue light: indicates that the sensor has detected a speed exceeding 2 m/s, which is physically implausible; the sensor is then automatically deactivated.
+-- **Green light**: indicates that the corresponding optical sensor is active and functioning correctly.
+-- **Red light**: is displayed when one sensor measures a speed more than **0.2 m/s** lower than the other sensor; in this case, the sensor is classified as **faulty**.
+-- **Blue light**: indicates that the sensor has detected a speed exceeding **2 m/s**, which is physically implausible; the sensor is then automatically **deactivated**.
 
-This display is an optional component and is not strictly necessary for the robot’s core functionality.
+This display is an **optional component** and is not strictly necessary for the robot’s **core functionality**.
 
 ### Potential improvements - status display:
-- Display more information during operation, for example, the colors of the obstacles.
+-- Display more **information** during operation, for example, the **colors of the obstacles**.
 <br>
 
 ## Vehicle power supply
 
-The power supply of the autonomous vehicle was designed to reliably provide energy to all sensors, control units, and actuators. The central power source is a 7.4 V lithium-polymer battery (LiPo, 2S, 2200 mAh), which is directly connected to the electronic speed controller (ESC) and also powers the Raspberry Pi via a 5 V voltage converter.
+The **power supply** of the autonomous vehicle was designed to reliably provide **energy** to all **sensors**, **control units**, and **actuators**. The central **power source** is a **7.4 V lithium-polymer battery (LiPo, 2S, 2200 mAh)**, which is directly connected to the **electronic speed controller (ESC)** and also powers the **Raspberry Pi** via a **5 V voltage converter**.
 
-### LiPo Battery
+### LiPo battery
 <table align="center" cellpadding="6" cellspacing="0">
   <tr>
         <th bgcolor="#CCFFCC" width="300">Zeee 2S Lipo Akku</th>
@@ -835,14 +840,14 @@ The power supply of the autonomous vehicle was designed to reliably provide ener
 
 ### Component power consumption
 
-The following table lists the essential installed components and their typical power consumption:
+The following table lists the essential installed **components** and their typical **power consumption**:
 
 <table align="center" border="1" style="border-collapse: collapse; border: 2px solid black;">
     <tr>
-        <th bgcolor="#E8E8E8" width="300" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Komponente</th>
-        <th bgcolor="#E8E8E8" width="200" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Betriebsspannung</th>
-        <th bgcolor="#E8E8E8" width="200" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Leistungsaufnahme (typisch)</th>
-        <th bgcolor="#E8E8E8" width="400" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Bemerkung</th>
+        <th bgcolor="#E8E8E8" width="300" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Component</th>
+        <th bgcolor="#E8E8E8" width="200" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Operating voltage</th>
+        <th bgcolor="#E8E8E8" width="200" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Power consumption (typical)</th>
+        <th bgcolor="#E8E8E8" width="400" style="border: 1px solid black; border-bottom: 3px solid black; padding: 8px;">Notes</th>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">Raspberry Pi 5</td>
@@ -893,7 +898,7 @@ The following table lists the essential installed components and their typical p
     <td style="border: 1px solid black; padding: 8px;">Power consumption depends on number of illuminated pixels</td>
   </tr>
   <tr>
-    <td style="border: 1px solid black; padding: 8px;">Servo-Controller</td>
+    <td style="border: 1px solid black; padding: 8px;">Servo controller</td>
     <td style="border: 1px solid black; padding: 8px;">5 V</td>
     <td style="border: 1px solid black; padding: 8px;">0,1 W</td>
     <td style="border: 1px solid black; padding: 8px;">Low power consumption, I²C communication</td>
@@ -903,14 +908,14 @@ The following table lists the essential installed components and their typical p
 
 ### Total power requirements
 
-The total energy consumption of the system ranges from approximately 8–20 W during operation. The largest power consumers are:
+The total **energy consumption** of the system ranges from approximately **8–20 W** during operation. The largest **power consumers** are:
 
-- The Raspberry Pi 5
-- The DC motor (high current during acceleration)
-- The LiDAR module, which operates continuously
+-- The **Raspberry Pi 5**
+-- The **DC motor** (high current during acceleration)
+-- The **LiDAR module**, which operates continuously
 
-With a battery capacity of 2200 mAh (7,4 V) the available energy is 16,28 Wh. This allows for operating times of approximately 45 to 120 minutes, depending on driving behavior, track profile, and computational load.
-Based on empirical data, it was determined that a safe operating time of approximately 90 minutes is reliably achieved. After this time, the battery is routinely replaced to prevent deep discharge, as no voltage monitoring is integrated into the system.
+With a **battery capacity** of **2200 mAh (7.4 V)** the available **energy** is **16.28 Wh**. This allows for **operating times** of approximately **45 to 120 minutes**, depending on **driving behavior**, **track profile**, and **computational load**.
+Based on **empirical data**, it was determined that a **safe operating time** of approximately **90 minutes** is reliably achieved. After this time, the **battery** is routinely replaced to prevent **deep discharge**, as no **voltage monitoring** is integrated into the system.
 
 ### Power supply
 
@@ -966,28 +971,31 @@ Our robot uses a Cartesian coordinate system to navigate the WRO Future Engineer
 - **+-180°**: Robot facing in the positive X direction (to the right)
 - **-90°**: Robot facing in the negative Y direction (upward)
 
-## Waypoint Navigation System
+## Waypoint navigation system
 
 Waypoints are target coordinates that the robot navigates to sequentially. Each waypoint specifies (x, y) coordinates in millimeters. We have defined a structure that stores waypoints together with a command. These are added to a queue and are executed in order. Several commands are available. 
 
-### Command Example: Drive to Coordinate 450/2500 
+For generative waypoint patterns and rotation mapping used in the obstacle challenge, see [Navigation strategy obstacle challenge](#navigation-strategy-obstacle-challenge).
+
+### Command example: drive to coordinate 450/2500 
 ```python
 orders.append(Order(x=450, y=2500, speed=0.75, brake=0, type=Order.DESTINATION, num=100, rotation=0))
 ```
 
-### Command Example: Turn Robot CCW to a Heading of -90°
+### Command example: turn robot CCW to a heading of -90°
 ```python
 orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CCW, type=Order.WINKEL)))
 ```
-<br><br>
-## Initial Location Acquisition 
-The inital position is aquired by mneasuring the distance to the borders with the lidar.
+<br>
 
-The starting direction is determinded based on its position on the mat. 
+## Initial location acquisition 
+The initial position is determined by measuring the distance to the borders using the LiDAR.
 
-For the Open Challenge, there are four different positions where we can place the robot, which allow it to recognize how it must drive. These four options result from the fact that there are two possible starting sections and two directions of travel.
+The starting direction is inferred from the robot’s position on the mat.
 
-In the Obstacle Challenge, two different positions are possible. Here as well, the robot uses the LiDAR to detect its position and then knows which direction it needs to drive.
+For the Open Challenge, the robot can be placed in four possible positions, which allow it to identify the required driving path. These positions result from the combination of two starting sections and two travel directions.
+
+In the Obstacle Challenge, two starting positions are possible. Here, the robot also uses the LiDAR to determine its position and the corresponding direction of travel.
 
 <div align="center">
     <a href="img/flowdiagrammstart.jpeg" target="_blank">
@@ -997,12 +1005,13 @@ In the Obstacle Challenge, two different positions are possible. Here as well, t
 
 
  <br><br>
-## Position Updates During Driving 
 
-### Optical Tracking Sensor Function 
+## Position updates during the race 
+
+### Optical tracking sensor function 
 For continuous position tracking, we use two optical tracking sensors. A downward-facing camera inside the sensor captures 20,000 images per second. Based on changes in the images, the sensor detects movement across the surface. Additionally, the sensor has a built-in gyroscope. Using data from the gyroscope and the movement across the ground, the sensor automatically calculates the current coordinates.
 
-### Sensor Failure Detection / Health Status 
+### Sensor failure detection / health status 
 Two optical tracking sensors were installed to increase redundancy. If one sensor fails, for example due to dust on the lens, the robot can still accurately determine its position. A sensor is recognized by the program as “not healthy” under the following conditions:
 
 - One of the two sensors is at least 0.15 m/s slower than the other. Dust on the lens can prevent the sensor from accurately detecting changes in the ground, causing its reported speed to decrease. The slower sensor is then deactivated as “not healthy”.
@@ -1018,22 +1027,19 @@ Two optical tracking sensors were installed to increase redundancy. If one senso
 
 When both sensors are healthy, we take the average of the readings of both sensors. Otherwise, we just take the data from the healthy sensor.
 
-## Position Corrections 
-Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases even more. These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
-
-- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This can not be done while driving, because the lidar measurement is delayed by about 100 to 200ms, so we would already have moved on. 
+## Position corrections 
+Position tracking using the optical tracking sensor leads to inaccuracies of 2–5 cm per meter when the robot drives straight. After turns, the inaccuracy increases even more. 
 
 <div align="center">
     <a href="img/lidarDelay.png" target="_blank">
         <img width="500" src="img/lidarDelay.png" alt="LiDAR Messverzögerung">
     </a>
-    <p><em>Abbildung: LiDAR-Messverzögerung von 100-200ms in der Kurve</em></p>
+    <p><em>Figure: LiDAR measurement delay of 100–200 ms while cornering. The red dots mark the walls detected by the LiDAR.</em></p>
 </div>
 
+These deviations are not acceptable in the Obstacle Challenge, as they may cause the robot to drive into a wall or hit an obstacle. Therefore, the program implements a position reset using the LiDAR:
 
-
-
-This type of repositioning has to be manually set up in the programm, after stopping the robot. This is done when we need a hight accuracy, for example before scanning the obstacles.
+- When the robot is stationary, it repositions itself based on the two outer walls. The LiDAR detects the distance to the walls and thus determines the robot's position. This can not be done while driving, because the lidar measurement is delayed by about 100 to 200ms, so we would already have moved on. This type of repositioning has to be manually set up in the programm, after stopping the robot. This is done when we need a hight accuracy, for example before scanning the obstacles.
 
 
 - While driving, the LiDAR measures the distance to the wall in front and repositions the robot accordingly. For this, we do not use the complete 360° scan from the lidar, but we trigger the reposition automatically exactly when the front distance is measured by the lidar. On this way we reduce the delay of the lidar measurement. This kind of repositioning is automatically triggered when certain conditions are met:
@@ -1044,8 +1050,7 @@ This type of repositioning has to be manually set up in the programm, after stop
 
 ### Reposition while driving (pseudocode)
 ```
-if not in a curve reposition block and speed is safe:
-    bucketize heading to ~{0, ±90, 180}
+if (lidar has just scanned front):
     choose wall direction accordingly and average nearby LiDAR samples
     ensure wall visibility by quadrant gating
     if measurement valid and quadrant changed since last:
@@ -1054,16 +1059,16 @@ if not in a curve reposition block and speed is safe:
 ```
 
 
-## Obstacle Recognition 
+## Obstacle recognition 
 This function detects and stores obstacles within each section of the course using the LiDAR and the camera. The process is divided into two parts:
 
-### Determining the Position of an Obstacle Within a Course Section
+### Determining the position of an obstacle within a course section
 
 The environment is not scanned continuously, but only at specific, predefined points that the robot passes during the first lap of the obstacle course :The first two ones are directly after leaving the parking area,  after that at 4 additional points.
 
 <div align="center">
     <a href="img/scanpunkte.png" target="_blank">
-        <img width="400" src="img/scanpunkte.png" alt="Scanpunkte auf dem Parcours">
+        <img width="500" src="img/scanpunkte.png" alt="Scanpunkte auf dem Parcours">
     </a>
     <p><em>Figure: Strategic scanning points for obstacle detection on the course</em></p>
 </div>
@@ -1073,18 +1078,18 @@ At these points the LiDAR determines at which of the six possible positions with
 A list of coordinates was created for all possible obstacle positions. The LiDAR checks whether something is detected near (within a radius of 100 mm) any of these coordinates. If an obstacle is detected, the position is stored in a list.
 
 
-### Determining the Color of the Obstacle
+### Determining the color of the obstacle
 
 The camera is then used to identify the color of the obstacle. The object recognition is strongly based on the [WRO support document](https://world-robot-olympiad-association.github.io/future-engineers-gs/p04-cv/#objects-recognition) (WRO Future Engineers Getting Started). Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the horizontal distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map:
 
 <div align="center">
     <a href="img/programmausgabe.jpg" target="_blank">
-        <img width="400" src="img/programmausgabe.jpg" alt="Programmausgabe Hinderniserkennung">
+        <img width="700" src="img/programmausgabe.jpg" alt="Programmausgabe Hinderniserkennung">
     </a>
     <p><em>Figure: Visualization of angle measurement for obstacle determination using camera and LiDAR</em></p>
 </div>
 
-### Complete Obstacle Detection Function
+### Complete obstacle detection function
 
 The following function implements the complete obstacle detection and color recognition algorithm combining LiDAR and camera data:
 
@@ -1183,9 +1188,9 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
     return found
 ```
 
-#### Angle width and color assignment (implementation note)
-- An obstacle’s acceptable camera angle window is distance‑dependent: angular_width = 2·atan(diameter/(2·distance)).
-- A camera detection is accepted only if `|angle_cam − angle_lidar| < angular_width`. If no camera block falls within this window, the obstacle color remains “nothing”.
+### Angle width and color assignment (implementation note)
+- An obstacle’s acceptable angle window is distance‑dependent: angular_width = 2·atan(diameter/(2·distance)).
+- A lidar detection is accepted only if the middle of a camera detection block falls within the obstacles acceptable angle with. Otherwise the obstacle is ignored (by setting the color to nothing). This is done because when the lidar passes sharp edges, sometimes a random pixel can be generated at a farther distance, generating a false obstacle.
 - SCAN robustness: each SCAN is retried once if it found nothing, forcing a fresh LiDAR update to reduce false negatives.
 
  ## Navigation strategy open challenge 
@@ -1226,31 +1231,15 @@ For the open challenge, we navigate using simple fixed waypoints. They are chose
 
 
 
-## Navigation Strategy Obstacle Challenge
+## Navigation strategy obstacle challenge
 
 The obstacle challenge is seperated in different phases:
 
-### Overall flow (Obstacle Challenge)
-
-```mermaid
-flowchart TD
-    S[Start / 'v' pressed] --> Init[Reset OTOS, set start pose via LiDAR]
-    Init --> Dir{CW or CCW}
-    Dir -->|CW| UnparkCW[unparkCW: turn + immediate scan]
-    Dir -->|CCW| UnparkCCW[unparkCCW: turn + immediate scan]
-    UnparkCW --> ScanLap[scanRound x4 (each quadrant)]
-    UnparkCCW --> ScanLap
-    ScanLap --> Repos[Face -90° and reposition]
-    Repos --> Drive1[driveRound x4 (lap 2)]
-    Drive1 --> Drive2[driveRound x4 (lap 3)]
-    Drive2 --> Park[park(): wall scan + iterative alignment]
-    Park --> End[Finish]
-```
 
 ### Unparking
 First we leave the parking spot. Before completing the unparking, we have to do our first scan to check for an obstacle in the middle position.
 
-#### Unparking (pseudocode)
+#### Unparking (Pseudocode)
 ```
 if CW:
     turn right (~-90°)
@@ -1271,35 +1260,25 @@ We drive one complete round and scan for obstacles on the way. For scanning the 
 
 <div align="center">
     <a href="img/allobstacles.png" target="_blank">
-        <img width="600" src="img/allobstacles.png" alt="Alle Hindernispositionen im Überblick">
+        <img width="700" src="img/allobstacles.png" alt="Alle Hindernispositionen im Überblick">
     </a>
     <p><em>Figure: The robot can detect all 6 possible traffic signs’ seats from its current location</em></p>
 </div>
 
 After that, we choose the correct waypoints to drive to the next scan point. 
 
-#### Scan lap (pseudocode)
-```
-face -90°; WINKEL(-90)
-REPOSITION(-90)
-short reverse curve to align
-go to scan pose A; SCAN near pair (toScan=scan1)
-SCAN remaining pair(s) (toScan=scan2)
-choose lane x (200/400/800 mm) for next segment based on inner/outer presence
-move to middle y (~1000–1200 mm) with safe x
-```
 
 ### Second and Third Round
 
-On the second and third round, we do not scan for obstacles anymore. The positions are remembered from the first round.
+On the second and third round, we do not scan for obstacles anymore. The positions are remembered from the first round, and waypoints are generated to navigate around all obstacles.
 
 ### Parking
 
 To get all points possible we chosed to implement the paralel parking challenge. We tried many different strategys. What worked best was driving backwards perpendicular to the wall and then swing in with maximum steering angle. The position must be very accurate, so we do several repositions and drive front and back several times if needed until the measured position is accurate enough.
-The neccesary position accuracy for the starting point of this manuver is about +-5 cm in the x-direction and +- 3 cm in the y-direction. 
+The neccesary position accuracy for the starting point of this manuver is about +-5 cm in the x-direction and +- 3 cm in the y-direction. Usually our process will assure a position erroe below 1cm in all directions.
 
 
-### Obstacle avoidance waypoint generation
+### Obstacle Avoidance Waypoint Generation
 
 Based on the scanned obstacles, we generate waypoints to drive around them on the right side.
 To make the programm less complex, we do not differentiate if the obstacle is on the inner or the outer side. We always drive in a way so we avoid both. This resolves to 4 different patterns to drive around one set of obstacles: 
@@ -1335,12 +1314,15 @@ To make the programm less complex, we do not differentiate if the obstacle is on
 Additiional logic is needed to transition from one pattern to another pattern on the next segment.
 
 #### Rotation mapping
-Waypoints are defined once for a reference corner/segment and reused by rotation/mirroring via `Order(rotation=…)`.
-- Clockwise: `0, 90, 180, 270`
-- Counter‑clockwise: `1000, 1090, 1180, 1500`
-Target angles and `angleCheckOverwrite` are transformed in `Order.__init__`.
 
-#### Source Code: driveRound.py
+
+In our first program (for the German finals), we programmed the complete 360° course with individual code. Since the waypoints for the international finals are different, we had to rewrite much of the waypoint generation. This time, we programmed only one 90° segment of the course. The waypoints for the other segments are generated by rotating/mirroring the original waypoints. This is done via the option `Order(rotation=…)` in the order command :
+- Clockwise: `0, 90, 180, 270`
+- Counter‑clockwise: `1000, 1090, 1180, 1500` 
+
+Target angles and are transformed in `Order.__init__` function.Additional logic is needed for handling the parking slot.
+
+#### Source code: driveRound.py
 
 The `driveRound()` function generates the waypoints for the second and third round. 
 
@@ -1491,7 +1473,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
 
 
 
-### Possible improvements:
+### Possible improvements
 
 
 
@@ -1517,6 +1499,8 @@ Driving speed on uncritical parts could be increased even more.
 ## Servo 
 
 The steering is controlled through an Adafruit 16 Channel Servo Driver connected to the Raspberry Pi via I²C communication. The servo driver board manages the PWM signal generation required for the servo positioning. For the communication with the board we use the Adafruit servokit library.
+
+Hardware selection, geometry, and mechanical integration are covered in [Steering](#steering).
 
 ### Software implementation
 
@@ -1657,7 +1641,7 @@ class DriveBase:
 
 Our robot uses two separate PID controllers for motion control: one for speed regulation and another for steering control. The PID (Proportional-Integral-Derivative) controllers provide smooth and stable control by continuously adjusting outputs based on error feedback.
 
-#### <ins>PID Controller Class Structure</ins>
+#### <ins>PID controller class structure</ins>
 
 ```python
 class PIDController:
@@ -1678,7 +1662,7 @@ class PIDController:
         self.integral = 0
 ```
 
-#### <ins>PID Computation Algorithm</ins>
+#### <ins>PID computation algorithm</ins>
 
 ```python
 def compute(self, process_variable, dt, slam=None):
@@ -1728,7 +1712,7 @@ def compute(self, process_variable, dt, slam=None):
     return output
 ```
 
-#### <ins>Dual PID Controller Configuration</ins>
+#### <ins>Dual PID controller configuration</ins>
 
 Our robot uses two PID controllers with different tuning parameters optimized for their specific control tasks:
 
@@ -1754,7 +1738,7 @@ self.pidSteer = PIDController(Kp=2, Ki=0, Kd=0,
 - **Kd=0**: No derivative term (steering doesn't need oscillation damping)
 - **Range**: ±90° maximum steering angle
 
-#### <ins>PID Controllers in Action</ins>
+#### <ins>PID controllers in action</ins>
 
 **Speed Control Example**:
 ```python
@@ -1942,7 +1926,7 @@ def setPosition(self, x, y, angle=-5000):
 
 ### Key features of our implementation
 
-1. **Dual Sensor Redundancy**: Two sensors provide backup if one fails due to dust or surface issues
+1. **Dual Sensor Redundancy**: Two sensors provide backup; rationale and hardware context in Sensors → [Odometry sensor](#odometry-sensor)
 2. **Automatic Health Monitoring**: Continuous error detection and sensor status tracking
 3. **Speed Calculation**: Real-time velocity calculation from position differences
 4. **Coordinate System Integration**: Seamless integration with robot's navigation coordinate system
@@ -2008,39 +1992,12 @@ def startpostionsetzen(self):
 
 ### Dynamic position correction during driving
 
-```python
-def repositionDrive(self):
-    """Correct robot position using LiDAR while driving"""
-    
-    # Determine robot's orientation quadrant
-    quadrant = 0
-    quadrant_range = 1050
-    
-    if (self.xpos < quadrant_range and self.ypos < quadrant_range):
-        quadrant = 1  # Top-left
-    elif (self.xpos < quadrant_range and self.ypos > 3000 - quadrant_range):
-        quadrant = 2  # Bottom-left
-    # ... additional quadrants
-    
-    # Correct position based on current heading
-    angle_check = self.angle
-    while angle_check > 180:
-        angle_check -= 360
-    while angle_check < -180:
-        angle_check += 360
-    
-    # Facing right (180°): use distance to right wall
-    if abs(angle_check - 180) < 30:
-        wall_distance = self.scan[90]  # Distance to right wall
-        corrected_x = 3000 - wall_distance
-        self.setPosition(corrected_x, self.ypos, self.angle)
-        
-    # Facing forward (0°): use distance to front wall
-    elif abs(angle_check) < 30:
-        wall_distance = self.scan[0]   # Distance to front wall
-        corrected_y = wall_distance
-        self.setPosition(self.xpos, corrected_y, self.angle)
-```
+Runtime strategy and gating for LiDAR-based correction while driving are explained under Obstacle management → [Position Corrections](#position-corrections).
+
+Relevant APIs:
+- `slam.repositionDrive()` – auto‑triggered corrections during motion based on quadrant visibility
+- `slam.repositionOneDirFront(angleCheck)` – snap X/Y to walls using front/side scans when stationary
+- `slam.setPostion(x, y, angle)` – applies fused position update
 
 ### Obstacle detection and recognition
 
