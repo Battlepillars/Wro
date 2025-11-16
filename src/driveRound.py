@@ -58,6 +58,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
     
     # Step 1: Determine direction and configure obstacle colors
     if (rotation >= 1000):
+        spaceFix=20
         # Counter-clockwise direction (rotation IDs 1000-1999)
         direction = Order.CCW
         # Adjust scan indices for CCW (wrap around with -12 offset for negative indices)
@@ -68,6 +69,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         outer=Hindernisse.RED    # Outer obstacles (toward walls) are RED in CCW
         inner=Hindernisse.GREEN  # Inner obstacles (toward center) are GREEN in CCW
     else:
+        spaceFix-20
         # Clockwise direction (rotation IDs 0-999)
         direction = Order.CW
         scan1=(scanStart+6, scanStart+10)   # Destination area obstacles (near pair)
@@ -127,21 +129,22 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
             if False: #rotation != 90 and rotation != 1500:
                 orders.append(Order(x=672, y=1600,speed=speedi,brake=1,type=Order.DESTINATION,num=2031, rotation=rotation))
                 orders.append(Order(zielwinkel=-90, speed=speedi*0.6, brake=1, type=Order.WINKEL, rotation=rotation))
-                if not waitCompleteOrders:
+                if not waitCompleteOrders():
                     return
                 time.sleep(0.3)
                 orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
             else:
                 #orders.append(Order(x=700, y=1600,speed=speedi,brake=1,type=Order.DESTINATION,num=2032, rotation=rotation))
-                orders.append(Order(x=800, y=1150,speed=speedi,brake=1,type=Order.DESTINATION,num=181, rotation=rotation))
+                orders.append(Order(x=800+spaceFix, y=1150,speed=speedi,brake=1,type=Order.DESTINATION,num=181, rotation=rotation))
                 orders.append(Order(zielwinkel=-90, speed=speedi*0.75, brake=1, type=Order.WINKEL, rotation=rotation))
-                if not waitCompleteOrders:
+                if not waitCompleteOrders():
                     return
-                time.sleep(0.3)
+                time.sleep(1)
                 slam.lastQuadrant=slam.getQuadrant(1300)
                 slam.logger.warning("Manual Repostion Front 0 from driveRound 1") 
-                slam.repositionOneDirFront(0)
-                orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=182, rotation=rotation))
+                orders.append(Order(angleCheckOverwrite=-90,type=Order.REPOSITIONSINGLE, rotation=rotation))
+                #slam.repositionOneDirFront(-90, rotation=rotation)
+                #orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=182, rotation=rotation))
     
     else:
         # Source area clear of inner obstacles - on tight path (x=200 or x=400)
@@ -152,20 +155,21 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
                 # Grün Rot
                 # orders.append(Order(x=350, y=1600,speed=speedi,brake=1,type=Order.DESTINATION,num=201, rotation=rotation))
                 # orders.append(Order(zielwinkel=-90, speed=speedi*0.6, brake=1, type=Order.WINKEL, rotation=rotation))
-                # if not waitCompleteOrders:
+                # if not waitCompleteOrders():
                 #     return
                 # time.sleep(0.3)
                 
                 # orders.append(Order(x=800, y=1150,speed=speedi,brake=1,type=Order.DESTINATION,num=181, rotation=rotation))
-                orders.append(Order(x=200, y=1150,speed=speedi,brake=0,type=Order.DESTINATION,num=24, rotation=rotation))
+                orders.append(Order(x=200-spaceFix, y=1150,speed=speedi,brake=0,type=Order.DESTINATION,num=24, rotation=rotation))
                 
                 orders.append(Order(zielwinkel=-90, speed=speedi*0.75, brake=1, type=Order.WINKEL, rotation=rotation))
-                if not waitCompleteOrders:
+                if not waitCompleteOrders():
                     return
-                time.sleep(0.3)
+                time.sleep(1)
                 slam.lastQuadrant=slam.getQuadrant(1300)
                 slam.logger.warning("Manual Repostion Front 0 from driveRound 2") 
-                slam.repositionOneDirFront(0)
+                orders.append(Order(angleCheckOverwrite=-90,type=Order.REPOSITIONSINGLE, rotation=rotation))
+                #slam.repositionOneDirFront(-90, rotation=rotation)
                 # orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=182, rotation=rotation))
                 
                 

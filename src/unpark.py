@@ -61,7 +61,8 @@ def unparkCW(orders,Order, waitCompleteOrders, checkForColor):
         orders.append(Order(zielwinkel=0, speed=0.2, brake=1, type=Order.WINKEL))
         scan([4, 5], orders, Order, waitCompleteOrders)
         if checkForColor(Hindernisse.RED, 4, 5):
-            orders.append(Order(x=1000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=9))
+            orders.append(Order(x=1050, y=2200,speed=speedi,brake=1,type=Order.DESTINATION,num=9))
+            orders.append(Order(zielwinkel=30, speed=0.4, brake=0, type=Order.WINKEL))
             orders.append(Order(x=700, y=2550,speed=speedi,brake=0,type=Order.DESTINATION,num=10))
         else:
             orders.append(Order(x=1000, y=2700,speed=speedi,brake=0,type=Order.DESTINATION,num=11))

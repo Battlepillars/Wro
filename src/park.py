@@ -88,7 +88,7 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
             slam.logger.warning("Von Rot nach Grün oder nach nichts")
             orders.append(Order(x=2200, y=2100,speed=0.2,brake=0,type=Order.DESTINATION,num=34))
             orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
-            if not waitCompleteOrders:
+            if not waitCompleteOrders():
                 return
             if slam.ypos > 2100:
                 orders.append(Order(steer=0, dist=slam.ypos-2100, speed=-0.2, brake=1, type=Order.KURVE))

@@ -23,7 +23,7 @@ def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSta
 
     speedi = 0.5
     
-    orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=direction, type=Order.WINKEL, rotation=rotation))
+    orders.append(Order(zielwinkel=-90, speed=0.4, brake=1, dir=direction, type=Order.WINKEL, rotation=rotation))
     
     if not waitCompleteOrders():
         return
@@ -68,12 +68,14 @@ def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSta
             orders.append(Order(x=400, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=23, rotation=rotation))
 
     if checkForColor(inner, scan4[0], scan4[1]) or (not checkForColor(outer, scan4[0], scan4[1]) and checkForColor(inner, scan3[0], scan3[1])):
-        orders.append(Order(x=800, y=1000,speed=speedi,brake=1,type=Order.DESTINATION,num=18, rotation=rotation))
+        #orders.append(Order(x=800, y=1000,speed=speedi,brake=1,type=Order.DESTINATION,num=18, rotation=rotation))#knapp
+        orders.append(Order(x=780, y=1100,speed=speedi,brake=1,type=Order.DESTINATION,num=18, rotation=rotation))
         orders.append(Order(zielwinkel=-70, speed=0.4, brake=0, type=Order.WINKEL, rotation=rotation))
         orders.append(Order(x=400, y=700,speed=speedi,brake=0,type=Order.DESTINATION,num=19, rotation=rotation))
     else:
         if rotation != 90 and rotation != 1500:
-            orders.append(Order(x=200, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=20, rotation=rotation))
+            #orders.append(Order(x=200, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=20, rotation=rotation))   #immer knapp
+            orders.append(Order(x=220, y=1100,speed=speedi,brake=1,type=Order.DESTINATION,num=20, rotation=rotation))
             orders.append(Order(x=350, y=500,speed=speedi,brake=0,type=Order.DESTINATION,num=21, rotation=rotation))
         else:
             orders.append(Order(x=400, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=24, rotation=rotation))
