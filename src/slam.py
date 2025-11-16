@@ -127,7 +127,7 @@ class Slam:
     ignoreSpeedUpdate = 0
     repostionEnable = 0
     noCurveReposition = 0
-    healthy1 = 1  # to disable one sensor, got to otusHealthReset function
+    healthy1 = 0  # to disable one sensor, got to otusHealthReset function
     healthy2 = 1
     errorsOtos1 = 0
     errorsOtos2 = 0
@@ -195,33 +195,33 @@ class Slam:
 
         # Create instance of device
         #self.myOtos = qwiic_otos.QwiicOTOS()
-        self.myOtos1 = qwiic_otos.QwiicOTOS(0x17)
+        #self.myOtos1 = qwiic_otos.QwiicOTOS(0x17)
         self.myOtos2 = qwiic_otos.QwiicOTOS(0x19)
 
         # Check if it's connected
-        if self.myOtos1.is_connected() == False:
-            print("The device 1 isn't connected to the system. Please check your connection", \
-                file=sys.stderr)
-            return
+        # if self.myOtos1.is_connected() == False:
+        #     print("The device 1 isn't connected to the system. Please check your connection", \
+        #         file=sys.stderr)
+        #     return
         if self.myOtos2.is_connected() == False:
             print("The device 2 isn't connected to the system. Please check your connection", \
                 file=sys.stderr)
             return
 
         # Initialize the device
-        self.myOtos1.begin()
+        #self.myOtos1.begin()
         self.myOtos2.begin()
         
-        self.myOtos1.setLinearUnit(self.myOtos1.kLinearUnitMeters)
-        self.myOtos1.setAngularUnit(self.myOtos1.kAngularUnitDegrees)
+        # self.myOtos1.setLinearUnit(self.myOtos1.kLinearUnitMeters)
+        # self.myOtos1.setAngularUnit(self.myOtos1.kAngularUnitDegrees)
         self.myOtos2.setLinearUnit(self.myOtos2.kLinearUnitMeters)
         self.myOtos2.setAngularUnit(self.myOtos2.kAngularUnitDegrees)
-        self.myOtos1.setSignalProcessConfig(0b1101)
+       # self.myOtos1.setSignalProcessConfig(0b1101)
         self.myOtos2.setSignalProcessConfig(0b1101)
         print("Calibrating IMU...")
 
         # Calibrate the IMU, which removes the accelerometer and gyroscope offsets
-        self.myOtos1.calibrateImu(255)
+        #self.myOtos1.calibrateImu(255)
         self.myOtos2.calibrateImu(255)
 
         # German Playfield / MyDisplay
@@ -230,32 +230,32 @@ class Slam:
             
             
         # Singapur playfield
-        self.myOtos1.setLinearScalar(0.980)
-        self.myOtos2.setLinearScalar(0.970)        
+        #self.myOtos1.setLinearScalar(0.989)
+        #self.myOtos2.setLinearScalar(1.010)
+        self.myOtos2.setLinearScalar(1.010)
         
         
-        # self.myOtos1.setAngularScalar(0.9933)
-        self.myOtos1.setAngularScalar(0.9920)
-        # self.myOtos2.setAngularScalar(0.9915)
-        self.myOtos2.setAngularScalar(0.9890)
+        #self.myOtos1.setAngularScalar(0.9941)
+        self.myOtos2.setAngularScalar(0.9936)
+
 
         # Set offset for myOtos1
-        offset = self.myOtos1.getOffset()
+        offset = self.myOtos2.getOffset()
         print("Offset Old: ",offset.x, offset.y, offset.h)
         # offset.x=0
         # offset.y=0
         offset.x = -0.0149  
         offset.y = -0.015  
         offset.h = 0      # no heading offset
-        self.myOtos1.setOffset(offset)
+        #self.myOtos1.setOffset(offset)
 
         # Set offset for myOtos2
-        offset.x = -0.0498 
+        # offset.x = -0.0498 
         self.myOtos2.setOffset(offset)
 
-        self.healthy1=1
-        self.healthy2=0
-        self.myOtos1.resetTracking()
+        self.healthy1=0
+        self.healthy2=1
+        #self.myOtos1.resetTracking()
         self.myOtos2.resetTracking()
         
 
@@ -319,12 +319,12 @@ class Slam:
         # 1550 - 1660
         # 1040 - 1200
     def setPostion(self, x, y,angle=-5000):
-        myPosition = self.myOtos1.getPosition()
-        myPosition.y = -x / 1000
-        myPosition.x = -y / 1000
-        if (angle > -5000):
-            myPosition.h=angle
-        self.myOtos1.setPosition(myPosition)
+        # myPosition = self.myOtos1.getPosition()
+        # myPosition.y = -x / 1000
+        # myPosition.x = -y / 1000
+        # if (angle > -5000):
+        #     myPosition.h=angle
+        # self.myOtos1.setPosition(myPosition)
 
 
         myPosition = self.myOtos2.getPosition()
@@ -341,8 +341,8 @@ class Slam:
         self.ignoreSpeedUpdate = 1
         
     def otusHealthReset(self):
-        self.healthy1 = 1
-        self.healthy2 = 0
+        self.healthy1 = 0
+        self.healthy2 = 1
         self.errorsOtos1 = 0
         self.errorsOtos2 = 0
         self.errorsOtosSpeed1 = 0
@@ -351,7 +351,7 @@ class Slam:
         
     def update(self):
         
-        myPosition1 = self.myOtos1.getPosition()
+        myPosition1 = self.myOtos2.getPosition()
         
         if (self.lastXpos1 == 5000):
             self.speed1 = 0
@@ -613,6 +613,10 @@ class Slam:
         self.logger.warn('-----------------------------------------------------------------------------------------')
         self.logger.warning('Manual Repostion Front angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheck,self.xpos,self.ypos,self.angle)
 
+        while (angleCheck > 180):
+            angleCheck -= 360
+        while (angleCheck <= -180):
+            angleCheck += 360
         if angleCheck ==0:                              # rechts/180
             
             average = self.calcualteScanAngel(0)

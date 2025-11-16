@@ -66,6 +66,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         scan2=(scanStart+6-12, scanStart+10-12)  # Destination area obstacles (near pair)
         scan3=(scanStart+4, scanStart+6)         # Source area obstacles (near pair)
         scan4=(scanStart, scanStart+4)           # Source area obstacles (close pair)
+        scan5=(scanStart, scanStart+6)           # Source area obstacles (all)
         outer=Hindernisse.RED    # Outer obstacles (toward walls) are RED in CCW
         inner=Hindernisse.GREEN  # Inner obstacles (toward center) are GREEN in CCW
     else:
@@ -76,37 +77,26 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         scan2=(scanStart+8, scanStart+12)   # Destination area obstacles (far pair)
         scan3=(scanStart, scanStart+4)      # Source area obstacles (near pair)
         scan4=(scanStart+4, scanStart+6)    # Source area obstacles (far pair)
+        scan5=(scanStart, scanStart+6)    # Source area obstacles (all)
         outer=Hindernisse.GREEN  # Outer obstacles (toward walls) are GREEN in CW
         inner=Hindernisse.RED    # Inner obstacles (toward center) are RED in CW
     
     speedi = 0.5  # Target speed in m/s (constant throughout section)
 
-    # if not waitCompleteOrders():
-    #     return
-    # slam.repostionEnable=True
 
-    # Step 2: Analyze obstacle configuration in source and destination areas
-    # Determine if inner obstacles are present in source area (where robot currently is)
-    # Logic: Inner obstacles present if:
-    #   - scan4 (close pair) has inner color, OR
-    #   - scan4 has no outer color AND scan3 (near pair) has inner color
-    # This handles cases where only one obstacle is present in the area
     sinside= checkForColor(inner, scan4[0], scan4[1])  or ((not checkForColor(outer, scan4[0], scan4[1])) and checkForColor(inner, scan3[0], scan3[1]))
-    
-    # Determine if inner obstacles are present in destination area (where robot is heading)
-    # Same logic applied to destination scan ranges (scan1 and scan2)
     dinside= checkForColor(inner, scan1[0], scan1[1])  or ((not checkForColor(outer, scan1[0], scan1[1])) and checkForColor(inner, scan2[0], scan2[1]))
     
-    # Step 3: Generate waypoints for first part of section (vertical movement, upper area)
-    # Decision based on source area obstacle configuration in scan3 (near pair)
-    # This determines the x-coordinate: 200mm (tight), 400mm (medium), or 800mm (wide)
+
     if checkForColor(inner, scan3[0], scan3[1]) or (not checkForColor(outer, scan3[0], scan3[1]) and checkForColor(inner, scan4[0], scan4[1])):
-        # Inner obstacles detected in source area - must take wide path to avoid them
-        # Use x=800mm to stay safely away from center obstacles
+        # cw rot   oder rot-grün
         orders.append(Order(x=800, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=14, rotation=rotation))
         orders.append(Order(x=800, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=15, rotation=rotation))
+        if checkForColor(inner, scan5[0], scan5[1])  and (not checkForColor(outer, scan5[0], scan5[1])):
+            # cw rot
+            orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
     else:
-        # No inner obstacles in immediate area - can take tighter path closer to inner wall
+        # cw grün oder grün-rot
         if rotation != 90 and rotation != 1500:
             # Standard tight path at x=200mm (most sections)
             orders.append(Order(x=200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=16, rotation=rotation))
@@ -119,13 +109,12 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
             orders.append(Order(x=400, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=22, rotation=rotation))
             orders.append(Order(x=400, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=23, rotation=rotation))
 
-    # Step 4: Generate waypoints for middle part of section (transition area)
-    # This waypoint (y≈1000-1200mm) is critical as it's in the zone where both
-    # source and destination obstacles can affect the path
-    # Must consider both obstacle configurations to choose safe x-coordinate
-    if checkForColor(inner, scan4[0], scan4[1]) or (not checkForColor(outer, scan4[0], scan4[1]) and checkForColor(inner, scan3[0], scan3[1])): # Rot Grün
-        # Source area has inner obstacles - already on wide path (x=800)
+    if checkForColor(inner, scan4[0], scan4[1]) or (not checkForColor(outer, scan4[0], scan4[1]) and checkForColor(inner, scan3[0], scan3[1])): 
+        # x - x - rot                                                  x - x- !g                         r - r - x
+        # cw grün-rot oder rot
+        
         if (checkForColor(outer, scan3[0], scan3[1])) and (checkForColor(inner, scan4[0], scan4[1])):
+            #  cw grün-rot
             if False: #rotation != 90 and rotation != 1500:
                 orders.append(Order(x=672, y=1600,speed=speedi,brake=1,type=Order.DESTINATION,num=2031, rotation=rotation))
                 orders.append(Order(zielwinkel=-90, speed=speedi*0.6, brake=1, type=Order.WINKEL, rotation=rotation))
@@ -136,18 +125,19 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
             else:
                 #orders.append(Order(x=700, y=1600,speed=speedi,brake=1,type=Order.DESTINATION,num=2032, rotation=rotation))
                 orders.append(Order(x=800+spaceFix, y=1150,speed=speedi,brake=1,type=Order.DESTINATION,num=181, rotation=rotation))
-                orders.append(Order(zielwinkel=-90, speed=speedi*0.75, brake=1, type=Order.WINKEL, rotation=rotation))
+                orders.append(Order(zielwinkel=-90, speed=0.4, brake=1, type=Order.WINKEL, rotation=rotation))
                 if not waitCompleteOrders():
                     return
-                time.sleep(1)
+                time.sleep(0.5)
                 slam.lastQuadrant=slam.getQuadrant(1300)
                 slam.logger.warning("Manual Repostion Front 0 from driveRound 1") 
                 orders.append(Order(angleCheckOverwrite=-90,type=Order.REPOSITIONSINGLE, rotation=rotation))
+                time.sleep(0.2)
                 #slam.repositionOneDirFront(-90, rotation=rotation)
                 #orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=182, rotation=rotation))
-    
+
     else:
-        # Source area clear of inner obstacles - on tight path (x=200 or x=400)
+        #rot-grün oder grün
         if rotation != 90 and rotation != 1500:
             # Standard tight path continues at x=200mm
             # y=1100mm provides clearance when approaching destination area
@@ -160,15 +150,16 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
                 # time.sleep(0.3)
                 
                 # orders.append(Order(x=800, y=1150,speed=speedi,brake=1,type=Order.DESTINATION,num=181, rotation=rotation))
-                orders.append(Order(x=200-spaceFix, y=1150,speed=speedi,brake=0,type=Order.DESTINATION,num=24, rotation=rotation))
+                orders.append(Order(x=200+spaceFix, y=1150,speed=speedi,brake=0,type=Order.DESTINATION,num=24, rotation=rotation))
                 
-                orders.append(Order(zielwinkel=-90, speed=speedi*0.75, brake=1, type=Order.WINKEL, rotation=rotation))
+                orders.append(Order(zielwinkel=-90, speed=0.4, brake=1, type=Order.WINKEL, rotation=rotation))
                 if not waitCompleteOrders():
                     return
-                time.sleep(1)
+                time.sleep(0.5)
                 slam.lastQuadrant=slam.getQuadrant(1300)
                 slam.logger.warning("Manual Repostion Front 0 from driveRound 2") 
                 orders.append(Order(angleCheckOverwrite=-90,type=Order.REPOSITIONSINGLE, rotation=rotation))
+                time.sleep(0.2)
                 #slam.repositionOneDirFront(-90, rotation=rotation)
                 # orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=182, rotation=rotation))
                 

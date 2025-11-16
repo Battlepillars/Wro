@@ -89,7 +89,8 @@ def setServoAngle(kit,angle,slam=None):
             angle=25
         if (angle>170):
             angle=170
-    
+    # if (slam != None) and (slam.finalMove):
+    #     slam.logger.warn("Final Move - setServoAngle called with angle: {}".format(angle))
 
     #print(f"[setServoAngle] raw angle: {angle:.2f}  min: {_servo_angle_min:.2f}  max: {_servo_angle_max:.2f}")
     servoMitte=80

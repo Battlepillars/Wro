@@ -137,9 +137,9 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
             print("Von Grün nacht nicht Grün")
             slam.logger.warning("Von Grün nacht nicht Grün")
             
-            orders.append(Order(x=800, y=2050,speed=speedi,brake=0,type=Order.DESTINATION,num=45))
-            orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
-            doReposition(orders, Order, waitCompleteOrders, 180)
+            #orders.append(Order(x=800, y=2050,speed=speedi,brake=0,type=Order.DESTINATION,num=45))
+            #orders.append(Order(zielwinkel=90, speed=0.2, brake=1, type=Order.WINKEL))
+            #doReposition(orders, Order, waitCompleteOrders, 180)
             orders.append(Order(x=700, y=2300,speed=speedi,brake=0,type=Order.DESTINATION,num=46))
         
         if (checkForColor(Hindernisse.GREEN, scanStart-6, scanStart) and not checkForColor(Hindernisse.RED, scanStart-6, scanStart-2)) and checkForColor(Hindernisse.GREEN, scanStart-10, scanStart-6):
@@ -147,38 +147,41 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
             slam.logger.warning("Von Grün nach Grün")
             orders.append(Order(x=1000, y=2200,speed=0.2,brake=1,type=Order.DESTINATION,num=47))
             orders.append(Order(zielwinkel=180, speed=0.2, brake=1, type=Order.WINKEL))
-            if not waitCompleteOrders():
-                return
-            time.sleep(0.3)
-            orders.append(Order(steer=0, dist=200, speed=-0.2, brake=1, type=Order.KURVE))
-            doReposition(orders, Order, waitCompleteOrders, 180)
+            # if not waitCompleteOrders():
+            #     return
+            # time.sleep(0.3)
+            # orders.append(Order(steer=0, dist=200, speed=-0.2, brake=1, type=Order.KURVE))
+            # doReposition(orders, Order, waitCompleteOrders, 180)
         
         
         if checkForColor(Hindernisse.GREEN, scanStart-10, scanStart-6):
             slam.logger.warning("parinkg 1")
-            orders.append(Order(x=1000, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=39))
-            orders.append(Order(x=1800, y=2200,speed=speedi,brake=1,type=Order.DESTINATION,num=40))
-            orders.append(Order(x=2000, y=2200,speed=0.2,brake=1,type=Order.DESTINATION,num=48))
+            orders.append(Order(x=1200, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=39))
+            doReposition(orders, Order, waitCompleteOrders, -180)
+            orders.append(Order(x=1700, y=2200,speed=speedi,brake=1,type=Order.DESTINATION,num=40))
+            orders.append(Order(x=2050, y=2200,speed=0.2,brake=1,type=Order.DESTINATION,num=48))
             time.sleep(3)
             orders.append(Order(zielwinkel=-90, speed=-0.2, brake=1, type=Order.WINKEL))
-            doReposition(orders, Order, waitCompleteOrders, -90)
+            # doReposition(orders, Order, waitCompleteOrders, -90)
         else:
             slam.logger.warning("parking 2")
             orders.append(Order(x=1000, y=2600,speed=speedi,brake=0,type=Order.DESTINATION,num=41))
-            orders.append(Order(x=1676, y=2600,speed=speedi,brake=1,type=Order.DESTINATION,num=42))
+            orders.append(Order(x=1200, y=2600,speed=speedi,brake=1,type=Order.DESTINATION,num=412))
+            doReposition(orders, Order, waitCompleteOrders, -180)
+            
+            orders.append(Order(x=1676, y=2550,speed=speedi,brake=1,type=Order.DESTINATION,num=42))
             orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
-            orders.append(Order(x=1705, y=2275,speed=0.2,brake=1,type=Order.DESTINATION,num=43))
-            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
-            doReposition(orders, Order, waitCompleteOrders, -90)
+            # orders.append(Order(x=1705, y=2275,speed=0.2,brake=1,type=Order.DESTINATION,num=43))
+            # orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, type=Order.WINKEL))
+            # doReposition(orders, Order, waitCompleteOrders, -90)
 
 
-    optimalX = 2000-220 #1745 # (1795|2685) - Optimale Position zum Einparken
-    optimalY = 2655
-    # adjustedX = optimalX
-    # if slam.xpos < optimalX - 10:
-    #     adjustedX += 10
-    # elif slam.xpos > optimalX + 10:
-    #     adjustedX -= 10
+    # optimalX = 1780
+    # optimalY = 2655
+
+    optimalX = 1760
+    optimalY = 2635
+
     slam.logger.warning("parking 3")
     if not waitCompleteOrders():
         return
