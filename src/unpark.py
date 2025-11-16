@@ -25,8 +25,9 @@ def unparkCCW(orders,Order, waitCompleteOrders, checkForColor):
     time.sleep(0.3)
     
     if checkForColor(Hindernisse.GREEN, 0, 1):
-        orders.append(Order(x=1825, y=2450,speed=speedi,brake=0,type=Order.DESTINATION,num=1))
-        orders.append(Order(x=2000, y=2250,speed=speedi,brake=1,type=Order.DESTINATION,num=2))
+        orders.append(Order(x=1825, y=2350,speed=speedi,brake=0,type=Order.DESTINATION,num=1))
+        orders.append(Order(zielwinkel=-180, speed=0.4, brake=0, type=Order.WINKEL))
+        orders.append(Order(x=2050, y=2250,speed=speedi,brake=1,type=Order.DESTINATION,num=2))
         orders.append(Order(x=2300, y=2650,speed=speedi,brake=0,type=Order.DESTINATION,num=4))
     else: # Red 
         orders.append(Order(x=2000, y=2600,speed=speedi,brake=0,type=Order.DESTINATION,num=5))
@@ -48,8 +49,9 @@ def unparkCW(orders,Order, waitCompleteOrders, checkForColor):
     time.sleep(0.3)
     
     if checkForColor(Hindernisse.RED, 2, 3):
-        orders.append(Order(x=1750, y=2450,speed=speedi,brake=0,type=Order.DESTINATION,num=1))
-        orders.append(Order(x=1500, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=2))
+        orders.append(Order(x=1750, y=2400,speed=speedi,brake=0,type=Order.DESTINATION,num=1))
+        orders.append(Order(zielwinkel=0, speed=0.2, brake=0, type=Order.WINKEL))
+        orders.append(Order(x=1350, y=2200,speed=speedi,brake=0,type=Order.DESTINATION,num=2))
         orders.append(Order(x=1000, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=3))
         orders.append(Order(x=700, y=2650,speed=speedi,brake=0,type=Order.DESTINATION,num=4))
     elif checkForColor(Hindernisse.GREEN, 2, 3):

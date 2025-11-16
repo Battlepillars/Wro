@@ -70,7 +70,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         outer=Hindernisse.RED    # Outer obstacles (toward walls) are RED in CCW
         inner=Hindernisse.GREEN  # Inner obstacles (toward center) are GREEN in CCW
     else:
-        spaceFix-20
+        spaceFix=-20
         # Clockwise direction (rotation IDs 0-999)
         direction = Order.CW
         scan1=(scanStart+6, scanStart+10)   # Destination area obstacles (near pair)
