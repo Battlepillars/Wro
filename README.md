@@ -144,7 +144,7 @@
                     <li><a href="#components">Components</a></li>
                     <li><a href="#hardware-interface">Hardware interface</a></li>
                     <li><a href="#software-implementation-1">Software implementation</a></li>
-                    <li><a href="#id-controller-implementation">ID controller implementation</a></li>
+                    <li><a href="#pid-controller-implementation">PID controller implementation</a></li>
                     <li><a href="#advanced-control-features">Advanced control features</a></li>
                 </ul>
             </li>
@@ -250,7 +250,7 @@ For our WRO project, I’m responsible for developing the robot’s software and
 </div>
 
 Hello everyone! My name is Olivia Greilich and I'm 16, currently attending the Lise-Meitner Gymnasium in Anrath. Languages, communicating and connecting with people is my passion, same with painting, sculpting and crocheting!
-One interesting fact about me is that I am simply enamored with jellyfish of all types, colours, shapes and sizes. I have two jellyfish lamps, tons of stickers, books and of course a phone charm.
+One interesting fact about me is that I am simply enamored with jellyfish of all types, colors, shapes and sizes. I have two jellyfish lamps, tons of stickers, books and of course a phone charm.
 In my free time, I usually occupy myself with writing fanfiction on Archive Of Our Own (AO3).
 
 My part of the team effort is the documentation and images you'll see below.
@@ -263,7 +263,7 @@ My part of the team effort is the documentation and images you'll see below.
     </a>
 </div>
 
-Hi! I'm Leonard from Germany and I'm 15 years old, currently attending the Max Steenbeck Gymnasium in Cottbus. This is not my first WRO season. Last year I participated in the Robo Mission category and this year me and my team wanted to try something new so we are participating now in the category Future Engineers. My hobby’s are go karting, playing games, building LEGO and flying drone.
+Hi! I'm Leonard from Germany and I'm 15 years old, currently attending the Max-Steenbeck-Gymnasium in Cottbus. This is not my first WRO season. Last year I participated in the RoboMission category, and this year my team and I wanted to try something new, so we are now participating in the Future Engineers category. My hobbies are go-karting, playing games, building LEGO, and flying drones.
 
 I contribute my technical expertise in the areas of robot construction, component research and selection, as well as in the development and manufacturing of 3D-printed parts, which are crucial for the mechanical implementation of our project.
 
@@ -278,8 +278,8 @@ I contribute my technical expertise in the areas of robot construction, componen
 ## **Funny team photo**
 
 <div align="center">
-    <a href="img/team.jpg" target="_blank">
-        <img width="500" src="img/team.jpg">
+    <a href="img/teamfoto2.jpg" target="_blank">
+        <img width="500" src="img/teamfoto2.jpg">
     </a>
 </div>
 <br><br><br>
@@ -567,7 +567,7 @@ Based on these findings, the decision was made to replace the original controlle
 <li>Cont./Peak Current: 80A/400A</li>
 <li>Input Voltage: 2-3S LiPo/5-9S Cell NiMH</li>
 <li>BEC Output: 6V / 7.4V / 8.4V @ 4A (Switch-mode)</li>
-<li>Wires & Connectors: Black-14AWG-200mm / Red-14AWG-200mm</li>
+<li>Wires & Connectors: Black-14AWG-200 mm / Red-14AWG-200 mm</li>
 <li>Programming device: LED program box</li>
 </td>
    </tr>
@@ -590,11 +590,11 @@ Thus, the torque-oriented gear ratio makes a significant contribution to the veh
 <br><br>
 
 ## **Potential improvements - powertrain:**
-- Use the **same wheels** for the back wheels as the front axis, as the front wheels have better traction and are easier to clean and maintain.
+- Use the **same wheels** for the rear wheels as the front axle, as the front wheels have better traction and are easier to clean and maintain.
 
-- **Encoders** on rear wheels or on the motor for precise wheel slip detection, better traction control, more accurate speed control and for detecting the wheels spinning on uneven surfaces, e.g. bumps.
+- **Encoders** on rear wheels or on the motor for precise wheel slip detection, better traction control, more accurate speed control, and for detecting the wheels spinning on uneven surfaces (e.g., bumps).
 
-- Maintain **high steering angles while providing front wheel drive**. That would prevent the front weels from sliding at high steering angles.
+- Maintain **high steering angles while providing front wheel drive**. That would prevent the front wheels from sliding at high steering angles.
 <br>
 
 ## **Steering**
@@ -658,7 +658,7 @@ The <b>wheels</b> of the new front axle are from <b>Lego</b>:
         <img src="img/legorad.jpg">
       </a>
     </td>
-        <td bgcolor="#c8f0fd">Size: 5,6cm x 1,5cm x 5,6cm
+        <td bgcolor="#c8f0fd">Size: 5,6 cm x 1,5 cm x 5,6 cm
 </td>
    </tr>
     <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the wheels: <a href="https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367">https://www.brickowl.com/de/catalog/lego-wheel-56-with-medium-azure-tire-39367</a></td></tr>
@@ -675,7 +675,7 @@ The new front axle in a <b>close-up view</b>:
 <br>
 
 ### <ins>**Servo saver**</ins>
-The **Servo Saver** is installed on the **Servo** and **connects to the steering linkage**. The Servo Saver, when the front wheels collide against an obstacle, uses a **spring to prevent an overload** on the Servo.
+The **servo saver** is installed on the **servo** and **connects to the steering linkage**. When the front wheels collide with an obstacle, the servo saver uses a **spring** to prevent **overload** on the servo.
 
 <table align="center" cellpadding="6" cellspacing="0">
     <tr>
@@ -690,7 +690,7 @@ The **Servo Saver** is installed on the **Servo** and **connects to the steering
     </td>
         <td bgcolor="#c8f0fd"><li>Size: 10 × 7 × 2 cm</li>
     <li>Weight: 12 g</li>
-    <li>Material: Aluminium</li>
+    <li>Material: Aluminum</li>
 </td>
    </tr>
         <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the Servo Saver: <a href="https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1">https://www.amazon.de/-/en/Lightweight-Universal-Precision-Protection-Replacement/dp/B0CSYMSHL3?th=1</a></td></tr>
@@ -701,7 +701,7 @@ The **Servo Saver** is installed on the **Servo** and **connects to the steering
 ### <ins>**Servo motor**</ins>
 The **servo** is responsible for **steering** the **front wheels**. The servo’s **actuation speed** and **torque** were evaluated as **fully sufficient** to meet the competition requirements.
 
-Specifically, it is the **Traxxas Waterproof Sub-Micro Servo (model number 2065A)**. At an operating voltage of 6.0 V, it delivers a torque of 2.3 kg·cm (≈ 32 oz-in) and achieves a response time** of 0.20 s per 60°.
+Specifically, it is the **Traxxas Waterproof Sub-Micro Servo (model number 2065A)**. At an operating voltage of 6.0 V, it delivers a torque of 2.3 kg·cm (≈ 32 oz-in) and achieves a response time of 0.20 s per 60°.
 
 Since these specifications ensure **precise and effective steering**, it was decided to **continue using the servo** already installed in the model.
 
@@ -762,17 +762,17 @@ Due to its compelling performance characteristics, we decided to integrate a LiD
   </tr>
   <tr>
       <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Range</b></td>
-      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 0,05-18 m</td>
-      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 0,2-16 m</td>
-      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 0,15-12 m</td>
-      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 0,05-30 m</td>
+    <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 0,05–18 m</td>
+    <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 0,2–16 m</td>
+    <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 0,15–12 m</td>
+    <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 0,05–30 m</td>
   </tr>
   <tr>
       <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Accuracy</b></td>
       <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 +/- 50 mm</td>
       <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 < 1%</td>
       <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 < 1%</td>
-      <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">🟨 +/- 60mm</td>
+    <td bgcolor="#FFD700" style="border: 1px solid black; padding: 8px;">🟨 +/- 60 mm</td>
   </tr>
   <tr>
       <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Distance Measurement Resolution</b></td>
@@ -797,10 +797,10 @@ Due to its compelling performance characteristics, we decided to integrate a LiD
   </tr>
     <tr>
       <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Update Rate</b></td>
-      <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 2-10 Hz</td>
-      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 5-15 Hz</td>
+    <td bgcolor="#90EE90" style="border: 1px solid black; padding: 8px;">🟩 2–10 Hz</td>
+    <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 5–15 Hz</td>
       <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 5,5 Hz</td>
-      <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 5-12 hz</td>
+    <td bgcolor="#FFB6C1" style="border: 1px solid black; padding: 8px;">🟥 5–12 Hz</td>
   </tr>
   <tr>
       <td bgcolor="#F0F0F0" style="border: 1px solid black; padding: 8px;"><b>Price</b></td>
@@ -901,7 +901,7 @@ The **power supply** of the autonomous vehicle was designed to reliably provide 
     <li>Approximate weight: 98 g</li>
 </td>
    </tr>
-    <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the Battery: <a href="https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK">https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK</a></td></tr>
+    <tr><td bgcolor="#e9c8fd" colspan="2">Where to buy the battery: <a href="https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK">https://www.amazon.de/Zeee-Hubschrauber-Quadcopter-Rennmodelle-Packungen/dp/B0C2CGD9NK</a></td></tr>
 </table>
 
 ### <ins>**Component power consumption**</ins>
@@ -942,7 +942,7 @@ The following table lists the essential installed **components** and their typic
   <tr>
     <td style="border: 1px solid black; padding: 8px;">LaTrax 370 brushed DC-Motor (23-turn)</td>
     <td style="border: 1px solid black; padding: 8px;">7.4 V</td>
-    <td style="border: 1px solid black; padding: 8px;">1-10 W (load dependent)</td>
+    <td style="border: 1px solid black; padding: 8px;">1–10 W (load dependent)</td>
     <td style="border: 1px solid black; padding: 8px;">Main drive, highly load dependent</td>
   </tr>
   <tr>
@@ -960,7 +960,7 @@ The following table lists the essential installed **components** and their typic
   <tr>
     <td style="border: 1px solid black; padding: 8px;">LED Display Panel (Status Display)</td>
     <td style="border: 1px solid black; padding: 8px;">3.3 V</td>
-    <td style="border: 1px solid black; padding: 8px;">0-0.5 W</td>
+    <td style="border: 1px solid black; padding: 8px;">0–0.5 W</td>
     <td style="border: 1px solid black; padding: 8px;">Power consumption depends on number of illuminated pixels</td>
   </tr>
   <tr>
@@ -986,9 +986,9 @@ Based on empirical data, it was determined that a **safe operating time** of app
 ### <ins>**Power supply**</ins>
 
 The **power supply for individual components** is implemented as follows:
-- **7,4 V** direkt: **DC motor** via the **speed controller**
-- **5 V** via **step-down regulator (DC-DC converter)**: **Raspberry Pi 5**, **LiDAR**, **camera**, **servo**, **servo controller**
-- **3,3 V** via **Raspberry Pi integrated regulator**: **Odometry sensors**, **LED display panel**
+- **7.4 V** direct: **DC motor** via the **speed controller**
+- **5 V** via **step-down regulator (DC‑DC converter)**: **Raspberry Pi 5**, **LiDAR**, **camera**, **servo**, **servo controller**
+- **3.3 V** via the **Raspberry Pi’s integrated regulator**: **odometry sensors**, **LED display panel**
 
 ### <ins>**Safety and wiring**</ins>
 - The **battery connector** is **reverse-polarity protected**
@@ -1017,14 +1017,14 @@ The **power supply for individual components** is implemented as follows:
 
 
 ## **Coordinate system**
-To understand our overall strategy, it is important to understand the basics our system is build on.
+To understand our overall strategy, it is important to know the basics our system is built on.
 Our **robot uses a Cartesian coordinate system** to navigate the WRO Future Engineers field:
 
 ### <ins>**Coordinate dimensions and origin**</ins>
-- **Field Size**: 3000mm × 3000mm square
+- **Field Size**: 3000 mm × 3000 mm square
 - **Origin (0, 0)**: Located at the **top-left corner** of the field 
-- **X-axis**: Increases from left to right (0mm to 3000mm)
-- **Y-axis**: Increases from top to bottom (0mm to 3000mm)
+- **X-axis**: Increases from left to right (0 mm to 3000 mm)
+- **Y-axis**: Increases from top to bottom (0 mm to 3000 mm)
 - **Units**: All coordinates are specified in millimeters (mm)
 
 ### <ins>**Coordinate system properties**</ins>
@@ -1034,7 +1034,7 @@ Our **robot uses a Cartesian coordinate system** to navigate the WRO Future Engi
 ### <ins>**Heading angle convention**</ins>
 - **0°**: Robot facing in the negative X direction (to the left)
 - **90°**: Robot facing in the positive Y direction (downward)
-- **+-180°**: Robot facing in the positive X direction (to the right)
+- **±180°**: Robot facing in the positive X direction (to the right)
 - **-90°**: Robot facing in the negative Y direction (upward)
 
 <br>
@@ -1043,7 +1043,7 @@ Our **robot uses a Cartesian coordinate system** to navigate the WRO Future Engi
 
 **Waypoints** are **target coordinates** that the robot navigates to **sequentially**. Each waypoint **specifies (x, y) coordinates** in **millimeters**. We have defined a **structure** that **stores waypoints** together with a **command**. These are added to a **queue** and are **executed in order**. **Several commands** are available. 
 
-For generative waypoint patterns and rotation mapping used in the obstacle challenge, see [Navigation strategy obstacle challenge](#navigation-strategy-obstacle-challenge).
+For generative waypoint patterns and rotation mapping used in the obstacle challenge, see → [Navigation strategy obstacle challenge](#navigation-strategy-obstacle-challenge).
 
 ### <ins>**Command example: drive to coordinate 450/2500**</ins>
 ```python
@@ -1064,6 +1064,8 @@ The **starting direction** is inferred from the robot’s **position on the mat*
 For the **Open Challenge**, the robot can be placed in **four possible positions**, which allow it to identify the required **driving path**. These positions result from the combination of **two starting sections** and **two travel directions**.
 
 In the **Obstacle Challenge**, **two starting positions** are possible. Here, the robot also uses the **LiDAR** to determine its **position** and the corresponding **direction of travel**.
+
+For API-level details, see Code for all components → LiDAR → [Position detection and localization](#position-detection-and-localization).
 
 <div align="center">
     <a href="img/flowdiagrammstart.jpeg" target="_blank">
@@ -1109,18 +1111,18 @@ When **both sensors are healthy**, we take the **average** of the readings of bo
 
 These **deviations** are not acceptable in the **Obstacle Challenge**, as they may cause the robot to **drive into a wall** or **hit an obstacle**. Therefore, the program implements a **position reset** using the **LiDAR**:
 
-- When the robot is **stationary**, it **repositions itself** based on the **two outer walls**. The LiDAR detects the distance to the walls and thus determines the robot's position. This **can not be done while driving**, because the **lidar measurement is delayed by about 100 to 200ms**, so we would already have moved on. This type of repositioning has to be manually set up in the programm, after stopping the robot. This is done when we need a hight accuracy, for example before scanning the obstacles.
+- When the robot is **stationary**, it **repositions itself** based on the **two outer walls**. The LiDAR detects the distance to the walls and thus determines the robot's position. This **cannot be done while driving**, because the **LiDAR measurement is delayed by about 100–200 ms**, by which time the robot has already moved. This type of repositioning is **manually triggered** in the **program** after stopping the robot. We do this when we need **high accuracy**, for example before scanning the obstacles.
 
 
-- **While driving**, the LiDAR measures the **distance to the wall in front** and **repositions** the robot accordingly. For this, we do not use the complete 360° scan from the lidar, but we **trigger the reposition automatically** exactly when the **front distance is measured** by the lidar. On this way we reduce the delay of the lidar measurement. This kind of repositioning is automatically triggered when certain conditions are met:
-  - The lidar has **just transmitted the distance to the front**
-  - The robot has crossed the line to one of the corner squares and has a **good visibility** to the wall in front.
+- **While driving**, the LiDAR measures the **distance to the wall in front** and **repositions** the robot accordingly. For this, we do not use the complete 360° scan from the LiDAR; instead, we **trigger repositioning automatically** exactly when the **front distance is measured** by the LiDAR. This way, we **reduce the LiDAR measurement delay**. This kind of repositioning is automatically triggered when certain conditions are met:
+    - The LiDAR has **just transmitted the front distance**
+    - The robot has crossed the line to one of the corner squares and has **good visibility of the wall ahead**.
 
 
 
 ### <ins>**Reposition while driving (pseudocode)**</ins>
 ```
-if (lidar has just scanned front):
+if (LiDAR has just scanned front):
     choose wall direction accordingly and average nearby LiDAR samples
     ensure wall visibility by quadrant gating
     if measurement valid and quadrant changed since last:
@@ -1135,7 +1137,7 @@ This function **detects and stores obstacles** within each section of the course
 
 ### <ins>**Determining the position of an obstacle within a course section**</ins>
 
-The environment is **not scanned continuously**, but only at **six specific, predefined points (=Scanpoints)** that the robot passes during the first lap of the obstacle course: The first two ones are directly after leaving the parking area,  after that at 4 additional points.
+The environment is **not scanned continuously**, but only at **six specific, predefined points (= Scanpoints)** that the robot passes during the first lap of the obstacle course: the first two are directly after leaving the parking area, followed by **four additional points**.
 
 <div align="center">
     <a href="img/scanpunkte.png" target="_blank">
@@ -1151,7 +1153,9 @@ A **list of coordinates** was created for all possible obstacle positions. The L
 
 ### <ins>**Determining the color of the obstacle**</ins>
 
-The **camera** is then used to **identify the color** of the obstacle. The object recognition is strongly based on the [WRO support document](https://world-robot-olympiad-association.github.io/future-engineers-gs/p04-cv/#objects-recognition) (WRO Future Engineers Getting Started). Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the horizontal distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map:
+The **camera** is then used to **identify the color** of the obstacle. The object recognition is strongly based on the [WRO support document](https://world-robot-olympiad-association.github.io/future-engineers-gs/p04-cv/#objects-recognition) (WRO Future Engineers Getting Started). Based on the camera image, the robot determines the pixel coordinates of the detected obstacles. These coordinates are converted into an angle. The angle is based on the horizontal distance from the center of the screen. The center of the screen means the object is straight ahead. For visualization, this angle is drawn on the map. 
+
+Implementation details are documented under Code for all components → Camera → [Color detection](#color-detection) and Camera → [Angle mapping and field alignment](#angle-mapping-and-field-alignment):
 
 <div align="center">
     <a href="img/Programmausgabe.jpg" target="_blank">
@@ -1166,8 +1170,9 @@ The following **function** implements the complete **obstacle detection and colo
 
 ```python
 def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
-    """ :The first two ones are directly a   Detect obstacles using LiD, Aafter that d determine their colors using the camera.
-    
+    """
+    Detect obstacles using LiDAR, then determine their colors using the camera.
+
     This function combines LiDAR distance measurements with camera color detection
     to identify and classify obstacles at predefined positions on the competition field.
     
@@ -1214,8 +1219,8 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
             
             # Step 3: Check if obstacle is near any LiDAR points
             for b in range(len(xposes)):
-                # Calculate if LiDAR point is within 120mm radius of expected obstacle position
-                # and has valid distance reading (> 200mm filters out noise)
+                # Check if LiDAR point is within 120 mm radius of expected obstacle position
+                # and has a valid distance reading (> 200 mm filters out noise)
                 if (math.pow((xposes[b] - self.hindernisse[i].x), 2) + 
                     math.pow((yposes[b] - self.hindernisse[i].y), 2) < math.pow(120, 2)) and (self.scan[b] > 200):
                     dots += 1           # Count detected point
@@ -1263,12 +1268,13 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
 - An **obstacle’s acceptable** angle window is distance-dependent: 
 <div align="center">
     <a href="img/angularwidth.jpg" target="_blank">
-        <img width="400" src="img/angularwidth.jpg" alt="Obstacles´s Acceptable angle window">
+        <img width="400" src="img/angularwidth.jpg" alt="Obstacle’s acceptable angle window">
     </a>
 </div>
 <br>
 
-- A **LiDAR detection is accepted** only if the center of a camera detection block falls within the obstacle’s acceptable angle width. Otherwise, the obstacle is ignored (its color is set to “none”). This is necessary because when the LiDAR passes sharp edges, it may produce a random point at a greater distance, generating in a false obstacle.
+- A **LiDAR detection is accepted** only if the center of a camera detection block falls within the obstacle’s acceptable angle width. Otherwise, the obstacle is ignored (its color is set to “none”). This is necessary because when the LiDAR passes sharp edges, it may produce a random point at a greater distance, resulting in a false obstacle.
+
 - **SCAN robustness**: Each SCAN is retried once if nothing was detected, forcing a fresh LiDAR update to reduce false negatives.
 
 <br><br>
@@ -1313,7 +1319,7 @@ For the Open Challenge, we **navigate using simple fixed waypoints**. They are c
 
 ## **Navigation strategy obstacle challenge**
 
-The obstacle challenge is seperated in **different phases**:
+The obstacle challenge is **separated** into **different phases**:
 
 
 ### <ins>**Unparking**</ins>
@@ -1352,7 +1358,7 @@ For a short walkthrough of this step, see our **Obstacle Challenge video**: http
 
 ### <ins>**Second and third round**</ins>
 
-On the second and third round, we **do not scan for obstacles anymore**. The positions are remembered from the first round, and waypoints are generated to navigate around all obstacles.
+In the second and third rounds, we **no longer scan for obstacles**. The positions are remembered from the first round, and waypoints are generated to navigate around all obstacles.
 
 ### <ins>**Parking**</ins>
 
@@ -1360,13 +1366,13 @@ To achieve all possible points, we chose to implement the parallel parking chall
 
 The position must be **very accurate**, so we perform **several repositioning** maneuvers and **drive forwards and backwards** multiple times if necessary until the measured position is sufficiently precise.
 
-The **required position accuracy** for the starting point of this maneuver is about ±5 cm in the x-direction and ±3 cm in the y-direction. In practice, our process usually ensures a position error below 1 cm in all directions.
+The **required position accuracy** for the starting point of this maneuver is about ±5 cm in the x-direction and ±3 cm in the y-direction. In practice, our process usually ensures a position error **below 1 cm** in all directions.
 
 
 ### <ins>**Obstacle avoidance waypoint generation**</ins>
 
 Based on the scanned obstacles, we generate waypoints to drive around them on the right side.
-To make the **programm less complex**, we do **not differentiate** if the obstacle is on the inner or the outer side. We always drive in a way so we avoid both. This resolves to **four different patterns** to drive around one set of obstacles: 
+To make the **program** less complex, we **do not differentiate** between obstacles on the inner or outer side. We always drive in a way that **avoids both**. This results in **four different patterns** to drive around one set of obstacles: 
 
 <div align="center">
     <a href="img/route1.jpg" target="_blank">
@@ -1407,7 +1413,7 @@ In our first program (for the German finals), we programmed the complete 360° c
 
 Target angles are transformed in `Order.__init__` function. 
 
-At the final segment, replace the normal corner handover with a dedicated **parking waypoint sequence**; see [Parking](#parking) for the maneuver and precision requirements.
+At the final segment, replace the normal corner handover with a dedicated **parking waypoint sequence**; see → [Parking](#parking) for the maneuver and precision requirements.
 
 ### <ins>**Source code: driveRound.py**</ins>
 
@@ -1427,7 +1433,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         waitCompleteOrders: Function to wait for command queue completion
         checkForColor: Function to check if specific color obstacle exists in range
                       checkForColor(color, startIdx, endIdx) -> bool
-        rotation: Direction identifier (0-999=CW, 1000+=CCW)
+        rotation: Direction identifier (0–999=CW, 1000+=CCW)
                  Specific values: 0=CW-0°, 90=CW-90°, 180=CW-180°, 270=CW-270°
                                  1000=CCW-0°, 1090=CCW-90°, 
         scanStart: Starting index for obstacle scanning 
@@ -1438,7 +1444,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
     
     # Step 1: Determine direction and configure obstacle colors
     if (rotation >= 1000):
-        # Counter-clockwise direction (rotation IDs 1000-1999)
+        # Counter-clockwise direction (rotation IDs 1000–1999)
         direction = Order.CCW
         # Adjust scan indices for CCW (wrap around with -12 offset for negative indices)
         scan1=(scanStart+8-12, scanStart+12-12)  # Destination area obstacles (far pair)
@@ -1448,7 +1454,7 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
         outer=Hindernisse.RED    # Outer obstacles (toward walls) are RED in CCW
         inner=Hindernisse.GREEN  # Inner obstacles (toward center) are GREEN in CCW
     else:
-        # Clockwise direction (rotation IDs 0-999)
+        # Clockwise direction (rotation IDs 0–999)
         direction = Order.CW
         scan1=(scanStart+6, scanStart+10)   # Destination area obstacles (near pair)
         scan2=(scanStart+8, scanStart+12)   # Destination area obstacles (far pair)
@@ -1473,16 +1479,16 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
     
     # Step 3: Generate waypoints for first part of section (vertical movement, upper area)
     # Decision based on source area obstacle configuration in scan3 (near pair)
-    # This determines the x-coordinate: 200mm (tight), 400mm (medium), or 800mm (wide)
+    # This determines the x-coordinate: 200 mm (tight), 400 mm (medium), or 800 mm (wide)
     if checkForColor(inner, scan3[0], scan3[1]) or (not checkForColor(outer, scan3[0], scan3[1]) and checkForColor(inner, scan4[0], scan4[1])):
         # Inner obstacles detected in source area - must take wide path to avoid them
-        # Use x=800mm to stay safely away from center obstacles
+        # Use x=800 mm to stay safely away from center obstacles
         orders.append(Order(x=800, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=14, rotation=rotation))
         orders.append(Order(x=800, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=15, rotation=rotation))
     else:
         # No inner obstacles in immediate area - can take tighter path closer to inner wall
         if rotation != 90 and rotation != 1500:
-            # Standard tight path at x=200mm (most sections)
+            # Standard tight path at x=200 mm (most sections)
             orders.append(Order(x=200, y=2000,speed=speedi,brake=0,type=Order.DESTINATION,num=16, rotation=rotation))
             orders.append(Order(x=200, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=17, rotation=rotation))
         else:
@@ -1492,28 +1498,28 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
             orders.append(Order(x=400, y=1750,speed=speedi,brake=0,type=Order.DESTINATION,num=23, rotation=rotation))
 
     # Step 4: Generate waypoints for middle part of section (transition area)
-    # This waypoint (y≈1000-1200mm) is critical as it's in the zone where both
+    # This waypoint (y≈1000–1200 mm) is critical as it's in the zone where both
     # source and destination obstacles can affect the path
     # Must consider both obstacle configurations to choose safe x-coordinate
     if checkForColor(inner, scan4[0], scan4[1]) or (not checkForColor(outer, scan4[0], scan4[1]) and checkForColor(inner, scan3[0], scan3[1])):
         # Source area has inner obstacles - already on wide path (x=800)
         if dinside:
             # Destination also has inner obstacles - stay wide and slightly higher
-            # y=1050mm gives more clearance when transitioning between obstacle zones
+            # y=1050 mm gives more clearance when transitioning between obstacle zones
             orders.append(Order(x=800, y=1050,speed=speedi,brake=0,type=Order.DESTINATION,num=18, rotation=rotation))
         else:
             # Destination is clear - can move to lower y-coordinate
-            # y=1000mm for tighter transition
+            # y=1000 mm for tighter transition
             orders.append(Order(x=800, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=19, rotation=rotation))
     
     else:
         # Source area clear of inner obstacles - on tight path (x=200 or x=400)
         if rotation != 90 and rotation != 1500:
-            # Standard tight path continues at x=200mm
-            # y=1100mm provides clearance when approaching destination area
+            # Standard tight path continues at x=200 mm
+            # y=1100 mm provides clearance when approaching destination area
             orders.append(Order(x=200, y=1100,speed=speedi,brake=0,type=Order.DESTINATION,num=20, rotation=rotation))
         else:
-            # Special 90-degree rotations continue at x=400mm
+            # Special 90-degree rotations continue at x=400 mm
             orders.append(Order(x=400, y=1000,speed=speedi,brake=0,type=Order.DESTINATION,num=24, rotation=rotation))
 
     # Step 5: Generate corner waypoint for section transition (if not last section)
@@ -1564,17 +1570,17 @@ def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanSt
 
 
 - **Angle measurement:**
-Currently we do not measure the heading during the course, but rely on the gyroscope. However, the gyroscope drifts noticable during the course.
-The heading could be updated by measuring the angle of the walls with the lidar.
+Currently we do not measure the heading during the course, but rely on the gyroscope. However, the gyroscope drifts noticeable during the course.
+The heading could be updated by measuring the angle of the walls with the LiDAR.
 
 - **Waypoint optimizations:**
-The waypoint generation could be expanded to take inner and outer waypoints and some other details into account. This would allow shorter (and therefore fatster) courses and more obstacle clearence.
+The waypoint generation could be expanded to take inner and outer waypoints and some other details into account. This would allow shorter (and therefore faster) courses and more obstacle clearance.
 
 - **Wall position (open challenge):**
-The wall position on the open challenge could be detected and different waypoints generated. On this way a shorter (faster) course could be driven,
+The wall position on the open challenge could be detected and different waypoints generated. In this way, a shorter (faster) course could be driven.
 
 - **Speed optimization:**
-General driving speed can be increased until the course gets unreliable.
+General driving speed can be increased until the course becomes unreliable.
 Driving speed on uncritical parts could be increased even more.
 <br><br><br>
 
@@ -1585,7 +1591,7 @@ Driving speed on uncritical parts could be increased even more.
 
 The **steering** is controlled through an **Adafruit 16 Channel Servo Driver** connected to the **Raspberry Pi** via **I²C** communication. The servo driver board manages the **PWM** signal generation required for the servo positioning. For the communication with the board we use the **Adafruit servokit library**.
 
-Hardware selection, geometry, and mechanical integration are covered in [Steering](#steering).
+Hardware selection, geometry, and mechanical integration are covered in → [Steering](#steering).
 
 ### <ins>**Software implementation**</ins>
 
@@ -1655,7 +1661,7 @@ class DriveBase:
             brake (int): Braking mode (1 = enable progressive braking near target, 0 = no braking)
             
         Returns:
-            bool: True when target is reached (within 30mm), False while still driving
+            bool: True when target is reached (within 30 mm), False while still driving
         """
         # Set the target speed for the PID controller
         self.pidController.setpoint = speed
@@ -1686,7 +1692,7 @@ class DriveBase:
         distanceLine = distance * math.cos((self.zielWinkel - zielwinkel) / 180 * math.pi)
         
         # Progressive braking: reduce speed as we approach the target
-        # When within 200mm and braking enabled, scale speed proportionally to remaining distance
+        # When within 200 mm and braking enabled, scale speed proportionally to remaining distance
         if (abs(distanceLine) < 200) and (brake == 1):
             self.pidController.setpoint = speed * distanceLine / 200
         
@@ -1711,7 +1717,7 @@ class DriveBase:
         # Apply motor control: 99° is forward base speed, add PID correction
         self.kit.servo[3].angle = 99 + output
         
-        # Check if we've reached the target (within 30mm tolerance)
+        # Check if we've reached the target (within 30 mm tolerance)
         if distanceLine < 30:
             # Reset target angle for next movement command
             self.zielWinkel = 5000
@@ -1722,7 +1728,7 @@ class DriveBase:
             return False  # Still driving to target
 ```
 
-### <ins>**ID controller implementation**</ins>
+### <ins>**PID controller implementation**</ins>
 
 Our robot uses two separate **PID controllers** for **motion control**: one for **speed regulation** and another for **steering control**. The PID (Proportional-Integral-Derivative) controllers provide smooth and stable control by continuously adjusting outputs based on error feedback.
 
@@ -2017,7 +2023,7 @@ def setPosition(self, x, y, angle=-5000):
 - **Coordinate System Integration**: Seamless integration with robot's navigation coordinate system
 - **LiDAR Fusion**: Position corrections using LiDAR wall measurements when sensors drift
 
-This odometry system provides continuous position tracking with 2-5cm accuracy per meter of travel, enabling autonomous navigation throughout the competition course.
+This odometry system provides continuous position tracking with 2–5 cm accuracy per meter of travel, enabling autonomous navigation throughout the competition course.
 
 
 <br>
@@ -2082,54 +2088,11 @@ Runtime strategy and gating for LiDAR-based correction while driving are explain
 Relevant APIs:
 - `slam.repositionDrive()` – auto‑triggered corrections during motion based on quadrant visibility
 - `slam.repositionOneDirFront(angleCheck)` – snap X/Y to walls using front/side scans when stationary
-- `slam.setPostion(x, y, angle)` – applies fused position update
+- `slam.setPosition(x, y, angle)` – applies fused position update
 
 ### <ins>**Obstacle detection and recognition**</ins>
 
-```python
-def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
-    """Detect obstacles using LiDAR and determine their positions"""
-    
-    found = 0
-    
-    # Convert polar LiDAR data to Cartesian coordinates
-    xposes = []
-    yposes = []
-    for i in range(len(scan)):
-        # Convert angle + robot position to world coordinates
-        rad = (i + self.angle) / 180 * math.pi
-        xposes.append(math.cos(rad) * -scan[i] + self.xpos)
-        yposes.append(math.sin(rad) * scan[i] + self.ypos)
-    
-    # Check each predefined obstacle position
-    for i in range(len(self.hindernisse)):
-        if i in toScan:  # Only check specified positions
-            self.hindernisse[i].farbe = Hindernisse.NICHTS
-            dots = 0
-            angles = []
-            
-            # Find LiDAR points near this obstacle position
-            for b in range(len(xposes)):
-                distance_to_obstacle = math.sqrt(
-                    (xposes[b] - self.hindernisse[i].x)**2 + 
-                    (yposes[b] - self.hindernisse[i].y)**2
-                )
-                
-                # If LiDAR point is within 120mm of obstacle position
-                if distance_to_obstacle < 120 and self.scan[b] > 200:
-                    dots += 1
-                    angles.append(b)
-            
-            if dots > 0:  # Obstacle detected
-                found += dots
-                
-                # Calculate average angle to obstacle
-                angle = sum(angles) / len(angles)
-                angle = -angle  # Coordinate system correction
-                
-                # Use camera to determine obstacle color
-                # (camera processing code integration here)
-```
+Summary: **LiDAR detections** at **predefined world coordinates** are matched with **camera color detections** by **angle**; see the canonical implementation under Obstacle management → [Complete obstacle detection function](#complete-obstacle-detection-function).
 
 ### <ins>**Key features of our LiDAR implementation**</ins>
 
@@ -2150,7 +2113,7 @@ self.scan[180]   # Distance to back (180°)
 self.scan[270]   # Distance to left (270°/-90°)
 
 # Example: check if path is clear ahead
-if self.scan[0] > 500:  # More than 500mm clear ahead
+if self.scan[0] > 500:  # More than 500 mm clear ahead
     # Safe to drive forward
     
 # Example: distance to nearest wall on right side
@@ -2163,7 +2126,7 @@ right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
 
 The **camera** provides **color recognition** for obstacles and outputs detected angles relative to the image center. 
 
-Hardware selection and mechanical integration are documented under Sensors → [Camera](#camera). The fusion of camera colors with LiDAR positions is explained in Obstacle management → [Determining the color of the obstacle](#determining-the-color-of-the-obstacle) and the combined routine in [Complete obstacle detection function](#complete-obstacle-detection-function).
+Hardware selection and mechanical integration are documented under Sensors → [Camera](#camera). The fusion of camera colors with LiDAR positions is explained in Obstacle management → [Determining the color of the obstacle](#determining-the-color-of-the-obstacle) and the combined routine in Obstacle management → [Complete obstacle detection function](#complete-obstacle-detection-function).
 
 ### <ins>**Image capture and preprocessing**</ins>
 
@@ -2229,7 +2192,7 @@ self.blocksAngle.append(angle_deg)
 self.blocksColor.append(self.RED or self.GREEN)
 ```
 
-This angle list is fused with LiDAR detections in the obstacle pipeline; see [Determining the color of the obstacle](#determining-the-color-of-the-obstacle).
+This angle list is fused with LiDAR detections in the obstacle pipeline; see → [Determining the color of the obstacle](#determining-the-color-of-the-obstacle).
 
 ### <ins>**Calibration and settings**</ins>
 
