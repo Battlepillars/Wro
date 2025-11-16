@@ -14,12 +14,12 @@ def scan(toscan, orders, Order, waitCompleteOrders):
 def unparkCCW(orders,Order, waitCompleteOrders, checkForColor):
     speedi = 0.5
     
-    orders.append(Order(steer=90, dist=100, speed=0.2, brake=1, type=Order.KURVE))
-    
+    #orders.append(Order(steer=90, dist=100, speed=0.2, brake=1, type=Order.KURVE))
+    orders.append(Order(zielwinkel=-115, speed=0.5, brake=1, type=Order.WINKEL,dir=Order.CCW))
     if not waitCompleteOrders():
         return
     time.sleep(0.3)
-    orders.append(Order(toScan=[0],type=Order.SCAN))
+    orders.append(Order(toScan=[0],checkHeightNear=True,type=Order.SCAN))
     if not waitCompleteOrders():
         return
     time.sleep(0.3)
@@ -36,12 +36,13 @@ def unparkCCW(orders,Order, waitCompleteOrders, checkForColor):
 def unparkCW(orders,Order, waitCompleteOrders, checkForColor):
     speedi = 0.5
     
-    orders.append(Order(steer=-90, dist=175, speed=0.2, brake=1, type=Order.KURVE))
-    
+    #orders.append(Order(steer=-90, dist=175, speed=0.2, brake=1, type=Order.KURVE))
+    orders.append(Order(zielwinkel=-55, speed=0.5, brake=1, type=Order.WINKEL,dir=Order.CW))
+    orders.append(Order(steer=0, dist=40, speed=0.2, brake=1, type=Order.KURVE))
     if not waitCompleteOrders():
         return
     time.sleep(0.3)
-    orders.append(Order(toScan=[2],type=Order.SCAN))
+    orders.append(Order(toScan=[2],checkHeightNear=True,type=Order.SCAN))
     if not waitCompleteOrders():
         return
     time.sleep(0.3)

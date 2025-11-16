@@ -150,13 +150,14 @@ def runExample():
     # multiple speeds to get an average, then set the linear scalar to the
     # inverse of the error. For example, if you move the robot 100 inches and
     # the sensor reports 103 inches, set the linear scalar to 100/103 = 0.971
-    myOtos1.setLinearScalar(0.980)
-    myOtos2.setLinearScalar(0.970)
+    myOtos1.setLinearScalar(0.989)
+#    myOtos2.setLinearScalar(0.970)
+    myOtos2.setLinearScalar(1.010)
     
     # myOtos1.setAngularScalar(0.9933)
-    myOtos1.setAngularScalar(0.9920)
+    myOtos1.setAngularScalar(0.9941)
     # myOtos2.setAngularScalar(0.9915)
-    myOtos2.setAngularScalar(0.9890)
+    myOtos2.setAngularScalar(0.9936)
 
     myOtos1.setSignalProcessConfig(0b1101)
     myOtos2.setSignalProcessConfig(0b1101)

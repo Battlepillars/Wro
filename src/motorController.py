@@ -2,6 +2,10 @@ import statistics
 from slam import *
 from drawBoard import *
 
+# Track min/max of raw input angles passed to setServoAngle
+_servo_angle_min = None
+_servo_angle_max = None
+
 
 
 class PIDController:
@@ -68,7 +72,26 @@ class PIDController:
             
             return output
 
+
 def setServoAngle(kit,angle,slam=None):
+    """Set steering servo to requested logical angle.
+
+    """
+    # global _servo_angle_min, _servo_angle_max
+
+    # # Update min/max tracking for raw input angle
+    # if _servo_angle_min is None or angle < _servo_angle_min:
+    #     _servo_angle_min = angle
+    # if _servo_angle_max is None or angle > _servo_angle_max:
+    #     _servo_angle_max = angle
+    if ((slam is None) or (not slam.finalMove)):
+        if (angle<25):
+            angle=25
+        if (angle>170):
+            angle=170
+    
+
+    #print(f"[setServoAngle] raw angle: {angle:.2f}  min: {_servo_angle_min:.2f}  max: {_servo_angle_max:.2f}")
     servoMitte=80
     
     target = angle - 90 + servoMitte

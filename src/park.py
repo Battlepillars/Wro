@@ -1,5 +1,5 @@
 import time
-
+import motorController
 from slam import Hindernisse
 import pygame
 
@@ -221,4 +221,5 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
     slam.logger.warning("parking final move")
     #waitForKeyPress()   
     orders.append(Order(x=optimalX, y=optimalY, speed=0.2, brake=1, type=Order.DESTINATION, num=373))
+    slam.finalMove=1
     orders.append(Order(zielwinkel=0, speed=-0.2, brake=1, type=Order.WINKEL))

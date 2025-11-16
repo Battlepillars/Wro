@@ -77,6 +77,7 @@ def main():
     global orders
     global takePicture
     global sem
+    slam.finalMove = False
 
     slam.logger.warning('main init')
     
@@ -514,7 +515,8 @@ def commandLoop(slam):
             
             if not waitCompleteOrders():
                 return
-            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CW, type=Order.WINKEL))
+            orders.append(Order(zielwinkel=-90, speed=0.4, brake=1, dir=Order.CW, type=Order.WINKEL))
+            orders.append(Order(steer=0, dist=150, speed=-0.5, brake=1, type=Order.KURVE))
             if not waitCompleteOrders():
                 return
             time.sleep(0.3)
