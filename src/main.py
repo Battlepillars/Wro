@@ -552,6 +552,7 @@ def commandLoop(slam):
             if not waitCompleteOrders():
                 return
             time.sleep(0.3)
+            orders.append(Order(steer=0, dist=100, speed=-0.2, brake=1, type=Order.KURVE))
             for i in range(0,2):
                 driveRound(orders, Order, waitCompleteOrders, checkForColor, 1000, 18, slam)
                 driveRound(orders, Order, waitCompleteOrders, checkForColor, 1090, 12, slam)
