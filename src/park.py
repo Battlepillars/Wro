@@ -179,8 +179,8 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
     # optimalX = 1780
     # optimalY = 2655
 
-    optimalX = 1760
-    optimalY = 2635
+    optimalX = 1760+10
+    optimalY = 2635+10
 
     slam.logger.warning("parking 3")
     if not waitCompleteOrders():
@@ -224,5 +224,4 @@ def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, 
     slam.logger.warning("parking final move")
     #waitForKeyPress()   
     orders.append(Order(x=optimalX, y=optimalY, speed=0.2, brake=1, type=Order.DESTINATION, num=373))
-    slam.finalMove=1
-    orders.append(Order(zielwinkel=0, speed=-0.2, brake=1, type=Order.WINKEL))
+    orders.append(Order(zielwinkel=0, speed=-0.2, brake=1, type=Order.FINALMOVE))
