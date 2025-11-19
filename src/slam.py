@@ -127,13 +127,13 @@ class Slam:
     ignoreSpeedUpdate = 0
     repostionEnable = 0
     noCurveReposition = 0
-    healthy1 = 1
+    healthy1 = 0  # to disable one sensor, got to otusHealthReset function
     healthy2 = 1
     errorsOtos1 = 0
     errorsOtos2 = 0
     errorsOtosSpeed1 = 0
     errorsOtosSpeed2 = 0
-
+    finalMove=0
     file_path = "/home/pi/Wro/src/log.log"
 
     open(file_path, 'w').close()
@@ -195,33 +195,33 @@ class Slam:
 
         # Create instance of device
         #self.myOtos = qwiic_otos.QwiicOTOS()
-        self.myOtos1 = qwiic_otos.QwiicOTOS(0x17)
+        #self.myOtos1 = qwiic_otos.QwiicOTOS(0x17)
         self.myOtos2 = qwiic_otos.QwiicOTOS(0x19)
 
         # Check if it's connected
-        if self.myOtos1.is_connected() == False:
-            print("The device 1 isn't connected to the system. Please check your connection", \
-                file=sys.stderr)
-            return
+        # if self.myOtos1.is_connected() == False:
+        #     print("The device 1 isn't connected to the system. Please check your connection", \
+        #         file=sys.stderr)
+        #     return
         if self.myOtos2.is_connected() == False:
             print("The device 2 isn't connected to the system. Please check your connection", \
                 file=sys.stderr)
             return
 
         # Initialize the device
-        self.myOtos1.begin()
+        #self.myOtos1.begin()
         self.myOtos2.begin()
         
-        self.myOtos1.setLinearUnit(self.myOtos1.kLinearUnitMeters)
-        self.myOtos1.setAngularUnit(self.myOtos1.kAngularUnitDegrees)
+        # self.myOtos1.setLinearUnit(self.myOtos1.kLinearUnitMeters)
+        # self.myOtos1.setAngularUnit(self.myOtos1.kAngularUnitDegrees)
         self.myOtos2.setLinearUnit(self.myOtos2.kLinearUnitMeters)
         self.myOtos2.setAngularUnit(self.myOtos2.kAngularUnitDegrees)
-        self.myOtos1.setSignalProcessConfig(0b1101)
+       # self.myOtos1.setSignalProcessConfig(0b1101)
         self.myOtos2.setSignalProcessConfig(0b1101)
         print("Calibrating IMU...")
 
         # Calibrate the IMU, which removes the accelerometer and gyroscope offsets
-        self.myOtos1.calibrateImu(255)
+        #self.myOtos1.calibrateImu(255)
         self.myOtos2.calibrateImu(255)
 
         # German Playfield / MyDisplay
@@ -230,30 +230,32 @@ class Slam:
             
             
         # Singapur playfield
-        self.myOtos1.setLinearScalar(0.980)
-        self.myOtos2.setLinearScalar(0.970)        
+        #self.myOtos1.setLinearScalar(0.989)
+        #self.myOtos2.setLinearScalar(1.010)
+        self.myOtos2.setLinearScalar(1.010)
         
         
-        # self.myOtos1.setAngularScalar(0.9933)
-        self.myOtos1.setAngularScalar(0.9920)
-        # self.myOtos2.setAngularScalar(0.9915)
-        self.myOtos2.setAngularScalar(0.9890)
+        #self.myOtos1.setAngularScalar(0.9941)
+        self.myOtos2.setAngularScalar(0.9936)
+
 
         # Set offset for myOtos1
-        offset = self.myOtos1.getOffset()
-        print("Offset: ",offset)
-        offset.x = -0.011  
-#        offset.y = -0.060 
-        offset.y = +0.005  
+        offset = self.myOtos2.getOffset()
+        print("Offset Old: ",offset.x, offset.y, offset.h)
+        # offset.x=0
+        # offset.y=0
+        offset.x = -0.0149  
+        offset.y = -0.015  
         offset.h = 0      # no heading offset
-        self.myOtos1.setOffset(offset)
+        #self.myOtos1.setOffset(offset)
 
         # Set offset for myOtos2
-        offset.x = -0.045  # 20mm in meters
-        offset.h = 0      # no heading offset
-        self.myOtos1.setOffset(offset)
+        # offset.x = -0.0498 
+        self.myOtos2.setOffset(offset)
 
-        self.myOtos1.resetTracking()
+        self.healthy1=0
+        self.healthy2=1
+        #self.myOtos1.resetTracking()
         self.myOtos2.resetTracking()
         
 
@@ -267,36 +269,41 @@ class Slam:
         average = average / scans
         
         self.logger.warning("Set start position. Average: %.2f", average)
-
+        print("Set start position. Average:", average)
         winkelkorrektur = 0
 
-        if (average > 1870) and (average < 1970):
+        if (average > 1870) and (average < 1990):   # 1933
             self.direction = self.CW
             self.eventType = self.ER
             self.setPostion(average, 3000 - self.scan[90],0+winkelkorrektur)
             self.logger.warning("Startposition: 1")
-        if (average > 1345) and (average < 1450):
+            print("Startposition: 1")
+        if (average > 1370) and (average < 1500):   # 1433
             self.direction = self.CCW
             self.eventType = self.ER
             self.setPostion(self.scan[180], 3000 - self.scan[-90],180+winkelkorrektur)
             self.logger.warning("Startposition: 2")
-        if (average > 1550) and (average < 1660):
+            print("Startposition: 2")
+        if (average > 1620) and (average < 1750):      # 1685
             self.direction = self.CCW
             self.eventType = self.ER
             self.setPostion(self.scan[180], 3000 - self.scan[-90],180+winkelkorrektur)
             self.logger.warning("Startposition: 3")
-        if (average > 1040) and (average < 1200):
+            print("Startposition: 3")
+        if (average > 1100) and (average < 1250):   # 1170
             self.direction = self.CW
             self.eventType = self.ER
             self.setPostion(average, 3000 - self.scan[90],0+winkelkorrektur)
             self.logger.warning("Startposition: 4")
+            print("Startposition: 4")
         
-
+        print("scan 0:", self.scan[0], "scan 90:", self.scan[90], "scan 180:", self.scan[180], "scan -90:", self.scan[-90])
         if (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[90] < 400):
             self.direction = self.CW
             self.eventType = self.HR
             self.setPostion(2000 - self.scan[180], 3000 - self.scan[90],0+winkelkorrektur)
             self.logger.warning("Startposition: 5")
+            print("Startposition: 5")
             self.logger.warning("180: %.0f 90: %.0f",self.scan[180],self.scan[90])
         elif (self.scan[180] > 70) and (self.scan[180] < 170) and (self.scan[-90] < 400):
             
@@ -304,6 +311,7 @@ class Slam:
             self.eventType = self.HR
             self.setPostion(2000 - self.scan[0], 3000 - self.scan[-90],180+winkelkorrektur)
             self.logger.warning("Startposition: 6")
+            print("Startposition: 6")
             self.logger.warning("0: %.0f -90: %.0f",self.scan[0],self.scan[-90])
 
         # 1870 - 1970
@@ -311,12 +319,12 @@ class Slam:
         # 1550 - 1660
         # 1040 - 1200
     def setPostion(self, x, y,angle=-5000):
-        myPosition = self.myOtos1.getPosition()
-        myPosition.y = -x / 1000
-        myPosition.x = -y / 1000
-        if (angle > -5000):
-            myPosition.h=angle
-        self.myOtos1.setPosition(myPosition)
+        # myPosition = self.myOtos1.getPosition()
+        # myPosition.y = -x / 1000
+        # myPosition.x = -y / 1000
+        # if (angle > -5000):
+        #     myPosition.h=angle
+        # self.myOtos1.setPosition(myPosition)
 
 
         myPosition = self.myOtos2.getPosition()
@@ -333,8 +341,8 @@ class Slam:
         self.ignoreSpeedUpdate = 1
         
     def otusHealthReset(self):
-        self.healthy1 = 1
-        self.healthy2 = 0
+        self.healthy1 = 0
+        self.healthy2 = 1
         self.errorsOtos1 = 0
         self.errorsOtos2 = 0
         self.errorsOtosSpeed1 = 0
@@ -343,7 +351,7 @@ class Slam:
         
     def update(self):
         
-        myPosition1 = self.myOtos1.getPosition()
+        myPosition1 = self.myOtos2.getPosition()
         
         if (self.lastXpos1 == 5000):
             self.speed1 = 0
@@ -605,6 +613,10 @@ class Slam:
         self.logger.warn('-----------------------------------------------------------------------------------------')
         self.logger.warning('Manual Repostion Front angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheck,self.xpos,self.ypos,self.angle)
 
+        while (angleCheck > 180):
+            angleCheck -= 360
+        while (angleCheck <= -180):
+            angleCheck += 360
         if angleCheck ==0:                              # rechts/180
             
             average = self.calcualteScanAngel(0)
@@ -737,6 +749,18 @@ class Slam:
                 average = self.calcualteScanAngel(180)
                 self.setPostion(3000 - average, self.ypos)
                 self.logger.warning('v12 x-> %i ',3000-average)
+    def getQuadrant(self,qudrantRange=1050):
+        
+        quadrant = 0
+        if (self.xpos < qudrantRange and self.ypos < qudrantRange):                 # 1: oben links
+            quadrant = 1
+        if (self.xpos < qudrantRange and self.ypos > 3000-qudrantRange):            # 2: unten links
+            quadrant = 2
+        if (self.xpos > 3000-qudrantRange and self.ypos < qudrantRange):            # 3: oben rechts
+            quadrant = 3
+        if (self.xpos > 3000-qudrantRange and self.ypos > 3000-qudrantRange):       # 4: unten rechts
+            quadrant = 4
+        return quadrant
 
     def repositionDrive(self):
         # print("Repostioning")
@@ -755,18 +779,8 @@ class Slam:
         dir=0
         
         
-        quadrant=0
+        quadrant=self.getQuadrant()
         
-        qudrantRange = 1050
-        
-        if (self.xpos < qudrantRange and self.ypos < qudrantRange):                 # 1: oben links
-            quadrant = 1
-        if (self.xpos < qudrantRange and self.ypos > 3000-qudrantRange):            # 2: unten links
-            quadrant = 2
-        if (self.xpos > 3000-qudrantRange and self.ypos < qudrantRange):            # 3: oben rechts
-            quadrant = 3
-        if (self.xpos > 3000-qudrantRange and self.ypos > 3000-qudrantRange):       # 4: unten rechts
-            quadrant = 4
         
         
         if angleCheck < -180 + angleRange or angleCheck > 180 - angleRange:                               # 1: rechts/180

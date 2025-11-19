@@ -77,6 +77,7 @@ def main():
     global orders
     global takePicture
     global sem
+    slam.finalMove = False
 
     slam.logger.warning('main init')
     
@@ -260,6 +261,7 @@ def main():
                 
                     
                 if event.key == pygame.K_m:
+                    slam.finalMove = True
                     manual = 1
                     running2 = False
                     orders.clear()
@@ -358,6 +360,7 @@ class Order:
     REPOSITIONSINGLE=8
     TIMEPOWER=9
     DRIVETOY=10
+    FINALMOVE=11
     CW=100
     CCW=101
     def __init__(self,speed=0,brake=0,type=0,x=0,y=0,steer=0,dist=0,timeDrive=0,toScan=[],zielwinkel=0,angleCheckOverwrite=1000,num=0,dir=0,rotation=0,checkHeightNear=False):
@@ -485,9 +488,9 @@ def commandLoop(slam):
             time.sleep(0.05)
     lamp.fill(0x000000)
     lamp.show()
-    slam.myOtos1.resetTracking()
+    # slam.myOtos1.resetTracking()
     slam.myOtos2.resetTracking()
-    slam.myOtos1.calibrateImu(255)
+    # slam.myOtos1.calibrateImu(255)
     slam.myOtos2.calibrateImu(255)
     time.sleep(0.2) 
     slam.otusHealthReset()
@@ -514,7 +517,8 @@ def commandLoop(slam):
             
             if not waitCompleteOrders():
                 return
-            orders.append(Order(zielwinkel=-90, speed=0.2, brake=1, dir=Order.CW, type=Order.WINKEL))
+            orders.append(Order(zielwinkel=-90, speed=0.4, brake=1, dir=Order.CW, type=Order.WINKEL))
+            orders.append(Order(steer=0, dist=150, speed=-0.5, brake=1, type=Order.KURVE))
             if not waitCompleteOrders():
                 return
             time.sleep(0.3)
@@ -550,6 +554,7 @@ def commandLoop(slam):
             if not waitCompleteOrders():
                 return
             time.sleep(0.3)
+            orders.append(Order(steer=0, dist=100, speed=-0.2, brake=1, type=Order.KURVE))
             for i in range(0,2):
                 driveRound(orders, Order, waitCompleteOrders, checkForColor, 1000, 18, slam)
                 driveRound(orders, Order, waitCompleteOrders, checkForColor, 1090, 12, slam)
@@ -711,6 +716,15 @@ def controlLoop(robot, camera, playmat):
                 sem.release()
                 nextOrder()
             elif orders[0].type == Order.WINKEL:
+                if driveBase.driveToWinkel(orders[0].zielwinkel,orders[0].speed,orders[0].brake,orders[0].dir):
+                    nextOrder()
+            elif orders[0].type == Order.FINALMOVE:
+                if (slam.finalMove == False):
+                    slam.finalMove = True
+                    # motorController.setServoAngle(kit,0,slam)
+                    # time.sleep(0.3)
+                    # motorController.setServoAngle(kit,55,slam)
+                    # time.sleep(0.3)
                 if driveBase.driveToWinkel(orders[0].zielwinkel,orders[0].speed,orders[0].brake,orders[0].dir):
                     nextOrder()
             elif orders[0].type == Order.REPOSITION:
