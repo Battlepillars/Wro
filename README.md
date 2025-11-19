@@ -328,13 +328,16 @@ I contribute my technical expertise in the areas of robot construction, componen
 The **Mobility Management System** comprises the **chassis**, **steering**, and **drivetrain** of the robot, which are essential for precise and efficient locomotion. The following chapters will explain these individual elements in detail.
 <br>
 ## **Chassis**
-At first, the idea was to design a vehicle with a total length of **less than 20 cm** so that it could drive straight into the parking space at the end of the three-lap obstacle course, which was part of the regional challenge. This strategy was permitted under the German rule set.
 
-Since commercially available model cars usually do not meet the required dimensions, we quickly realized that **modifying** an existing model car would be necessary. Most available models are around 30 cm long — reducing them to under 20 cm would have been too technically complex. Smaller models, around 10 cm in length, on the other hand, did not provide enough space for all the required components.
 
-Eventually, we found a model with a length of **22 cm** that seemed suitable for adaptation to the desired **20 cm**. This model — the **LaTrax Rally** — was therefore chosen as the basis for the self-driving vehicle.
+At the outset, our plan was to design a vehicle with a total length of **less than 20 cm** so that it could drive straight into the parking space at the end of the three-lap obstacle course in the regional challenge. This strategy was permitted under the German rule set.
 
-Where to buy the car: <a href="https://traxxas.com/75054-5-118-latrax-rally">https://traxxas.com/75054-5-118-latrax-rally</a>
+Our **initial approach** was to use a **commercially available chassis** with only **minor modifications**. However, it quickly became clear that this would not meet our requirements. Most off-the-shelf model cars are approximately 30 cm long, and reducing them to under 20 cm would have been technically too complex. Smaller models  —typically around 10 cm— did not offer enough space for all the necessary components.
+
+Eventually, we identified a model with a length of 22 cm that appeared suitable for modification to the required 20 cm limit. This model, the **LaTrax Rally**, was ultimately chosen as the **foundation** for our self-built, self-driving vehicle. Although we initially planned only slight adjustments, we ended up **fabricating nearly all parts** of the car **by hand** to meet our **performance and design goals**.
+
+Where to buy the car:
+https://traxxas.com/75054-5-118-latrax-rally
 <br><br>
 
 ## **Modification of the model car**
@@ -375,8 +378,8 @@ Dimensioning of the base plate:
 The chassis plate houses the **differential**, **gearbox**, **motor**, **servo**, **electronic speed controller (ESC)**, and **odometry sensors**. Details on the mounting of these components can be found in the <a href="#construction-guide">Construction guide</a>.
 
 <div align="center">
-    <a href="img/Bodenplatte3.jpg" target="_blank">
-        <img width="500" src="img/Bodenplatte3.jpg">
+    <a href="img/Bodenplatte3e.jpg" target="_blank">
+        <img width="500" src="img/Bodenplatte3e.jpg">
     </a>
 </div>
 
@@ -441,8 +444,8 @@ The **servo controller**, **battery**, **Raspberry Pi**, and **voltage regulator
 
 
 <div align="center">
-    <a href="img/Mitteldeck3.jpg" target="_blank">
-        <img width="500" src="img/Mitteldeck3.jpg">
+    <a href="img/Mitteldeck3e.jpg" target="_blank">
+        <img width="500" src="img/Mitteldeck3e.jpg">
     </a>
 </div>
 
@@ -484,8 +487,8 @@ Dimensioning of the top deck:
 The **LiDAR** and the **status display** are installed on this deck. Details on the mounting of these components can be found in the <a href="#construction-guide">Construction guide</a>.
 
 <div align="center">
-    <a href="img/Oberdeck3.jpg" target="_blank">
-        <img width="400" src="img/Oberdeck3.jpg">
+    <a href="img/Oberdeck3e.jpg" target="_blank">
+        <img width="400" src="img/Oberdeck3e.jpg">
     </a>
 </div>
 
@@ -1111,7 +1114,7 @@ When **both sensors are healthy**, we take the **average** of the readings of bo
 
 These **deviations** are not acceptable in the **Obstacle Challenge**, as they may cause the robot to **drive into a wall** or **hit an obstacle**. Therefore, the program implements a **position reset** using the **LiDAR**:
 
-- When the robot is **stationary**, it **repositions itself** based on the **two outer walls**. The LiDAR detects the distance to the walls and thus determines the robot's position. This **cannot be done while driving**, because the **LiDAR measurement is delayed by about 100–200 ms**, by which time the robot has already moved. This type of repositioning is **manually triggered** in the **program** after stopping the robot. We do this when we need **high accuracy**, for example before scanning the obstacles.
+- When the robot is **stationary**, it **repositions itself** based on the **two outer walls**. The LiDAR detects the distance to the walls and thus determines the robot's position. This **cannot be done while driving**, because the **LiDAR measurement is delayed by about 100–200 ms**, by which time the robot has already moved. This type of repositioning must be **preprogrammed to run after the robot has stopped**. We do this when we need **high accuracy**, for example before scanning the obstacles.
 
 
 - **While driving**, the LiDAR measures the **distance to the wall in front** and **repositions** the robot accordingly. For this, we do not use the complete 360° scan from the LiDAR; instead, we **trigger repositioning automatically** exactly when the **front distance is measured** by the LiDAR. This way, we **reduce the LiDAR measurement delay**. This kind of repositioning is automatically triggered when certain conditions are met:
@@ -1281,6 +1284,11 @@ def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
  ## **Navigation strategy open challenge** 
 
 For the Open Challenge, we **navigate using simple fixed waypoints**. They are chosen so that they work independently of the inner wall configuration.
+
+
+For a short walkthrough, see our **Open Challenge video**: https://www.youtube.com/watch?v=m8tsO8CkDkw
+
+
 
 ### <ins>**Complete code for waypoint generation**</ins>
 
@@ -2015,15 +2023,6 @@ def setPosition(self, x, y, angle=-5000):
     self.ignoreSpeedUpdate = 1  # Skip next speed calculation
 ```
 
-### <ins>**Key features of our implementation**</ins>
-
-- **Dual Sensor Redundancy**: Two sensors provide backup; rationale and hardware context in Sensors → [Odometry sensor](#odometry-sensor)
-- **Automatic Health Monitoring**: Continuous error detection and sensor status tracking
-- **Speed Calculation**: Real-time velocity calculation from position differences
-- **Coordinate System Integration**: Seamless integration with robot's navigation coordinate system
-- **LiDAR Fusion**: Position corrections using LiDAR wall measurements when sensors drift
-
-This odometry system provides continuous position tracking with 2–5 cm accuracy per meter of travel, enabling autonomous navigation throughout the competition course.
 
 
 <br>
@@ -2094,14 +2093,7 @@ Relevant APIs:
 
 Summary: **LiDAR detections** at **predefined world coordinates** are matched with **camera color detections** by **angle**; see the canonical implementation under Obstacle management → [Complete obstacle detection function](#complete-obstacle-detection-function).
 
-### <ins>**Key features of our LiDAR implementation**</ins>
 
-- **Real-time 360° Scanning**: Continuous environment monitoring at 10 kHz
-- **Automatic Position Correction**: Uses wall distances to correct odometry drift
-- **Starting Position Detection**: Automatically determines robot placement
-- **Obstacle Detection**: Identifies obstacle positions
-- **Coordinate Transformation**: Converts polar scan data to robot coordinate system
-- **Performance Optimization**: Strategic scan timing to maintain control loop performance
 
 ### <ins>**Data structure and access patterns**</ins>
 
@@ -2124,13 +2116,13 @@ right_wall_distance = min(self.scan[80:100])  # Check 80°-100° range
 
 ## **Camera**
 
-The **camera** provides **color recognition** for obstacles and outputs detected angles relative to the image center. 
+The **camera** provides **color recognition** for obstacles and outputs **detected angles** relative to the image center. 
 
 Hardware selection and mechanical integration are documented under Sensors → [Camera](#camera). The fusion of camera colors with LiDAR positions is explained in Obstacle management → [Determining the color of the obstacle](#determining-the-color-of-the-obstacle) and the combined routine in Obstacle management → [Complete obstacle detection function](#complete-obstacle-detection-function).
 
 ### <ins>**Image capture and preprocessing**</ins>
 
-We use **Picamera2**/**libcamera** on the **Raspberry Pi** with a resolution of `1536×846`. The capture pipeline applies a light blur and processes a thin horizontal scan band to reduce noise and latency. The scan band can be shifted for near/far checks.
+We use **Picamera2**/**libcamera** on the **Raspberry Pi** with a resolution of `1536×846`. The capture pipeline applies a **light blur** and processes **a thin horizontal scan band** to **reduce false detections** from objets outside the play area or obstacles that are behind each other.
 
 ```python
 from picamera2 import Picamera2
@@ -2203,13 +2195,7 @@ This angle list is fused with LiDAR detections in the obstacle pipeline; see →
 - **Geometry**: Tune `mid` and `split` if lens/FOV changes
 - **Artifacts**: Light blur reduces noise; using a narrow band minimizes processing latency
 
-### <ins>**Key features of our camera implementation**</ins>
 
-- **Low-latency scan band**: Fast detection by limiting processing to a horizontal band
-- **Robust HSV detection**: Dual-range RED and tuned GREEN thresholds
-- **Direct angle output**: Provides screen-relative angles for LiDAR fusion
-- **Simple API**: `captureImage(checkHeightNear)` populates `blocksAngle`/`blocksColor`
-- **Cross-referenced pipeline**: Integrated with LiDAR per Obstacle management chapters
 
 <br>
 
@@ -2242,20 +2228,20 @@ The robot consists of three main levels:
 <table align="center" cellpadding="6" cellspacing="0">
     <tr>
         <td align="center" width="220">
-            <a href="img/Bodenplatte3.jpg" target="_blank">
-                <img width="200" src="img/Bodenplatte3.jpg" alt="Lower Deck">
+            <a href="img/Bodenplatte3e.jpg" target="_blank">
+                <img width="200" src="img/Bodenplatte3e.jpg" alt="Lower Deck">
             </a><br>
             <em>Lower Deck</em>
         </td>
         <td align="center" width="220">
-            <a href="img/Mitteldeck3.jpg" target="_blank">
-                <img width="200" src="img/Mitteldeck3.jpg" alt="Middle Deck">
+            <a href="img/Mitteldeck3e.jpg" target="_blank">
+                <img width="200" src="img/Mitteldeck3e.jpg" alt="Middle Deck">
             </a><br>
             <em>Middle Deck</em>
         </td>
         <td align="center" width="220">
-            <a href="img/Oberdeck3.jpg" target="_blank">
-                <img width="200" src="img/Oberdeck3.jpg" alt="Upper Deck">
+            <a href="img/Oberdeck3e.jpg" target="_blank">
+                <img width="200" src="img/Oberdeck3e.jpg" alt="Upper Deck">
             </a><br>
             <em>Upper Deck</em>
         </td>
