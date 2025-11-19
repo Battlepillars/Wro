@@ -189,8 +189,9 @@
                     <li><a href="#21-prepare-latrax-rally-back-axle">2.1 Prepare LaTrax Rally back axle</a></li>
                     <li><a href="#22-install-steering-servo">2.2 Install steering servo</a></li>
                     <li><a href="#23-front-axle">2.3 Front axle</a></li>
-                    <li><a href="#24-mount-esc-electronic-speed-controller">2.4 Mount ESC (electronic speed controller)</a></li>
-                    <li><a href="#25-install-odometry-sensors">2.5 Install odometry sensors</a></li>
+                    <li><a href="#24-mount-bumper">2.4 Mount Bumper</a></li>
+                    <li><a href="#25-mount-esc-electronic-speed-controller">2.5 Mount ESC (electronic speed controller)</a></li>
+                    <li><a href="#26-install-odometry-sensors">2.6 Install odometry sensors</a></li>
                 </ul>
             </li>
             <li><a href="#step-3-middle-deck-assembly">Step 3: Middle deck assembly</a>
@@ -2369,9 +2370,18 @@ In the picture you can see how these parts should be **mounted** and **connected
     </a>
 </div>
 
+### **2.4 Mount bumper**
+**Component:** <ins>3D-printed bumper</ins>
 
+<div align="center">
+    <a href="img/vorne.jpg" target="_blank">
+        <img width="400" src="img/vorne.jpg">
+    </a>
+</div>
 
-### **2.4 Mount ESC (electronic speed controller)**
+**Attach** the **bumper** to the **front of the lower deck** using **two M3 screws** and **nuts**. 
+
+### **2.5 Mount ESC (electronic speed controller)**
 **Component:** <ins>Quicrun WP 1080–G2</ins> (specially designed for low-speed control)
 
 <div align="center">
@@ -2393,7 +2403,10 @@ The **ESC** sits **loosely** on the **lower deck**. **Slide** **two side bars** 
 
 
 
-### **2.5 Install odometry sensors**
+
+
+
+### **2.6 Install odometry sensors**
 **Components:** <ins>2x SparkFun Qwiic Optical Tracking Odometry Sensors (OTOS)</ins>
 
 **Insert** **eight M3×5 mm standoffs** around the **openings** in the **lower deck**. **Place** the **two OTOS modules** on the **standoffs**. Make sure the **optical sensor** **faces downward** through the holes. Ensure the **Y‑arrow** on the sensors **faces the front** of the car.
