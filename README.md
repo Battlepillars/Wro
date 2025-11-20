@@ -1295,30 +1295,62 @@ For a short walkthrough, see our **Open Challenge video**: https://www.youtube.c
 
 
 ```python
-        if slam.direction == slam.CW:  #  open challenge CW                                               
-            
-            
-            orders.append(Order(x=450, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=100))
-            
-            for i in range(0,3):
+        # --- Open Challenge waypoint pattern ---
+        # Generates a repeatable lap route independent of inner wall configuration.
+        # CW vs CCW choose mirrored entry seed and waypoint sequence.
+        # notes:
+        #   - Waypoints chosen to keeep a good wall clearance.
+        #   - Loop executes 3 laps (range(0,3)); inside we adapt first lap entry.
+        #   - 'brake=1' on final waypoint of sequence to enable progressive slowdown.
+        if slam.direction == slam.CW:  # Clockwise direction selected
+
+            # Entry seed (approach first corner before beginning laps)
+            orders.append(Order(x=450, y=2500, speed=speedi, brake=0,
+                                type=Order.DESTINATION, num=100))
+
+            # Three traversal cycles; first cycle skips pre-loop reposition
+            for i in range(0, 3):
+                # From second lap onward insert a stabilizing north waypoint
                 if i >= 1:
-                    orders.append(Order(x=450, y=2700,speed=speedi,brake=0,type=Order.DESTINATION,num=101))
-                orders.append(Order(x=300, y=450,speed=speedi,brake=0,type=Order.DESTINATION,num=102))
-                orders.append(Order(x=2550, y=300,speed=speedi,brake=0,type=Order.DESTINATION,num=103))
-                orders.append(Order(x=2700, y=2550,speed=speedi,brake=0,type=Order.DESTINATION,num=104))
-            
-            orders.append(Order(x=1500, y=2700,speed=speedi,brake=1,type=Order.DESTINATION,num=105))
-        else:  #  open challenge CCW                                                                                               
-            orders.append(Order(x=2550, y=2500,speed=speedi,brake=0,type=Order.DESTINATION,num=105))
-            
-            for i in range(0,3):
+                    orders.append(Order(x=450, y=2700, speed=speedi, brake=0,
+                                        type=Order.DESTINATION, num=101))
+                # West → South edge sweep maintaining outer clearance
+                orders.append(Order(x=300, y=450, speed=speedi, brake=0,
+                                    type=Order.DESTINATION, num=102))
+                # South-East transit (corner cut kept wide for sensor stability)
+                orders.append(Order(x=2550, y=300, speed=speedi, brake=0,
+                                    type=Order.DESTINATION, num=103))
+                # East → North climb ensuring camera has frontal view space
+                orders.append(Order(x=2700, y=2550, speed=speedi, brake=0,
+                                    type=Order.DESTINATION, num=104))
+
+            # Final center-top waypoint: braking enabled for controlled stop
+            orders.append(Order(x=1500, y=2700, speed=speedi, brake=1,
+                                type=Order.DESTINATION, num=105))
+        else:  # Counter‑clockwise direction selected
+
+            # Mirrored entry seed for CCW traversal
+            orders.append(Order(x=2550, y=2500, speed=speedi, brake=0,
+                                type=Order.DESTINATION, num=105))
+
+            for i in range(0, 3):
+                # Stabilizing waypoint from second lap onward (mirrored)
                 if i >= 1:
-                    orders.append(Order(x=2550, y=2700,speed=speedi,brake=0,type=Order.DESTINATION,num=106))
-                orders.append(Order(x=2700, y=450,speed=speedi,brake=0,type=Order.DESTINATION,num=107))
-                orders.append(Order(x=450, y=300,speed=speedi,brake=0,type=Order.DESTINATION,num=108))
-                orders.append(Order(x=300, y=2550,speed=speedi,brake=0,type=Order.DESTINATION,num=109))
-            
-            orders.append(Order(x=1500, y=2700,speed=speedi,brake=1,type=Order.DESTINATION,num=110))
+                    orders.append(Order(x=2550, y=2700, speed=speedi, brake=0,
+                                        type=Order.DESTINATION, num=106))
+                # East → North sweep
+                orders.append(Order(x=2700, y=450, speed=speedi, brake=0,
+                                    type=Order.DESTINATION, num=107))
+                # North-West transit
+                orders.append(Order(x=450, y=300, speed=speedi, brake=0,
+                                    type=Order.DESTINATION, num=108))
+                # West → South descent
+                orders.append(Order(x=300, y=2550, speed=speedi, brake=0,
+                                    type=Order.DESTINATION, num=109))
+
+            # Final center-top waypoint with controlled braking
+            orders.append(Order(x=1500, y=2700, speed=speedi, brake=1,
+                                type=Order.DESTINATION, num=110))
 ```
 
 
@@ -1818,7 +1850,11 @@ Our robot uses two PID controllers with **different tuning parameters** optimize
 
 **Speed Control PID**:
 ```python
-# Speed controller: maintains target velocity
+# --- Speed Control PID configuration ---
+# Purpose: Maintains target linear velocity using closed-loop feedback.
+# High Kp for responsive speed changes; Ki to remove steady-state error;
+# small Kd for mild damping. Asymmetric output range handles different
+# forward vs reverse characteristics of drivetrain.
 self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00, 
                                  setpoint=1, min=-50, max=40, drive=1)
 ```
@@ -1829,7 +1865,10 @@ self.pidController = PIDController(Kp=20, Ki=5, Kd=1.00,
 
 **Steering Control PID**:
 ```python
-# Steering controller: maintains target heading/direction
+# --- Steering (Heading) PID configuration ---
+# Purpose: Correct heading error; only proportional term used to avoid
+# integral wind-up and derivative noise for fast, smooth response.
+# Output clamped to physical steering limits.
 self.pidSteer = PIDController(Kp=2, Ki=0, Kd=0, 
                             setpoint=0, min=-90, max=90)
 ```
@@ -1842,23 +1881,26 @@ self.pidSteer = PIDController(Kp=2, Ki=0, Kd=0,
 
 **Speed Control Example**:
 ```python
-# Set target speed and calculate correction
+# --- Speed control usage example ---
+# 1. Update desired setpoint (m/s)
 self.pidController.setpoint = speed  # Target speed in m/s
+# 2. Compute PID output using measured speed and loop dt (0.5s here)
 output = self.pidController.compute(self.slam.speed, 0.5, self.slam)
-
-# Apply motor control with PID correction
+# 3. Apply PWM angle: 99 is forward neutral baseline, add correction
 self.kit.servo[3].angle = 99 + output  # Base speed + PID adjustment
 ```
 
 **Steering Control Example**:
 ```python
-# Calculate heading error and steering correction
-fehlerwinkel = target_angle - current_angle  # Heading error in degrees
+# --- Steering control usage example ---
+# Compute instantaneous heading error (degrees)
+fehlerwinkel = target_angle - current_angle  # Positive => needs CCW correction
+# PID translate error to steering angle delta (dt=1s)
 outputSteer = self.pidSteer.compute(fehlerwinkel, 1)
-
-# Apply steering with limits
+# Clamp for stability at speed (mechanical + control constraint)
 if outputSteer > 55: outputSteer = 55
 if outputSteer < -55: outputSteer = -55
+# Apply servo command (90° = straight ahead baseline)
 setServoAngle(self.kit, 90 + outputSteer, self.slam)
 ```
 
@@ -1869,12 +1911,15 @@ setServoAngle(self.kit, 90 + outputSteer, self.slam)
 **Adaptive Braking**: The system implements intelligent braking that adjusts deceleration based on remaining distance:
 
 ```python
+# --- Adaptive braking logic ---
+# First zone: within 30 mm begin slow-down
 if (distance_remaining < 30) and (brake == 1):
     if speed > 0:
         self.pidController.setpoint = 0.1  # Gentle deceleration
     else:
-        self.pidController.setpoint = -0.1
+        self.pidController.setpoint = -0.1 # Gentle reverse deceleration
 
+# Final zone: within 10 mm command full stop
 if (distance_remaining < 10) and (brake == 1):
     self.pidController.setpoint = 0  # Full stop
 ```
@@ -1882,9 +1927,11 @@ if (distance_remaining < 10) and (brake == 1):
 **Direction-Dependent Control**: The system handles forward and reverse motion differently to account for mechanical asymmetries:
 
 ```python
-if speed > 0:  # Forward
+# --- Direction-dependent PWM baseline ---
+# Adjust neutral offset to compensate asymmetric ESC response forward/reverse.
+if speed > 0:  # Forward motion path
     self.kit.servo[3].angle = 110 + output
-else:  # Reverse  
+else:          # Reverse motion path
     self.kit.servo[3].angle = 80 + output
 ```
 
@@ -1904,26 +1951,26 @@ The odometry system uses two **SparkFun Qwiic Optical Tracking Odometry Sensors 
 
 ```python
 def update(self):
-    """Main odometry update function called every control loop iteration"""
-    
-    # Read position data from both sensors
-    myPosition1 = self.myOtos1.getPosition()  # Returns x, y, h (heading)
+    """Odometry loop: read sensors, derive incremental speeds, convert units."""
+    # 1. Read raw positions (meters + heading)
+    myPosition1 = self.myOtos1.getPosition()  # x,y,h
     myPosition2 = self.myOtos2.getPosition()
-    
-    # Calculate speed from position changes (speed in m/s * 100)
-    if self.lastXpos1 != 5000:  # Skip first iteration
-        self.speed1 = math.sqrt((myPosition1.x - self.lastXpos1)**2 + 
-                               (myPosition1.y - self.lastYpos1)**2) * 100
-    
+
+    # 2. Compute per-sensor delta speed (skip first iteration sentinel 5000)
+    if self.lastXpos1 != 5000:
+        dx1 = myPosition1.x - self.lastXpos1
+        dy1 = myPosition1.y - self.lastYpos1
+        self.speed1 = math.sqrt(dx1*dx1 + dy1*dy1) * 100  # Scale to pseudo m/s
     if self.lastXpos2 != 5000:
-        self.speed2 = math.sqrt((myPosition2.x - self.lastXpos2)**2 + 
-                               (myPosition2.y - self.lastYpos2)**2) * 100
-    
-    # Store positions for next speed calculation
+        dx2 = myPosition2.x - self.lastXpos2
+        dy2 = myPosition2.y - self.lastYpos2
+        self.speed2 = math.sqrt(dx2*dx2 + dy2*dy2) * 100
+
+    # 3. Persist previous positions for next delta computation
     self.lastXpos1, self.lastYpos1 = myPosition1.x, myPosition1.y
     self.lastXpos2, self.lastYpos2 = myPosition2.x, myPosition2.y
-    
-    # Convert to robot coordinate system (mm, with coordinate transformation)
+
+    # 4. Transform coordinate system: invert axes + convert m→mm
     myPosition1.x = -myPosition1.x * 1000
     myPosition1.y = -myPosition1.y * 1000
     myPosition2.x = -myPosition2.x * 1000
@@ -1934,33 +1981,30 @@ def update(self):
 
 ```python
 def update(self):
-    # Health monitoring: compare sensor readings for anomalies
+    """Health monitoring: detect drift, implausible speed, out-of-bounds."""
     if self.healthy1 == 1 and self.healthy2 == 1:
-        # Check for speed discrepancies between sensors
+        # 1. Relative speed consistency (slower sensor may be obstructed)
         if self.speed1 + 0.15 < self.speed2:
-            self.errorsOtos1 += 1  # Sensor 1 significantly slower
-        else:
-            if self.errorsOtos1 > 0:
-                self.errorsOtos1 -= 1  # Decrease error count
-                
+            self.errorsOtos1 += 1
+        elif self.errorsOtos1 > 0:
+            self.errorsOtos1 -= 1
         if self.speed2 + 0.15 < self.speed1:
-            self.errorsOtos2 += 1  # Sensor 2 significantly slower
-        else:
-            if self.errorsOtos2 > 0:
-                self.errorsOtos2 -= 1
-        
-        # Check for impossible speeds (> 2 m/s indicates sensor failure)
+            self.errorsOtos2 += 1
+        elif self.errorsOtos2 > 0:
+            self.errorsOtos2 -= 1
+
+        # 2. Implausible high speed spikes (>2 m/s)
         if self.speed1 > 2:
             self.errorsOtosSpeed1 += 1
         if self.speed2 > 2:
             self.errorsOtosSpeed2 += 1
-            
-        # Check position bounds (robot should stay within field)
+
+        # 3. Field bounds violation (likely coordinate drift)
         if (myPosition1.x < -100 or myPosition1.x > 3100 or 
             myPosition1.y < -100 or myPosition1.y > 3100):
-            self.healthy1 = -2  # Position out of bounds
-            
-    # Mark sensors as unhealthy after repeated errors
+            self.healthy1 = -2
+
+    # 4. Escalate error counters into unhealthy states
     if self.errorsOtos1 > 20:
         self.healthy1 = 0
         print(f"Sensor 1 unhealthy, errors: {self.errorsOtos1}")
@@ -1973,55 +2017,43 @@ def update(self):
 
 ```python
 def update(self):
-    # Use best available sensor data for robot position
+    """Fusion stage: choose best positional estimate based on health flags."""
     if self.healthy1 == 1 and self.healthy2 == 1:
-        # Both sensors healthy: average their readings
         self.xpos = (myPosition1.y + myPosition2.y) / 2
         self.ypos = (myPosition1.x + myPosition2.x) / 2
-        self.angle = meanAngle(myPosition1.h, myPosition2.h)  # Average angles
+        self.angle = meanAngle(myPosition1.h, myPosition2.h)
         self.speed = (self.speed1 + self.speed2) / 2
-        
     elif self.healthy1 == 1:
-        # Only sensor 1 healthy: use its data
-        self.xpos = myPosition1.y
-        self.ypos = myPosition1.x
-        self.angle = myPosition1.h
-        self.speed = self.speed1
-        
+        self.xpos, self.ypos, self.angle, self.speed = myPosition1.y, myPosition1.x, myPosition1.h, self.speed1
     else:
-        # Only sensor 2 healthy: use its data
-        self.xpos = myPosition2.y
-        self.ypos = myPosition2.x
-        self.angle = myPosition2.h
-        self.speed = self.speed2
+        self.xpos, self.ypos, self.angle, self.speed = myPosition2.y, myPosition2.x, myPosition2.h, self.speed2
 ```
 
 ### <ins>**Position reset and calibration**</ins>
 
 ```python
 def setPosition(self, x, y, angle=-5000):
-    """Set absolute position (used for LiDAR-based corrections)"""
-    
-    # Update sensor 1 position
-    myPosition = self.myOtos1.getPosition()
-    myPosition.y = -x / 1000  # Convert mm to meters and apply coordinate transform
-    myPosition.x = -y / 1000
+    """External absolute correction (e.g. LiDAR): synchronize both sensors."""
+    # Sensor 1 transformation (mm→m plus coordinate inversion)
+    pos1 = self.myOtos1.getPosition()
+    pos1.y = -x / 1000
+    pos1.x = -y / 1000
     if angle > -5000:
-        myPosition.h = angle
-    self.myOtos1.setPosition(myPosition)
-    
-    # Update sensor 2 position
-    myPosition = self.myOtos2.getPosition()
-    myPosition.y = -x / 1000
-    myPosition.x = -y / 1000
+        pos1.h = angle
+    self.myOtos1.setPosition(pos1)
+
+    # Sensor 2 mirror update
+    pos2 = self.myOtos2.getPosition()
+    pos2.y = -x / 1000
+    pos2.x = -y / 1000
     if angle > -5000:
-        myPosition.h = angle
-    self.myOtos2.setPosition(myPosition)
-    
-    # Update internal position tracking
+        pos2.h = angle
+    self.myOtos2.setPosition(pos2)
+
+    # Internal state sync + skip next speed delta (jump)
     self.xpos = x
     self.ypos = y
-    self.ignoreSpeedUpdate = 1  # Skip next speed calculation
+    self.ignoreSpeedUpdate = 1
 ```
 
 
@@ -2037,48 +2069,38 @@ Our LiDAR system uses the **RpLidar S2** which provides 360-degree scanning with
 
 ```python
 def update(self):
-    """Main update loop - called every control cycle"""
-    
-    # Scan every 10th loop iteration to optimize performance
+    """LiDAR loop: throttle full scans for performance; populate distance array."""
+    # Gather a new 360° frame every 10 cycles to match the update rate of the LiDAR
     if self.loopCounter >= 9:
-        # Get complete 360° scan from LiDAR
-        self.lidar.getScan(self.scan)  # Updates self.scan array
+        self.lidar.getScan(self.scan)  # Fill self.scan[0..359] in mm
         self.loopCounter = 0
     else:
         self.loopCounter += 1
-    
-    # self.scan[angle] now contains distance in mm for each degree
-    # Example: self.scan[0] = distance at 0°, self.scan[90] = distance at 90°
+    # After fill: self.scan[angle] gives radial distance; e.g. scan[90] right side
 ```
 
 ### <ins>**Position detection and localization**</ins>
 
 ```python
 def startpostionsetzen(self):
-    """Detect robot's starting position using LiDAR wall measurements"""
-    
-    # Calculate average distance in forward direction (-5° to +5°)
+    """Initial spawn detection: average forward samples and match templates."""
     average = 0
     scans = 0
-    for i in range(-5, 6):
-        if self.scan[i] > 0:
+    for i in range(-5, 6):            # Symmetric small forward sector
+        if self.scan[i] > 0:           # Valid measurement
             average += self.scan[i]
             scans += 1
-    average = average / scans
-    
-    # Determine starting position based on wall distances
-    if (average > 1870) and (average < 1970):
-        # Position 1: Near front wall, clockwise direction
+    average /= scans
+
+    # Match measured front distance to known spawn ranges
+    if 1870 < average < 1970:          # Configuration A
         self.direction = self.CW
         self.eventType = self.ER
         self.setPosition(average, 3000 - self.scan[90], 0)
-        
-    elif (average > 1345) and (average < 1450):
-        # Position 2: Different wall configuration
+    elif 1345 < average < 1450:        # Configuration B
         self.direction = self.CCW
         self.setPosition(self.scan[180], 3000 - self.scan[-90], 180)
-        
-    # Additional position detection logic...
+    # Additional configurations can be appended here.
 ```
 
 ### <ins>**Dynamic position correction during driving**</ins>
