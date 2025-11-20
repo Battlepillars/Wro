@@ -2,6 +2,20 @@ import time
 from slam import Hindernisse
 
 def scanRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart):
+    """@brief Generate and execute scan + navigation sequence for one obstacle segment.
+
+    Determines direction (CW/CCW) and obstacle index windows, performs repositioning,
+    near-height scan, then branches waypoint generation based on detected inner/outer
+    obstacle colors. Adds destination Orders to queue with optional braking.
+
+    @param orders list Command queue (modified in-place).
+    @param Order type Factory/class describing order structure.
+    @param waitCompleteOrders callable Synchronization: wait until queue empty before next step.
+    @param checkForColor callable(color:int, start:int, end:int)->bool Color presence tester for obstacle range.
+    @param rotation int Segment rotation identifier (>=1000 => CCW pathing).
+    @param scanStart int Base obstacle index for this segment.
+    @return None
+    """
     if (rotation >= 1000):
         direction = Order.CCW
         scan1=[scanStart+4, scanStart+5]

@@ -12,6 +12,12 @@ from picamera2 import Picamera2 # type: ignore
 
 
 class Camera():
+    """@brief Camera interface for color-based obstacle detection.
+
+    Captures a blurred horizontal scan band, thresholds HSV for RED/GREEN,
+    extracts contour centers, and maps them to angular offsets from optical
+    midline. Results stored in blocksAngle / blocksColor lists.
+    """
     
     imgCam = np.zeros((1536,846,3), np.uint8)
     blocksAngle = []
@@ -23,6 +29,11 @@ class Camera():
     pictureNum=0
     
     def __init__(self):
+        """@brief Initialize Picamera2 and configure capture settings.
+
+        Sets HDR mode, resolution, and starts the camera stream.
+        @return None
+        """
         self.picam2 = Picamera2()
         self.picam2.set_controls({'HdrMode': libcamera.controls.HdrModeEnum.SingleExposure})
         resolution = (1536, 846)
@@ -32,6 +43,13 @@ class Camera():
         self.picam2.start()
     
     def captureImage(self, checkHeightNear):
+        """@brief Capture frame, extract scan band, detect RED/GREEN blobs.
+
+        Performs blur, HSV conversion, masking for color ranges (including
+        wrap-around red hues), then records each contour's horizontal angle.
+        @param checkHeightNear bool If True, lowers scan band for near obstacle perspective.
+        @return None (populates blocksAngle/blocksColor + imgCam for drawing)
+        """
         self.blocksAngle = []
         self.blocksColor = []
         self.blocksAngleDraw = []

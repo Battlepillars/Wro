@@ -70,6 +70,13 @@ sem = threading.Semaphore()
 takePicture=0
 
 def main():
+    """@brief Application entry: initialize hardware, threads, and event loop.
+
+    Sets up camera, SLAM, servo kit, launches control & command threads, then
+    processes pygame events for manual driving, waypoint generation, scans,
+    and program termination.
+    @return int Exit status (1 restart requested, 0 terminate).
+    """
 
     global startTime
     global vPressed
@@ -333,14 +340,10 @@ def main():
         pygame.display.flip()
 
 def normalizeAngle(angle):
-    """
-    Normalize an angle to be between -180 and 180 degrees.
-    
-    Args:
-        angle (float): The angle in degrees to normalize
-        
-    Returns:
-        float: The normalized angle between -180 and 180 degrees
+    """@brief Normalize angle to [-180, 180] range.
+
+    @param angle float Input angle in degrees.
+    @return float Normalized angle.
     """
     while (angle>180):
         angle -= 360
@@ -349,6 +352,12 @@ def normalizeAngle(angle):
     return angle
 
 class Order:
+    """@brief Command container for motion, scanning, and reposition operations.
+
+    Instances placed in global `orders` queue and consumed by command loop.
+    Fields encode target coordinates, steering, timing, scanning indices, and
+    rotation mirroring.
+    """
     DESTINATION=0
     KURVE=1
     SCAN=2
@@ -364,6 +373,25 @@ class Order:
     CW=100
     CCW=101
     def __init__(self,speed=0,brake=0,type=0,x=0,y=0,steer=0,dist=0,timeDrive=0,toScan=[],zielwinkel=0,angleCheckOverwrite=1000,num=0,dir=0,rotation=0,checkHeightNear=False):
+        """@brief Initialize an Order object.
+
+        @param speed float Target speed
+        @param brake int Braking flag (1 progressive braking enabled).
+        @param type int Order type constant (DESTINATION, SCAN, etc.).
+        @param x int Target X coordinate (mm) if applicable.
+        @param y int Target Y coordinate (mm) if applicable.
+        @param steer int Raw steer value for curve orders.
+        @param dist int Distance for curve/time-based movement.
+        @param timeDrive float Duration (s) for timed drive orders.
+        @param toScan list[int] Obstacle indices for SCAN orders.
+        @param zielwinkel float Target heading angle for WINKEL/DRIVETOY.
+        @param angleCheckOverwrite float Angle override for reposition sentinel.
+        @param num int Diagnostic identifier.
+        @param dir int Direction code (Order.CW/Order.CCW) for turning.
+        @param rotation int Rotation/mirroring context for course segments.
+        @param checkHeightNear bool Enables near-height scan mode.
+        @return None
+        """
         if (rotation == 0):
             self.x = x
             self.y = y
@@ -434,12 +462,23 @@ class Order:
 
 
 def waitCompleteOrders():
+    """@brief Block until current orders processed or runtime flags stop loop.
+
+    @return bool True if still running; False if execution aborted.
+    """
     global running2
     global show
     while orders.__len__() > 0 and running2 and show == 0:
         time.sleep(0.01)
     return running2
 def checkForColor(color, start, end):
+    """@brief Test if any obstacle in [start,end) has specified color.
+
+    @param color int Color constant from Hindernisse.
+    @param start int Start index (inclusive).
+    @param end int End index (exclusive).
+    @return bool True if color found among hindernisse in range.
+    """
     if start > slam.hindernisse.__len__() or end > slam.hindernisse.__len__():
         end = end - 24
         start = start - 24
@@ -450,6 +489,13 @@ def checkForColor(color, start, end):
     return False
 
 def commandLoop(slam):
+    """@brief Background thread: consumes orders, dispatches actions & triggers scans.
+
+    Handles startup LED signaling, waits for initial SLAM position, then
+    iteratively processes queued Order objects until termination flags set.
+    @param slam Slam SLAM/state object.
+    @return None
+    """
     global orders
     global startTime
     
@@ -598,6 +644,9 @@ def commandLoop(slam):
 
 
 def printOrder():
+    """@brief Debug helper to print queued orders.
+    @return None
+    """
     global orders
     if orders.__len__() == 0:
         print("No Order",end="")
@@ -625,6 +674,9 @@ def printOrder():
 
 
 def nextOrder():
+    """@brief Pop and return next order from queue if available.
+    @return Order|None Next order or None if queue empty.
+    """
     global orders
     
 #    printOrder()
@@ -635,6 +687,15 @@ def nextOrder():
 
 
 def controlLoop(robot, camera, playmat):
+    """@brief Background thread: updates display, processes motion info & renders HUD.
+
+    Continuously draws playmat, robot, camera overlays, and statistics while
+    respecting global runtime flags.
+    @param robot Robot Robot instance.
+    @param camera Camera Camera instance.
+    @param playmat Playmat Playmat instance.
+    @return None
+    """
     driveBase = DriveBase(slam, kit)
     global running3
     global takePicture

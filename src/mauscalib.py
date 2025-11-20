@@ -50,7 +50,14 @@ import tty
 import termios
 
 def reset(myOtos1,myOtos2):
-    """Reset function called when a key is pressed during the main loop"""
+    """@brief Recalibrate IMUs and reset tracking for both OTOS sensors.
+
+    Invoked on user key press (non-quit). Performs full IMU calibration
+    (255 samples) and tracking reset to origin.
+    @param myOtos1 QwiicOTOS First sensor instance.
+    @param myOtos2 QwiicOTOS Second sensor instance.
+    @return None
+    """
     print("\r\n=== RESET FUNCTION CALLED ===")
     print("System reset completed!")
     print("===============================\r\n")
@@ -60,10 +67,21 @@ def reset(myOtos1,myOtos2):
     myOtos2.resetTracking()
 
 def kbhit():
-    """Check if a key has been pressed (non-blocking)"""
+    """@brief Non-blocking keyboard press detector.
+
+    Uses select() on stdin to check readiness.
+    @return bool True if key available, False otherwise.
+    """
     return select.select([sys.stdin], [], [], 0) == ([sys.stdin], [], [])
 
 def runExample():
+    """@brief Main calibration routine for dual OTOS sensors.
+
+    Initializes sensors, calibrates IMU, sets linear/angular scalars,
+    configures signal processing, and prints position/velocity in a loop.
+    Supports interactive reset and quit via keypress.
+    @return None
+    """
     print("\nQwiic OTOS Example 3 - Calibration\n")
 
     # Create instance of device

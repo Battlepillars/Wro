@@ -19,20 +19,13 @@ from adafruit_servokit import ServoKit # type: ignore
 
 
 def calculateAngularWidth(diameter_mm, distance_mm):
-    """
-    Calculate the apparent angular width of an object in degrees.
-    
-    An object with diameter diameter_mm at distance distance_mm
-    appears at a certain angle to the observer.
-    
-    Args:
-        diameter_mm: Diameter of the object in millimeters (e.g. 120mm)
-        distance_mm: Distance to the observer in millimeters
-    
-    Returns:
-        Angle in degrees at which the object appears
-        
-    Formula: angular_width = 2 * arctan(diameter / (2 * distance))
+    """@brief Compute apparent angular width (degrees) of an object.
+
+    Uses 2*atan(d/(2*dist)) for diameter d at distance dist.
+    @param diameter_mm float Physical diameter (mm).
+    @param distance_mm float Distance from sensor (mm), must be >0.
+    @return float Angular width in degrees.
+    @throws ValueError if distance <= 0.
     """
     if distance_mm <= 0:
         raise ValueError("Distance must be greater than 0")
@@ -46,15 +39,13 @@ def calculateAngularWidth(diameter_mm, distance_mm):
     return angular_width_deg
 
 def meanAngle(angle1, angle2):
-    """
-    Calculate the mean of two angles    
+    """@brief Compute average of two angles respecting circular wrap.
 
-    Args:
-        angle1 (float): First angle in degrees
-        angle2 (float): Second angle in degrees
-        
-    Returns:
-        float: Mean angle in degrees, normalized to [-180, 180]
+    Converts angles to unit vectors, averages, then normalizes result to
+    [-180,180].
+    @param angle1 float First angle (deg).
+    @param angle2 float Second angle (deg).
+    @return float Mean angle in degrees.
     """
     # Convert angles to radians
     rad1 = math.radians(angle1)
@@ -89,12 +80,25 @@ class Hindernisse:
     RED = 1
     GREEN = 2
     def __init__(self, x, y, farbe = 0):
+        """@brief Initialize obstacle placeholder.
+
+        @param x int X coordinate (mm).
+        @param y int Y coordinate (mm).
+        @param farbe int Color/state (NICHTS/RED/GREEN).
+        @return None
+        """
         self.x = x
         self.y = y
         self.farbe = farbe
         # noinspection PyListCreation
     
 class Slam:
+    """@brief SLAM manager: integrates odometry, LiDAR scans, health, and reposition logic.
+
+    Maintains obstacle catalog, sensor status, pose (x,y,angle,speed), and
+    provides methods for detecting obstacles, repositioning using wall scans,
+    and angle correction via regression.
+    """
     resetAngleStart=170
     resetAngleEnd=190
     slope=1
@@ -142,6 +146,12 @@ class Slam:
     logging.basicConfig(filename='./log.log', encoding='utf-8', level=logging.WARN)
     logger.warn(' Slam init  *************************************************************')
     def __init__(self):
+        """@brief Initialize SLAM state, sensors, and LiDAR library bindings.
+
+        Populates obstacle list (hindernisse), configures OTOS sensor, sets
+        calibration scalars and offsets, and prepares scan buffer.
+        @return None
+        """
         
         
         self.hindernisse = []
@@ -260,6 +270,12 @@ class Slam:
         
 
     def startpostionsetzen(self):
+        """@brief Determine initial start position & heading from LiDAR forward sector.
+
+        Averages small angle band, matches ranges to known spawn templates
+        (6 configurations), sets direction/eventType and absolute pose.
+        @return None
+        """
         average = 0
         scans = 0
         for i in range (-5,6):
@@ -319,6 +335,15 @@ class Slam:
         # 1550 - 1660
         # 1040 - 1200
     def setPostion(self, x, y,angle=-5000):
+        """@brief Apply absolute position (and optional heading) to odometry sensor & state.
+
+        Updates OTOS internal position (inverted axis transform) and sets
+        SLAM internal pose; sets ignoreSpeedUpdate sentinel for next speed delta.
+        @param x float X coordinate (mm).
+        @param y float Y coordinate (mm).
+        @param angle float Heading (deg) if not sentinel -5000.
+        @return None
+        """
         # myPosition = self.myOtos1.getPosition()
         # myPosition.y = -x / 1000
         # myPosition.x = -y / 1000
@@ -341,6 +366,11 @@ class Slam:
         self.ignoreSpeedUpdate = 1
         
     def otusHealthReset(self):
+        """@brief Reset health/error counters for OTOS sensors.
+
+        Clears accumulated error counts and restores healthy flags.
+        @return None
+        """
         self.healthy1 = 0
         self.healthy2 = 1
         self.errorsOtos1 = 0
@@ -350,6 +380,12 @@ class Slam:
         self.logger.warning('Reset health of Otos')
         
     def update(self):
+        """@brief Main SLAM update: read odometry, compute speeds, validate health, acquire LiDAR.
+
+        Performs sensor fusion (average positions when both healthy) and logs
+        periodic diagnostics; triggers repositionDrive if enabled.
+        @return None
+        """
         
         myPosition1 = self.myOtos2.getPosition()
         
@@ -467,20 +503,17 @@ class Slam:
 
             
     def hindernisseErkennung(self, scan, toScan, camera, checkHeightNear):
-        """
-        Detect obstacles using LiDAR and determine their colors using the camera.
-        
-        This function combines LiDAR distance measurements with camera color detection
-        to identify and classify obstacles at predefined positions on the competition field.
-        
-        Args:
-            scan: Array of LiDAR distance measurements (360 degrees)
-            toScan: List of obstacle indices to check (limits scanning to relevant positions)
-            camera: Camera object for capturing images and detecting colored obstacles
-            checkHeightNear: Boolean flag for near-distance obstacle detection mode
-            
-        Returns:
-            found: Total number of LiDAR points detected near obstacles
+        """@brief Detect obstacles and assign colors via LiDAR + camera fusion.
+
+        Converts LiDAR scan to Cartesian coordinates, filters points near
+        expected obstacle seats, computes relative angle and compares to camera
+        block angles within dynamic angular width tolerance.
+
+        @param scan list[int] 360° LiDAR distance samples.
+        @param toScan list[int] Obstacle indices to evaluate.
+        @param camera Camera Camera instance providing block angles/colors.
+        @param checkHeightNear bool Use relaxed dot threshold for near scan.
+        @return int Total LiDAR points contributing to detections.
         """
         found = 0
         
@@ -588,6 +621,13 @@ class Slam:
         return found
 
     def calcualteScanAngel(self, angleToScan):
+        """@brief Average LiDAR distances over ±5° window around requested angle.
+
+        Normalizes angle index to scan array bounds and returns mean of valid
+        distance samples.
+        @param angleToScan int Angle in degrees to center window.
+        @return float Mean distance (mm) over window.
+        """
         average = 0
         scans = 0
         scanAngle = int(angleToScan - self.angle + 0.5)
@@ -609,6 +649,13 @@ class Slam:
         return average
 
     def repositionOneDirFront(self, angleCheck):
+        """@brief Single-axis front wall reposition using specified cardinal angle.
+
+        Chooses wall direction based on angleCheck and adjusts either X or Y
+        using scan averages at canonical angles (0, ±90, 180).
+        @param angleCheck int Desired cardinal angle to reference.
+        @return None
+        """
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         self.logger.warn('-----------------------------------------------------------------------------------------')
         self.logger.warning('Manual Repostion Front angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheck,self.xpos,self.ypos,self.angle)
@@ -640,6 +687,12 @@ class Slam:
 
 
     def repositionOneDirSide(self, angleCheck):
+        """@brief Side variant of one-direction wall reposition logic.
+
+        Similar to repositionOneDirFront but used for lateral corrections.
+        @param angleCheck int Cardinal angle to reference.
+        @return None
+        """
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         self.logger.warn('-----------------------------------------------------------------------------------------')
         self.logger.warning('Manual Repostion Side angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheck,self.xpos,self.ypos,self.angle)
@@ -667,6 +720,13 @@ class Slam:
 
 
     def reposition(self, angleCheckOverwrite = 1000):
+        """@brief Full 2-pass wall reposition considering direction (CW/CCW).
+
+        Performs primary axis corrections based on current/override angle then
+        secondary corrections depending on drive direction narrative.
+        @param angleCheckOverwrite float Optional angle override, should point to the front of the robot.
+        @return None
+        """
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         self.logger.warn('-----------------------------------------------------------------------------------------')
         self.logger.warning('Manual Repostion angleCheckOverwrite: %i x: %i y: %i angle: %i',angleCheckOverwrite,self.xpos,self.ypos,self.angle)
@@ -750,6 +810,11 @@ class Slam:
                 self.setPostion(3000 - average, self.ypos)
                 self.logger.warning('v12 x-> %i ',3000-average)
     def getQuadrant(self,qudrantRange=1050):
+        """@brief Determine playfield quadrant based on current (x,y).
+
+        @param qudrantRange int Threshold distance from edges defining quadrant.
+        @return int Quadrant number 1..4 or 0 if none.
+        """
         
         quadrant = 0
         if (self.xpos < qudrantRange and self.ypos < qudrantRange):                 # 1: oben links
@@ -763,6 +828,12 @@ class Slam:
         return quadrant
 
     def repositionDrive(self):
+        """@brief Opportunistic floating reposition using live LiDAR distance checks.
+
+        Evaluates heading proximity to cardinal directions, queries distance,
+        filters by quadrant transitions & thresholds, applies position update.
+        @return None
+        """
         # print("Repostioning")
         currentRepostion = 0
         angleCheck = self.angle
@@ -877,6 +948,15 @@ class Slam:
 
 
     def resetAngle(self):
+        """@brief Estimate and correct robot heading using LAD regression on wall points.
+
+        Collects scan points in angle slice, solves L1 line fit, computes wall
+        angle and adjusts robot heading if difference within safety bounds.
+
+        This function is not completed and currently not in use.
+
+        @return None
+        """
         angleStart=int(self.angle)+140
         angleEnd=int(self.angle)+160
         self.resetAngleStart=angleStart
@@ -946,6 +1026,12 @@ class Slam:
         # sys.exit()
 
     def parkWallScan(self):
+        """@brief Specialized wall scan for parking alignment between the two parking slot walls.
+
+        Uses left/right scans to center on parking wall, updating X while
+        keeping Y constant.
+        @return None
+        """
         # print("X:", self.xpos, "Y:", self.ypos, "Angle:", self.angle, "average:", average, "average3:", 3000 - average)
         self.logger.warn('-----------------------------------------------------------------------------------------')
         self.logger.warning('Park Wall Repostion x: %i y: %i angle: %i',self.xpos,self.ypos,self.angle)

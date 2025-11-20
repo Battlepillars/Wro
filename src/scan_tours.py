@@ -3,17 +3,20 @@ from slam import Hindernisse
 
 
 def scan_inner_tour(orders, speedScan, rotation, scanStart, Order, waitCompleteOrders, checkForColor):
-    """
-    Perform inner tour scanning for obstacles.
-    
-    Args:
-        orders: List of robot orders/commands
-        speedScan: Speed for scanning movement
-        rotation: Rotation angle for coordinate transformation
-        scanStart: Starting index for scanning
-        Order: Order class for creating movement commands
-        waitCompleteOrders: Function to wait for order completion
-        checkForColor: Function to check for color in obstacle range
+    """@brief Perform inner tour obstacle scan sequence.
+
+    Sets direction & obstacle index groups, repositions, scans first subset,
+    branches waypoint pattern based on color classification. Optionally
+    triggers a second scan if initial detection inconclusive.
+
+    @param orders list Command queue mutated with destination/scan orders.
+    @param speedScan float Speed (m/s) used for scan movement waypoints.
+    @param rotation int Segment rotation identifier (>1000 => CCW).
+    @param scanStart int Base obstacle index for this inner segment.
+    @param Order type Order factory/class.
+    @param waitCompleteOrders callable Synchronization helper to block until queue empty.
+    @param checkForColor callable(color:int,start:int,end:int)->bool Color presence test.
+    @return None
     """
     if (rotation > 1000):
         direction = Order.CCW
@@ -94,17 +97,20 @@ def scan_inner_tour(orders, speedScan, rotation, scanStart, Order, waitCompleteO
 
 
 def scan_outer_tour(orders, speedScan, rotation, scanstart, Order, waitCompleteOrders, checkForColor):
-    """
-    Perform outer tour scanning for obstacles.
-    
-    Args:
-        orders: List of robot orders/commands
-        speedScan: Speed for scanning movement
-        rotation: Rotation angle for coordinate transformation
-        scanstart: Starting index for scanning
-        Order: Order class for creating movement commands
-        waitCompleteOrders: Function to wait for order completion
-        checkForColor: Function to check for color in obstacle range
+    """@brief Perform outer tour obstacle scan sequence.
+
+    Similar to inner tour logic but uses outer path geometry; executes initial
+    scan set, branches on color classification, or adds a secondary scan when
+    no obstacles found in the first group.
+
+    @param orders list Command queue mutated in-place.
+    @param speedScan float Speed (m/s) for scan traversal.
+    @param rotation int Segment rotation identifier (>1000 => CCW).
+    @param scanstart int Base obstacle index for outer segment.
+    @param Order type Order factory/class.
+    @param waitCompleteOrders callable Queue synchronization helper.
+    @param checkForColor callable(color:int,start:int,end:int)->bool Color presence test.
+    @return None
     """
     if (rotation > 1000):
         direction = Order.CCW

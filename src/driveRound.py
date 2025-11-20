@@ -3,19 +3,17 @@ from slam import Hindernisse
 import slam
 
 def doReposition(orders, Order, waitCompleteOrders, rotation, angleCheck):
-    """
-    Perform a position correction using LiDAR wall measurements.
-    
-    This function uses the robot's LiDAR to measure distances to walls and corrects
-    the robot's position estimate based on known wall locations. The reposition
-    command adjusts both x,y coordinates and heading angle.
-    
-    Args:
-        orders: Command queue for robot navigation
-        Order: Order class for creating navigation commands
-        waitCompleteOrders: Function to wait for command queue completion
-        rotation: Current rotation/direction identifier (0-999=CW, 1000+=CCW)
-        angleCheck: Angle to use for repositioning calculation (overrides default)
+    """@brief Trigger single reposition operation using LiDAR wall geometry.
+
+    Queues a REPOSITION order after ensuring previous commands completed;
+    optionally overrides angle used for wall-based correction.
+
+    @param orders list Command queue reference (modified).
+    @param Order type Order factory/class with REPOSITION type.
+    @param waitCompleteOrders callable Synchronization helper; abort if False.
+    @param rotation int Segment rotation identifier (affects transform).
+    @param angleCheck float Desired angle for correction (overwrite sentinel).
+    @return None
     """
     # Wait for any pending commands to complete
     if not waitCompleteOrders():
@@ -29,25 +27,21 @@ def doReposition(orders, Order, waitCompleteOrders, rotation, angleCheck):
     time.sleep(0.3)  # Allow position to settle after correction
     
 def driveRound(orders,Order, waitCompleteOrders, checkForColor, rotation, scanStart, slam, last = False):
-    """
-    Generate adaptive waypoints for navigating one section of the obstacle challenge course.
-    This function analyzes detected obstacles and generates appropriate waypoints to navigate around them
-    while staying on the correct side of the field based on obstacle colors (red/green).
+    """@brief Generate adaptive waypoint pattern for one obstacle segment.
 
-    Args:
-        orders: Command queue for robot navigation (list of Order objects)
-        Order: Order class for creating navigation commands
-        waitCompleteOrders: Function to wait for command queue completion
-        checkForColor: Function to check if specific color obstacle exists in range
-                        checkForColor(color, startIdx, endIdx) -> bool
-        rotation: Direction identifier (0-999=CW, 1000+=CCW)
-                Specific values: 0=CW-0°, 90=CW-90°, 180=CW-180°, 270=CW-270°
-                                1000=CCW-0°, 1090=CCW-90°, 
-        scanStart: Starting index for obstacle scanning 
-                    Identifies which of 3 sections we're currently navigating
-        slam: Slam instance for accessing repostionEnable and other properties
-        last: Boolean flag indicating if this is the last section before parking
-    
+    Determines obstacle configuration (source/destination pairs, inner/outer colors),
+    selects routing & optional reposition triggers, and appends Orders for movement,
+    scans, and heading adjustments. Optionally skips corner generation if final segment.
+
+    @param orders list Command queue mutated with waypoint/scanning Orders.
+    @param Order type Order factory/class definition.
+    @param waitCompleteOrders callable Synchronization barrier; abort path if False.
+    @param checkForColor callable(color:int,start:int,end:int)->bool Color detection helper.
+    @param rotation int Segment rotation direction code (>=1000 CCW).
+    @param scanStart int Base obstacle index for this segment.
+    @param slam Slam SLAM/state object for logging & quadrant queries.
+    @param last bool True if final segment prior to parking.
+    @return None
     """
     
     # Print all hindernisse values

@@ -3,7 +3,7 @@ import sys
 import time
 
 pygame.init()
-WIDTH, HEIGHT = 300, 100
+WIDTH, HEIGHT = 300, 100  # @brief Window dimensions for stopwatch display.
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Stoppuhr")
 
@@ -12,7 +12,7 @@ start_time = pygame.time.get_ticks()  # Millisekunden seit pygame.init()
 
 clock = pygame.time.Clock()
 
-while True:
+while True:  # @brief Main loop: process quit events and render elapsed time.
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       pygame.quit()

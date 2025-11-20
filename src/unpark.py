@@ -2,6 +2,17 @@ import time
 from slam import Hindernisse
 
 def scan(toscan, orders, Order, waitCompleteOrders):
+    """@brief Queue a scan order for specified obstacle indices.
+
+    Ensures previous orders completed before and after queuing to avoid
+    unstable sensor readings.
+
+    @param toscan list[int]: Obstacle indices to scan.
+    @param orders list: Mutable command queue.
+    @param Order type: Factory/class for constructing an order.
+    @param waitCompleteOrders callable: Returns True when queue idle; aborts if False.
+    @return None
+    """
     if not waitCompleteOrders():
         return
     time.sleep(0.3)
@@ -12,6 +23,18 @@ def scan(toscan, orders, Order, waitCompleteOrders):
 
 
 def unparkCCW(orders,Order, waitCompleteOrders, checkForColor):
+    """@brief Counter‑clockwise unparking sequence with initial scan and branching.
+
+    Rotates out of start zone, performs near-height scan of first obstacle slot
+    then selects waypoint pattern based on GREEN vs RED detection. Defaults to
+    RED path if no GREEN found.
+
+    @param orders list: Command queue to append orders.
+    @param Order type: Order factory/class.
+    @param waitCompleteOrders callable: Synchronization helper; abort if returns False.
+    @param checkForColor callable: Predicate (color, startIdx, endIdx) -> bool.
+    @return None
+    """
     speedi = 0.5
     
     #orders.append(Order(steer=90, dist=100, speed=0.2, brake=1, type=Order.KURVE))
@@ -35,6 +58,18 @@ def unparkCCW(orders,Order, waitCompleteOrders, checkForColor):
 
 
 def unparkCW(orders,Order, waitCompleteOrders, checkForColor):
+    """@brief Clockwise unparking maneuver with obstacle color dependent routing.
+
+    Performs initial heading adjustment, short curve, scans middle slot, then
+    chooses waypoint sets for RED, GREEN, or performs an extended scan when
+    neither color is conclusively detected.
+
+    @param orders list: Command queue.
+    @param Order type: Order factory/class.
+    @param waitCompleteOrders callable: Wait for queue to finish between steps.
+    @param checkForColor callable: Color presence test (color, startIdx, endIdx).
+    @return None
+    """
     speedi = 0.5
     
     #orders.append(Order(steer=-90, dist=175, speed=0.2, brake=1, type=Order.KURVE))

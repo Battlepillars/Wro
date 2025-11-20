@@ -14,6 +14,11 @@ from adafruit_is31fl3741.adafruit_rgbmatrixqt import Adafruit_RGBMatrixQT # type
 # import main
 
 class Robot:
+    """@brief Visual representation helper for robot pose & sensor overlays.
+
+    Maintains scaled robot sprite and draws obstacle circles, LiDAR points,
+    and trajectory markers onto pygame surface.
+    """
     xpos = 0  
     ypos = 0
     xstart = 0
@@ -31,6 +36,11 @@ class Robot:
 
 
     def __init__(self, matScale):
+        """@brief Initialize robot sprite resources.
+
+        @param matScale float Initial scaling factor for playmat rendering.
+        @return None
+        """
         self.matScaleOld = matScale
         self.robot = None
         self.matScale = matScale
@@ -42,6 +52,17 @@ class Robot:
         self.semDb = threading.Semaphore()
 
     def draw(self, screen, matScale, scan, slam):
+        """@brief Render robot, obstacles, and LiDAR scan points.
+
+        Re-scales sprite on matScale changes. Transforms scan polar samples
+        to world coordinates and draws colored circles for obstacle states.
+
+        @param screen pygame.Surface Target surface.
+        @param matScale float Current scaling factor.
+        @param scan list[int] LiDAR distance samples (indexed by angle).
+        @param slam Slam SLAM/state object (angle, obstacles, reset angles).
+        @return None
+        """
         xoff = 50 * matScale
         yoff = 50 * matScale
         self.matScale = matScale
@@ -109,6 +130,11 @@ class Robot:
         screen.blit(robotTurned, (screenx - rw / 2 + xoff, screeny - rh / 2 + yoff))
 
 class Playmat:
+    """@brief Playmat background & HUD manager.
+
+    Handles scaled field image, camera overlay, log display, status bars, and
+    LED matrix visualization for sensor health & speed metrics.
+    """
     bgImg = None
     scroll = 0
     logList = []
@@ -120,11 +146,23 @@ class Playmat:
     
     @staticmethod
     def log(msg):
+        """@brief Append message to rolling log list (max 10 entries).
+
+        @param msg str Log message.
+        @return None
+        """
         Playmat.logList.append(msg)
         if len(Playmat.logList) > 10:
             Playmat.logList.pop(0)
 
     def __init__(self, matScale, wx, wy):
+        """@brief Initialize playmat images and scaling state.
+
+        @param matScale float Initial scale factor.
+        @param wx int Field width (mm) reference.
+        @param wy int Field height (mm) reference.
+        @return None
+        """
         self.wx = wx
         self.wy = wy
         self.matScale = matScale
@@ -133,6 +171,17 @@ class Playmat:
         self.bgImg = pygame.transform.scale(self.bgImgFull, (self.wx * self.matScale, self.wy * self.matScale))
 
     def draw(self, screen, info, camera, robot):
+        """@brief Draw background field, camera frame, and detection rays.
+
+        Adjusts scaling if window size changed and renders color detection
+        angles as rays from robot pose.
+
+        @param screen pygame.Surface Main display surface.
+        @param info Any Additional info flag (unused currently).
+        @param camera Camera Camera object providing imgCam + blocks.
+        @param robot Robot Robot instance for pose & angle.
+        @return None
+        """
         screenys = screen.get_height()
 
         screen.fill((0, 0, 0))
@@ -169,6 +218,19 @@ class Playmat:
 
 
     def Infos(self,screen,robot,slam,matScale,startTime,time,lamp,virtual_cursor_x, virtual_cursor_y):
+        """@brief Render HUD overlays: cursor, speed bars, logs, and health LEDs.
+
+        @param screen pygame.Surface Target surface.
+        @param robot Robot Robot instance.
+        @param slam Slam SLAM/state object for speed, wheelAngle, health.
+        @param matScale float Current scaling factor.
+        @param startTime float Program start timestamp.
+        @param time module time module reference for now() calls.
+        @param lamp Adafruit_RGBMatrixQT LED matrix object.
+        @param virtual_cursor_x int Cursor X position.
+        @param virtual_cursor_y int Cursor Y position.
+        @return None
+        """
         pygame.draw.circle(screen, (255, 0, 0), (virtual_cursor_x, virtual_cursor_y), 8, 2)
         pygame.draw.line(screen, (255, 0, 0), (virtual_cursor_x - 10, virtual_cursor_y), (virtual_cursor_x + 10, virtual_cursor_y), 2)
         pygame.draw.line(screen, (255, 0, 0), (virtual_cursor_x, virtual_cursor_y - 10), (virtual_cursor_x, virtual_cursor_y + 10), 2)

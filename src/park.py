@@ -4,7 +4,11 @@ from slam import Hindernisse
 import pygame
 
 def waitForKeyPress():
-    """Wait for any key to be pressed"""
+    """@brief Block until any keydown event is received.
+
+    Polls pygame event queue; used for manual debugging pauses in parking.
+    @return None
+    """
     print("Press any key to continue...")
     waiting = True
     while waiting:
@@ -15,6 +19,14 @@ def waitForKeyPress():
         time.sleep(0.05)
 
 def doReposition(orders, Order, waitCompleteOrders, angleCheck):
+    """@brief Queue a single REPOSITION order with angle override.
+
+    @param orders list Command queue reference.
+    @param Order type Order factory/class.
+    @param waitCompleteOrders callable Synchronization helper.
+    @param angleCheck int Angle used for reposition measurement logic.
+    @return None
+    """
     if not waitCompleteOrders():
         return
     time.sleep(0.3)
@@ -24,6 +36,15 @@ def doReposition(orders, Order, waitCompleteOrders, angleCheck):
     time.sleep(0.3)
 
 def doReposition2(orders, Order, waitCompleteOrders, direction):
+    """@brief Convenience wrapper choosing angleCheck based on direction.
+
+    CW => 0°, CCW => -90° then delegates to reposition queuing.
+    @param orders list Command queue reference.
+    @param Order type Order factory/class.
+    @param waitCompleteOrders callable Synchronization helper.
+    @param direction int Direction code (Order.CW / Order.CCW).
+    @return None
+    """
     if direction == Order.CW:
         angleCheck = 0
     else:
@@ -38,6 +59,14 @@ def doReposition2(orders, Order, waitCompleteOrders, direction):
     time.sleep(0.3)
 
 def wallScan(slam,waitCompleteOrders):
+    """@brief Perform wall-based X/Y correction using side/front LiDAR distances.
+
+    Measures left/right distances, averages for corrected X, updates pose via
+    slam.setPostion plus logging. Skips if queue not yet idle.
+    @param slam Slam SLAM/state object with scan array.
+    @param waitCompleteOrders callable Synchronization barrier.
+    @return None
+    """
     if not waitCompleteOrders():
         return
     time.sleep(0.3)
@@ -54,6 +83,21 @@ def wallScan(slam,waitCompleteOrders):
     slam.logger.warning('x-> %i ',average)
 
 def park(orders,Order, waitCompleteOrders, checkForColor, direction, scanStart, slam):
+    """@brief Execute full parking sequence with color-based path selection and alignment loops.
+
+    Determines entry strategy based on scanned obstacle colors, drives into
+    parking zone, performs iterative wall reposition loops to reach optimal
+    (x,y) tolerance before final move command.
+
+    @param orders list Command queue updated throughout procedure.
+    @param Order type Order factory/class.
+    @param waitCompleteOrders callable Synchronization helper.
+    @param checkForColor callable(color:int,start:int,end:int)->bool Color detection helper.
+    @param direction int Direction code (Order.CW / Order.CCW).
+    @param scanStart int Base obstacle index for color checks.
+    @param slam Slam SLAM/state object for reposition + logging.
+    @return None
+    """
     speedi = 0.5
     
     if direction == Order.CW:

@@ -10,6 +10,16 @@ _servo_angle_max = None
 
 class PIDController:
     def __init__(self, Kp, Ki, Kd, setpoint, min, max, drive = 0):
+        """@brief Initialize a PID controller instance.
+
+        @param Kp float Proportional gain.
+        @param Ki float Integral gain.
+        @param Kd float Derivative gain.
+        @param setpoint float Target value the controller drives toward.
+        @param min float Minimum output clamp.
+        @param max float Maximum output clamp.
+        @param drive int Optional flag (1 if used for drive motor diagnostics).
+        """
         self.Kp = Kp
         self.Ki = Ki
         self.Kd = Kd
@@ -20,11 +30,25 @@ class PIDController:
         self.max = max
         self.drive = drive
     def reset(self):
+        """@brief Reset accumulated integral and derivative history.
+
+        Call when direction changes or large setpoint jump occurs to avoid
+        stale integral causing windup.
+        @return None
+        """
         self.previous_error = 0
         self.integral = 0
         
 
-    def compute(self, process_variable, dt, slam=None):
+        def compute(self, process_variable, dt, slam=None):
+            """@brief Compute PID output for current process variable.
+
+            Applies anti-windup clamping for integral term then combines P,I,D.
+            @param process_variable float Current measured value.
+            @param dt float Elapsed time (seconds) since last compute.
+            @param slam Slam|None Optional slam object for extended diagnostics.
+            @return float Controller output within [min,max].
+            """
             # Calculate error
             error = self.setpoint - process_variable
             
@@ -74,8 +98,16 @@ class PIDController:
 
 
 def setServoAngle(kit,angle,slam=None):
-    """Set steering servo to requested logical angle.
+    """@brief Set steering servo to requested logical steering angle.
 
+    Converts logical angle (0..180 with 90 center) to physical servo channel
+    angle applying center offset and travel limits. Optionally records wheel
+    angle in slam state for visualization.
+
+    @param kit ServoKit ServoKit instance controlling PWM outputs.
+    @param angle float Logical desired angle (0 left lock .. 180 right lock, 90 straight).
+    @param slam Slam|None Optional slam object to store normalized wheelAngle.
+    @return None
     """
     # global _servo_angle_min, _servo_angle_max
 
@@ -127,6 +159,13 @@ class DriveBase:
     lastKurveSpeed=1
 
     def __init__(self, slam, kit):
+        """@brief Construct drive base providing high-level motion primitives.
+
+        @param slam Slam Shared SLAM/pose object.
+        @param kit ServoKit Servo controller instance for motor + steering.
+        Initializes speed & steering PID controllers with tuned gains.
+        @return None
+        """
         self.slam = slam
         self.kit = kit
         # if slam.eventType == slam.ER:
@@ -140,17 +179,15 @@ class DriveBase:
         self.pidSteer = PIDController(Kp=2, Ki=0, Kd=0, setpoint=0, min=-90, max=90)
 
     def driveTo(self, x, y, speed, brake):
-        """
-        Drive the robot to a specific coordinate (x, y) with controlled speed and optional braking.
-        
-        Args:
-            x (float): Target x-coordinate in millimeters
-            y (float): Target y-coordinate in millimeters  
-            speed (float): Desired speed in m/s (positive for forward, negative for reverse)
-            brake (int): Braking mode (1 = enable progressive braking near target, 0 = no braking)
-            
-        Returns:
-            bool: True when target is reached (within 30mm), False while still driving
+        """@brief Drive toward absolute (x,y) field coordinate.
+
+        Implements heading error correction + progressive braking as distance
+        shrinks. Uses dual PID (speed & steering).
+        @param x float Target X (mm).
+        @param y float Target Y (mm).
+        @param speed float Desired linear speed (m/s) sign indicates direction.
+        @param brake int 1 enables distance-proportional slowdown; 0 disables.
+        @return bool True when within 30 mm projected distance, else False.
         """
         # Set the target speed for the PID controller
         self.pidController.setpoint = speed
@@ -217,6 +254,15 @@ class DriveBase:
             return False  # Still driving to target
 
     def drivekürvchen(self, dist, angli, speed, brake):
+        """@brief Drive a short arc maintaining fixed steering angle (angli).
+
+        Tracks cumulative distance and applies staged braking near end.
+        @param dist float Target travel distance
+        @param angli float Steering offset (degrees added to center 90).
+        @param speed float Target linear speed (m/s, sign for direction).
+        @param brake int Enable progressive brake logic if 1.
+        @return bool True when finished; False otherwise.
+        """
         if (speed<0 and self.lastKurveSpeed > 0):
             self.pidController.reset()
             print("+++++++++++++++++++++++++++++++++++++++++++++reset PID Controller")
@@ -261,6 +307,15 @@ class DriveBase:
             return False
         
     def driveToWinkel(self, zielwinkel, speed, brake,dir):
+        """@brief Rotate robot to target heading (zielwinkel) while moving.
+
+        Chooses steering saturation based on direction hint (dir) and applies
+        speed PID for motion. Braking reduces target speed near completion.
+        @param zielwinkel float Target heading in degrees.
+        @param speed float Desired translational speed (m/s).
+        @param brake int Enables slowdown as |error| < 50 if 1.
+        @param dir int Direction code (0 auto, 100 CW, else CCW).
+        @return bool True when heading error < 4°, else False.\n+        """
         self.pidController.setpoint = speed
         fehlerwinkel = -zielwinkel + self.slam.angle
 
@@ -312,6 +367,16 @@ class DriveBase:
 
 
     def driveToTime(self, x, y, speed, timeDrive, startTime):
+        """@brief Drive toward (x,y) for a fixed duration then stop.
+
+        Similar to driveTo but terminates based on elapsed time not distance.
+        @param x float Target X (mm) used for heading only.
+        @param y float Target Y (mm) used for heading only.
+        @param speed float Desired speed (m/s).
+        @param timeDrive float Duration (s) to sustain motion.
+        @param startTime float Program start reference for timing.
+        @return bool True when remaining time < 0.1s; else False.
+        """
         self.pidController.setpoint = speed
 
         zielwinkel = -(math.atan2(self.slam.ypos - y, self.slam.xpos - x) / math.pi * 180)
@@ -348,6 +413,14 @@ class DriveBase:
     
     
     def driveTimePower(self, timeDrive, speed, startTime):
+        """@brief Apply raw servo speed (PWM angle) for fixed duration.
+
+        Bypasses PID; directly sets motor channel to provided speed angle.
+        @param timeDrive float Duration (s).
+        @param speed int Servo angle (approx PWM) for motor channel.
+        @param startTime float Program start reference.
+        @return bool True when finished else False.
+        """
         
 
         if self.startTimeDrive == 5000:
@@ -367,6 +440,12 @@ class DriveBase:
         else:
             return False
     def driveTime(self, timeDrive, speed):
+        """@brief Maintain target speed for fixed time using PID.
+
+        @param timeDrive float Duration (s) to drive.
+        @param speed float Desired speed (m/s) sign = direction.
+        @return bool True when elapsed >= timeDrive threshold.
+        """
         self.pidController.setpoint = speed
         speedTotal = self.slam.speed
         startTime = 0 ###
@@ -399,6 +478,11 @@ class DriveBase:
             return False
     
     def crashRecovery(self):
+        """@brief Simple reverse + straighten sequence to recover from stall.
+
+        This function is unfinished and currently not used
+        @return None
+        """
         self.kit.servo[3].angle = 70
         setServoAngle(self.kit,90,self.slam)
         time.sleep(1)
@@ -407,6 +491,15 @@ class DriveBase:
         self.slam.errorDriveList.clear()
     
     def driveToY(self, y, zielwinkel, speed, brake):
+        """@brief Drive along Y axis toward target Y maintaining heading.
+
+        Applies progressive braking as remaining |Y - current| shrinks.
+        @param y float Target Y coordinate (mm).
+        @param zielwinkel float Desired heading angle (deg) while translating.
+        @param speed float Desired linear speed (m/s).
+        @param brake int Enable slowdown near target (1 yes, 0 no).
+        @return bool True when within 10 mm (and slowed/stopped) else False.
+        """
         self.pidController.setpoint = speed
         
         if speed > 0:
